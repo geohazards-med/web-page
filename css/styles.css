@@ -1,0 +1,1535 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Rubik', sans-serif;
+    background-color: #FFFFFF;
+    overflow-x: hidden;
+}
+
+/* Customizar la barra de scroll */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 30px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #363F43; 
+    border-radius: 30px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #247461; 
+  }
+
+/* ----------------------NAVBAR------------------------ */
+
+.barra-navegacion{
+    background-color: #247461;
+    height: 125px;
+}
+
+.menu-barra-nav{
+    width: 90%;
+}
+
+.menu-barra-nav li a{
+    color: #FFFFFF !important;
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+@media screen and (min-width:992px){
+    .en-uso{
+        border-bottom: 2px solid white;
+    }
+
+}
+
+
+
+.logo-s{
+    z-index: 500;
+    position: relative;
+    width: auto;
+    height: auto;
+    top: 25px;
+    margin-left: 20px;
+}
+
+.logo-pagina{
+    width: 144px;
+    height: 164px;
+    filter: drop-shadow(6px 5px 5px rgba(0,0,0,.9));
+}
+
+@media screen and (max-width:991px){
+    .logo-s{
+        position: relative;
+        top: -5px;
+    }
+    .logo-pagina{
+        width: 95px;
+        height: 115px;
+    }
+
+
+}
+
+
+
+
+
+.menu-colap{
+    z-index: 200;
+    background-color: #247461;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 70%;
+
+}
+
+.bases-datos-i{
+    width: 100%;
+    background-color: #247461;
+    border-left: none;
+    border-right: none;
+}
+
+div.bases-datos-i a#bd-1{
+    color: black !important;
+}
+
+
+div.bases-datos-i a#bd-2{
+    color: black !important;
+    
+}
+
+
+/* --------------------------SLIDER------------------------------ */
+
+
+#carousel-imgs{
+    width: 100%;
+    margin: 120px auto 100px auto;
+
+}
+
+@media screen and (max-width:576px){
+    #carousel-imgs{
+        margin-top: 80px;
+    }
+    
+}
+
+
+
+
+
+div.slider-imgs{
+    width: 71%;
+    height: auto;
+    margin: 0px auto 0px 50px;
+    
+}
+
+
+
+.img-slider{
+    
+    max-width: 100%;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/* Personalizar el slider */
+
+ol.carousel-indicators{
+    bottom: -50px;
+    left: 30%;
+}
+
+@media screen and (max-width:767px){
+    ol.carousel-indicators{
+        left: 0%;
+    }
+}
+
+/* PRUEBA DEL SLIDER */
+
+.carousel-mio{
+    width: 100%;
+}
+
+.carousel-mio::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+
+
+
+
+div.carousel-caption{
+
+    position: absolute;
+    top: 0px;
+    right: -31%;
+    min-height: 100%;
+    width: 30%;
+    background: linear-gradient(to bottom, black,#363F43 50%, darkgray);
+    text-align: start;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+.carousel-item {
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    transition: -webkit-transform 01s ease-in-out !important;
+    transition: transform 0.1s ease-in-out !important;
+    transition: transform 0.1s ease-in-out, -webkit-transform 0.1s ease-in-out !important;
+    background-color: white;
+    border-radius: 10px;
+    
+  }
+
+
+
+
+/* div.carousel-caption>h5, div.carousel-caption>p{
+    margin-left: 10px;
+    margin-bottom: 0px;
+} */
+
+
+ol.carousel-indicators li,
+ol.carousel-indicators li.active {
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+
+  border-radius: 100%;
+  border: 2px solid black;
+  background: transparent;
+}
+
+ol.carousel-indicators li.active {
+  background-color: black ;
+}
+
+/* Flechas de next y prev */
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  background-image: none;
+  background-repeat: no-repeat;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: rgba(0, 0,0, 1);
+  font-weight: bold;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  font-weight: bold;
+  color: rgba(0, 0,0, 1);
+}
+
+
+/* Personalizar el video */
+
+.play-video{
+    z-index: 100;
+    background-color: #247461;
+    padding: 0px 5px 0px 5px;
+    color: white;
+    font-size: 18px;
+    border-radius: 17px; 
+    border: none;
+    font-style: italic;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+div.modal-content{
+    background-color: black;
+}
+
+div.modal-header{
+    border-bottom: none;
+    font-size: 1rem;
+}
+
+div.modal-header>button{
+    color: white;
+    font-weight: bold;
+}
+
+.close:hover{
+    color: white;
+}
+
+
+/*----------------------------------------Semillero---------------------------------------- */
+
+.titulo-principal{
+
+    margin-top: 0px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 36px;
+    margin-left: 60px;    
+}
+
+.info-inventario{
+    width: 90%;
+    height: auto;
+}
+
+.titulo-inventario{
+    width: 100%;
+    font-weight: bold;
+    font-size: 36px;
+    margin-bottom: 30px;
+
+}
+
+.parrafo-inventario{
+    
+    font-size: 19px;
+    width: 100%;
+    height: auto;
+
+    
+
+}
+
+@media screen and (max-width:991px){
+    .info-inventario{
+        width: 100%;
+    }
+
+}
+
+
+
+
+
+
+#semillero{
+
+    margin: 20px auto 110px auto;
+    width: 1270px;
+    height: auto;
+       
+}
+
+.btn-toggle{ 
+    display: none;
+    border: none;
+    background-color: white;
+    font-size: 30px;
+    margin-left: 50px;
+}
+
+@media screen and (max-width:575px){
+    .btn-toggle{
+        display: block;
+    }
+}
+
+.esconder{
+    left: -500px;
+}
+
+.mostrar{
+    right: -500px;
+}
+
+
+
+#main{
+    height: auto;
+    width: auto;
+}
+
+/* ----------------------Barra lateral --------------------------*/
+
+/* Barra lateral está en la parte de voltear la carta */
+
+div#barra-lateral ul.lista-campos{
+    height: 526px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #363F43;
+    border-radius: 31px;
+}
+
+ul.lista-campos li{
+    list-style: none;
+    width: 100%;
+    height: 50px;    
+}
+
+ul.lista-campos>li>a{
+    
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+ul.lista-campos li:hover{
+
+    background-color: #5F7179;
+    border-left: solid 5px orangered;
+}
+
+ul.lista-campos li a{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+
+}
+
+li.trigger-li, li.trigger-proy{
+    cursor: pointer;
+}
+
+/* --------------------Parte del despligue del contenido ----------------------*/
+
+#mostrar-contenido{
+
+    width: 100%;
+    height: 527px;
+    background-color: white;
+    border-radius: 31px;
+    overflow: hidden;
+    font-family:'Rubik', sans-serif;
+    background-color: #ACC9B7;
+    position: relative;
+}
+div.tab-content{
+    height: 100%;
+    position: absolute;
+}
+
+/* Scroll vertical de las lineas de investigacion */
+
+div#tab-2{
+    overflow-y: auto;
+}
+
+div#tab-2-1{
+    overflow-y: auto;
+}
+
+div#tab-2-2{
+    overflow-y: auto;
+}
+
+div#tab-2-3{
+    overflow-y: auto;
+}
+
+div#tab-2-4{
+    overflow-y: auto;
+}
+
+div#tab-2-5{
+    overflow-y: auto;
+}
+
+div#tab-2-6{
+    overflow-y: auto;
+}
+
+div#tab-2-7{
+    overflow-y: auto;
+}
+
+div#tab-3{
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+
+}
+
+div#tab-5{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+
+
+
+/* Ubicar el boton de cierre de los perfiles */
+
+.cerrar-perfil, .cerrar-perfil-2, .cerrar-perfil-2-1, .cerrar-perfil-3-1, .cerrar-perfil-3, .cerrar-perfil-4, .cerrar-perfil-5, .cerrar-perfil-6,
+.cerrar-perfil-7, .cerrar-perfil-8, .cerrar-perfil-9, .cerrar-perfil-10, .cerrar-perfil-11{
+    border: none;
+    color: #363F43;
+    cursor: pointer;
+    position: absolute;
+    right: -10px;
+    top: -4px;
+    font-size: 40px;
+}
+
+
+/*------------------------------------ Voltear el menú del semillero-------------- */
+
+#barra-lateral{  
+    height: auto;
+    position: relative;
+
+}
+
+div.carta{
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: all 1s;
+    
+
+}
+
+div.cara-frontal, div.cara-posterior{
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+
+
+div.cara-posterior{
+
+    background-color: #363F43;
+    transform: rotateY(-180deg);
+    height: 526px;
+    border-radius: 30px;
+    
+    
+
+}
+
+.voltear-carta{
+    transform: rotateY(-180deg);
+}
+
+
+/*----------- Darle estilos a la cara posterior --------------- */
+
+/* Lineas de investigación */
+
+div.parte-lineas-inv, div.parte-proyectos{
+    height: 100%;
+    margin: auto;
+    width: 100%;
+    
+}
+
+div.cara-posterior ul>li{
+    list-style: none;
+    
+}
+
+ul.lineas-investigacion, ul.proyectos{
+    height: 100%;
+    z-index: 1;
+    /*    centrar */
+}
+
+.linea-sep{
+    width: 60%;
+    border: solid 1px white;
+    margin: auto;
+    color: white;
+}
+
+.cara-posterior h5{
+    color: white;
+}
+
+.cara-posterior ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+/* Botón para cerrar */
+
+a.cerrar-li, a.cerrar-proy{
+    position: absolute;
+    top: -4px;
+    right: 4px;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 35px;
+    cursor: pointer;
+    z-index: 100;
+    
+}
+
+ul.lineas-investigacion>li, ul.proyectos>li {
+    min-height: 60px;
+    width: 100%;
+
+    
+}
+
+ul.lineas-investigacion>li>a, ul.proyectos>li>a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+ul.lineas-investigacion>li>a:hover, ul.proyectos>li>a:hover{
+    background-color: #5F7179 ;
+    border-left: solid 5px #0095DA;
+}
+
+
+/* Controla el giro de la carta para lineas investigacion y proyectos */
+
+.parte-lineas-inv, .parte-proyectos{
+    display: none;
+}
+
+
+/* -----------------------------Contenido del semillero------------------*/
+
+/*--------------Quienes somos --------------*/
+
+div.quienes-somos{
+    height: auto;
+    width: auto;
+}
+
+div.control-desbor{
+    height: 526px;
+    width: 100%;
+
+    /* ------- */
+    position: relative;
+}
+
+/* Separador */
+
+.vl {
+    border-right: 2px solid #363F43;
+    height: 90%;
+    width: 65%;
+    margin-top: 24px;
+}
+
+
+/* Texto parte izquierda */
+
+
+.descripcion>h6{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.descripcion>p{
+    margin-top: 40px;
+    font-size: 24px;
+}
+
+/* Texto e imágenes parte derecha */
+
+img.foto-profesor{
+    cursor: pointer;
+}
+
+div.parte-izquierda p, div.parte-izquierda h6{
+    font-weight: 600;
+    font-size: 16px;
+} 
+
+/* --- Información del profesor - parte posterior ---*/
+
+/* Lista de contactos */
+
+ul.contactos{
+    line-height: 2rem;
+    margin-top: 20px;
+    border-left: 5px solid #247461;   
+
+}
+
+ul.contactos-edier{
+    line-height: 1.8rem;
+    margin-top: 10px;
+    border-left: 5px solid #247461;
+    padding-left: 6px;
+}
+
+ul.contactos-edier> li{
+    list-style: none;
+
+    width: 100%;
+}
+
+ul.contactos-edier> li>a{
+    text-decoration: none;
+}
+
+
+ul.contactos>li{
+    list-style: none;
+    width: 100%;
+}
+
+ul.contactos>li>a{
+    text-decoration:none;
+}
+
+/* Texto de la descripción del perfil */
+
+div.perfil{
+    height: 90%; 
+    width: 100%;
+}
+
+div.perfil>p{
+    font-size: 21px;
+    margin-top: 30px;
+}
+
+div.perfil>h6{
+    font-size: 28px;
+    text-align: start;
+    font-weight: 1000;
+    
+}
+
+
+/* -------------------------Lineas de investigación descripcion------------------------- */
+
+/* Esconder items */
+
+div.resume, div.resume-2, div.resume-2-1,  div.resume-3,div.resume-3-1, div.resume-4, div.resume-5, div.resume-6, div.resume-7,
+div.resume-8, div.resume-9, div.resume-10, div.resume-11 {
+    display: none;
+}
+
+
+
+/*----------------------------- Investigadores y estudiantes---------------- */
+
+.sombra{
+    box-shadow: 5px 5px 4px #5F7179;
+    /* max-width: 100%;
+    width: 100%;
+    height: auto; */
+}
+
+div.marco{
+    height: 185px;
+    width: auto;
+}
+
+.investigador{
+    position: relative;
+    width: 160px;
+    height: 185px;
+    display: flex;
+    justify-content: center;
+    
+}
+.investigador span{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.8;
+    color: white;
+    width: 100%;
+    text-align: center;
+    height: auto;
+}
+
+.agrupacion{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+.titulo-seccion{
+    margin-top: 60px;
+    margin-left: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.director-titulo{
+    margin-left: 70px;
+}
+
+.director-contenido{
+    margin-left: 20px;
+}
+
+
+.titulo-duo{
+    margin-bottom: 20px;
+    margin-top: 45px;
+    text-align: center;
+    font-family: 'Rubik',sans-serif;
+    font-size: 18px;
+    font-weight:bold;
+    width: 100%;
+
+}
+
+.titulo-linea{
+    margin-bottom: 20px;
+    margin-top: 45px;
+    text-align: center;
+    font-family: 'Rubik',sans-serif;
+    font-size: 18px;
+    font-weight:bold;
+}
+
+
+div.estudiante{
+    margin-top: 60px;
+}
+
+.ocultar-seccion{
+    display: none;
+}
+
+#tab-3 div.investigador>a.con-info{
+    cursor: pointer;
+}
+
+br.separar{
+    display: none;
+}
+
+
+@media screen and (min-width:992px) and (max-width:1250px){
+
+    .control-fuente{
+        font-size: 0.95rem;
+    }   
+}
+
+
+
+@media screen and (max-width:991px){
+
+    #mostrar-contenido{
+        overflow-y: auto;
+    }
+
+    .vl{
+        display: none;
+    }
+
+    .control-fuente{
+        font-size: 0.9rem;
+    }
+
+    .director-titulo{
+        margin-left: 0;
+    }
+    .director-contenido{
+        margin-left: 0;
+    }
+    /* Ajustar tamaño del slider */
+
+    div.slider-imgs{
+        width: 70%;
+    }
+
+    .img-slider{
+        max-width: 100%;
+        height: 290px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    
+
+
+}
+
+@media screen and (max-width:767px){
+    div.slider-imgs{
+        width: 90%;
+        margin: 0 auto 0 auto;
+    }
+
+    .carousel-item{
+        background-color: #f1f1f1;
+    }
+}
+
+
+@media screen and (max-width:575px){
+
+    /* Ajustar slider responsive */
+
+    .img-slider{
+        max-width: 100%;
+        height: 200px;
+    }
+
+    br.separar{
+        display: block;
+    }
+}
+
+
+/* Activar item del  menu al darle click a una seccion */
+.activar-menu{
+    background-color: #5F7179;
+}
+
+.menu-on{
+    background-color: #5F7179;
+}
+
+/* Darle formato a cada una de las lineas de investigacion  */
+
+h6.titulo-campo-izq, h6.titulo-campo-der {
+    font-size: 24px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+div.descripcion-linea{
+    width: 100%;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 30px;    
+}
+
+h6.encargados{
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+
+.ver-resume{
+    cursor: pointer;
+}
+
+div.descripcion-linea ul>li>h6{
+    text-align: center;
+}
+
+div.descripcion-linea li{
+    list-style: none;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Manejo de los titulos */
+
+@media screen and (min-width:992px){
+
+    h6.titulo-campo-izq{
+        display: none;
+    }
+}
+@media screen and (max-width:991px){
+
+    h6.titulo-campo-der{
+        display: none;
+    }
+    div.ilustracion{
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+}
+
+
+/* ---------------------------------Proyectos---------------------------------- */
+
+
+div.contenido-referente a{
+    margin: auto;
+    width: 200px;
+    height: 200px;
+}
+
+div.descripcion-proyecto{
+    margin-top: 30px;
+}
+
+
+
+h6.titulo-proyecto{
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+}
+
+span.amva-titulo{
+    font-size: 20px;
+}
+
+#justificart{
+    text-justify: inter-word;
+}
+
+div.descripcion-proyecto>p{
+    font-size: 18px;
+    margin-left: 10px;
+    width: auto;
+    height: auto;
+}
+
+@media screen and (max-width:575px){
+    h6.titulo-proyecto{
+        font-size: 16px;
+    }
+
+
+    div.descripcion-proyecto p{
+        font-size: .9rem;
+    }
+
+    div.contenido-referente{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+
+/* ----------------------------------Publicaciones------------------------------------- */
+
+
+/* Titulo seccion de publicaciones */
+
+/* .wrap-all{
+    margin-right: 100px;
+} */
+
+
+
+
+.wrap-all{
+    padding-right: 14px;
+}
+
+@media screen and (max-width:575px){
+    /* .wrap-all{
+        margin-right: 9%;
+    } */
+    .titulo-publicaciones{
+        margin-right: auto;
+    }
+}
+
+
+.titulo-publicaciones{
+    margin-top: 20px;
+    min-width: 90%;
+}
+.titulo-publicaciones>h3{
+    font-weight: bold;
+}
+
+.titulo-publicaciones h5{
+    font-style: italic;
+    font-weight: 500;
+}
+
+
+
+.titulo-publicaciones h3, .titulo-publicaciones h5, .titulo-publicaciones h6{
+    text-align: center;
+}
+
+.negrita{
+    font-weight: 1000;
+}
+
+.separador-pub{
+    width: 70%;
+}
+
+
+ul.year-pub{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+ul.year-pub>li{
+    list-style: none;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+ul.year-pub>li>a{
+    text-decoration: none;
+    background-color: #90C0A2;
+    padding: 5px 10px 5px 10px;
+    border-radius: 15px;
+    color: #363F43;
+    font-weight: bold;
+    border: 2px solid #247461;
+}
+
+
+
+
+div.publicacion{
+    min-height: 180px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #90C0A2;
+    border-radius: 36px;
+}
+
+
+
+div.bibliografia{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+div.img-revista{
+    width: auto;
+    height: auto;
+}
+
+
+div.bibliografia>p{
+    margin: auto;
+}
+
+li.link-revista, li.pdf{
+    list-style: none;
+    text-align: center;
+}
+
+@media screen and (min-width:768px) and (max-width:991px){
+    .font-low{
+        font-size: 0.8rem;
+    }
+
+}
+
+.btn-dark{
+    border-radius: 15px;
+    opacity: .9;
+}
+
+
+
+@media screen and (max-width:767px){
+    ul.botones{
+        margin-top: 15px;
+    }
+}
+
+
+
+ul.botones{
+    height: 65%;
+    width: 100%;
+
+}
+.year{
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+
+
+
+@media screen and (max-width:991px){
+
+    /* Sidebar Menu principal */
+
+    ul.lista-campos>li>a{
+        font-size: 12px;
+    }
+
+    /* Parte menú lineas de investigación */
+
+    ul.lineas-investigacion li>a{
+        font-size: 12px;
+    }
+    
+    /* Parte menú proyectos */
+    ul.proyectos li>a{
+        font-size: 12px;
+    }
+
+    /* Quienes somos */
+
+    div.control-desbor{
+        height: auto;
+        
+    }
+
+    div.descripcion{
+        margin-top: 25px;
+    }
+
+    div.descripcion>h6{
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    div.descripcion>p{
+
+        font-size: 11px;
+        text-align: center;
+    }
+
+    div.logo-profe p, div.logo-profe h6{
+
+        font-size: 11px;
+        /* text-align: center; */
+        font-weight: bold;
+    }
+
+    /* Campos de investigación */
+    h6.titulo-campo-izq{
+        font-size: 15px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+
+    
+    
+
+
+
+
+    /* Perfiles */
+
+    div.perfil h6{
+        font-size: 15px;
+        font-weight: bold;
+    }
+    div.perfil p{
+        font-size: 11px;
+    }
+    img.imagen-integrante{
+        width: 120px;
+        height: 162px;
+    }
+    ul.contactos>li>a{
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    ul.contactos-edier>li>a{
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+}
+
+
+
+/* -----------------------------------FOOTER-------------------------------------- */
+
+footer{
+    background-color: #363F43;
+    min-height: 260px;
+    color:white;
+  }
+
+div.unalmed{
+    width: 100%;
+    font-family: Rubik;
+    font-size: 16px;
+}
+  
+div.oficina{
+    width: 100%;
+    font-family: Rubik;
+    font-size: 16px;
+}
+
+div.oficina p.correo_sem{
+    font-size: 18px;
+    text-align: center;
+}
+
+div.oficina>p{
+    margin-left: 45px;
+}
+  
+a.inscribete{
+    color: #FFFFFF;
+    font-family: Rubik;
+    font-size: 20px;
+    vertical-align: middle;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    background-color: rgba(90, 159, 118, 0.6);
+    border-radius: 29px;
+    padding-top: 10px;
+}
+
+div.insc>ul>li{
+    list-style: none;
+    margin-left: 15px;
+}
+
+div.insc>ul>li>a{
+    text-decoration: none;
+}
+
+p.pregunta{
+    font-family: rubik;
+    font-size: 22px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0;
+}
+  
+.geo{
+    font-family: Rubik;
+    font-size: 22px;
+    text-align: center;
+    width: 65%;
+}
+p.geo>span{
+    font-size: 16px;
+    text-align: center;
+}
+
+.linea-inscribete{
+    width: 50%;
+    border: 1px solid #FFFFFF ;
+}
+  
+.seguir{
+    font-family: Rubik;
+    font-size: 24px;
+}
+  
+.faceinsta {
+    position: relative;
+    left: 130px;
+    bottom: 73px;
+    color:#FFFFFF;
+    width: 38px;
+    height: 38px;
+    margin-left: 10px;
+}
+
+
+
+ul.iconos-redes{
+    margin-top: 30px;
+}
+
+ul.iconos-redes>li>a{
+    font-size: 18px;
+    color: white;
+}
+
+@media screen and (max-width:767px){
+    .unalmed, .oficina, .insc{
+        text-align: center;
+        margin-top: 25px;
+    }
+}
+
+
+
+/* -------------------------Mapas de la aplicación-------------------------------- */
+
+#mapas{
+    margin-bottom: 100px;
+    margin-top: 40px;
+    width: 100%;
+    height: auto;
+}
+
+div.envoltura{
+    width: 94%;
+    height: auto;
+}
+
+div.imagen-mapa-col{
+    width: 397px;
+    height: 512px;
+    position: relative;
+    background-image: url('../images/Col.jpg');
+    background-repeat: no-repeat;
+    border: 1px solid #363F43;
+}
+
+div.imagen-mapa-ant{
+    width: 397px;
+    height: 512px;
+    position: relative;
+    background-image: url('../images/Ant.jpg');
+    background-repeat: no-repeat;
+    border: 1px solid #363F43;
+}
+
+
+div.imagen-mapa-col>p, div.imagen-mapa-ant>p{
+    
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    background-color:black;
+    text-align: center;
+    vertical-align: middle;
+    height: 40px;
+    opacity: .9;
+    color: blanchedalmond;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 24px;
+    
+}
+
+
+
+div.imagen-mapa-col>a.link-consulta, div.imagen-mapa-ant>a.link-consulta{
+    position: absolute;
+    bottom: 5px;
+    right: 40%;
+    left: 35%;
+    margin: auto;
+    padding: 4px 5px 4px 5px;
+    border-radius: 10px;
+    font-size: 21px;
+    color: white;
+    background-color: #247461;
+    width: 140px;
+    text-align: center;
+}
+
+div.reportar{
+    height: 80%;
+    margin:50px 0px auto 0px;
+    position: relative;
+    
+}
+
+
+div.reportar::before{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -10px;
+    background-image: url(../images/map-8.svg);
+    background-repeat: no-repeat;
+    background-size: cover;    
+    opacity: 0.3;
+    
+
+}
+
+@media screen and (max-width:991px){
+    div.reportar{
+        margin-top: 20px;
+    }
+}
+
+div.reportar>p{
+    text-align: center;
+    font-size: 24px;
+}
+
+div.reportar a{
+
+    padding: 5px 5px 5px 5px;
+    font-size: 21px;
+    color: white;
+    background-color: #247461;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+@media screen and (max-width:767px){
+    .imagen-mapa-ant, .reportar{
+        margin-top: 50px;
+
+    }
+}
+
+.sep-reportar{
+    width: 70%;
+    border: 1px solid black;
+}
+
+/* Girar botón que esconde al sidebar */
+
+.voltear-boton{
+    transform: rotateX(180deg);
+    -webkit-transform:rotate(180deg); 
+    -moz-transform:rotate(180deg); 
+    -o-transform:rotate(180deg);
+}
