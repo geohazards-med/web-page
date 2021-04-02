@@ -534,6 +534,12 @@ div.carta{
 div.cara-frontal, div.cara-posterior{
     height: 100%;
     width: 100%;
+    perspective: 0;
+    -webkit-perspective: 0;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    visibility:visible;
     backface-visibility: hidden;
     position: absolute;
     top: 0;
