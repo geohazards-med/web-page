@@ -153,6 +153,7 @@ div.slider-imgs{
 .img-slider{
     
     max-width: 100%;
+    width: auto;
     height: 400px;
     margin-left: auto;
     margin-right: auto;
@@ -198,11 +199,19 @@ div.carousel-caption{
     text-align: start;
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 14px;
     border-radius: 10px;
+    overflow-y: auto;
 }
+
+@media screen and (max-width:991px){
+    div.carousel-caption{
+        font-size: 11px;
+    }
+}
+
 
 .carousel-item {
     -webkit-backface-visibility: hidden !important;
@@ -270,11 +279,11 @@ ol.carousel-indicators li.active {
 .play-video{
     z-index: 100;
     background-color: #247461;
-    padding: 0px 5px 0px 5px;
+    padding: 5px 5px 5px 5px;
     color: white;
-    font-size: 18px;
+    font-size: 14px;
     border-radius: 17px; 
-    border: none;
+    border: 1px solid #363F43;
     font-style: italic;
     margin-left: 5px;
     margin-top: 5px;
@@ -706,14 +715,23 @@ div.parte-izquierda p, div.parte-izquierda h6{
 ul.contactos{
     line-height: 2rem;
     margin-top: 20px;
-    border-left: 5px solid #247461;   
+    /* border-left: 5px solid #247461;    */
+    border-style: none none solid solid;
+    border-left-color: #247461;
+    border-bottom-color: #90C0A2;
+    border-left-width: 5px;
+    border-bottom-width: 5px;
 
 }
 
 ul.contactos-edier{
     line-height: 1.8rem;
     margin-top: 15px;
-    border-left: 5px solid #247461;
+    border-style: none none solid solid;
+    border-left-color: #247461;
+    border-bottom-color: #90C0A2;
+    border-left-width: 5px;
+    border-bottom-width: 5px;
     padding-left: 6px;
 }
 
@@ -904,6 +922,7 @@ br.separar{
 
     .img-slider{
         max-width: 100%;
+        width: auto;
         height: 290px;
         margin-left: auto;
         margin-right: auto;
@@ -932,6 +951,7 @@ br.separar{
 
     .img-slider{
         max-width: 100%;
+        width: auto;
         height: 200px;
     }
 
@@ -1070,11 +1090,6 @@ div.descripcion-proyecto>p{
 
 /* Titulo seccion de publicaciones */
 
-/* .wrap-all{
-    margin-right: 100px;
-} */
-
-
 
 
 .wrap-all{
@@ -1082,33 +1097,34 @@ div.descripcion-proyecto>p{
 }
 
 @media screen and (max-width:575px){
-    /* .wrap-all{
+    .wrap-all{
         margin-right: 9%;
-    } */
+    }
     .titulo-publicaciones{
         margin-right: auto;
+    }
+
+    .cabeza-pagina h5{
+        font-style: italic;
+        font-size: 0.95rem;
+        width: 80%;
     }
 }
 
 
 .titulo-publicaciones{
     margin-top: 20px;
-    min-width: 90%;
+    
 }
 .titulo-publicaciones>h3{
     font-weight: bold;
 }
 
-.titulo-publicaciones h5{
+.cabeza-pagina h5{
     font-style: italic;
     font-weight: 500;
 }
 
-
-
-.titulo-publicaciones h3, .titulo-publicaciones h5, .titulo-publicaciones h6{
-    text-align: center;
-}
 
 .negrita{
     font-weight: 1000;
@@ -1122,6 +1138,12 @@ div.descripcion-proyecto>p{
 ul.year-pub{
     margin-top: 25px;
     margin-bottom: 25px;
+}
+
+div.cabeza-pagina{
+    width: 100%;
+    min-height: 100px;
+
 }
 
 ul.year-pub>li{
@@ -1138,7 +1160,6 @@ ul.year-pub>li>a{
     font-weight: bold;
     border: 2px solid #247461;
 }
-
 
 
 
