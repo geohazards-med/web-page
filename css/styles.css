@@ -712,7 +712,7 @@ ul.contactos{
 
 ul.contactos-edier{
     line-height: 1.8rem;
-    margin-top: 10px;
+    margin-top: 15px;
     border-left: 5px solid #247461;
     padding-left: 6px;
 }
@@ -784,12 +784,16 @@ div.marco{
 
 .investigador{
     position: relative;
-    width: 160px;
+    width: 150px;
     height: 185px;
     display: flex;
-    justify-content: center;
-    
+    justify-content: center;   
 }
+
+.letra-luis-alfredo{
+    font-size: 0.95rem;
+}
+
 .investigador span{
     position: absolute;
     bottom: 0;
@@ -959,8 +963,8 @@ h6.titulo-campo-izq, h6.titulo-campo-der {
 div.descripcion-linea{
     width: 100%;
     height: auto;
-    margin-left: 10px;
-    margin-top: 30px;    
+    margin-top: 30px;
+    margin-right: 10px;    
 }
 
 h6.encargados{
@@ -1282,7 +1286,7 @@ ul.botones{
     }
     img.imagen-integrante{
         width: 120px;
-        height: 162px;
+        height: 152px;
     }
     ul.contactos>li>a{
         font-size: 12px;
@@ -1482,21 +1486,24 @@ div.reportar{
     
 }
 
+@media screen and (min-width:992px){
 
-div.reportar::before{
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: -10px;
-    background-image: url(../images/map-8.svg);
-    background-repeat: no-repeat;
-    background-size: cover;    
-    opacity: 0.3;
-    
+    div.reportar::before{
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -10px;
+        background-image: url(../images/map-8.svg);
+        background-repeat: no-repeat;
+        background-size: cover;    
+        opacity: 0.3;
+
+    }
 
 }
+
 
 @media screen and (max-width:991px){
     div.reportar{
