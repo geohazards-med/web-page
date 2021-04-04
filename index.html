@@ -47,11 +47,8 @@
       </ul>
     </div>
   </nav>
-
   <!-- Carrusel de imágenes  -->
-  
-
-  <!-- Carrousel mio -->
+  <!-- Carrousel -->
   <div id="carousel-imgs">
     <div class="slider-imgs">
       <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -60,33 +57,287 @@
           <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="5"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="6"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="7"></li>
+
         </ol>
-        <div class="carousel-mio">
+        <div class="carousel-personalizado">
           <!-- Publicación más reciente (primera) La primera publicación debe tener la clase "active"-->
           <div class="carousel-item  active">
             <img src="slider_img/publicacion2021.png" class="img-slider d-block" alt="...">
-            <div  class="carousel-caption ml-auto d-none d-md-block">
-              <h5>Publicación reciente:</h5>
-              <p><i>03 de abril de 2021</i></p>
-              <p class="h6">Aplicación de inteligencia artificial y técnicas de aprendizaje automático
-                para la evaluación de la susceptibilidad por movimientos en masa.</p>
-              <p>Revista Mexicana de Ciencias Geológicas.</p>
-              <ul class="d-flex align-items-center list-unstyled justify-content-around">
+            <div  class="carousel-caption">
+              <p>
+                <!-- Título de la publicación -->  
+                <span class="titulo-slider"><b>Nueva publicación:</b></span>
+                <!-- Fecha de la publicación -->
+                <br class="vista-grande"><br class="vista-grande"><i>03 de abril de 2021</i><br><br class="vista-grande">
+                <!-- Descripción publicación -->
+                <span class="desc-slider">
+                Aplicación de inteligencia artificial y técnicas de aprendizaje automático
+                para la evaluación de la susceptibilidad por movimientos en masa.
+                Revista Mexicana de Ciencias Geológicas.
+                </span>
+              </p>
+              <ul class="btns-slider d-flex align-items-center list-unstyled justify-content-around">
                 <li><a class="play-video" href="http://rmcg.geociencias.unam.mx/index.php/rmcg/index" target="_blank">Revista</a></li>
                 <li><a class="play-video" href="http://rmcg.geociencias.unam.mx/index.php/rmcg/article/view/1605/1414">Descargar</a></li>
               </ul>   
             </div>
           </div>
-          <!-- Segunda publicación -->
+          <!-- Poster Mariana -->
+          <div class="carousel-item">
+            <img src="slider_img/poster_mariana.jpg" class="img-slider d-block" alt="...">
+            <div  class="carousel-caption">
+              <div>
+                <!-- Título de la publicación -->  
+                <span class="titulo-slider"><b>Ponencia en European Geosciences Union (EGU)</b></span>
+                <!-- Fecha de la publicación -->
+                <br class="vista-grande"><br class="vista-grande"><i>Publicado el 3 de abril del 2021</i><br><br class="vista-grande">
+                <!-- Descripción publicación -->
+                <span class="desc-slider">
+                  "Hydro-meteorological hazard analysis for new
+                  settlements framed in the Colombian peace process"  
+                </span>
+              </div>
+              <ul class="btns-slider d-flex align-items-center list-unstyled justify-content-around">
+                <li><button type="button" data-toggle="modal" data-target="#poster-mariana" class="play-video" target="_blank">Ver póster</button></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Imagen Modal-->
+          <div class="modal fade" id="poster-mariana" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid poster-size">
+                    <object data="slider_img/poster_mariana.pdf" type="application/pdf" width="100%" height="100%">
+                      <p>Alternative text - include a link <a href="slider_img/poster_mariana.pdf">to the PDF!</a></p>
+                    </object>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Poster Federico -->
+          <div class="carousel-item">
+            <img src="slider_img/poster_federico.png" class="img-slider d-block" alt="...">
+            <div  class="carousel-caption">
+              <div>
+                <!-- Título de la publicación -->  
+                <span class="titulo-slider"><b>Ponencia en European Geosciences Union (EGU)</b></span>
+                <!-- Fecha de la publicación -->
+                <br class="vista-grande"><br class="vista-grande"><i>Publicado el 3 de abril del 2021</i><br><br class="vista-grande">
+                <!-- Descripción publicación -->
+                <span class="desc-slider">
+                  "Regional and detailed multi-hazard assessment
+                  of debris-flow processes in the Colombian Andes" 
+                </span>
+              </div>
+              <ul class="btns-slider d-flex align-items-center list-unstyled justify-content-around">
+                <li><button type="button" data-toggle="modal" data-target="#poster-federico" class="play-video" target="_blank">Ver póster</button></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Imagen Modal-->
+          <div class="modal fade" id="poster-federico" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid poster-size">
+                    <object data="slider_img/poster_federico.pdf" type="application/pdf" width="100%" height="100%">
+                      <p>Alternative text - include a link <a href="slider_img/poster_federico.pdf">to the PDF!</a></p>
+                    </object>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Póster Johnatan -->
+          <div class="carousel-item">
+            <img src="slider_img/poster_jhonatan.png" class="img-slider d-block" alt="...">
+            <div  class="carousel-caption">
+              <div>
+                <!-- Título de la publicación -->  
+                <span class="titulo-slider"><b>Ponencia en European Geosciences Union (EGU).</b></span>
+                <!-- Fecha de la publicación -->
+                <br class="vista-grande"><br class="vista-grande"><i>Publicado el 3 de abril del 2021</i><br><br class="vista-grande">
+                <!-- Descripción publicación -->
+                <span class="desc-slider">
+                  "Shallow landslide occurrence and propagation in tropical
+                  mountainous terrain with open source models. A case study in the
+                  Colombian Andes"
+                </span>
+              </div>
+              <ul class="btns-slider d-flex align-items-center list-unstyled justify-content-around">
+                <li><button type="button" data-toggle="modal" data-target="#poster-johnatan" class="play-video" target="_blank">Ver póster</button></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Imagen Modal-->
+          <div class="modal fade" id="poster-johnatan" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid poster-size">
+                    <object data="slider_img/poster_jhonatan.pdf" type="application/pdf" width="100%" height="100%">
+                      <p>Alternative text - include a link <a href="slider_img/poster_jhonatan.pdf">to the PDF!</a></p>
+                    </object>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Póster Daissy -->
+          <div class="carousel-item">
+            <img src="slider_img/poster_daissy.jpg" class="img-slider d-block" alt="...">
+            <div  class="carousel-caption">
+              <div>
+                <!-- Título de la publicación -->  
+                <span class="titulo-slider"><b>Ponencia en European Geosciences Union (EGU).</b></span>
+                <!-- Fecha de la publicación -->
+                <br class="vista-grande"><br class="vista-grande"><i>Publicado el 3 de abril del 2021</i><br><br class="vista-grande">
+                <!-- Descripción publicación -->
+                <span class="desc-slider">
+                  "Artificial Intelligence and machine learning model for spatial and temporal prediction of drought in
+                  the Colombia Caribbean region" 
+      
+                </span>
+              </div>
+              <ul class="btns-slider d-flex align-items-center list-unstyled justify-content-around">
+                <li><button type="button" data-toggle="modal" data-target="#poster-daissy" class="play-video" target="_blank">Ver póster</button></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Imagen Modal-->
+          <div class="modal fade" id="poster-daissy" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid poster-size">
+                    <object data="slider_img/poster_daissy.pdf" type="application/pdf" width="100%" height="100%">
+                      <p>Alternative text - include a link <a href="slider_img/poster_daissy.pdf">to the PDF!</a></p>
+                    </object>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Póster Emmanuel -->
+          <div class="carousel-item">
+            <img src="slider_img/poster_emmanuel.jpg" class="img-slider d-block" alt="...">
+            <div  class="carousel-caption">
+              <div>
+                <!-- Título de la publicación -->  
+                <span class="titulo-slider"><b>Ponencia en European Geosciences Union (EGU).</b></span>
+                <!-- Fecha de la publicación -->
+                <br class="vista-grande"><br class="vista-grande"><i>Publicado el 3 de abril del 2021</i><br><br class="vista-grande">
+                <!-- Descripción publicación -->
+                <span class="desc-slider">
+                  "Morphometrical analysis of fans and torrential catchments in mountainous
+                  terrain in the northern Colombian Andes by machine learning techniques"
+              </div>
+              <ul class="btns-slider d-flex align-items-center list-unstyled justify-content-around">
+                <li><button type="button" data-toggle="modal" data-target="#poster-emmanuel" class="play-video" target="_blank">Ver póster</button></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Imagen Modal-->
+          <div class="modal fade" id="poster-emmanuel" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid poster-size">
+                    <object data="slider_img/poster_emanuel.pdf" type="application/pdf" width="100%" height="100%">
+                      <p>Alternative text - include a link <a href="slider_img/poster_emanuel.pdf">to the PDF!</a></p>
+                    </object>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Póster Karolina -->
+          <div class="carousel-item">
+            <img src="slider_img/poster_karolina.png" class="img-slider d-block" alt="...">
+            <div  class="carousel-caption">
+              <div>
+                <!-- Título de la publicación -->  
+                <span class="titulo-slider"><b>Ponencia en European Geosciences Union (EGU).</b></span>
+                <!-- Fecha de la publicación -->
+                <br class="vista-grande"><br class="vista-grande"><i>Publicado el 3 de abril del 2021</i><br><br class="vista-grande">
+                <!-- Descripción publicación -->
+                <span class="desc-slider">
+                  "Approach for analyzing landslide and torrential flow hazard conditions
+                  in relation to landscape evolution in the northern Colombian Andes"  
+                </span>
+              </div>
+              <ul class="btns-slider d-flex align-items-center list-unstyled justify-content-around">
+                <li><button type="button" data-toggle="modal" data-target="#poster-karolina" class="play-video" target="_blank">Ver póster</button></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Imagen Modal-->
+          <div class="modal fade" id="poster-karolina" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid poster-size">
+                    <object data="slider_img/poster_karolina.pdf" type="application/pdf" width="100%" height="100%">
+                      <p>Alternative text - include a link <a href="slider_img/poster_karolina.pdf">to the PDF!</a></p>
+                    </object>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Segundo slide -->
           <div class="carousel-item">
             <img src="slider_img/la_ceja.png" class="img-slider d-block" alt="...">
-            <div  class="carousel-caption ml-auto d-none d-md-block">
-              <h5>Deslizamiento en la Ceja, Antioquia.</h5>
-              <p><i>2 de marzo del 2021</i></p>
-              <p>El movimiento en masa que ocurrió en el kilómetro 22 + 660, entre la glorieta de Don Diego-La Fe, vía Medellín– La Ceja, dejó a una persona fallecida y seis más heridas. </p>
-              <button type="button" class="play-video" data-toggle="modal" data-target="#staticBackdrop">
-                Ver video
-              </button>
+            <div  class="carousel-caption">
+              <div>
+                <!-- Título de la publicación -->  
+                <span class="titulo-slider"><b>Deslizamiento en la Ceja, Antioquia.</b></span>
+                <!-- Fecha de la publicación -->
+                <br class="vista-grande"><br class="vista-grande"><i>2 de marzo del 2021</i><br><br class="vista-grande">
+                <!-- Descripción publicación -->
+                <span class="desc-slider">
+                  El movimiento en masa que ocurrió en el kilómetro 22 + 660, entre la glorieta de Don Diego-La Fe, vía Medellín– La Ceja, dejó a una persona fallecida y seis más heridas. 
+                </span>
+              </div>
+              <ul class="btns-slider d-flex align-items-center list-unstyled justify-content-around">
+                <li><button type="button" data-toggle="modal" data-target="#staticBackdrop" class="play-video" href="http://rmcg.geociencias.unam.mx/index.php/rmcg/index" target="_blank">Ver vídeo</button></li>
+              </ul>
             </div>
           </div>
           <!-- Modal del video -->
@@ -106,10 +357,8 @@
               </div>
             </div>
           </div>
-          <!-- Segundo slider -->
-          
           <!-- Tercer slider -->
-          <div class="carousel-item">
+          <!-- <div class="carousel-item">
             <img src="slider_img/eventoGeohazards2.jpg" class="img-slider d-block" alt="...">
             <div  class="carousel-caption ml-auto d-none d-md-block">
               <h5>Reuniones Geohazards</h5>
@@ -117,16 +366,16 @@
               <a class="play-video" href="https://meet.google.com/chp-fivx-cta?hs=224" target="_blank">Ingresar</a>
   
             </div>
-          </div>
+          </div> -->
           <!-- Cuarto slider -->
-          <div class="carousel-item">
+          <!-- <div class="carousel-item">
             <img src="slider_img/Invitacion.svg" class="img-slider d-block" alt="...">
             <div class="carousel-caption ml-auto d-none d-md-block">
               <h5>Semana de la geomorfología</h5>
               <p><i>11 de marzo de 2021</i></p>   
               <a class="play-video" href="http://www.geomorph.org/international-geomorphology-week-2021/" target="_blank">Más información</a>
             </div>
-          </div>
+          </div> -->
         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
