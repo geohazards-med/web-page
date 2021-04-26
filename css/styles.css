@@ -123,6 +123,10 @@ div.bases-datos-i a#bd-2{
 
 /* --------------------------SLIDER------------------------------ */
 
+.enviar-resumen{
+    text-decoration: none;
+    color: #FFFFFF;
+}
 
 #carousel-imgs{
     width: 100%;
