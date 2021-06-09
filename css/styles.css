@@ -270,6 +270,7 @@ div.carousel-caption{
 @media screen and (max-width:575px){
     div.carousel-caption{
         height: 170px;
+        overflow-y: auto;
     }
 
 }
