@@ -271,7 +271,7 @@ corregir_sombreado(elementos_proyectos, "menu-proyectos", targeta_cerrar_proy, p
 
 // Establecer tiempo de intervalo del slider
 $('.carousel').carousel({
-    interval: 4000
+    interval: 5000
   })
 
 
