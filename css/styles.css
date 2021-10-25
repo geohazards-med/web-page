@@ -130,7 +130,7 @@ div.bases-datos-i a#bd-2{
 
 #carousel-imgs{
     width: 100%;
-    margin: 120px auto 100px auto;
+    margin: 100px auto 100px auto;
 
 }
 
@@ -1743,6 +1743,164 @@ div.reportar a{
     color: white;
     border: 1px solid #363F43;
     margin-bottom: 8px;
+}
+
+
+/* Simposio de geeoamenazas */
+
+.resaltado{
+    background-color: #247461;
+    color: #f1f1f1;
+    width: 40%;
+    padding: 6px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 24px;
+}
+
+#main-simposio{
+    margin-top: 120px;
+}
+
+#main-simposio p{
+    font-size: 20px;
+}
+
+#main-simposio > h3{
+    font-weight: bold;
+}
+
+div.cont-simposio{
+    margin-top: 50px;
+    width: 70%;
+}
+
+div.cont-simposio > p{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+div.cont-simposio > h1{
+    text-align: center;
+   
+}
+
+div.cont-simposio img {
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+}
+
+img.cronograma{
+    margin-top: 30px;
+}
+
+div.map-fm{
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+a.conoce-mas{
+    color: #247461;
+    
+    border-bottom: #247461;
+    font-weight: bold;
+}
+
+div.redes-simposio{
+    margin-top: 30px;
+
+}
+
+div.redes-simposio > p{
+    font-size: 20px;
+}
+
+div.redes-simposio  li{
+    font-size: 50px;
+    list-style: none;
+}
+
+div.redes-simposio  li>a{
+    text-decoration: none;
+    color: #247461;
+}
+
+@media screen and (max-width:567px){
+    div.cont-simposio{
+        width: 90%;
+    }
+
+    div.cont-simposio > h1{
+        font-size: 28px;
+    }
+    div.cont-simposio > p{
+        font-size: 16px;
+    }
+
+    div.redes-simposio > p{
+        font-size: 16px;   
+    }
+    #apartado-simposio p.justificar-simposio  {
+        text-justify: inter-word
+    }
+
+    h3.resaltado{
+    
+        width: 100%;
+       
+    }
+    #main-simposion h2 {
+        font-size: 24px;
+
+
+    }
+    #main-simposio h3{
+        font-size: 21px;
+
+    }
+    #main-simposio p {
+        font-size: 16px;
+
+    }
+
+}
+
+
+@media screen and (max-width:800px){
+   
+    .resaltado{
+    
+        width: 100%;  
+    }
+
+    #main-simposion h2 {
+        font-size: 24px;
+
+    }
+    #main-simposio h3{
+        font-size: 21px;
+
+    }
+    #main-simposio p {
+        font-size: 16px;
+
+    }
+
+}
+
+
+
+
+.location-icon{
+    font-size: 30px;
+    color: #247461;
+}
+
+.click-icon{
+    font-size: 21px;
+    color: #247461;
 }
 
 
