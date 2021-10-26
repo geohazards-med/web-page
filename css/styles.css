@@ -1820,6 +1820,7 @@ div.redes-simposio > p{
 div.redes-simposio  li{
     font-size: 50px;
     list-style: none;
+    margin-left: 50px;
 }
 
 div.redes-simposio  li>a{
@@ -1827,7 +1828,7 @@ div.redes-simposio  li>a{
     color: #247461;
 }
 
-@media screen and (max-width:567px){
+@media screen and (max-width:575px){
     div.cont-simposio{
         width: 90%;
     }
@@ -1843,6 +1844,7 @@ div.redes-simposio  li>a{
         font-size: 16px;   
     }
     #apartado-simposio p.justificar-simposio  {
+        text-align: justify;
         text-justify: inter-word
     }
 
@@ -1868,30 +1870,34 @@ div.redes-simposio  li>a{
 }
 
 
-@media screen and (max-width:800px){
+@media screen and (min-width:576px) and (max-width:767px){
+
+    #apartado-simposio p.justificar-simposio  {
+        text-align: justify;
+        text-justify: inter-word
+    }
    
+    div.cont-simposio{
+        width: 90%;
+    }
     .resaltado{
-    
         width: 100%;  
     }
 
     #main-simposion h2 {
-        font-size: 24px;
+        font-size: 22px;
 
     }
     #main-simposio h3{
-        font-size: 21px;
+        font-size: 19px;
 
     }
     #main-simposio p {
-        font-size: 16px;
+        font-size: 14px;
 
     }
 
 }
-
-
-
 
 .location-icon{
     font-size: 30px;
@@ -1903,4 +1909,16 @@ div.redes-simposio  li>a{
     color: #247461;
 }
 
+.btn-download{
+    text-align: center;
+    margin-top: 0px;
+    background-color: #247461;
+    color: #f1f1f1;
+}
+
+.download-div{
+    margin-top: 0px;
+    width: 100%;
+    height: auto;
+}
 
