@@ -1760,6 +1760,7 @@ div.reportar a{
 
 #main-simposio{
     margin-top: 120px;
+    border-left: 3px #247461 solid;
 }
 
 #main-simposio p{
@@ -1769,6 +1770,7 @@ div.reportar a{
 #main-simposio > h3{
     font-weight: bold;
 }
+
 
 div.cont-simposio{
     margin-top: 50px;
@@ -1920,5 +1922,27 @@ div.redes-simposio  li>a{
     margin-top: 0px;
     width: 100%;
     height: auto;
+}
+
+ul.transmision-yt>li{
+    list-style: none;
+    vertical-align: middle;
+}
+
+ul.transmision-yt{
+    width: 100%;
+    height: auto;
+    
+}
+
+a.icono-yt{
+    font-size: 72px;
+    color: #c4302b;
+}
+
+a.texto-transmision{
+    color: black;
+    font-size: 21px;
+    font-weight: bold;
 }
 
