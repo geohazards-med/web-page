@@ -110,6 +110,13 @@ body{
     border-right: none;
 }
 
+.eventos-i{
+    width: auto;
+    background-color: #247461;
+    border-left: none;
+    border-right: none;
+}
+
 div.bases-datos-i a#bd-1{
     color: black !important;
 }
@@ -119,6 +126,18 @@ div.bases-datos-i a#bd-2{
     color: black !important;
     
 }
+
+div.eventos-i a#bd-1{
+    color: black !important;
+}
+
+
+div.eventos-i a#bd-2{
+    color: black !important;
+    
+}
+
+
 
 
 /* --------------------------SLIDER------------------------------ */
