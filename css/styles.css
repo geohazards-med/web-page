@@ -1965,3 +1965,32 @@ a.texto-transmision{
     font-weight: bold;
 }
 
+/* Carousel del evento de San Antonio 13-07-2022 */
+
+#carousel-evento{
+    width: 700px;
+    height: 510px;
+    overflow: hidden;
+}
+
+.texto-evento{
+    margin-top: 35px;
+}
+
+
+
+
+
+@media screen and (max-width:768px){
+  
+    #video-evento{
+        width: 100%;
+        height: auto;
+    }
+
+    .titulo-evento{
+        padding: 10px;
+    }
+
+}
+
