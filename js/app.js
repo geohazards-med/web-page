@@ -274,6 +274,10 @@ $('.carousel').carousel({
     interval: 5000
   })
 
+  $('#carousel-imgs-evento').carousel({
+    interval: 1000
+  })
+
 
 
 // Sidebar toggle
