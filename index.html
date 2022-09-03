@@ -29,7 +29,7 @@
         <li class="nav-item mx-auto">
           <a class="nav-link" href="#semillero">Semillero</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown mr-4 ml-4">
           <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Bases de datos
           </a>
@@ -38,6 +38,15 @@
             <a class="dropdown-item text-center" id="bd-2" href="https://geohazards-antioquia.herokuapp.com/#/find" target="_blank">Antioquia</a>
           </div>
         </li>
+        <li class="nav-item dropdown ml-5 mr-4">
+          <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Recursos
+          </a>
+          <div class="dropdown-menu recursos-wrapper aria-labelledby="navbarDropdown">
+            <a class="dd-item-recursos dropdown-item text-center" id="rc-1" href="https://edieraristizabal.github.io/Libro_cartoGeotecnia/intro.html" target="_blank">Libro guía Cartografía Geotécnica</a>
+          </div>
+        </li>
+
         <!-- <li class="nav-item dropdown mx-auto">
           <a class="nav-link dropdown-toggle text-center" id="eventosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Eventos</a>
           <div class="dropdown-menu eventos-i" aria-labelledby="eventosDropdown">
@@ -83,12 +92,30 @@
           <li data-target="#carouselExampleCaptions" data-slide-to="5"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="6"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="7"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="8"></li>
 
         </ol>
         <div class="carousel-personalizado">
           <!-- Publicación más reciente (primera) La primera publicación debe tener la clase "active"-->      
           
           <div class="carousel-item active">
+            <img src="slider_img/libro_guia_cartografia_geotecnica.png" class="img-slider d-block" alt="...">
+            <div  class="carousel-caption">
+              <p>
+                <!-- Título de la publicación -->  
+                <span class="titulo-slider"><b>Libro guía - Cartografía Geotécnica</b></span>
+                <!-- Fecha de la publicación -->
+                <br class="vista-grande"><br class="vista-grande"><i>Publicado el 2 de septiembre de 2022</i><br><br class="vista-grande">
+                <span class="desc-slider">
+                  El Semillero de Investigación Geohazards comparte el libro guía del curso Cartografía Geotécnica de la Universidad Nacional de Colombia - sede Medellín, desarrollado por el profesor Edier Aristizábal. 
+                </span>
+              </p>
+              <ul class="btns-slider d-flex align-items-center list-unstyled justify-content-around">
+                <li><a href="https://edieraristizabal.github.io/Libro_cartoGeotecnia/intro.html" target="_blank" class="play-video"  style="font-size: 16px;">Consultar</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="carousel-item">
             <img src="slider_img/cursoAVT_Minas.png" class="img-slider d-block" alt="...">
             <div  class="carousel-caption">
               <p>
@@ -2579,6 +2606,17 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
     </div>
   </section>
   <!-- Fin Semillero -->
+  <!-- Comienzo recursos -->
+  <div class="info-recursos container-fluid mx-auto">
+    <h3 class="titulo-inventario">Recursos</h3>
+    <div>
+      <a class="bullet parrafo-inventario" href="https://edieraristizabal.github.io/Libro_cartoGeotecnia/intro.html" target="_blank">Aristizábal, Edier. 2022. Libro Guía del curso Cartografía Geotécnica. Universidad Nacional de Colombia, Departamento de Geociencias y Medio Ambiente, Facultad de Minas.</a>
+    </div>
+    <p class="parrafo-inventario"> 
+    </p>
+  </div>
+  <!-- Fin recursos -->
+  <!-- Comienzo inventario -->
   <div class="info-inventario container-fluid mx-auto">
     <h3 class="titulo-inventario">Inventario de desastres</h3>
     <p class="parrafo-inventario">El Semillero Geohazards ha desarrollado un aplicativo que permite visualizar y reportar eventos de 
@@ -2611,6 +2649,8 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
     </div>
 
   </div>
+
+ 
   
 
   
