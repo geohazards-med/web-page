@@ -43,13 +43,13 @@ body{
 }
 
 .menu-barra-nav{
-    width: 90%;
+    width: 88%;
 }
 
 .menu-barra-nav li a{
     color: #FFFFFF !important;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 19px;
     letter-spacing: 1px;
 }
 
@@ -119,11 +119,13 @@ body{
 
 div.bases-datos-i a#bd-1{
     color: black !important;
+    font-size: 16px !important;
 }
 
 
 div.bases-datos-i a#bd-2{
     color: black !important;
+    font-size: 16px !important;
     
 }
 
@@ -421,11 +423,17 @@ div.modal-header>button{
     margin-bottom: 30px;
     font-weight: bold;
     font-size: 36px;
-    margin-left: 60px;    
+        
 }
 
 .info-inventario{
-    width: 90%;
+    width: 94%;
+    height: auto;
+    margin-top: 60px;
+}
+
+.info-recursos{
+    width: 94%;
     height: auto;
 }
 
@@ -442,6 +450,7 @@ div.modal-header>button{
     font-size: 19px;
     width: 100%;
     height: auto;
+    color: black;
 
     
 
@@ -450,6 +459,11 @@ div.modal-header>button{
 @media screen and (max-width:991px){
     .info-inventario{
         width: 100%;
+    }
+
+    .info-recursos{
+        width: 100%;
+
     }
 
 }
@@ -461,7 +475,7 @@ div.modal-header>button{
 
 #semillero{
 
-    margin: 20px auto 110px auto;
+    margin: 20px auto 95px auto;
     width: 1270px;
     height: auto;
        
@@ -1994,3 +2008,41 @@ a.texto-transmision{
 
 }
 
+
+/* Dropdown items */
+.recursos-wrapper{
+    background-color: #247461;
+    color: #363F43;
+    font-size: 12px;
+
+}
+.dd-item-recursos{
+
+    font-size: 13px;
+}
+
+.recursos-wrapper a#rc-1{
+    color: black !important;
+    font-size: 16px !important;
+}
+
+a.bullet{
+    font-size: 21px;
+    text-decoration: none;
+    color: black;
+
+}
+
+a.bullet:hover{
+    color: #247461;
+}
+
+.bullet::before{
+    content: "•";
+    color: #247461;
+    display: inline-block; 
+    width: 12px;
+    transform: scale(2.3);
+    margin-right: 10px;
+    
+}
