@@ -165,6 +165,10 @@ div.eventos-i a#bd-2{
         width: 130px;
         height: auto;
     }
+
+    .texto-transmision{
+        font-size: 13px !important;
+    }
     
 }
 
@@ -1808,8 +1812,11 @@ div.reportar a{
     font-weight: bold;
 }
 
-.desc-simposio{
+p.desc-simposio{
     margin-top: 30px;
+    text-align: justify;
+    text-justify: inter-word;
+    padding: 5px;
     font-size: 21px !important;
 }
 
