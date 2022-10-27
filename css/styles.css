@@ -1834,6 +1834,30 @@ p.desc-simposio{
     list-style: none;
 }
 
+
+.transmision2{
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    margin-top: 30px;
+  }
+.transmision2 iframe{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+.text-simposio{
+    margin: 40px auto 40px auto;
+
+}
+
+
+
+
 .transmision{
     position: relative;
     width: 100%;
@@ -2073,6 +2097,11 @@ a.texto-transmision{
     font-size: 16px !important;
 }
 
+.recursos-wrapper a#rc-2    {
+    color: black !important;
+    font-size: 16px !important;
+}
+
 a.bullet{
     font-size: 21px;
     text-decoration: none;
@@ -2097,8 +2126,3 @@ a.bullet:hover{
 
 
 /* III SIMPOSOSIO */
-
-.poster-simposio{
-
-
-}
