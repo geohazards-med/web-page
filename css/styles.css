@@ -2119,6 +2119,16 @@ a.bullet:hover{
     display: inline-block; 
     width: 12px;
     transform: scale(2.3);
-    margin-right: 10px;
-    
+    margin-right: 10px;   
 }
+
+.cus-button{
+    background-color: #247461;
+}
+
+@media screen and (min-width:767px) {
+    .handle-res {
+        width: 50%;
+        margin: 10px auto 10px auto;
+        }
+    }
