@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de desastres</title>
+    <meta name="description" content="Semillero de investigación de la Universidad Nacional de Colombia. Inventario de desastres de Colombia y Antioquia">
+    <meta name="keywords" content="Semillero, Investigación, Inventario, Desastres, Grupo, Deslizamientos, Antioquia, Facultad, Minas">
+    <meta name="author" content="Geohazards">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-colorpicker.css">
+    <!-- Estilos del gestor de mapas -->
+    <link rel="stylesheet" href="css/leaflet.css">
+    <!-- Estilos de la Barra Lateral -->
+    <link rel="stylesheet" href="css/leaflet-sidebar.min.css">
+    <!-- Estilos de las notificaciones del visor -->
+    <link rel="stylesheet" href="css/leaflet-notifications.css">
+    <!-- Estilos del Visor -->
+    <link rel="stylesheet" href="css/geovisor.css">
+    <script src="https://kit.fontawesome.com/95d88073be.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="icon" href="images/LOGO_FINAL_V2.png" sizes="16x16 32x32" type="image/png">
+</head>
+<body>
+
+    <!-- Barra  de navegación :D-->
+    <nav class="navbar navbar-expand-lg navbar-light barra-navegacion">
+      <a class="logo-s" href="index.html"><img class="logo-pagina" src="images/LOGO_FINAL_V2.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse menu-colap" id="navbarSupportedContent">
+        <ul class="navbar-nav  mx-auto menu-barra-nav">
+          <li class="nav-item mx-auto ">
+            <a class="nav-link" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item mx-auto">
+            <a class="nav-link" href="./index.html#semillero">Semillero</a>
+          </li>
+          <li class="nav-item mx-auto en-uso">
+            <a class="nav-link" href="#">Geovisor</a>
+          </li>
+          <li class="nav-item dropdown ml-5 mr-4">
+            <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Recursos
+            </a>
+            <div class="dropdown-menu recursos-wrapper aria-labelledby="navbarDropdown">
+              <a class="dd-item-recursos dropdown-item text-center" id="rc-1" href="https://edieraristizabal.github.io/Libro_cartoGeotecnia/intro.html" target="_blank">Libro guía Cartografía Geotécnica</a>
+              <a class="dd-item-recursos dropdown-item text-center" id="rc-2" href="./simposio-geoamenazas.html" target="_blank">Memorias III Simposio Geoamenazas</a>
+            </div>
+          </li>
+  
+          <li class="nav-item mx-auto">
+            <a class="nav-link" href="./index.html#contacto">Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+  <!-- Barra Lateral -->
+  <div id="sidebar" class="leaflet-sidebar collapsed">
+    <!-- Pestañas de navegación -->
+    <div class="leaflet-sidebar-tabs">
+        <!-- Pestañas dispuestas en la parte superior -->
+        <ul role="tablist">
+            <!-- Información -->
+            <li><a href="#home" role="tab" title="Información del Visor"><i class="fa-solid fa-circle-info"></i></a></li>
+            <!-- Mapas Base -->
+            <li><a href="#basemap" role="tab" title="Selección Mapa Base"><i class="fa-solid fa-map"></i></a></li>
+            <!-- Capas por País -->
+            <li><a href="#capas" role="tab"><i class="fa-solid fa-layer-group" title="Selección de Capas por Países"></i></a></li>
+            <!-- Cargar Capas -->
+            <li><a href="#cargarCapa" role="tab"><i class="fa-solid fa-upload" title="Cargar Capas"></i></a></li>
+        </ul>
+        <!-- Pestañas dispuestas en la parte inferior -->
+        <ul role="tablist">
+            <!-- Perfil de Usuario -->
+            <li><a href="#profile"><i class="fa-solid fa-user" title="Perfil de Usuario"></i></a></li>
+        </ul>
+    </div>
+    <!-- Contenido de cada pestaña -->
+    <div class="leaflet-sidebar-content">
+        <!-- Contenido Información -->
+        <div class="leaflet-sidebar-pane" id="home">
+            <h1 class="leaflet-sidebar-header">
+                Inventario de Desastres
+                <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <br>
+            <h4 class="text-justify"><b>GEOHAZARDS</b></h4>
+            <br>
+            <p class="h5">El Semillero Geohazards ha desarrollado este aplicativo para visualizar y reportar eventos de movimientos en masa y desastres naturales ocurridos en Colombia y en el departamento de Antioquia.</p>
+            <p class="h5"></p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p class="h6">Desarrollado por la Universidad Nacional de Colombia</p>
+        </div>
+        <!-- Contenido Mapa Base (Gran parte del contenido se carga dinámicamente por medio de Javascript) -->
+        <div class="leaflet-sidebar-pane" id="basemap">
+            <h1 class="leaflet-sidebar-header">
+                Mapa Base
+                <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <br>
+            <h4>Seleccione el mapa base:</h4>
+            <br>
+            <div id="basemapContent"></div>
+        </div>
+        <!-- Contenido Capas por País -->
+        <div class="leaflet-sidebar-pane" id="capas">
+            <h1 class="leaflet-sidebar-header">
+                Selector de Capas
+                <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <br>
+            <div class="h-100 w-100">
+                <div class="container-fluid">
+                    <div id="capasContent" class="row"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Contenido Cargar Capas -->
+        <div class="leaflet-sidebar-pane" id="cargarCapa">
+            <h1 class="leaflet-sidebar-header">
+                Cargar Capas
+                <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <br>
+            <h4 class="">En esta sección puede cargar las capas que desee, los formatos compatibles son:</h4>
+            <h5 class="">KML (.kml) y KMZ (.kmz)</h6>
+            <h5 class="">Shapefile Comprimido (.zip)</h6>
+            <h5 class="">GeoJSON (.json)</h6>
+            <h5 class="">Raster (.tif)</h6>
+            <h5 class="">Puede cargar varios archivos a la vez, incluso de diferentes tipos.</h5>
+            <br>
+            <input class="file-cargarCapa" type="file" id="files" name="files[]" multiple>
+            <div class="b-border w-100"></div>
+            <div id="content-input-cargarCapa" class="container-fluid"></div>
+        </div>
+        <!-- Contenido Perfil -->
+        <div class="leaflet-sidebar-pane" id="profile">
+            <h1 class="leaflet-sidebar-header">
+              Perfil<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <br>
+            <h3 class="text-center">GEOHAZARDS</h3>
+            <h4 class="text-center b-border">geohazards_med@unal.edu.co</h4>
+            <br>
+            <h3>Figuras Guardadas</h3>
+        </div>
+    </div>
+  </div>
+  <!-- Fin Barra Lateral -->
+
+  
+  <!-- Main -->
+  <main class="w-100">
+    <!-- Contenedor del Mapa -->
+    <div class="contenido-mapa w-100">
+      <div id="map"></div>
+    </div>
+  </main>
+  <!-- Fin Main -->
+
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-colorpicker.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- Librería Gestión de Mapas Web -->
+    <script src="js/lib/leaflet.js"></script>
+    <!-- Plugin para manejo de Barra Lateral -->
+    <script src="js/lib/leaflet-sidebar.min.js"></script>
+    <!-- Plugin para manejo de Notificaciones -->
+    <script src="js/lib/leaflet-notifications.js"></script>
+    <!-- Plugins para manejo de un Spin de carga -->
+    <script src="js/lib/spin.min.js"></script>
+    <script src="js/lib/leaflet.spin.min.js"></script>
+    <!-- Plugins pára visualización de información tipo Vector-->
+    <script src="js/lib/leaflet-VectorIcon.js"></script>
+    <!-- Plugins pára visualización de varios tipos de información -->
+    <script src="js/lib/leaflet-omnivore.min.js"></script>
+    <!-- Plugins de ESRI para importar mapas base y capas -->
+    <script src="js/lib/esri-leaflet.js"></script>
+    <script src="js/lib/esri-leaflet-vector.js"></script>
+    <script src="js/lib/esri-leaflet-renderers.js"></script>
+    <script src="js/lib/esri-leaflet-legend-src.js"></script>
+    <script src="js/lib/esri-leaflet-webmap.js"></script>
+    <!-- Plugins pára visualización de información tipo KML -->
+    <script src="js/lib/leaflet-kml.js"></script>
+    <!-- Plugins pára visualización de información tipo WMS -->
+    <script src="js/lib/leaflet.wms.js"></script>
+    <!-- Plugins pára visualización de información tipo KMZ -->
+    <script src="js/lib/leaflet-kmz.js"></script>
+    <script src="js/lib/jszip.min.js"></script>
+    <script src="js/lib/togeojson.js"></script>
+    <!-- Plugins pára visualización de información tipo SHP -->
+    <script src="js/lib/shp.js"></script>
+    <script src="js/lib/leaflet.shpfile.js"></script>
+    <!-- Plugins pára visualización de información tipo Raster -->
+    <script src="js/lib/georaster.js"></script>
+    <script src="js/lib/proj4-src.js"></script>
+    <script src="js/lib/proj4leaflet.js"></script>
+    <script src="js/lib/georaster-layer-for-leaflet.js"></script>
+    <!-- Scripts de Firebase -->
+    <!-- <script src="js/firebase-app-compat.js"></script>
+    <script src="js/firebase-database-compat.js"></script>
+    <script src="js/firebase-auth-compat.js"></script>
+    <script src="js/firebase-ui-auth.js"></script>
+    <script src="js/server.js"></script> -->
+    <!-- Datos del Visor -->
+    <script src="data/datos.js"></script>
+    <script src="data/Antioquia.js"></script>
+    <script src="data/Colombia.js"></script>
+    <!-- Script Visor -->
+    <script src="js/geovisor.js"></script>
+
+</body>
+</html>
