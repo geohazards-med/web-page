@@ -148,6 +148,18 @@ main{
 // Estilos para la Barra Lateral
 #sidebar{
 
+    .btn-comun{
+        color: $azul-isa;
+        background: #ffffff;
+        border-color: $azul-isa;
+        &:hover{
+            color: #ffffff;
+            background: $azul-isa;
+            border-color: $azul-isa;
+        }
+    }
+    
+
     // Estilos Mapa base
     #basemap{
         .col-basemap{

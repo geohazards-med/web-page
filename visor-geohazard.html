@@ -25,39 +25,40 @@
 </head>
 <body>
 
-    <!-- Barra  de navegación :D-->
-    <nav class="navbar navbar-expand-lg navbar-light barra-navegacion">
-      <a class="logo-s" href="index.html"><img class="logo-pagina" src="images/LOGO_FINAL_V2.png" alt=""></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse menu-colap" id="navbarSupportedContent">
-        <ul class="navbar-nav  mx-auto menu-barra-nav">
-          <li class="nav-item mx-auto ">
-            <a class="nav-link" href="./index.html">Home</a>
-          </li>
-          <li class="nav-item mx-auto">
-            <a class="nav-link" href="./index.html#semillero">Semillero</a>
-          </li>
-          <li class="nav-item mx-auto en-uso">
-            <a class="nav-link" href="#">Geovisor</a>
-          </li>
-          <li class="nav-item dropdown ml-5 mr-4">
-            <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Recursos
-            </a>
-            <div class="dropdown-menu recursos-wrapper aria-labelledby="navbarDropdown">
-              <a class="dd-item-recursos dropdown-item text-center" id="rc-1" href="https://edieraristizabal.github.io/Libro_cartoGeotecnia/intro.html" target="_blank">Libro guía Cartografía Geotécnica</a>
-              <a class="dd-item-recursos dropdown-item text-center" id="rc-2" href="./simposio-geoamenazas.html" target="_blank">Memorias III Simposio Geoamenazas</a>
-            </div>
-          </li>
-  
-          <li class="nav-item mx-auto">
-            <a class="nav-link" href="./index.html#contacto">Contacto</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+  <!-- Barra  de navegación :D-->
+  <nav class="navbar navbar-expand-lg navbar-light barra-navegacion">
+    <a class="logo-s" href="index.html"><img class="logo-pagina" src="images/LOGO_FINAL_V2.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse menu-colap" id="navbarSupportedContent">
+      <ul class="navbar-nav  mx-auto menu-barra-nav">
+        <li class="nav-item mx-auto ">
+          <a class="nav-link" href="./index.html">Home</a>
+        </li>
+        <li class="nav-item mx-auto">
+          <a class="nav-link" href="./index.html#semillero">Semillero</a>
+        </li>
+        <li class="nav-item mx-auto en-uso">
+          <a class="nav-link" href="#">Geovisor</a>
+        </li>
+        <li class="nav-item dropdown ml-5 mr-4">
+          <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Recursos
+          </a>
+          <div class="dropdown-menu recursos-wrapper aria-labelledby="navbarDropdown">
+            <a class="dd-item-recursos dropdown-item text-center" id="rc-1" href="https://edieraristizabal.github.io/Libro_cartoGeotecnia/intro.html" target="_blank">Libro guía Cartografía Geotécnica</a>
+            <a class="dd-item-recursos dropdown-item text-center" id="rc-2" href="./simposio-geoamenazas.html" target="_blank">Memorias III Simposio Geoamenazas</a>
+            <a class="dd-item-recursos dropdown-item text-center" id="rc-2" href="http://repositorio.gestiondelriesgo.gov.co/handle/20.500.11762/40444" target="_blank">Libro UNGRD</a>
+          </div>
+        </li>
+
+        <li class="nav-item mx-auto">
+          <a class="nav-link" href="./index.html#contacto">Contacto</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
     
   <!-- Barra Lateral -->
   <div id="sidebar" class="leaflet-sidebar collapsed">
@@ -73,6 +74,8 @@
             <li><a href="#capas" role="tab"><i class="fa-solid fa-layer-group" title="Selección de Capas por Países"></i></a></li>
             <!-- Cargar Capas -->
             <li><a href="#cargarCapa" role="tab"><i class="fa-solid fa-upload" title="Cargar Capas"></i></a></li>
+            <!-- Descargar Capas -->
+            <li><a href="#descargaCapa" role="tab"><i class="fa-solid fa-download" title="Descargar Capas"></i></a></li>
         </ul>
         <!-- Pestañas dispuestas en la parte inferior -->
         <ul role="tablist">
@@ -145,17 +148,34 @@
             <div class="b-border w-100"></div>
             <div id="content-input-cargarCapa" class="container-fluid"></div>
         </div>
+
+        <!-- Contenido Descargar Capas -->
+        <div class="leaflet-sidebar-pane" id="descargaCapa">
+          <h1 class="leaflet-sidebar-header">
+              Descargar Eventos
+              <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+          </h1>
+          <div id="descargapane"></div>
+      </div>
+
         <!-- Contenido Perfil -->
         <div class="leaflet-sidebar-pane" id="profile">
-            <h1 class="leaflet-sidebar-header">
-              Perfil<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
-            </h1>
-            <br>
-            <h3 class="text-center">GEOHAZARDS</h3>
-            <h4 class="text-center b-border">geohazards_med@unal.edu.co</h4>
-            <br>
-            <h3>Figuras Guardadas</h3>
+          <h1 class="leaflet-sidebar-header">
+            Perfil<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+          </h1>              
+        <div>
+            <div id="firebaseui-auth-container"></div>
+            <div class="d-none" id="modal-perfil-container">
+                <img src="#" alt="Foto Perfil" id="foto-perfil">
+                <h3 id="nombre-perfil">Nombre</h3>
+                <h4 id="correo-perfil">Correo</h4>
+                <h4 id="semestre-perfil">Proyecto</h4>
+                <h4 id="nivel-perfil">Nivel</h4>
+                <button type="button" class="btn btn-danger" id="logout" data-dismiss="modal">Cerrar Sesión</button>
+            </div>
         </div>
+      </div>
+
     </div>
   </div>
   <!-- Fin Barra Lateral -->
@@ -207,6 +227,11 @@
     <!-- Plugins pára visualización de información tipo SHP -->
     <script src="js/lib/shp.js"></script>
     <script src="js/lib/leaflet.shpfile.js"></script>
+    <!-- FileSaver -->
+    <script src="js/lib/circuler.js"></script>
+    <script src="js/lib/FileSaver.min.js"></script>
+    <!-- Download Shapefile from GeoJSON -->
+    <script src="js/lib/shpwrite.js"></script>
     <!-- Plugins pára visualización de información tipo Raster -->
     <script src="js/lib/georaster.js"></script>
     <script src="js/lib/proj4-src.js"></script>

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 .leaflet-notification {
     width: 300px;
     min-height: 50px;
@@ -8,7 +9,7 @@
     transition: opacity 0.3s ease;
     display: table;
     opacity: 0;
-    font-family: 'Font_light';
+    font-family: 'Rubik', sans-serif;
 }
 
 .leaflet-notification.dismissable {

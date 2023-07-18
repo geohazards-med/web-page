@@ -1,5 +1,6 @@
 // Variable para la gestión del contenido del visor
 var map;
+var capaPuntos;
 // Variable para la gestión de la Barra Lateral
 var sidebar;
 // Variable para la gestión del Notificaciones
@@ -56,6 +57,8 @@ $(document).ready(function () {
     AgregarContenidoMapasBase();
     // Agregar las capas 
     AgregarCapas();
+    // Agregar Descargas 
+    AgregarDescargas();
     // Inicialización de los Popover que muestran la información de las capas por países
     $('[data-toggle="popover"]').popover({
         title: function () {
@@ -213,8 +216,8 @@ var capaPuntos = L.layerGroup();
 // Función para agregar el contenido de las capas a la barra lateral
 function AgregarCapas() {
     $("#capasContent").append(
-        '<div class="col-12">'+
-            '<label for="selectCapa" class="bold label-capas">Escoja la capa:</label>'+
+        '<div class="col-12 p-0">'+
+            '<label for="selectCapa" class="bold label-capas">Escoja el Inventario:</label>'+
             '<select class="form-control" id="selectCapa">'+
                 '<option value="Colombia">Colombia</option>'+
                 '<option value="Antioquia">Antioquia</option>'+
@@ -241,15 +244,21 @@ function AgregarFiltros(){
         var trigger = ["Todos"];
         for (let i = 0; i < Colombia.length; i++) {
             const element = Colombia[i];
-            departamentos.push(element["LOCATION"]["Department"])
-            ciudades.push(element["LOCATION"]["City"])
-            tipos.push(element["TYPE"])
-            trigger.push(element["TRIGGERING"])
+            departamentos.push(element["department"])
+            ciudades.push(element["town"])
+            tipos.push(element["type"])
+            trigger.push(element["triggering"])
         }
         var departamentosUnique = getUnique(departamentos);
         var ciudadesUnique = getUnique(ciudades);
         var tiposUnique = getUnique(tipos);
         var triggerUnique = getUnique(trigger);
+        textAppend += '<div class="col-12 mt-3">'+
+                        '<label for="afterDate" class="bold label-capas">Después de la Fecha:</label>'+
+                        '<input type="date" class="form-control" id="afterDate" value=""></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="beforeDate" class="bold label-capas">Antes de la Fecha:</label>'+
+                        '<input type="date" class="form-control" id="beforeDate" value=""></div>';
         textAppend += '<div class="col-12">'+
                         '<label for="selectDepartamento" class="bold label-capas">Departamento:</label>'+
                         '<select class="form-control" id="selectDepartamento">';
@@ -285,7 +294,7 @@ function AgregarFiltros(){
         textAppend += '<div class="col-12">'+
                         '<label for="selectMuertes" class="bold label-capas">Mínimo de Fallecidos:</label>'+
                         '<input type="number" class="form-control" id="selectMuertes" value="0"></div>';
-        textAppend += '<button class="btn btn-success" id="btn_Colombia" onclick="graficarCapa(id)">Buscar</button>';
+        textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btn_Colombia" onclick="graficarCapa(id)">Buscar</button>';
     }
     else if(capa === "Antioquia"){
 
@@ -296,10 +305,18 @@ function AgregarFiltros(){
     $("#filters").append(textAppend);
 }
 
+function adjustDate(date) {
+    const fecha = new Date(date);
+    const fechaFormateada = fecha.getFullYear() + "-" + (fecha.getMonth() + 1).toString().padStart(2, '0') + "-" + fecha.getDate().toString().padStart(2, '0');
+    return fechaFormateada; 
+}
+
 function graficarCapa(id) {
     const idCapa = id.split("_")[1];
     map.removeLayer(capaPuntos);
     capaPuntos = L.layerGroup();
+    const afterDate = ($("#afterDate").val() !== '') ? new Date($("#afterDate").val()) : new Date("1925-01-01");
+    const beforeDate = ($("#beforeDate").val() !== '') ? new Date($("#beforeDate").val()) : new Date();
     const depart = $("#selectDepartamento").val();
     const city = $("#selectCiudad").val();
     const type = $("#selectTipo").val();
@@ -308,29 +325,27 @@ function graficarCapa(id) {
     if(idCapa == "Colombia") {
         for (let i = 0; i < Colombia.length; i++) {
             const element = Colombia[i];
-            if (typeof element['COORDINATES']['coordinates'][0] === 'number') {
-                console.log('');
-                
-                if ((element["LOCATION"]["Department"] === depart || depart === "Todos" ) && (element["LOCATION"]["City"] === city || city === "Todas") && (element["TYPE"] === type || type === "Todos") && (element["TRIGGERING"] === detonante || detonante === "Todos") && element["LOSSES"]["Fatalities"] >= muertes) {
-                    var point = L.marker([element['COORDINATES']['coordinates'][1], element['COORDINATES']['coordinates'][0]]).toGeoJSON();                
+            var dateEvent = (element['date']['$date']["$numberLong"] !== undefined) ? new Date(parseInt(element['date']['$date']["$numberLong"])) : new Date(element['date']['$date'].split("T")[0]);
+            if (typeof element['location'][0] === 'number') {
+                if ((element["department"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                    const auxDate = adjustDate(dateEvent);
+                    var point = L.marker([element['location'][1], element['location'][0]]).toGeoJSON();                
                     L.extend(point.properties, {
                         id: i,
-                        Tipo: element['TYPE'],
-                        Detonante: element['TRIGGERING'],
-                        Fuente: element['SOURCE'],
-                        Depuracion: element['DEPURACION'],
-                        Region: element['LOCATION']['Region'],
-                        Departamento: element['LOCATION']['Department'],
-                        Ciudad: element['LOCATION']['City'],
-                        Sitio: element['LOCATION']['Site'],
-                        Incertidumbre: element['LOCATION']['Uncertainty'],
-                        Norte: element['COORDINATES']['coordinates'][1],
-                        Este: element['COORDINATES']['coordinates'][0],
-                        Fallecidos: element['LOSSES']['Fatalities'],
-                        Economicas: element['LOSSES']['Economic'],
-                        OtrasPerdidas: element['LOSSES']['Other'],
-                        Notas: element['NOTE'],
-                        
+                        Tipo: element['type'],
+                        Fecha: auxDate,
+                        Detonante: element['triggering'],
+                        Fuente: element['source'],
+                        Departamento: element['department'],
+                        Municipio: element['town'],
+                        Pueblo: element['county'],
+                        Sitio: element['site'],
+                        Incertidumbre: element['uncertainty'],
+                        Norte: element['location'][1],
+                        Este: element['location'][0],
+                        Fallecidos: element['fatalities'],
+                        Economicas: element['losses'],
+                        Notas: element['add']
                       });
                     L.geoJson(point,{
                         onEachFeature: function(feature, layer) {
@@ -347,6 +362,7 @@ function graficarCapa(id) {
             }
         }
         capaPuntos.addTo(map);
+        notification.success('¡Listo!', 'Se cargó con exito los eventos');
     }
 }
 
@@ -641,6 +657,147 @@ function GraficarFileRaster(f) {
 
 
 
-//Cargar Subestaciones Guardadas ----->
+//Descargar Datos ----->
 
-// Crear la clase Subestacion
+function AgregarDescargas() {
+    $("#descargapane").append(
+        '<br>'+
+        '<label for="capa_descarga">Capa a Descargar: </label>' +
+        '<select id="capa_descarga" class="form-control select-mpios">' +
+            '<option value="0">Eventos En Pantalla</option>' +
+        '</select>'+
+        '<label class="mt-3" for="tipo_descarga">Descargar en Formato: </label>' +
+        '<select id="tipo_descarga" class="form-control select-mpios">' +
+            '<option value="shp">Shapefile</option>' +
+            '<option value="geojson">GeoJSON</option>' +
+        '</select>'+
+        '<div class="text-center mt-3">'+
+            '<a class="btn btn-comun" id="clase_descarga" onclick="CargarDatosDescarga()" type="button" >  <i class="fas fa-layer-group"></i>   Cargar Eventos </a>'+
+            '<a class="btn btn-comun ml-2" id="clase_descarga" onclick="DescargarDatos(id, this)" type="button" >  <i class="fas fa-file-download"></i>   Descargar </a>'+
+        '</div>'
+    );
+}
+
+function CargarDatosDescarga(){
+    sidebar.open('capas');
+}
+
+function DescargarDatos(id, obj) {
+    var num_descarga = parseInt($("#capa_descarga").val());
+    const numero_real = num_descarga;
+    if (num_descarga > 2){
+        num_descarga = 2;
+    }
+    if (capasDatos[num_descarga].capa === null) {
+        notification.alert('¡Error!', 'Por favor active la capa que desea descargar.');
+    } else{
+        let filtroDescarga = '';
+        let filtrotipo = $("#tipo_descarga").val();
+        if (capasDatos[num_descarga].clase == 'estaciones') {
+            DescargarDatosJSON(capasDatos[num_descarga].figuras, capasDatos[num_descarga].clase, filtroDescarga, filtrotipo, numero_real )
+        }
+        else{
+            DescargarDatosJSON(capasDatos[num_descarga].database, capasDatos[num_descarga].clase, filtroDescarga, filtrotipo, numero_real )
+        }
+    }
+}
+
+// Función para descargar un archivo
+function saveToFile(content, filename) {
+    var file = filename + '.json';
+    console.log(content)
+    saveAs(new File([JSON.stringify(content)], file, {
+        type: "text/plain;charset=utf-8"
+    }), file);
+}
+  
+//Función que filtra los datos según el mpio seleccionado y construye el geojson
+function DescargarDatosJSON(baseDatos, clase, filtro, filtrotipo, numero_real){
+    let capas = L.layerGroup();
+    let copiaDatos = {...baseDatos}
+
+    if(clase === "geology"){
+        for (let j = 0; j < copiaDatos["count"]["count"]; j++) {
+            if (copiaDatos["feature_"+j]?.activo && copiaDatos["feature_"+j]["geojson"]["geometry"]["type"] !== 'LineString') {
+                var temp = copiaDatos["feature_"+j]["geojson"];
+                L.geoJson(temp).addTo(capas);
+                
+            }
+        }
+    }
+    else if(clase === "estaciones"){
+        if (numero_real === 2) {
+        for (est in copiaDatos) {
+            if (copiaDatos[est]!==null) {
+            let temp = copiaDatos[est];
+            
+                L.geoJson(temp).addTo(capas);
+            
+            }
+        }
+        }
+        else {
+        let copiaDatos1 = {...capasDatos[2].database}
+
+        if(numero_real === 3){
+            capas = GenerarCapaVIVIENDA(copiaDatos1)
+            clase = 'Viviendas';
+        }
+        if(numero_real === 4){
+            capas = GenerarCapaNombreUGS(copiaDatos1)
+            clase = 'UGS';
+        }
+        if(numero_real === 5){
+            capas = GenerarCapaProcesosCampo(copiaDatos1)
+            clase = 'Procesos';
+        }
+
+        }
+    }
+
+
+    console.log(copiaDatos);
+    console.log(capas);
+    let archivoFinal = capas.toGeoJSON();
+    console.log(archivoFinal);
+    //Eliminar el campos no deseados
+    for(let k= 0; k < archivoFinal.features.length; k++ ){
+        delete archivoFinal["features"][k].layer;
+        delete archivoFinal["features"][k]["properties"]["_feature"];
+        // delete archivoFinal["features"][k]["properties"]["id"];
+        delete archivoFinal["features"][k]["properties"]["clase"];
+        delete archivoFinal["features"][k]["properties"]["nombreclase"];
+
+        delete archivoFinal["features"][k]["properties"].codigo;
+        delete archivoFinal["features"][k]["properties"].descripcion;
+        delete archivoFinal["features"][k]["properties"].fecha;
+        delete archivoFinal["features"][k]["properties"].nombre;
+        delete archivoFinal["features"][k]["properties"].propietario;
+        delete archivoFinal["features"][k]["properties"].zona;
+
+        delete archivoFinal["features"][k]["properties"].CR;
+        delete archivoFinal["features"][k]["properties"].Visible_25;
+        delete archivoFinal["features"][k]["properties"].Propietari;
+
+    }
+
+    if (filtrotipo === 'shp') {
+        var options = {
+            folder: 'Capa_'+ clase+ "_" + filtro + '_' +dateFormat(new Date(),'Y-m-d'),
+            types: {
+                point: clase+ "_" + filtro + '_' +dateFormat(new Date(),'Y-m-d'),
+                polygon: clase+ "_" + filtro + '_' +dateFormat(new Date(),'Y-m-d'),
+                polyline: clase+ "_" + filtro + '_' +dateFormat(new Date(),'Y-m-d')
+            }
+        }
+        archivoFinal1 = unescape(encodeURIComponent(JSON.stringify(archivoFinal)))
+        archivoFinal2 = JSON.parse(archivoFinal1)
+        shpwrite.download(archivoFinal2, options);
+    } else {
+        saveToFile(archivoFinal, 'Capa_'+ clase + "_" + filtro + '_'+dateFormat(new Date(),'Y-m-d')); //Generar el archivo descargable
+    }
+
+    capas = null;
+    copiaDatos = null;
+
+}

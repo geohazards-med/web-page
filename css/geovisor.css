@@ -130,6 +130,16 @@ main .contenido-mapa #map .leaflet-popup-content {
   margin-bottom: 15px;
 }
 
+#sidebar .btn-comun {
+  color: #247461;
+  background: #ffffff;
+  border-color: #247461;
+}
+#sidebar .btn-comun:hover {
+  color: #ffffff;
+  background: #247461;
+  border-color: #247461;
+}
 #sidebar #basemap .col-basemap {
   width: 100%;
   padding: 0;
