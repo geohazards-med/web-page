@@ -1,4 +1,56 @@
 
+$(document).ready(function () {
+    CargarCarruselImagenes();
+});
+
+
+function CargarCarruselImagenes() {
+    var datosCarousel = datos["carrusel"];
+    var content_carousel = "";
+    var content_indicators = "";
+    content_carousel += '<div class="carousel-personalizado">';
+    for (let ind = 0; ind < datosCarousel["items"].length; ind++) {
+        content_indicators += '<li data-target="#carouselImagesGeohazards" data-slide-to="'+ind+'"'+(ind === 0 ? "class='active'" : "")+'></li>';
+        
+        item = datosCarousel["items"][ind];
+        content_carousel += '<div class="carousel-item '+(ind === 0 ? "active" : "")+'">';
+        content_carousel += '<img src="'+item["img"]+'" class="img-slider d-block" alt="'+item["img_alt"]+'">';
+        content_carousel += '<div  class="carousel-caption">';
+        content_carousel += '<p>';
+        content_carousel += '<span class="titulo-slider"><b>'+item["titulo"]+'</b></span>';
+        content_carousel += '<br class="vista-grande"><br class="vista-grande"><i>'+item["fecha"]+'</i><br><br class="vista-grande">';
+        content_carousel += '<span class="desc-slider">'+item["texto"]+'</span>'; 
+        content_carousel += '</p>';
+        content_carousel += '<ul class="btns-slider d-flex align-items-center list-unstyled justify-content-around">';
+        for (let index = 0; index < item["btn"].length; index++) {
+            const element = item["btn"][index];
+            if (element["modal"]) {
+                content_carousel += '<li><button type="button" data-toggle="modal" data-target="#modalCarousel" data-whatever="'+element["modal_info"]+'" class="btn btn-comun" target="_blank" style="font-size: 16px;">'+element["texto"]+'</i></button></li>';
+            }
+            else{
+                content_carousel += '<li><a href="'+element["link"]+'" target="_blank" class="btn btn-comun"  style="font-size: 16px;">'+element["texto"]+'</a></li>';
+            }
+        }
+        content_carousel += '</ul>';
+        content_carousel += '</div></div>';
+    }
+    content_carousel += '</div>';
+    $("#indicators").append(content_indicators);
+    $("#carouselContent").append(content_carousel);
+}
+
+$('#modalCarousel').on('show.bs.modal', function (e) {
+    // Se obtiene el botón que abrió el modal
+    const button = $(e.relatedTarget) 
+    // Se obtiene el id de la subestación mediante el atributo "data-whatever" del botón
+    const id = button.data('whatever');
+    var datosModal = datos["carrusel"]["modals"][id];
+    $("#tituloModalCarousel").html(datosModal["titulo"]);
+    $("#ref_pdf").attr("data", datosModal["url_pdf"]);
+    $("#ref_alt").attr("href", datosModal["url_pdf"]);
+});
+
+
 
 
 // Interactividad con las imágenes de los integrantes-->Aparecer la descripcion de cada uno
