@@ -1,6 +1,7 @@
 // Variable para la gestión del contenido del visor
 var map;
 var markers = L.markerClusterGroup();
+var capaPuntos = L.layerGroup();;
 // Variable para la gestión de la Barra Lateral
 var sidebar;
 // Variable para la gestión del Notificaciones
@@ -366,6 +367,7 @@ function adjustDate(date) {
 function graficarCapa(id) {
     const idCapa = id.split("_")[1];
     markers.clearLayers();
+    capaPuntos.clearLayers();
     const afterDate = ($("#afterDate").val() !== '') ? new Date($("#afterDate").val()) : new Date("1925-01-01");
     const beforeDate = ($("#beforeDate").val() !== '') ? new Date($("#beforeDate").val()) : new Date();
     const depart = $("#selectDepartamento").val();
@@ -412,6 +414,7 @@ function graficarCapa(id) {
                 }
             }
         }
+        markers.addTo(capaPuntos);
         markers.addTo(map);
         notification.success('¡Listo!', 'Se cargó con exito los eventos');
     }
@@ -455,6 +458,8 @@ function graficarCapa(id) {
                 }
             }
         }
+
+        markers.addTo(capaPuntos);
         markers.addTo(map);
         notification.success('¡Listo!', 'Se cargó con exito los eventos');
     }
@@ -777,23 +782,10 @@ function CargarDatosDescarga(){
 }
 
 function DescargarDatos(id, obj) {
-    var num_descarga = parseInt($("#capa_descarga").val());
-    const numero_real = num_descarga;
-    if (num_descarga > 2){
-        num_descarga = 2;
-    }
-    if (capasDatos[num_descarga].capa === null) {
-        notification.alert('¡Error!', 'Por favor active la capa que desea descargar.');
-    } else{
-        let filtroDescarga = '';
-        let filtrotipo = $("#tipo_descarga").val();
-        if (capasDatos[num_descarga].clase == 'estaciones') {
-            DescargarDatosJSON(capasDatos[num_descarga].figuras, capasDatos[num_descarga].clase, filtroDescarga, filtrotipo, numero_real )
-        }
-        else{
-            DescargarDatosJSON(capasDatos[num_descarga].database, capasDatos[num_descarga].clase, filtroDescarga, filtrotipo, numero_real )
-        }
-    }
+
+    let filtroDescarga = '';
+    let filtrotipo = $("#tipo_descarga").val();
+    DescargarDatosJSON(capasDatos[num_descarga].figuras, capasDatos[num_descarga].clase, filtroDescarga, filtrotipo, numero_real )
 }
 
 // Función para descargar un archivo

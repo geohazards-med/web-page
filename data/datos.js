@@ -76,6 +76,14 @@ var datos = {
    "carrusel":{
       "items" : [
          {
+            "img" : "slider_img/grupoCompleto.jpg",
+            "img_alt" : "Grupo Geohazards",
+            "titulo" : "¡Haz parte del semillero!",
+            "fecha" : "Publicado el 19 de julio del 2023",
+            "texto" : "Es un semillero interdisciplinario compuesto por profesores, investigadores y estudiantes de las áreas de la ingeniería. El Semillero está orientado al conocimiento y desarrollo de modelos geociencias, gestión del riesgo de desastres, análisis geoespacial, sensores remotos, geotecnia y geomorfología.",
+            "btn" : []
+         },
+         {
             "img" : "slider_img/Anuncio Vacante Laboral Simple Azul y Verde.jpg",
             "img_alt" : "Convocatoria Estudiante Maestría",
             "titulo" : "Convocatoria Investigador(a)",
