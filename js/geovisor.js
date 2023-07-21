@@ -1,6 +1,6 @@
 // Variable para la gestión del contenido del visor
 var map;
-var capaPuntos;
+var markers = L.markerClusterGroup();
 // Variable para la gestión de la Barra Lateral
 var sidebar;
 // Variable para la gestión del Notificaciones
@@ -32,7 +32,7 @@ var spinOpts = {
 
 $(document).ready(function () {
     // Inicializar el mapa
-    map = L.map('map', {preferCanvas: true}).setView([5.2, -74.5], 6);
+    map = L.map('map', {preferCanvas: true, maxZoom: 25}).setView([5.2, -74.5], 6);
     // Creando niveles en el mapa para el orden en la visualización
     map.createPane("baseMapPane");
     map.createPane("layersPane");
@@ -235,13 +235,13 @@ function AgregarCapas() {
 function AgregarFiltros(){
     var capa = $("#selectCapa").val();
     const getUnique = (arr) => [...new Set(arr)];
+    var textAppend = "";
+    var departamentos = ["Todos"];
+    var ciudades = ["Todas"];
+    var tipos = ["Todos"];
+    var trigger = ["Todos"];
     
     if(capa === "Colombia"){
-        var textAppend = "";
-        var departamentos = ["Todos"];
-        var ciudades = ["Todas"];
-        var tipos = ["Todos"];
-        var trigger = ["Todos"];
         for (let i = 0; i < Colombia.length; i++) {
             const element = Colombia[i];
             departamentos.push(element["department"])
@@ -297,7 +297,59 @@ function AgregarFiltros(){
         textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btn_Colombia" onclick="graficarCapa(id)">Buscar</button>';
     }
     else if(capa === "Antioquia"){
-
+        for (let i = 0; i < Antioquia.length; i++) {
+            const element = Antioquia[i];
+            departamentos.push(element["subregion"])
+            ciudades.push(element["town"])
+            tipos.push(element["type"])
+            trigger.push(element["triggering"])
+        }
+        var departamentosUnique = getUnique(departamentos);
+        var ciudadesUnique = getUnique(ciudades);
+        var tiposUnique = getUnique(tipos);
+        var triggerUnique = getUnique(trigger);
+        textAppend += '<div class="col-12 mt-3">'+
+                        '<label for="afterDate" class="bold label-capas">Después de la Fecha:</label>'+
+                        '<input type="date" class="form-control" id="afterDate" value=""></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="beforeDate" class="bold label-capas">Antes de la Fecha:</label>'+
+                        '<input type="date" class="form-control" id="beforeDate" value=""></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectDepartamento" class="bold label-capas">Subregión:</label>'+
+                        '<select class="form-control" id="selectDepartamento">';
+        for (let i = 0; i < departamentosUnique.length; i++) {
+            const element = departamentosUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectCiudad" class="bold label-capas">Ciudad:</label>'+
+                        '<select class="form-control" id="selectCiudad">';
+        for (let i = 0; i < ciudadesUnique.length; i++) {
+            const element = ciudadesUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectTipo" class="bold label-capas">Tipo:</label>'+
+                        '<select class="form-control" id="selectTipo">';
+        for (let i = 0; i < tiposUnique.length; i++) {
+            const element = tiposUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectDetonante" class="bold label-capas">Detonante:</label>'+
+                        '<select class="form-control" id="selectDetonante">';
+        for (let i = 0; i < triggerUnique.length; i++) {
+            const element = triggerUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectMuertes" class="bold label-capas">Mínimo de Fallecidos:</label>'+
+                        '<input type="number" class="form-control" id="selectMuertes" value="0"></div>';
+        textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btn_Antioquia" onclick="graficarCapa(id)">Buscar</button>';
     }
     
     
@@ -313,8 +365,7 @@ function adjustDate(date) {
 
 function graficarCapa(id) {
     const idCapa = id.split("_")[1];
-    map.removeLayer(capaPuntos);
-    capaPuntos = L.layerGroup();
+    markers.clearLayers();
     const afterDate = ($("#afterDate").val() !== '') ? new Date($("#afterDate").val()) : new Date("1925-01-01");
     const beforeDate = ($("#beforeDate").val() !== '') ? new Date($("#beforeDate").val()) : new Date();
     const depart = $("#selectDepartamento").val();
@@ -357,11 +408,54 @@ function graficarCapa(id) {
                             });
                           }
                         }
-                    }).addTo(capaPuntos);
+                    }).addTo(markers);
                 }
             }
         }
-        capaPuntos.addTo(map);
+        markers.addTo(map);
+        notification.success('¡Listo!', 'Se cargó con exito los eventos');
+    }
+    if(idCapa == "Antioquia") {
+        for (let i = 0; i < Antioquia.length; i++) {
+            const element = Antioquia[i];
+            var dateEvent = (element['date']['$date']["$numberLong"] !== undefined) ? new Date(parseInt(element['date']['$date']["$numberLong"])) : new Date(element['date']['$date'].split("T")[0]);
+            if (typeof element['location'][0] === 'number') {
+                if ((element["subregion"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                    const auxDate = adjustDate(dateEvent);
+                    var point = L.marker([element['location'][1], element['location'][0]]).toGeoJSON();                
+                    L.extend(point.properties, {
+                        id: i,
+                        Tipo: element['type'],
+                        Fecha: auxDate,
+                        Detonante: element['triggering'],
+                        DetonanDes: element['triggering_description'],
+                        Fuente: element['source'],
+                        Subregion: element['subregion'],
+                        Municipio: element['town'],
+                        Pueblo: element['county'],
+                        Sitio: element['site'],
+                        Incertidumbre: element['uncertainty'],
+                        Norte: element['location'][1],
+                        Este: element['location'][0],
+                        Fallecidos: element['fatalities'],
+                        Economicas: element['losses'],
+                        Notas: element['add']
+                      });
+                    L.geoJson(point,{
+                        onEachFeature: function(feature, layer) {
+                          if (feature.properties) {
+                            layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+                            return k + ": " + feature.properties[k];
+                            }).join("<br />"), {
+                            maxHeight: 200
+                            });
+                          }
+                        }
+                    }).addTo(markers);
+                }
+            }
+        }
+        markers.addTo(map);
         notification.success('¡Listo!', 'Se cargó con exito los eventos');
     }
 }
