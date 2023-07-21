@@ -1594,20 +1594,19 @@ div.envoltura{
 }
 
 div.imagen-mapa-col{
-    width: 397px;
-    height: 512px;
+    width: 100%;
+    height: 550px;
     position: relative;
     background-image: url('../images/Col.jpg');
     background-repeat: no-repeat;
     border: 1px solid #363F43;
 }
 
-div.imagen-mapa-ant{
-    width: 397px;
-    height: 512px;
+.imagen-mapa-ant{
+    width: 100%;
+    height: auto;
     position: relative;
-    background-image: url('../images/Ant.jpg');
-    background-repeat: no-repeat;
+    object-fit: cover;
     border: 1px solid #363F43;
 }
 
@@ -1683,7 +1682,7 @@ div.reportar>p{
     font-size: 24px;
 }
 
-div.reportar a{
+/* div.reportar a{
 
     padding: 5px 5px 5px 5px;
     font-size: 21px;
@@ -1691,7 +1690,7 @@ div.reportar a{
     background-color: #247461;
     border-radius: 10px;
     z-index: 1000;
-}
+} */
 
 @media screen and (max-width:767px){
     .imagen-mapa-ant, .reportar{
@@ -2143,6 +2142,16 @@ background: #ffffff00;
 border-color: #ffffff;
 }
 .btn-comun:hover {
+color: #ffffff;
+background: #247461;
+border-color: #247461;
+}
+.btn-comun1 {
+color: #247461;
+background: #ffffff;
+border-color: #247461;
+}
+.btn-comun1:hover {
 color: #ffffff;
 background: #247461;
 border-color: #247461;
