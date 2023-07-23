@@ -1,7 +1,7 @@
 // Variable para la gestión del contenido del visor
 var map;
 var markers = L.markerClusterGroup();
-var capaPuntos = L.layerGroup();;
+var capaPuntos = L.layerGroup();
 // Variable para la gestión de la Barra Lateral
 var sidebar;
 // Variable para la gestión del Notificaciones
@@ -417,6 +417,7 @@ function graficarCapa(id) {
         markers.addTo(capaPuntos);
         markers.addTo(map);
         notification.success('¡Listo!', 'Se cargó con exito los eventos');
+        console.log(capaPuntos.toGeoJSON());
     }
     if(idCapa == "Antioquia") {
         for (let i = 0; i < Antioquia.length; i++) {
@@ -462,6 +463,7 @@ function graficarCapa(id) {
         markers.addTo(capaPuntos);
         markers.addTo(map);
         notification.success('¡Listo!', 'Se cargó con exito los eventos');
+        console.log(capaPuntos.toGeoJSON());
     }
 }
 
@@ -785,7 +787,7 @@ function DescargarDatos(id, obj) {
 
     let filtroDescarga = '';
     let filtrotipo = $("#tipo_descarga").val();
-    DescargarDatosJSON(capasDatos[num_descarga].figuras, capasDatos[num_descarga].clase, filtroDescarga, filtrotipo, numero_real )
+    DescargarDatosJSON(capaPuntos.toGeoJSON(), "", filtroDescarga, filtrotipo, 0 )
 }
 
 // Función para descargar un archivo
@@ -799,91 +801,73 @@ function saveToFile(content, filename) {
   
 //Función que filtra los datos según el mpio seleccionado y construye el geojson
 function DescargarDatosJSON(baseDatos, clase, filtro, filtrotipo, numero_real){
-    let capas = L.layerGroup();
-    let copiaDatos = {...baseDatos}
-
-    if(clase === "geology"){
-        for (let j = 0; j < copiaDatos["count"]["count"]; j++) {
-            if (copiaDatos["feature_"+j]?.activo && copiaDatos["feature_"+j]["geojson"]["geometry"]["type"] !== 'LineString') {
-                var temp = copiaDatos["feature_"+j]["geojson"];
-                L.geoJson(temp).addTo(capas);
-                
-            }
-        }
-    }
-    else if(clase === "estaciones"){
-        if (numero_real === 2) {
-        for (est in copiaDatos) {
-            if (copiaDatos[est]!==null) {
-            let temp = copiaDatos[est];
-            
-                L.geoJson(temp).addTo(capas);
-            
-            }
-        }
-        }
-        else {
-        let copiaDatos1 = {...capasDatos[2].database}
-
-        if(numero_real === 3){
-            capas = GenerarCapaVIVIENDA(copiaDatos1)
-            clase = 'Viviendas';
-        }
-        if(numero_real === 4){
-            capas = GenerarCapaNombreUGS(copiaDatos1)
-            clase = 'UGS';
-        }
-        if(numero_real === 5){
-            capas = GenerarCapaProcesosCampo(copiaDatos1)
-            clase = 'Procesos';
-        }
-
-        }
-    }
-
-
-    console.log(copiaDatos);
-    console.log(capas);
-    let archivoFinal = capas.toGeoJSON();
-    console.log(archivoFinal);
+    let archivoFinal = {...baseDatos}
     //Eliminar el campos no deseados
-    for(let k= 0; k < archivoFinal.features.length; k++ ){
-        delete archivoFinal["features"][k].layer;
-        delete archivoFinal["features"][k]["properties"]["_feature"];
-        // delete archivoFinal["features"][k]["properties"]["id"];
-        delete archivoFinal["features"][k]["properties"]["clase"];
-        delete archivoFinal["features"][k]["properties"]["nombreclase"];
-
-        delete archivoFinal["features"][k]["properties"].codigo;
-        delete archivoFinal["features"][k]["properties"].descripcion;
-        delete archivoFinal["features"][k]["properties"].fecha;
-        delete archivoFinal["features"][k]["properties"].nombre;
-        delete archivoFinal["features"][k]["properties"].propietario;
-        delete archivoFinal["features"][k]["properties"].zona;
-
-        delete archivoFinal["features"][k]["properties"].CR;
-        delete archivoFinal["features"][k]["properties"].Visible_25;
-        delete archivoFinal["features"][k]["properties"].Propietari;
-
-    }
 
     if (filtrotipo === 'shp') {
         var options = {
-            folder: 'Capa_'+ clase+ "_" + filtro + '_' +dateFormat(new Date(),'Y-m-d'),
+            folder: 'Eventos_' +dateFormat(new Date(),'Y-m-d'),
             types: {
-                point: clase+ "_" + filtro + '_' +dateFormat(new Date(),'Y-m-d'),
-                polygon: clase+ "_" + filtro + '_' +dateFormat(new Date(),'Y-m-d'),
-                polyline: clase+ "_" + filtro + '_' +dateFormat(new Date(),'Y-m-d')
+                point: 'Eventos_'+dateFormat(new Date(),'Y-m-d'),
+                polygon: 'Eventos_'+dateFormat(new Date(),'Y-m-d'),
+                polyline: 'Eventos_'+dateFormat(new Date(),'Y-m-d')
             }
         }
         archivoFinal1 = unescape(encodeURIComponent(JSON.stringify(archivoFinal)))
         archivoFinal2 = JSON.parse(archivoFinal1)
         shpwrite.download(archivoFinal2, options);
     } else {
-        saveToFile(archivoFinal, 'Capa_'+ clase + "_" + filtro + '_'+dateFormat(new Date(),'Y-m-d')); //Generar el archivo descargable
+        saveToFile(archivoFinal, 'Eventos_'+dateFormat(new Date(),'Y-m-d')); //Generar el archivo descargable
     }
 
-    capas = null;
-    copiaDatos = null;
+}
 
+
+// BDValle();
+function BDValle() {
+    var dbResult = []
+    var capaPuntos1 = L.layerGroup();
+    for (let i = 0; i < Antioquia.length; i++) {
+        const element = Antioquia[i];
+        var dateEvent = (element['date']['$date']["$numberLong"] !== undefined) ? new Date(parseInt(element['date']['$date']["$numberLong"])) : new Date(element['date']['$date'].split("T")[0]);
+        if (typeof element['location'][0] === 'number') {
+            if ((element["subregion"] === "Valle de Aburrá")) {
+                dbResult.push(element);
+                const auxDate = adjustDate(dateEvent);
+                var point = L.marker([element['location'][1], element['location'][0]]).toGeoJSON();                
+                L.extend(point.properties, {
+                    id: i,
+                    Tipo: element['type'],
+                    Fecha: auxDate,
+                    Detonante: element['triggering'],
+                    DetonanDes: element['triggering_description'],
+                    Fuente: element['source'],
+                    Subregion: element['subregion'],
+                    Municipio: element['town'],
+                    Pueblo: element['county'],
+                    Sitio: element['site'],
+                    Incertidumbre: element['uncertainty'],
+                    Norte: element['location'][1],
+                    Este: element['location'][0],
+                    Fallecidos: element['fatalities'],
+                    Economicas: element['losses'],
+                    Notas: element['add']
+                  });
+                L.geoJson(point,{
+                    onEachFeature: function(feature, layer) {
+                      if (feature.properties) {
+                        layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+                        return k + ": " + feature.properties[k];
+                        }).join("<br />"), {
+                        maxHeight: 200
+                        });
+                      }
+                    }
+                }).addTo(capaPuntos1);
+            }
+        }
+    } 
+    console.log(dbResult);
+    console.log(capaPuntos1);
+    console.log(capaPuntos1.toGeoJSON());
 }
