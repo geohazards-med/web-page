@@ -565,7 +565,7 @@ ul.lista-campos>li>a{
 ul.lista-campos li:hover{
 
     background-color: #5F7179;
-    border-left: solid 5px orangered;
+    border-left: solid 5px #5eb5bd;
 }
 
 ul.lista-campos li a{
