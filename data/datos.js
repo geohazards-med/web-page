@@ -76,6 +76,14 @@ var datos = {
    "carrusel":{
       "items" : [
          {
+            "img" : "slider_img/grupoCompleto.jpg",
+            "img_alt" : "Grupo Geohazards",
+            "titulo" : "¡Haz parte del semillero!",
+            "fecha" : "Publicado el 19 de julio del 2023",
+            "texto" : "Es un semillero interdisciplinario compuesto por profesores, investigadores y estudiantes de las áreas de la ingeniería. El Semillero está orientado al conocimiento y desarrollo de modelos geociencias, gestión del riesgo de desastres, análisis geoespacial, sensores remotos, geotecnia y geomorfología.",
+            "btn" : []
+         },
+         {
             "img" : "slider_img/Anuncio Vacante Laboral Simple Azul y Verde.jpg",
             "img_alt" : "Convocatoria Estudiante Maestría",
             "titulo" : "Convocatoria Investigador(a)",
@@ -288,6 +296,16 @@ var datos = {
             "url_pdf" : "documentos/IEDS_2023_US_01_Vietnam_English.pdf"
          }
       }
+   },
+   "semillero":{
+      "secciones" : [
+         {
+            "name" : "Quiénes somos",
+            "clase" : "quienes-somos",
+            "title" : "¿QUIÉNES SOMOS?",
+            "text" : "El semillero de investigación GEOHAZARDS se encuentra adscrito al departamento de Geociencias y Medio Ambiente de la Facultad de Minas en la Universidad Nacional de Colombia - sede Medellín. Es un semillero interdisciplinario compuesto por profesores, investigadores y estudiantes de las áreas de la ingeniería. El Semillero está orientado al conocimiento y desarrollo de modelos geociencias, gestión del riesgo de desastres, análisis geoespacial, sensores remotos, geotecnia y geomorfología."
+         }
+      ]
    }
    
 }
