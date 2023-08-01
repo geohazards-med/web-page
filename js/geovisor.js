@@ -384,6 +384,7 @@ function graficarCapa(id) {
                 if (snapshot.exists()) {
                     this.database = snapshot.val();
                     dbCol = snapshot.val();
+                    AgregarFiltrosRegistro()
                     console.log(dbCol);
                     for (let i = 0; i < dbCol.length; i++) {
                         const element = dbCol[i];
@@ -492,6 +493,7 @@ function graficarCapa(id) {
                 if (snapshot.exists()) {
                     this.database = snapshot.val();
                     dbAnt = snapshot.val();
+                    AgregarFiltrosRegistro()
                     console.log(dbAnt);
                     for (let i = 0; i < dbAnt.length; i++) {
                         const element = dbAnt[i];
@@ -995,130 +997,378 @@ function AgregarFiltrosRegistro(){
     var capa = $("#selectCapaRegistro").val();
     const getUnique = (arr) => [...new Set(arr)];
     var textAppend = "";
-    var departamentos = ["Todos"];
-    var ciudades = ["Todas"];
-    var tipos = ["Todos"];
-    var trigger = ["Todos"];
+    var departamentos = [];
+    var ciudades = [];
+    var pueblos = [];
+    var sitio = [];
+    var incertidumbre = [];
+    var tipos = [];
+    var trigger = [];
+    var fuente = [];
     
+
     if(capa === "Colombia"){
-        for (let i = 0; i < Colombia.length; i++) {
-            const element = Colombia[i];
-            departamentos.push(element["department"])
-            ciudades.push(element["town"])
-            ciudades.push(element["county"])
-            tipos.push(element["type"])
-            trigger.push(element["triggering"])
+        if (dbCol.length !== 0) {
+            for (let i = 0; i < dbCol.length; i++) {
+                const element = dbCol[i];
+                departamentos.push(element["department"])
+                ciudades.push(element["town"])
+                pueblos.push(element["county"])
+                sitio.push(element["site"])
+                incertidumbre.push(element["uncertainty"])
+                tipos.push(element["type"])
+                trigger.push(element["triggering"])
+                fuente.push(element["source"])
+            }
+            var departamentosUnique = getUnique(departamentos);
+            var ciudadesUnique = getUnique(ciudades);
+            var pueblosUnique = getUnique(pueblos);
+            var sitioUnique = getUnique(sitio);
+            var tiposUnique = getUnique(tipos);
+            var incertidumbreUnique = getUnique(incertidumbre);
+            var triggerUnique = getUnique(trigger);
+            var fuenteUnique = getUnique(fuente);
+            textAppend += '<div class="col-12">'+
+                            '<label for="lngRegister" class="bold label-capas">Longitud (Use el punto ej: -75.5):</label>'+
+                            '<input type="text" class="form-control" id="lngRegister" value=""></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="latRegister" class="bold label-capas">Latitud (Use el punto ej: 6.5):</label>'+
+                            '<input type="text" class="form-control" id="latRegister" value=""></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="fechita" class="bold label-capas">Fecha:</label>'+
+                            '<input type="date" class="form-control" id="fechita" value=""></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectTipo1" class="bold d-block label-capas">Tipo:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectTipo0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectTipo1">';
+            for (let i = 0; i < tiposUnique.length; i++) {
+                const element = tiposUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectDepartamento1" class="bold d-block label-capas">Departamento:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectDepartamento0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectDepartamento1">';
+            for (let i = 0; i < departamentosUnique.length; i++) {
+                const element = departamentosUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectCiudad1" class="bold d-block label-capas">Ciudad-Municipio:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectCiudad0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectCiudad1">';
+            for (let i = 0; i < ciudadesUnique.length; i++) {
+                const element = ciudadesUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectPueblo1" class="bold d-block label-capas">Pueblo-Vereda:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectPueblo0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectPueblo1">';
+            for (let i = 0; i < sitioUnique.length; i++) {
+                const element = sitioUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectSitio1" class="bold d-block label-capas">Sitio:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectSitio0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectSitio1">';
+            for (let i = 0; i < pueblosUnique.length; i++) {
+                const element = pueblosUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectIncert1" class="bold d-block label-capas">Incertidumbre:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectIncert0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectIncert1">';
+            for (let i = 0; i < incertidumbreUnique.length; i++) {
+                const element = incertidumbreUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectDetonante1" class="bold d-block label-capas">Detonante:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectDetonante0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectDetonante1">';
+            for (let i = 0; i < triggerUnique.length; i++) {
+                const element = triggerUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectMuertes" class="bold label-capas">Número de Fallecidos:</label>'+
+                            '<input type="number" class="form-control" id="selectMuertes1" value="0"></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectPerdidas" class="bold label-capas">Perdidas:</label>'+
+                            '<input type="text" class="form-control" id="selectPerdidas" value="0"></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectFuente1" class="bold d-block label-capas">Fuente:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectFuente0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectFuente1">';
+            for (let i = 0; i < fuenteUnique.length; i++) {
+                const element = fuenteUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectNotas" class="bold label-capas">Notas:</label>'+
+                            '<textarea type="number" class="form-control" id="selectNotas" value="0"></textarea></div>';
+    
+            textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btnAñadir_Col" onclick="anadirCapaRegistro(id)">Añadir</button>';
         }
-        var departamentosUnique = getUnique(departamentos);
-        var ciudadesUnique = getUnique(ciudades);
-        var tiposUnique = getUnique(tipos);
-        var triggerUnique = getUnique(trigger);
-        textAppend += '<div class="col-12">'+
-                        '<label for="lngRegister" class="bold label-capas">Longitud (Use el punto ej: -75.5):</label>'+
-                        '<input type="text" class="form-control" id="lngRegister" value=""></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="latRegister" class="bold label-capas">Latitud (Use el punto ej: 6.5):</label>'+
-                        '<input type="text" class="form-control" id="latRegister" value=""></div>';
-        textAppend += '<div class="col-12 mt-3">'+
-                        '<label for="fechita" class="bold label-capas">Fecha:</label>'+
-                        '<input type="date" class="form-control" id="fechita" value=""></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="selectDepartamento" class="bold label-capas">Departamento:</label>'+
-                        '<input type="date" class="form-control" id="selectDepartamento0" value=""></div>';
-                        '<select class="form-control" id="selectDepartamento1">';
-        for (let i = 0; i < departamentosUnique.length; i++) {
-            const element = departamentosUnique[i];
-            textAppend += '<option value="'+element+'">'+element+'</option>';
+        else{
+            textAppend = "<h5 class='mt-2'>Active la capa de Colombia</h5>";
         }
-        textAppend += '</select></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="selectCiudad" class="bold label-capas">Ciudad:</label>'+
-                        '<select class="form-control" id="selectCiudad">';
-        for (let i = 0; i < ciudadesUnique.length; i++) {
-            const element = ciudadesUnique[i];
-            textAppend += '<option value="'+element+'">'+element+'</option>';
-        }
-        textAppend += '</select></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="selectTipo" class="bold label-capas">Tipo:</label>'+
-                        '<select class="form-control" id="selectTipo">';
-        for (let i = 0; i < tiposUnique.length; i++) {
-            const element = tiposUnique[i];
-            textAppend += '<option value="'+element+'">'+element+'</option>';
-        }
-        textAppend += '</select></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="selectDetonante" class="bold label-capas">Detonante:</label>'+
-                        '<select class="form-control" id="selectDetonante">';
-        for (let i = 0; i < triggerUnique.length; i++) {
-            const element = triggerUnique[i];
-            textAppend += '<option value="'+element+'">'+element+'</option>';
-        }
-        textAppend += '</select></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="selectMuertes" class="bold label-capas">Mínimo de Fallecidos:</label>'+
-                        '<input type="number" class="form-control" id="selectMuertes" value="0"></div>';
-        textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btn_Colombia" onclick="graficarCapa(id)">Buscar</button>';
     }
     else if(capa === "Antioquia"){
-        for (let i = 0; i < Antioquia.length; i++) {
-            const element = Antioquia[i];
-            departamentos.push(element["subregion"])
-            ciudades.push(element["town"])
-            tipos.push(element["type"])
-            trigger.push(element["triggering"])
+        if (dbAnt.length !== 0) {
+            
+            for (let i = 0; i < dbAnt.length; i++) {
+                const element = dbAnt[i];
+                departamentos.push(element["subregion"])
+                ciudades.push(element["town"])
+                pueblos.push(element["county"])
+                sitio.push(element["site"])
+                incertidumbre.push(element["uncertainty"])
+                tipos.push(element["type"])
+                trigger.push(element["triggering"])
+                fuente.push(element["source"])
+            }
+            var departamentosUnique = getUnique(departamentos);
+            var ciudadesUnique = getUnique(ciudades);
+            var pueblosUnique = getUnique(pueblos);
+            var sitioUnique = getUnique(sitio);
+            var tiposUnique = getUnique(tipos);
+            var incertidumbreUnique = getUnique(incertidumbre);
+            var triggerUnique = getUnique(trigger);
+            var fuenteUnique = getUnique(fuente);
+            textAppend += '<div class="col-12">'+
+                            '<label for="lngRegister" class="bold label-capas">Longitud (Use el punto ej: -75.5):</label>'+
+                            '<input type="text" class="form-control" id="lngRegister" value=""></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="latRegister" class="bold label-capas">Latitud (Use el punto ej: 6.5):</label>'+
+                            '<input type="text" class="form-control" id="latRegister" value=""></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="fechita" class="bold label-capas">Fecha:</label>'+
+                            '<input type="date" class="form-control" id="fechita" value=""></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectTipo1" class="bold d-block label-capas">Tipo:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectTipo0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectTipo1">';
+            for (let i = 0; i < tiposUnique.length; i++) {
+                const element = tiposUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectDepartamento1" class="bold d-block label-capas">Subregión:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectDepartamento0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectDepartamento1">';
+            for (let i = 0; i < departamentosUnique.length; i++) {
+                const element = departamentosUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectCiudad1" class="bold d-block label-capas">Ciudad-Municipio:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectCiudad0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectCiudad1">';
+            for (let i = 0; i < ciudadesUnique.length; i++) {
+                const element = ciudadesUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectPueblo1" class="bold d-block label-capas">Pueblo-Vereda:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectPueblo0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectPueblo1">';
+            for (let i = 0; i < sitioUnique.length; i++) {
+                const element = sitioUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectSitio1" class="bold d-block label-capas">Sitio:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectSitio0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectSitio1">';
+            for (let i = 0; i < pueblosUnique.length; i++) {
+                const element = pueblosUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectIncert1" class="bold d-block label-capas">Incertidumbre:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectIncert0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectIncert1">';
+            for (let i = 0; i < incertidumbreUnique.length; i++) {
+                const element = incertidumbreUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectDetonante1" class="bold d-block label-capas">Detonante:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectDetonante0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectDetonante1">';
+            for (let i = 0; i < triggerUnique.length; i++) {
+                const element = triggerUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectDescripDeto" class="bold label-capas">Descripción del Detonante:</label>'+
+                            '<textarea type="number" class="form-control" id="selectDescripDeto" value="0"></textarea></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectMuertes" class="bold label-capas">Número de Fallecidos:</label>'+
+                            '<input type="number" class="form-control" id="selectMuertes1" value="0"></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectPerdidas" class="bold label-capas">Perdidas:</label>'+
+                            '<input type="text" class="form-control" id="selectPerdidas" value="0"></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectFuente1" class="bold d-block label-capas">Fuente:</label>'+
+                            '<input type="text" class="form-control col-6 d-inline-block" id="selectFuente0" value="">'+
+                            '<select class="form-control col-6 d-inline-block" id="selectFuente1">';
+            for (let i = 0; i < fuenteUnique.length; i++) {
+                const element = fuenteUnique[i];
+                textAppend += '<option value="'+element+'">'+element+'</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">'+
+                            '<label for="selectNotas" class="bold label-capas">Notas:</label>'+
+                            '<textarea type="number" class="form-control" id="selectNotas" value="0"></textarea></div>';
+    
+            textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btnAñadir_Ant" onclick="anadirCapaRegistro(id)">Añadir</button>';
         }
-        var departamentosUnique = getUnique(departamentos);
-        var ciudadesUnique = getUnique(ciudades);
-        var tiposUnique = getUnique(tipos);
-        var triggerUnique = getUnique(trigger);
-        textAppend += '<div class="col-12 mt-3">'+
-                        '<label for="afterDate" class="bold label-capas">Después de la Fecha:</label>'+
-                        '<input type="date" class="form-control" id="afterDate" value=""></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="beforeDate" class="bold label-capas">Antes de la Fecha:</label>'+
-                        '<input type="date" class="form-control" id="beforeDate" value=""></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="selectDepartamento" class="bold label-capas">Subregión:</label>'+
-                        '<select class="form-control" id="selectDepartamento">';
-        for (let i = 0; i < departamentosUnique.length; i++) {
-            const element = departamentosUnique[i];
-            textAppend += '<option value="'+element+'">'+element+'</option>';
+        else{
+            textAppend = "<h5 class='mt-2'>Active la capa de Antioquia</h5>";
         }
-        textAppend += '</select></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="selectCiudad" class="bold label-capas">Ciudad:</label>'+
-                        '<select class="form-control" id="selectCiudad">';
-        for (let i = 0; i < ciudadesUnique.length; i++) {
-            const element = ciudadesUnique[i];
-            textAppend += '<option value="'+element+'">'+element+'</option>';
-        }
-        textAppend += '</select></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="selectTipo" class="bold label-capas">Tipo:</label>'+
-                        '<select class="form-control" id="selectTipo">';
-        for (let i = 0; i < tiposUnique.length; i++) {
-            const element = tiposUnique[i];
-            textAppend += '<option value="'+element+'">'+element+'</option>';
-        }
-        textAppend += '</select></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="selectDetonante" class="bold label-capas">Detonante:</label>'+
-                        '<select class="form-control" id="selectDetonante">';
-        for (let i = 0; i < triggerUnique.length; i++) {
-            const element = triggerUnique[i];
-            textAppend += '<option value="'+element+'">'+element+'</option>';
-        }
-        textAppend += '</select></div>';
-        textAppend += '<div class="col-12">'+
-                        '<label for="selectMuertes" class="bold label-capas">Mínimo de Fallecidos:</label>'+
-                        '<input type="number" class="form-control" id="selectMuertes" value="0"></div>';
-        textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btn_Antioquia" onclick="graficarCapa(id)">Buscar</button>';
     }
     
     
     $("#filtersRegistro").empty();
     $("#filtersRegistro").append(textAppend);
+
+    $("#selectTipo1").change(function() {
+        $("#selectTipo0").val($("#selectTipo1").val());
+    });
+    $("#selectDepartamento1").change(function() {
+        $("#selectDepartamento0").val($("#selectDepartamento1").val());
+    });
+    $("#selectCiudad1").change(function() {
+        $("#selectCiudad0").val($("#selectCiudad1").val());
+    });
+    $("#selectPueblo1").change(function() {
+        $("#selectPueblo0").val($("#selectPueblo1").val());
+    });
+    $("#selectSitio1").change(function() {
+        $("#selectSitio0").val($("#selectSitio1").val());
+    });
+    $("#selectIncert1").change(function() {
+        $("#selectIncert0").val($("#selectIncert1").val());
+    });
+    $("#selectDetonante1").change(function() {
+        $("#selectDetonante0").val($("#selectDetonante1").val());
+    });
+    $("#selectFuente1").change(function() {
+        $("#selectFuente0").val($("#selectFuente1").val());
+    });
+}
+
+function anadirCapaRegistro(id) {
+    const idCapa = id.split("_")[1];
+    $("#"+id).attr("disabled", true);
+
+    const lngRegister = $("#lngRegister").val();
+    const latRegister = $("#latRegister").val();
+    
+    if(idCapa == "Col") {
+        database.ref('col/'+dbCol.length).set(
+            {
+                location : "["+lngRegister+", "+latRegister+"]",
+                date : $("#fechita").val(),
+                type : $("#selectTipo0").val(),
+                department: $("#selectDepartamento0").val(),
+                town : $("#selectCiudad0").val(),
+                county : $("#selectPueblo0").val(),
+                site : $("#selectSitio0").val(),
+                uncertainty : $("#selectIncert0").val(),
+                triggering : $("#selectDetonante0").val(),
+                fatalities : $("#selectMuertes1").val(),
+                losses : $("#selectPerdidas").val(),
+                source : $("#selectFuente0").val(),
+                add : $("#selectNotas").val(),
+            }
+        ).then((snapshot) => {
+            console.log("Guardó");
+            dbCol.push({
+                location : "["+lngRegister+", "+latRegister+"]",
+                date : $("#fechita").val(),
+                type : $("#selectTipo0").val(),
+                department: $("#selectDepartamento0").val(),
+                town : $("#selectCiudad0").val(),
+                county : $("#selectPueblo0").val(),
+                site : $("#selectSitio0").val(),
+                uncertainty : $("#selectIncert0").val(),
+                triggering : $("#selectDetonante0").val(),
+                fatalities : $("#selectMuertes1").val(),
+                losses : $("#selectPerdidas").val(),
+                source : $("#selectFuente0").val(),
+                add : $("#selectNotas").val(),
+            })
+            notification.success('¡Listo!', 'Se guardó con exito el evento');
+            $("#"+id).attr("disabled", false);
+        }).catch((error) => {
+            console.error(error);
+            notification.alert('¡Error!', 'Ocurrió un error al intentar guardar el evento');
+        });
+    }
+    if(idCapa == "Ant") {
+        database.ref('ant/'+dbAnt.length).set(
+            {
+                location : "["+lngRegister+", "+latRegister+"]",
+                date : $("#fechita").val(),
+                type : $("#selectTipo0").val(),
+                subregion: $("#selectDepartamento0").val(),
+                town : $("#selectCiudad0").val(),
+                county : $("#selectPueblo0").val(),
+                site : $("#selectSitio0").val(),
+                uncertainty : $("#selectIncert0").val(),
+                triggering : $("#selectDetonante0").val(),
+                fatalities : $("#selectMuertes1").val(),
+                losses : $("#selectPerdidas").val(),
+                source : $("#selectFuente0").val(),
+                add : $("#selectNotas").val(),
+                triggering_description : $("#selectDescripDeto").val()
+            }
+        ).then((snapshot) => {
+            console.log("Guardó");
+            dbAnt.push({
+                location : "["+lngRegister+", "+latRegister+"]",
+                date : $("#fechita").val(),
+                type : $("#selectTipo0").val(),
+                subregion: $("#selectDepartamento0").val(),
+                town : $("#selectCiudad0").val(),
+                county : $("#selectPueblo0").val(),
+                site : $("#selectSitio0").val(),
+                uncertainty : $("#selectIncert0").val(),
+                triggering : $("#selectDetonante0").val(),
+                fatalities : $("#selectMuertes1").val(),
+                losses : $("#selectPerdidas").val(),
+                source : $("#selectFuente0").val(),
+                add : $("#selectNotas").val(),
+                triggering_description : $("#selectDescripDeto").val()
+            })
+            notification.success('¡Listo!', 'Se guardó con exito el evento');
+            $("#"+id).attr("disabled", false);
+        }).catch((error) => {
+            console.error(error);
+            notification.alert('¡Error!', 'Ocurrió un error al intentar guardar el evento');
+        });
+    }
 }
 
 // BDValle();

@@ -323,3 +323,8 @@ main .contenido-mapa #map .leaflet-popup-content {
     border: 5px solid #247461;
     margin-bottom: 20px;
 }
+
+#sidebar #registropane .label-capas {
+  font-size: 1rem;
+  margin-top: 15px !important;
+}
