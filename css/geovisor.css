@@ -311,3 +311,15 @@ main .contenido-mapa #map .leaflet-popup-content {
   color: #ffffff;
   background: #247461;
 }/*# sourceMappingURL=geovisor.css.map */
+
+#modal-perfil-container{
+  margin-top: 20px;
+  text-align: center;
+}
+#modal-perfil-container img {
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    border: 5px solid #247461;
+    margin-bottom: 20px;
+}

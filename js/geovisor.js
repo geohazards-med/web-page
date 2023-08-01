@@ -28,6 +28,8 @@ var spinOpts = {
     //position: 'absolute', // Element positioning
 };
 
+var dbAnt = [];
+var dbCol = [];
 //Función Principal ----->
 
 
@@ -376,13 +378,75 @@ function graficarCapa(id) {
     const detonante = $("#selectDetonante").val();
     const muertes = $("#selectMuertes").val();
     if(idCapa == "Colombia") {
-        for (let i = 0; i < Colombia.length; i++) {
-            const element = Colombia[i];
-            var dateEvent = (element['date']['$date']["$numberLong"] !== undefined) ? new Date(parseInt(element['date']['$date']["$numberLong"])) : new Date(element['date']['$date'].split("T")[0]);
-            if (typeof element['location'][0] === 'number') {
+
+        if (dbCol.length === 0) {
+            database.ref().child("col").get().then((snapshot) => {
+                if (snapshot.exists()) {
+                    this.database = snapshot.val();
+                    dbCol = snapshot.val();
+                    console.log(dbCol);
+                    for (let i = 0; i < dbCol.length; i++) {
+                        const element = dbCol[i];
+                        var dateEvent = new Date(element['date'].split(" ")[0]);
+                        auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
+                        auxLng = parseFloat(auxLoc[0]);
+                        auxLat = parseFloat(auxLoc[1]);
+                        if ((element["department"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                            const auxDate = adjustDate(dateEvent);
+                            var point = L.marker([auxLat, auxLng]).toGeoJSON();             
+                            L.extend(point.properties, {
+                                id: i,
+                                Tipo: element['type'],
+                                Fecha: auxDate,
+                                Detonante: element['triggering'],
+                                Fuente: element['source'],
+                                Departamento: element['department'],
+                                Municipio: element['town'],
+                                Pueblo: element['county'],
+                                Sitio: element['site'],
+                                Incertidumbre: element['uncertainty'],
+                                Norte: auxLat,
+                                Este: auxLng,
+                                Fallecidos: element['fatalities'],
+                                Economicas: element['losses'],
+                                Notas: element['add']
+                                });
+                            L.geoJson(point,{
+                                onEachFeature: function(feature, layer) {
+                                    if (feature.properties) {
+                                    layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+                                    return k + ": " + feature.properties[k];
+                                    }).join("<br />"), {
+                                    maxHeight: 200
+                                    });
+                                    }
+                                }
+                            }).addTo(markers);
+                        }
+                        
+                    }
+                    markers.addTo(capaPuntos);
+                    markers.addTo(map);
+                    notification.success('¡Listo!', 'Se cargó con exito los eventos');
+                    console.log(capaPuntos.toGeoJSON());
+                } else {
+                    console.log("No data available");
+                    notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
+                }
+            }).catch((error) => {
+                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar la geología');
+                console.log(error);
+            });
+        }else{
+            for (let i = 0; i < dbCol.length; i++) {
+                const element = dbCol[i];
+                var dateEvent = new Date(element['date'].split(" ")[0]);
+                auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
+                auxLng = parseFloat(auxLoc[0]);
+                auxLat = parseFloat(auxLoc[1]);
                 if ((element["department"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
                     const auxDate = adjustDate(dateEvent);
-                    var point = L.marker([element['location'][1], element['location'][0]]).toGeoJSON();                
+                    var point = L.marker([auxLat, auxLng]).toGeoJSON();                
                     L.extend(point.properties, {
                         id: i,
                         Tipo: element['type'],
@@ -394,39 +458,104 @@ function graficarCapa(id) {
                         Pueblo: element['county'],
                         Sitio: element['site'],
                         Incertidumbre: element['uncertainty'],
-                        Norte: element['location'][1],
-                        Este: element['location'][0],
+                        Norte: auxLat,
+                        Este: auxLng,
                         Fallecidos: element['fatalities'],
                         Economicas: element['losses'],
                         Notas: element['add']
-                      });
+                        });
                     L.geoJson(point,{
                         onEachFeature: function(feature, layer) {
-                          if (feature.properties) {
+                            if (feature.properties) {
                             layer.bindPopup(Object.keys(feature.properties).map(function(k) {
                             return k + ": " + feature.properties[k];
                             }).join("<br />"), {
                             maxHeight: 200
                             });
-                          }
+                            }
                         }
                     }).addTo(markers);
                 }
+                
             }
+            markers.addTo(capaPuntos);
+            markers.addTo(map);
+            notification.success('¡Listo!', 'Se cargó con exito los eventos');
+            console.log(capaPuntos.toGeoJSON());
         }
-        markers.addTo(capaPuntos);
-        markers.addTo(map);
-        notification.success('¡Listo!', 'Se cargó con exito los eventos');
-        console.log(capaPuntos.toGeoJSON());
+
+        
     }
     if(idCapa == "Antioquia") {
-        for (let i = 0; i < Antioquia.length; i++) {
-            const element = Antioquia[i];
-            var dateEvent = (element['date']['$date']["$numberLong"] !== undefined) ? new Date(parseInt(element['date']['$date']["$numberLong"])) : new Date(element['date']['$date'].split("T")[0]);
-            if (typeof element['location'][0] === 'number') {
+        if (dbAnt.length === 0) {
+            database.ref().child("ant").get().then((snapshot) => {
+                if (snapshot.exists()) {
+                    this.database = snapshot.val();
+                    dbAnt = snapshot.val();
+                    console.log(dbAnt);
+                    for (let i = 0; i < dbAnt.length; i++) {
+                        const element = dbAnt[i];
+                        var dateEvent = new Date(element['date'].split(" ")[0]);
+                        auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
+                        auxLng = parseFloat(auxLoc[0]);
+                        auxLat = parseFloat(auxLoc[1]);
+                        if ((element["subregion"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                            const auxDate = adjustDate(dateEvent);
+                            var point = L.marker([auxLat, auxLng]).toGeoJSON();                
+                            L.extend(point.properties, {
+                                id: i,
+                                Tipo: element['type'],
+                                Fecha: auxDate,
+                                Detonante: element['triggering'],
+                                DetonanDes: element['triggering_description'],
+                                Fuente: element['source'],
+                                Subregion: element['subregion'],
+                                Municipio: element['town'],
+                                Pueblo: element['county'],
+                                Sitio: element['site'],
+                                Incertidumbre: element['uncertainty'],
+                                Norte: auxLat,
+                                Este: auxLng,
+                                Fallecidos: element['fatalities'],
+                                Economicas: element['losses'],
+                                Notas: element['add']
+                              });
+                            L.geoJson(point,{
+                                onEachFeature: function(feature, layer) {
+                                  if (feature.properties) {
+                                    layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+                                    return k + ": " + feature.properties[k];
+                                    }).join("<br />"), {
+                                    maxHeight: 200
+                                    });
+                                  }
+                                }
+                            }).addTo(markers);
+                        }
+                        
+                    }
+                    markers.addTo(capaPuntos);
+                    markers.addTo(map);
+                    notification.success('¡Listo!', 'Se cargó con exito los eventos');
+                    console.log(capaPuntos.toGeoJSON());
+                } else {
+                    console.log("No data available");
+                    notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
+                }
+            }).catch((error) => {
+                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar la geología');
+                console.log(error);
+            });
+        }else{
+            for (let i = 0; i < dbAnt.length; i++) {
+                const element = dbAnt[i];
+                var dateEvent = new Date(element['date'].split(" ")[0]);
+                auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
+                auxLng = parseFloat(auxLoc[0]);
+                auxLat = parseFloat(auxLoc[1]);
                 if ((element["subregion"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
                     const auxDate = adjustDate(dateEvent);
-                    var point = L.marker([element['location'][1], element['location'][0]]).toGeoJSON();                
+                    var point = L.marker([auxLat, auxLng]).toGeoJSON();                
                     L.extend(point.properties, {
                         id: i,
                         Tipo: element['type'],
@@ -439,8 +568,8 @@ function graficarCapa(id) {
                         Pueblo: element['county'],
                         Sitio: element['site'],
                         Incertidumbre: element['uncertainty'],
-                        Norte: element['location'][1],
-                        Este: element['location'][0],
+                        Norte: auxLat,
+                        Este: auxLng,
                         Fallecidos: element['fatalities'],
                         Economicas: element['losses'],
                         Notas: element['add']
@@ -457,13 +586,13 @@ function graficarCapa(id) {
                         }
                     }).addTo(markers);
                 }
+                
             }
+            markers.addTo(capaPuntos);
+            markers.addTo(map);
+            notification.success('¡Listo!', 'Se cargó con exito los eventos');
+            console.log(capaPuntos.toGeoJSON());
         }
-
-        markers.addTo(capaPuntos);
-        markers.addTo(map);
-        notification.success('¡Listo!', 'Se cargó con exito los eventos');
-        console.log(capaPuntos.toGeoJSON());
     }
 }
 
@@ -822,6 +951,175 @@ function DescargarDatosJSON(baseDatos, clase, filtro, filtrotipo, numero_real){
 
 }
 
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log(user.uid);
+        database.ref().child("admins/"+user.uid).get().then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                if (snapshot.val().nivel > 1) {
+                    $("#resgistro_Evento").toggleClass("d-none");  
+                    $("#registrarEvento").toggleClass("d-none");
+                    $("#registropane").append(
+                        '<div class="col-12 p-0">'+
+                            '<label for="selectCapaRegistro" class="bold label-capas">Escoja el Inventario:</label>'+
+                            '<select class="form-control" id="selectCapaRegistro">'+
+                                '<option value="Colombia">Colombia</option>'+
+                                '<option value="Antioquia">Antioquia</option>'+
+                            '</select>'+
+                        '</div>'+
+                        '<div class="row" id="filtersRegistro"></div>'
+                    );
+                    $("#selectCapaRegistro").change(function() {
+                        AgregarFiltrosRegistro();
+                    });
+                    AgregarFiltrosRegistro();
+                }
+            } else {
+                console.log("No data available");
+                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
+            }
+        }).catch((error) => {
+            notification.alert('¡Error!', 'Ocurrió un error al intentar cargar la geología');
+            console.log(error);
+        });
+        
+    } else {
+        
+        console.log("no hay usuario");      
+    }
+
+});
+
+function AgregarFiltrosRegistro(){
+    var capa = $("#selectCapaRegistro").val();
+    const getUnique = (arr) => [...new Set(arr)];
+    var textAppend = "";
+    var departamentos = ["Todos"];
+    var ciudades = ["Todas"];
+    var tipos = ["Todos"];
+    var trigger = ["Todos"];
+    
+    if(capa === "Colombia"){
+        for (let i = 0; i < Colombia.length; i++) {
+            const element = Colombia[i];
+            departamentos.push(element["department"])
+            ciudades.push(element["town"])
+            ciudades.push(element["county"])
+            tipos.push(element["type"])
+            trigger.push(element["triggering"])
+        }
+        var departamentosUnique = getUnique(departamentos);
+        var ciudadesUnique = getUnique(ciudades);
+        var tiposUnique = getUnique(tipos);
+        var triggerUnique = getUnique(trigger);
+        textAppend += '<div class="col-12">'+
+                        '<label for="lngRegister" class="bold label-capas">Longitud (Use el punto ej: -75.5):</label>'+
+                        '<input type="text" class="form-control" id="lngRegister" value=""></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="latRegister" class="bold label-capas">Latitud (Use el punto ej: 6.5):</label>'+
+                        '<input type="text" class="form-control" id="latRegister" value=""></div>';
+        textAppend += '<div class="col-12 mt-3">'+
+                        '<label for="fechita" class="bold label-capas">Fecha:</label>'+
+                        '<input type="date" class="form-control" id="fechita" value=""></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectDepartamento" class="bold label-capas">Departamento:</label>'+
+                        '<input type="date" class="form-control" id="selectDepartamento0" value=""></div>';
+                        '<select class="form-control" id="selectDepartamento1">';
+        for (let i = 0; i < departamentosUnique.length; i++) {
+            const element = departamentosUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectCiudad" class="bold label-capas">Ciudad:</label>'+
+                        '<select class="form-control" id="selectCiudad">';
+        for (let i = 0; i < ciudadesUnique.length; i++) {
+            const element = ciudadesUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectTipo" class="bold label-capas">Tipo:</label>'+
+                        '<select class="form-control" id="selectTipo">';
+        for (let i = 0; i < tiposUnique.length; i++) {
+            const element = tiposUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectDetonante" class="bold label-capas">Detonante:</label>'+
+                        '<select class="form-control" id="selectDetonante">';
+        for (let i = 0; i < triggerUnique.length; i++) {
+            const element = triggerUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectMuertes" class="bold label-capas">Mínimo de Fallecidos:</label>'+
+                        '<input type="number" class="form-control" id="selectMuertes" value="0"></div>';
+        textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btn_Colombia" onclick="graficarCapa(id)">Buscar</button>';
+    }
+    else if(capa === "Antioquia"){
+        for (let i = 0; i < Antioquia.length; i++) {
+            const element = Antioquia[i];
+            departamentos.push(element["subregion"])
+            ciudades.push(element["town"])
+            tipos.push(element["type"])
+            trigger.push(element["triggering"])
+        }
+        var departamentosUnique = getUnique(departamentos);
+        var ciudadesUnique = getUnique(ciudades);
+        var tiposUnique = getUnique(tipos);
+        var triggerUnique = getUnique(trigger);
+        textAppend += '<div class="col-12 mt-3">'+
+                        '<label for="afterDate" class="bold label-capas">Después de la Fecha:</label>'+
+                        '<input type="date" class="form-control" id="afterDate" value=""></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="beforeDate" class="bold label-capas">Antes de la Fecha:</label>'+
+                        '<input type="date" class="form-control" id="beforeDate" value=""></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectDepartamento" class="bold label-capas">Subregión:</label>'+
+                        '<select class="form-control" id="selectDepartamento">';
+        for (let i = 0; i < departamentosUnique.length; i++) {
+            const element = departamentosUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectCiudad" class="bold label-capas">Ciudad:</label>'+
+                        '<select class="form-control" id="selectCiudad">';
+        for (let i = 0; i < ciudadesUnique.length; i++) {
+            const element = ciudadesUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectTipo" class="bold label-capas">Tipo:</label>'+
+                        '<select class="form-control" id="selectTipo">';
+        for (let i = 0; i < tiposUnique.length; i++) {
+            const element = tiposUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectDetonante" class="bold label-capas">Detonante:</label>'+
+                        '<select class="form-control" id="selectDetonante">';
+        for (let i = 0; i < triggerUnique.length; i++) {
+            const element = triggerUnique[i];
+            textAppend += '<option value="'+element+'">'+element+'</option>';
+        }
+        textAppend += '</select></div>';
+        textAppend += '<div class="col-12">'+
+                        '<label for="selectMuertes" class="bold label-capas">Mínimo de Fallecidos:</label>'+
+                        '<input type="number" class="form-control" id="selectMuertes" value="0"></div>';
+        textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btn_Antioquia" onclick="graficarCapa(id)">Buscar</button>';
+    }
+    
+    
+    $("#filtersRegistro").empty();
+    $("#filtersRegistro").append(textAppend);
+}
 
 // BDValle();
 function BDValle() {
@@ -870,4 +1168,9 @@ function BDValle() {
     console.log(dbResult);
     console.log(capaPuntos1);
     console.log(capaPuntos1.toGeoJSON());
+}
+
+// bdFun()
+function bdFun() {
+    console.log(db["bd"]);
 }

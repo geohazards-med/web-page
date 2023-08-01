@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/styles.css"/>
     <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="css/firebase-ui-auth.css">
     <link rel="stylesheet" href="css/bootstrap-colorpicker.css">
     <!-- Estilos del gestor de mapas -->
     <link rel="stylesheet" href="css/leaflet.css">
@@ -78,7 +79,10 @@
             <li><a href="#cargarCapa" role="tab"><i class="fa-solid fa-upload" title="Cargar Capas"></i></a></li>
             <!-- Descargar Capas -->
             <li><a href="#descargaCapa" role="tab"><i class="fa-solid fa-download" title="Descargar Capas"></i></a></li>
-        </ul>
+            <!-- Registrar Evento -->
+            <li id="resgistro_Evento" class="d-none"><a href="#registrarEvento" role="tab"><i class="fa-solid fa-pen-to-square" title="Registrar Evento"></i></a></li>
+
+          </ul>
         <!-- Pestañas dispuestas en la parte inferior -->
         <ul role="tablist">
             <!-- Perfil de Usuario -->
@@ -160,6 +164,15 @@
           <div id="descargapane"></div>
       </div>
 
+        <!-- Contenido Registrar Eventos -->
+        <div class="leaflet-sidebar-pane d-none" id="registrarEvento">
+          <h1 class="leaflet-sidebar-header">
+              Registrar Eventos
+              <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+          </h1>
+          <div id="registropane"></div>
+      </div>
+
         <!-- Contenido Perfil -->
         <div class="leaflet-sidebar-pane" id="profile">
           <h1 class="leaflet-sidebar-header">
@@ -172,7 +185,6 @@
                 <h3 id="nombre-perfil">Nombre</h3>
                 <h4 id="correo-perfil">Correo</h4>
                 <h4 id="semestre-perfil">Proyecto</h4>
-                <h4 id="nivel-perfil">Nivel</h4>
                 <button type="button" class="btn btn-danger" id="logout" data-dismiss="modal">Cerrar Sesión</button>
             </div>
         </div>
@@ -243,13 +255,14 @@
     <script src="js/lib/proj4leaflet.js"></script>
     <script src="js/lib/georaster-layer-for-leaflet.js"></script>
     <!-- Scripts de Firebase -->
-    <!-- <script src="js/firebase-app-compat.js"></script>
+    <script src="js/firebase-app-compat.js"></script>
     <script src="js/firebase-database-compat.js"></script>
     <script src="js/firebase-auth-compat.js"></script>
     <script src="js/firebase-ui-auth.js"></script>
-    <script src="js/server.js"></script> -->
+    <script src="js/server.js"></script>
     <!-- Datos del Visor -->
     <script src="data/datos.js"></script>
+    <script src="data/complete.js"></script>
     <script src="data/Antioquia.js"></script>
     <script src="data/Colombia.js"></script>
     <!-- Script Visor -->
