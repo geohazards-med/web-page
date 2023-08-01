@@ -979,10 +979,8 @@ firebase.auth().onAuthStateChanged(function(user) {
                 }
             } else {
                 console.log("No data available");
-                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
             }
         }).catch((error) => {
-            notification.alert('¡Error!', 'Ocurrió un error al intentar cargar la geología');
             console.log(error);
         });
         
