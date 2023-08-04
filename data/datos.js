@@ -84,11 +84,11 @@ var datos = {
             "btn" : []
          },
          {
-            "img" : "slider_img/Anuncio Vacante Laboral Simple Azul y Verde.jpg",
-            "img_alt" : "Convocatoria Estudiante Maestría",
-            "titulo" : "Convocatoria Investigador(a)",
-            "fecha" : "Publicado el 19 de julio del 2023",
-            "texto" : "Si actualmente eres estudiante de maestría o piensas estudiar una en la Facultad de Minas y te interesa la gestión de riesgo y los sistemas de alerta temprana, esta oportunidad es para ti.",
+            "img" : "slider_img/FelicitacionesDistincion.jpg",
+            "img_alt" : "Felicitaciones",
+            "titulo" : "¡Felicitaciones!",
+            "fecha" : "Publicado el 04 de agosto del 2023",
+            "texto" : '"Esta distinción es un testimonio del compromiso incansable que ha demostrado en la búsqueda de un impacto positivo en nuestras comunidades, utilizando su conocimiento, habilidades y pasión para abordar problemáticas sociales, ambientales y económicas con una perspectiva integradora y solidaria"',
             "btn" : []
          },
          {
@@ -151,19 +151,19 @@ var datos = {
                "modal_info":""
             }]
          },
-         {
-            "img" : "slider_img/cursoAVT_Minas.png",
-            "img_alt" : "Curso AVT Minas",
-            "titulo" : "Curso de Modelación de Avenidas Torrenciales",
-            "fecha" : "Publicado el 20 de julio de 2022",
-            "texto" : "El Semillero de Investigación Geohazards invita a participar en el curso de <b>Modelación de Avenidas Torrenciales</b>, el cual será impartido por el experto internacional Martin Mergili, docente de la Universidad de Graz (Austria).",
-            "btn" : [{
-               "link" : "",
-               "texto" : "Más información",
-               "modal" : true,
-               "modal_info" : "CursoAVT",
-            }]
-         },
+         // {
+         //    "img" : "slider_img/cursoAVT_Minas.png",
+         //    "img_alt" : "Curso AVT Minas",
+         //    "titulo" : "Curso de Modelación de Avenidas Torrenciales",
+         //    "fecha" : "Publicado el 20 de julio de 2022",
+         //    "texto" : "El Semillero de Investigación Geohazards invita a participar en el curso de <b>Modelación de Avenidas Torrenciales</b>, el cual será impartido por el experto internacional Martin Mergili, docente de la Universidad de Graz (Austria).",
+         //    "btn" : [{
+         //       "link" : "",
+         //       "texto" : "Más información",
+         //       "modal" : true,
+         //       "modal_info" : "CursoAVT",
+         //    }]
+         // },
          {
             "img" : "slider_img/deslizamiento-sap.png",
             "img_alt" : "Emergencia en San Antonio de Prado, Medellín",
@@ -177,14 +177,14 @@ var datos = {
                "modal_info" : ""
             }]
          },
-         {
-            "img" : "slider_img/Integrantes-geohazards.jpeg",
-            "img_alt" : "II Simposio de Geoamenazas 2021",
-            "titulo" : "II Simposio de Geoamenazas 2021",
-            "fecha" : "Publicado el 10 de noviembre del 2021",
-            "texto" : "El 4 de noviembre del 2021 se realizó el II Simposio de geoamenazas organizado por nuestro semillero de investigación.<br> Cada año en octubre, mes de la reducción de desastres, se realizará este evento de divulgación abierto a toda la comunidad.",
-            "btn" : []
-         },
+         // {
+         //    "img" : "slider_img/Integrantes-geohazards.jpeg",
+         //    "img_alt" : "II Simposio de Geoamenazas 2021",
+         //    "titulo" : "II Simposio de Geoamenazas 2021",
+         //    "fecha" : "Publicado el 10 de noviembre del 2021",
+         //    "texto" : "El 4 de noviembre del 2021 se realizó el II Simposio de geoamenazas organizado por nuestro semillero de investigación.<br> Cada año en octubre, mes de la reducción de desastres, se realizará este evento de divulgación abierto a toda la comunidad.",
+         //    "btn" : []
+         // },
          {
             "img" : "slider_img/poster1_alemania.png",
             "img_alt" : "NatRiskChange 2021",
