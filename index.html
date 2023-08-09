@@ -9,8 +9,8 @@
     <meta name="author" content="Geohazards">
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/styles.css"/>
-    <script src="https://kit.fontawesome.com/95d88073be.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <script src="js/fontawesome.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/fontawesome.min.css"/>
     <link rel="icon" href="images/LOGO_FINAL_V2.png" sizes="16x16 32x32" type="image/png">
 </head>
 <body>
@@ -102,15 +102,22 @@
   
   <!-- Informaciòn Semillero -->
   <section id="semillero" class="container col-lg-12 col-md-12 col-sm-12 col-12"> 
-    <h3 class="titulo-principal"><a>Semillero</a></h3>
+    <div style="
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: space-between;
+      align-items: center;
+    "><h3 class="titulo-principal d-inline-block"><a>Semillero</a></h3> <button class="btn-trans" onclick="Traducir()"> <i class="fa-solid fa-language"></i></button> </div>
     <button class="btn-toggle"><i class="fas fa-angle-double-left"></i></button>
     <div id="main" class="row">
       <div id="barra-lateral" class="col-lg-3 col-sm-3 col-md-3 col-4"> 
         <div class="carta">
           <div class="cara-frontal">
             <ul class="lista-campos nav" id="menu-principal">
-              <li class="nav-item"><a class="nav-link activar-menu" data-toggle="tab" href="#tab-1">Quiénes somos</a></li>
-              <li class="nav-item trigger-li"><a class="nav-link" data-toggle="tab" href="#tab-2">Líneas de investigación</a></li>
+              <li class="nav-item"><a class="trans nav-link activar-menu" data-toggle="tab" href="#tab-1">Quiénes somos</a><a class="trans d-none nav-link activar-menu" data-toggle="tab" href="#tab-1">About us</a></li>
+              <li class="nav-item trigger-li"><a class="trans nav-link" data-toggle="tab" href="#tab-2">Líneas de investigación</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2">Research topics</a></li>
               <!-- <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-3">Investigadores</a></li> -->
               <li class="nav-item trigger-proy"><a class="nav-link" data-toggle="tab" href="#tab-4">Proyectos</a></li>
               <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-5">Publicaciones</a></li>
@@ -122,13 +129,13 @@
               <!-- <h5>Líneas de investigación</h5>
               <hr class="linea-sep"> -->
               <ul id="menu-lineas" class="lineas-investigacion nav d-flex flex-column justify-content-around align-items-center">
-                <li class="nav-item"><a  class="nav-link activar-menu" id="primer-elem-li" data-toggle="tab" href="#tab-2-1">Avenidas torrenciales</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-2-2">Geomorfometría</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-2-3">Umbrales de lluvia</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-2-4">Movimientos en masa</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-2-5">Machine Learning</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-2-6">Perfil de meteorización</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-2-7">Análisis geoespacial</a></li>
+                <li class="nav-item"><a  class="trans nav-link activar-menu" id="primer-elem-li" data-toggle="tab" href="#tab-2-1">Avenidas torrenciales</a><a  class=" trans d-none nav-link activar-menu" id="primer-elem-li" data-toggle="tab" href="#tab-2-1">Debris Flow</a></li>
+                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-2">Geomorfometría</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-2">Geomorphometry and Landscape Evolution</a></li>
+                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-3">Umbrales de lluvia</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-3">Critical Rainfall Thresholds</a></li>
+                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-4">Movimientos en masa</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-4">Mass Movements</a></li>
+                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-5">Machine Learning</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-5">Machine Learning</a></li>
+                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-6">Perfil de meteorización</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-6">Weathering Profile</a></li>
+                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-7">Análisis geoespacial</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-7">Geospatial Analysis</a></li>
               </ul>
               <a class="cerrar-li"><i class="fas fa-times-circle"></i></a>
             </div>
@@ -156,14 +163,15 @@
               <div class="row control-desbor mx-auto">
                 <div class="col-lg-7 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center text-center">
                   <div class="descripcion">
-                    <h6>¿QUIÉNES SOMOS?</h6>
-                    <p>El semillero de investigación GEOHAZARDS se encuentra adscrito al departamento de 
+                    <h6 class="trans">¿QUIÉNES SOMOS?</h6><h6 class="trans d-none">¿ABOUT US?</h6>
+                    <p class="trans">El semillero de investigación GEOHAZARDS se encuentra adscrito al departamento de 
                       Geociencias y Medio Ambiente de la Facultad de Minas en la Universidad Nacional de Colombia - sede Medellín. 
                       Es un semillero 
                       interdisciplinario compuesto por profesores, investigadores y estudiantes 
                       de las áreas de la ingeniería. 
                       El Semillero está orientado al conocimiento y desarrollo de modelos geociencias, gestión del riesgo de desastres, 
                       análisis geoespacial, sensores remotos, geotecnia y geomorfología.</p>
+                    <p class="trans d-none">The GEOHAZARDS research group is part of the Department of Geosciences and Environment at the Faculty of Mining at the National University of Colombia - Medellin campus. It is an interdisciplinary research group composed of professors, researchers, and students from engineering fields. The group is focused on the knowledge and development of geoscientific models, disaster risk management, geospatial analysis, remote sensing, geotechnical engineering, and geomorphology.</p>
                   </div>
                 </div>
                 <div class="col-lg-1"><div class="vl"></div></div>
@@ -226,8 +234,8 @@
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
                   <div class="descripcion-linea">
-                    <h6 class="titulo-campo-der">Avenidas torrenciales</h6>
-                    <p class="text-justify">
+                    <h6 class="trans titulo-campo-der">Avenidas torrenciales</h6><h6 class="trans d-none titulo-campo-der">Debris Flow</h6>
+                    <p class="trans text-justify">
                       Las avenidas torrenciales son fenómenos complejos de origen hidrometeorológico y geológico
                       comunes en ambientes tropicales. Se componen de mezclas variables de agua y sedimento que
                       alcanzan altas velocidades a lo largo de drenajes de montaña y que, por sus extensas zonas de
@@ -241,6 +249,10 @@
                       enrutamiento de fluidos no Newtonianos donde se hace uso de tecnologías como los sensores
                       remotos, análisis de campo, procesamientos estadísticos, técnicas de inteligencia artificial, entre
                       otros.
+                    </p>
+                    <p class="trans d-none text-justify">
+                      Debris Flow are complex phenomena of hydro-meteorological and geological origin commonly found in tropical environments. They consist of varying mixtures of water and sediment that reach high speeds along mountain drainages and, due to their extensive areas of influence, pose a threat to both infrastructure and human lives. Understanding these processes and zoning the territory based on its susceptibility and vulnerability to them is of utmost importance for risk management and territorial planning. This provides valuable tools for authorities and decision-makers to establish strategies focused on risk mitigation and life protection.
+                      There are multiple strategies to address susceptibility and vulnerability analysis, ranging from geological and geomorphological perspectives to hydraulic modeling and non-Newtonian fluid routing. These approaches make use of technologies such as remote sensors, field analysis, statistical processing, artificial intelligence techniques, among others.
                     </p>
                   </div>
                 </div>
@@ -1216,8 +1228,8 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
                   <div class="descripcion-linea">
-                    <h6 class="titulo-campo-der">Avenidas torrenciales</h6>
-                    <p class="text-justify">
+                    <h6 class="trans titulo-campo-der">Avenidas torrenciales</h6><h6 class="trans d-none titulo-campo-der">Debris Flow</h6>
+                    <p class="trans text-justify">
                       Las avenidas torrenciales son fenómenos complejos de origen hidrometeorológico y geológico
                       comunes en ambientes tropicales. Se componen de mezclas variables de agua y sedimento que
                       alcanzan altas velocidades a lo largo de drenajes de montaña y que, por sus extensas zonas de
@@ -1230,7 +1242,12 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                       amenaza desde perspectivas geológicas y geomorfológicas hasta modelaciones hidráulicas y de
                       enrutamiento de fluidos no Newtonianos donde se hace uso de tecnologías como los sensores
                       remotos, análisis de campo, procesamientos estadísticos, técnicas de inteligencia artificial, entre
-                      otros.</p>
+                      otros.
+                    </p>
+                    <p class="trans d-none text-justify">
+                      Debris Flow are complex phenomena of hydro-meteorological and geological origin commonly found in tropical environments. They consist of varying mixtures of water and sediment that reach high speeds along mountain drainages and, due to their extensive areas of influence, pose a threat to both infrastructure and human lives. Understanding these processes and zoning the territory based on its susceptibility and vulnerability to them is of utmost importance for risk management and territorial planning. This provides valuable tools for authorities and decision-makers to establish strategies focused on risk mitigation and life protection.
+                      There are multiple strategies to address susceptibility and vulnerability analysis, ranging from geological and geomorphological perspectives to hydraulic modeling and non-Newtonian fluid routing. These approaches make use of technologies such as remote sensors, field analysis, statistical processing, artificial intelligence techniques, among others.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1298,8 +1315,8 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
                   <div class="descripcion-linea">
-                    <h6 class="titulo-campo-der">Geomorfometría y evolución del paisaje</h6>
-                    <p class="text-justify">
+                    <h6 class="trans titulo-campo-der">Geomorfometría y evolución del paisaje</h6><h6 class="trans d-none titulo-campo-der">Geomorphometry and Landscape Evolution </h6>
+                    <p class="trans text-justify">
                       La red de drenaje y la topografía son sensibles al registro de perturbaciones en el paisaje.
                       Diferentes parámetros morfométricos contribuyen al entendimiento de la respuesta de las laderas
                       y de las cuencas a la ocurrencia de movimientos en masa y avenidas torrenciales. El objetivo es
@@ -1308,6 +1325,10 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                       de los modelos de elevación digital (DEM). Se utiliza la geomorfología cuantitativa para encontrar
                       patrones de anomalías morfométricas asociadas con la evolución del paisaje y a la ocurrencia de
                       estos eventos en los Andes del norte de Colombia.</p>
+                    <p class="trans d-none text-justify">
+                      The drainage network and topography are sensitive to disturbances in the landscape. 
+                      Different morphometric parameters contribute to the understanding of how slopes and basins respond to mass movements and torrential rivers occurrences. The objective is to gain a better understanding of the morphometric control on the occurrence of mass movements and torrential rivers through process geomorphology and information derived from digital elevation models (DEMs). Quantitative geomorphology is used to identify patterns of morphometric anomalies associated with landscape evolution and the occurrence of these events in the northern Andes of Colombia.                      
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1349,8 +1370,8 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
                   <div class="descripcion-linea">
-                    <h6 class="titulo-campo-der">Umbrales críticos de lluvia</h6>
-                    <p class="text-justify">
+                    <h6 class="trans titulo-campo-der">Umbrales críticos de lluvia</h6><h6 class="trans d-none titulo-campo-der">Critical Rainfall Thresholds</h6>
+                    <p class="trans text-justify">
                       Un umbral de lluvia se define como la condición de lluvia que después de ser alcanzada o excedida
                       incrementa la posible ocurrencia de un movimiento en masa, teniendo en cuenta las lluvias
                       intensas como el más común de los desencadenantes de los movimientos en masa se consideran
@@ -1362,6 +1383,9 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                       cuenta los efectos de la lluvia en el subsuelo acoplando modelos hidrológicos y geotécnicos lo que
                       provee un mejor entendimiento del comportamiento físico de la lluvia a través de la ladera y sus
                       procesos de infiltración dando a lugar una predicción espacial y temporal del fenómeno.
+                    </p>
+                    <p class="trans d-none text-justify">
+                      A rainfall threshold is defined as the rainfall condition that, when reached or exceeded, increases the potential occurrence of a mass movement. Considering intense rainfall as the most common trigger for mass movements, rainfall thresholds are considered a very useful tool in early warning models for predicting shallow mass movements. Rainfall thresholds can be Empirical or Physics-Based: Empirical rainfall thresholds are defined based on inventories and historical data of mass movements and accumulated rainfall, using statistical and heuristic methods for their determination. On the other hand, physics-based rainfall thresholds take into account the effects of rainfall on the subsurface by coupling hydrological and geotechnical models, which provides a better understanding of the physical behavior of rainfall across the slope and its infiltration processes, resulting in a spatial and temporal prediction of the phenomenon.
                     </p>
                   </div>
                 </div>
@@ -1410,8 +1434,8 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
                   <div class="descripcion-linea">
-                    <h6 class="titulo-campo-der">Movimientos en masa</h6>
-                    <p class="text-justify">
+                    <h6 class="trans titulo-campo-der">Movimientos en masa</h6><h6 class="trans d-none titulo-campo-der">Mass Movements</h6>
+                    <p class="trans text-justify">
                       En Colombia, los desastres con el mayor número de pérdidas humanas son los originados por
                       movimientos en masa, representando el 36% de las muertes desde 1970 al 2011 (Campos García y
                       cols., 2011), donde un porcentaje representativo de los movimientos en masa son detonados por
@@ -1419,6 +1443,9 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                       indispensable el estudio detallado de los movimientos en masa desde distintos componentes que
                       integran la ocurrencia y propagación del evento, como lo es el componente hidrológico,
                       geotécnico y de sedimentos.
+                    </p>
+                    <p class="trans d-none text-justify">
+                      In Colombia, disasters with the highest number of human casualties are those caused by mass movements, accounting for 36% of deaths from 1970 to 2011 (Campos García et al., 2011). A significant percentage of these mass movements are triggered by prolonged or intense rainfall (Aristizábal, Vélez, and Martínez, 2016). Therefore, a detailed study of mass movements is essential, considering various components that contribute to the occurrence and propagation of the event, such as the hydrological, geotechnical, and sediment aspects.
                     </p>
                   </div>
                 </div>
@@ -1496,14 +1523,17 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
                   <div class="descripcion-linea">
-                    <h6 class="titulo-campo-der">Machine Learning</h6>
-                    <p class="text-justify">
+                    <h6 class="trans titulo-campo-der">Machine Learning</h6><h6 class="trans d-none titulo-campo-der">Machine Learning</h6>
+                    <p class="trans text-justify">
                       Se centra en la aplicación de técnicas de inteligencia artificial para lograr una aproximación en el
                       entendimiento de amenazas naturales como movimientos en masa y avenidas torrenciales.
                       Realizar modelos a partir de datos espaciales y temporales que permitan identificar cuándo un
                       área bajo cierta cantidad de precipitación es más susceptible ante un evento de estas
                       características, contribuiría como insumo para la toma de decisiones y la planificación del
                       territorio.
+                    </p>
+                    <p class="trans d-none text-justify">
+                      It focuses on the application of artificial intelligence techniques to achieve an approximation in understanding natural hazards such as mass movements and torrential rivers. Building models based on spatial and temporal data that allow the identification of when an area, under a certain amount of precipitation, is more susceptible to such an event would contribute as input for decision-making and territorial planning.
                     </p>
                   </div>
                 </div>
@@ -1551,13 +1581,16 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
                   <div class="descripcion-linea">
-                    <h6 class="titulo-campo-der">Perfil de meteorización</h6>
-                    <p class="text-justify">
+                    <h6 class="trans titulo-campo-der">Perfil de meteorización</h6><h6 class="trans d-none titulo-campo-der">Weathering Profile</h6>
+                    <p class="trans text-justify">
                       La transformación y alteración de la roca en suelo dado procesos físicos y químicos hace parte del
                       proceso de meteorización que se ve especialmente desarrollado en los ambientes tropicales, como
                       Colombia, que junto a su ubicación espacial y condiciones de precipitaciones y temperaturas dan
                       espesores y características de perfiles profundos modelando así características en el paisaje, y
                       controlando las condiciones de amenaza por fenómenos geológicos.
+                    </p>
+                    <p class="trans d-none text-justify">
+                      The transformation and alteration of rock into soil through physical and chemical processes are part of the weathering process, which is particularly pronounced in tropical environments like Colombia. Along with its spatial location and precipitation and temperature conditions, this weathering process leads to the development of deep profiles, shaping landscape characteristics, and influencing the conditions of geological hazards.
                     </p>
                   </div>
                 </div>
@@ -1600,13 +1633,16 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
                   <div class="descripcion-linea">
-                    <h6 class="titulo-campo-der">Análisis geoespacial</h6>
-                    <p class="text-justify">
+                    <h6 class="trans titulo-campo-der">Análisis geoespacial</h6><h6 class="trans d-none titulo-campo-der">Geospatial Analysis</h6>
+                    <p class="trans text-justify">
                       Con el avance reciente de los sensores remotos, se ha abierto la posibilidad de brindar 
                       información con cada vez de mejor resolución espacial y temporal. Adicionalmente, 
                       los datos provenientes de sensores remotos son en parte libre y gratuita, dando paso a 
                       que cada vez más investigadores puedan acceder a la información y permitiendo el análisis
                        de diversas variables en zonas con escasez de información o de difícil acceso.
+                    </p>
+                    <p class="trans d-none text-justify">
+                      With the recent advancement of remote sensing technology, the possibility of providing information with increasingly better spatial and temporal resolution has been opened. Additionally, the data obtained from remote sensors are, in part, free and accessible, allowing more researchers to access this information and enabling the analysis of various variables in areas with limited information or difficult access.
                     </p>
                   </div>
                 </div>
@@ -1793,7 +1829,7 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
 
   <!-- Comienzo recursos -->
   <div class="info-recursos container-fluid mx-auto">
-    <h3 class="titulo-inventario">Recursos</h3>
+    <h3 class="trans titulo-inventario">Recursos</h3><h3 class="trans d-none titulo-inventario">Resources</h3>
     <div>
       <a class="bullet parrafo-inventario" href="http://repositorio.gestiondelriesgo.gov.co/handle/20.500.11762/40444" target="_blank">Comisión Nacional Asesora para la Investigación en Gestión del Riesgo de Desastres (CNAIGRD). 2023. Investigaciones
         en gestión del riesgo de desastres para Colombia. Contribuciones locales, regionales y nacionales. Unidad Nacional para
@@ -1815,7 +1851,7 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
 
   <!-- Comienzo inventario -->
   <div class="info-inventario container-fluid mx-auto">
-    <h3 class="titulo-inventario">Inventario de desastres</h3>
+    <h3 class="trans titulo-inventario">Inventario de desastres</h3><h3 class="trans d-none titulo-inventario">Disaster Inventory</h3>
     <p class="parrafo-inventario">El Semillero Geohazards ha desarrollado un aplicativo que permite visualizar y reportar eventos de 
     movimientos en masa y desastres naturales ocurridos en Colombia y en el departamento de Antioquia.
     </p>
@@ -1855,7 +1891,7 @@ movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-12 segunda_col order-3 order-sm-2 order-md-2 order-lg-2">
           <div class="oficina text-center mt-lg-2">
-            <p class="mx-auto"><i class="fas fa-map-marker-alt"></i>&nbsp;Medellín, Carrera 80 No 65-22, M2-211<br><i class="fas fa-phone-alt"></i>&nbsp;(57)(4) 425 51 97</p>
+            <p class="mx-auto"><i class="fa-solid fa-location-dot"></i></i>&nbsp;Medellín, Carrera 80 No 65-22, M2-211<br><i class="fas fa-phone-alt"></i>&nbsp;(57)(4) 425 51 97</p>
             <p class="correo_sem mx-auto"><i class="fas fa-envelope"></i>&nbsp;geohazards_med@unal.edu.co</p>
             <div class="escudo_geohazards d-flex justify-content-center align-items-center">
               <img width="105.3" height="122.4" src="images/LOGO_FINAL_V2.png" alt="Logo_Semillero">

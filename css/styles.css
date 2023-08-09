@@ -2156,3 +2156,12 @@ color: #ffffff;
 background: #247461;
 border-color: #247461;
 }
+
+.btn-trans{
+    border: none;
+    background: white;
+}
+.btn-trans:hover{
+    color: #247461;
+}
+

@@ -51,6 +51,10 @@ $('#modalCarousel').on('show.bs.modal', function (e) {
 });
 
 
+function Traducir() {
+    console.log("traduciendo");
+    $(".trans").toggleClass("d-none");
+}
 
 
 // Interactividad con las imágenes de los integrantes-->Aparecer la descripcion de cada uno
