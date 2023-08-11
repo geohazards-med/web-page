@@ -435,7 +435,7 @@ function graficarCapa(id) {
                     notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
                 }
             }).catch((error) => {
-                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar la geología');
+                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos');
                 console.log(error);
             });
         }else{
@@ -545,7 +545,7 @@ function graficarCapa(id) {
                     notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
                 }
             }).catch((error) => {
-                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar la geología');
+                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos');
                 console.log(error);
             });
         }else{
