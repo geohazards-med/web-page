@@ -1,1924 +1,437 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geohazards | Semillero de Investigación | Inventario de desastres</title>
-    <meta name="description" content="Semillero de investigación de la Universidad Nacional de Colombia. Inventario de desastres de Colombia y Antioquia">
-    <meta name="keywords" content="Semillero, Investigación, Inventario, Desastres, Grupo, Deslizamientos, Antioquia, Facultad, Minas">
-    <meta name="author" content="Geohazards">
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/styles.css"/>
-    <script src="js/fontawesome.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/fontawesome.min.css"/>
-    <link rel="icon" href="images/LOGO_FINAL_V2.png" sizes="16x16 32x32" type="image/png">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+	<!-- Page Title -->
+	<title>Geohazards | Semillero de Investigación</title>
+  <link rel="icon" href="assets/img/Logo.png" sizes="16x16 32x32" type="image/png">
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/fontawesome.min.css"/>
+  
+	<!-- Compressed Styles -->
+	<link href="css/slides.css" rel="stylesheet" type="text/css">
+  <link href="css/main.css" rel="stylesheet" type="text/css">
+	
+  
+	<!-- jQuery 3.3.1 -->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+	<script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/fontawesome.min.js"></script>
+  
+  <script src="data/datos.js"></script>
+  <script src="js/main.js"></script>
+
+	<!-- Compressed Scripts -->
+	<script src="js/plugins.js" type="text/javascript"></script>
+	<script src="js/slides.js" type="text/javascript"></script>
+
+	<!-- Fonts and Material Icons -->
+	<link rel="stylesheet" as="font" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"/>
+ 
 </head>
-<body>
+<body class="slides horizontal simplifiedMobile animated">
+		
+<!-- SVG Library -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    
+  <symbol id="close" viewBox="0 0 30 30"><path d="M15 0c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15zm5.7 19.3c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-4.3-4.3-4.3 4.3c-.2.2-.4.3-.7.3s-.5-.1-.7-.3c-.4-.4-.4-1 0-1.4l4.3-4.3-4.3-4.3c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l4.3 4.3 4.3-4.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-4.3 4.3 4.3 4.3z"/></symbol>
+  
+  <symbol id="close-small" viewBox="0 0 11 11"><path d="M6.914 5.5l3.793-3.793c.391-.391.391-1.023 0-1.414s-1.023-.391-1.414 0l-3.793 3.793-3.793-3.793c-.391-.391-1.023-.391-1.414 0s-.391 1.023 0 1.414l3.793 3.793-3.793 3.793c-.391.391-.391 1.023 0 1.414.195.195.451.293.707.293s.512-.098.707-.293l3.793-3.793 3.793 3.793c.195.195.451.293.707.293s.512-.098.707-.293c.391-.391.391-1.023 0-1.414l-3.793-3.793z"/></symbol>
 
-  <!-- Barra  de navegación :D-->
-  <nav class="navbar navbar-expand-lg navbar-light barra-navegacion">
-    <a class="logo-s" href="index.html"><img class="logo-pagina" src="images/LOGO_FINAL_V2.png" alt=""></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse menu-colap" id="navbarSupportedContent">
-      <ul class="navbar-nav  mx-auto menu-barra-nav">
-        <li class="nav-item mx-auto en-uso">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item mx-auto">
-          <a class="nav-link" href="#semillero">Semillero</a>
-        </li>
-        <li class="nav-item mx-auto">
-          <a class="nav-link" href="./visor-geohazard.html">Geovisor</a>
-        </li>
-        <li class="nav-item dropdown ml-5 mr-4">
-          <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Recursos
-          </a>
-          <div class="dropdown-menu recursos-wrapper aria-labelledby="navbarDropdown">
-            <a class="dd-item-recursos dropdown-item text-center" id="rc-1" href="https://edieraristizabal.github.io/Libro_cartoGeotecnia/intro.html" target="_blank">Libro guía Cartografía Geotécnica</a>
-            <a class="dd-item-recursos dropdown-item text-center" id="rc-2" href="./simposio-geoamenazas.html" target="_blank">Memorias III Simposio Geoamenazas</a>
-            <a class="dd-item-recursos dropdown-item text-center" id="rc-2" href="http://repositorio.gestiondelriesgo.gov.co/handle/20.500.11762/40444" target="_blank">Libro UNGRD</a>
+  <symbol id="arrow-left" viewBox="0 0 29 56"><path d="M28.7.3c.4.4.4 1 0 1.4l-26.3 26.3 26.3 26.3c.4.4.4 1 0 1.4-.4.4-1 .4-1.4 0l-27-27c-.4-.4-.4-1 0-1.4l27-27c.3-.3 1-.4 1.4 0z"/></symbol>
+  
+  <symbol id="arrow-right" viewBox="0 0 29 56"><path d="M.3 55.7c-.4-.4-.4-1 0-1.4l26.3-26.3-26.3-26.3c-.4-.4-.4-1 0-1.4.4-.4 1-.4 1.4 0l27 27c.4.4.4 1 0 1.4l-27 27c-.3.3-1 .4-1.4 0z"/></symbol>
 
-          </div>
-        </li>
+  <symbol id="back" viewBox="0 0 20 20"><path d="M2.3 10.7l5 5c.4.4 1 .4 1.4 0s.4-1 0-1.4l-3.3-3.3h11.6c.6 0 1-.4 1-1s-.4-1-1-1h-11.6l3.3-3.3c.4-.4.4-1 0-1.4-.2-.2-.4-.3-.7-.3s-.5.1-.7.3l-5 5c-.2.2-.3.5-.3.7 0 .2.1.5.3.7z"/></symbol>
+  
+  <symbol id="menu" viewBox="0 0 18 18"><path d="M16 5h-14c-.6 0-1-.4-1-1 0-.5.4-1 1-1h14c.5 0 1 .4 1 1s-.4 1-1 1zm-14 5h14c.5 0 1-.4 1-1 0-.5-.4-1-1-1h-14c-.6 0-1 .4-1 1s.4 1 1 1zm14 3h-14c-.5 0-1 .4-1 1 0 .5.4 1 1 1h14c.5 0 1-.4 1-1s-.4-1-1-1z"/></symbol>
+  
+  <symbol id="share" viewBox="0 0 18 18"><path d="M16 8c-.6 0-1 .4-1 1v6h-12v-6c0-.6-.4-1-1-1s-1 .4-1 1v6c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-6c0-.6-.4-1-1-1zm-2.3-2.3c.4-.4.4-1 0-1.4l-4-4c-.4-.4-1-.4-1.4 0l-4 4c-.4.4-.4 1 0 1.4s1 .4 1.4 0l2.3-2.3v7.6c0 .6.4 1 1 1s1-.4 1-1v-7.6l2.3 2.3c.4.4 1 .4 1.4 0z"/></symbol>
 
-        <!-- <li class="nav-item dropdown mx-auto">
-          <a class="nav-link dropdown-toggle text-center" id="eventosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Eventos</a>
-          <div class="dropdown-menu eventos-i" aria-labelledby="eventosDropdown">
-            <a class="dropdown-item text-center" id="bd-1" href="https://geohazards.com.co/simposio.html" target="_blank">II simposio de Geoamenazas</a>
-          </div>
-        </li> -->
-        <li class="nav-item mx-auto">
-          <a class="nav-link" href="#contacto">Contacto</a>
-        </li>
+  <symbol id="arrow-down" viewBox="0 0 24 24"><path d="M12 18c-.2 0-.5-.1-.7-.3l-11-10c-.4-.4-.4-1-.1-1.4.4-.4 1-.4 1.4-.1l10.4 9.4 10.3-9.4c.4-.4 1-.3 1.4.1.4.4.3 1-.1 1.4l-11 10c-.1.2-.4.3-.6.3z"/></symbol>
+  
+  <symbol id="arrow-up" viewBox="0 0 24 24"><path d="M11.9 5.9c.2 0 .5.1.7.3l11 10c.4.4.4 1 .1 1.4-.4.4-1 .4-1.4.1l-10.4-9.4-10.3 9.4c-.4.4-1 .3-1.4-.1-.4-.4-.3-1 .1-1.4l11-10c.1-.2.4-.3.6-.3z"/></symbol>
+  
+  <symbol id="arrow-top" viewBox="0 0 18 18"><path d="M15.7 7.3l-6-6c-.4-.4-1-.4-1.4 0l-6 6c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0l4.3-4.3v11.6c0 .6.4 1 1 1s1-.4 1-1v-11.6l4.3 4.3c.2.2.4.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4z"/></symbol>
+  
+  <symbol id="play" viewBox="0 0 30 30"><path d="M7 30v-30l22 15z"/></symbol>
+  
+  <symbol id="chat" viewBox="0 0 18 18"><path d="M5,17c-0.2,0-0.3,0-0.4-0.1C4.2,16.7,4,16.4,4,16v-2H2c-1.1,0-2-0.9-2-2V3c0-1.1,0.9-2,2-2h14c1.1,0,2,0.9,2,2v9 c0,1.1-0.9,2-2,2H9.3l-3.7,2.8C5.4,16.9,5.2,17,5,17z M2,12h3.5C5.8,12,6,12.2,6,12.5V14l2.4-1.8C8.6,12.1,8.8,12,9,12h7V3H2V12z M13,7H5C4.4,7,4,6.6,4,6s0.4-1,1-1h8c0.6,0,1,0.4,1,1S13.6,7,13,7z M13,10H5c-0.6,0-1-0.4-1-1s0.4-1,1-1h8c0.6,0,1,0.4,1,1 S13.6,10,13,10z"/></symbol>
+
+  <symbol id="mail" viewBox="0 0 18 18"><path d="M16 2h-14c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2zm0 2v.5l-7 4.3-7-4.4v-.4h14zm-14 10v-7.2l6.5 4c.1.1.3.2.5.2s.4-.1.5-.2l6.5-4v7.2h-14z"/></symbol>
+
+  <symbol id="sound-on" viewBox="0 0 18 18"><path d="M8.5,0.1C8.1-0.1,7.7,0,7.4,0.2L3.7,3H2C0.9,3,0,3.9,0,5v6c0,1.1,0.9,2,2,2h1.7l3.7,2.8C7.6,15.9,7.8,16,8,16 c0.2,0,0.3,0,0.4-0.1C8.8,15.7,9,15.4,9,15V1C9,0.6,8.8,0.3,8.5,0.1z M7,13l-2.4-1.8C4.4,11.1,4.2,11,4,11l-2,0l0-6h2 c0.2,0,0.4-0.1,0.6-0.2L7,3V13z M11.7,9.9l0.7,1.9C13.9,11.2,15,9.7,15,8c0-1.7-1.1-3.2-2.7-3.8l-0.7,1.9C12.5,6.4,13,7.2,13,8C13,8.9,12.5,9.6,11.7,9.9z M12.2,1.1l-0.3,2C14.3,3.5,16,5.6,16,8s-1.8,4.5-4.2,4.9l0.3,2C15.6,14.3,18,11.4,18,8C18,4.6,15.6,1.7,12.2,1.1z"/></symbol>
+  
+  <symbol id="sound-off" viewBox="0 0 18 18"><path d="M15.9,8l1.8-1.8c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0l-1.8,1.8l-1.8-1.8c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4L13.1,8l-1.8,1.8 c-0.4,0.4-0.4,1,0,1.4c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.8-1.8l1.8,1.8c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L15.9,8z M8.5,0.1C8.1-0.1,7.7,0,7.4,0.2L3.7,3H2C0.9,3,0,3.9,0,5v6c0,1.1,0.9,2,2,2h1.7l3.7,2.8C7.6,15.9,7.8,16,8,16 c0.2,0,0.3,0,0.4-0.1C8.8,15.7,9,15.4,9,15V1C9,0.6,8.8,0.3,8.5,0.1z M7,13l-2.4-1.8C4.4,11.1,4.2,11,4,11l-2,0l0-6h2 c0.2,0,0.4-0.1,0.6-0.2L7,3V13z"/></symbol>
+  
+  <!-- social -->
+  <symbol id="apple" viewBox="-1 1 24 24"><path d="M17.6 13.8c0-3 2.5-4.5 2.6-4.6-1.4-2.1-3.6-2.3-4.4-2.4-1.9-.2-3.6 1.1-4.6 1.1-.9 0-2.4-1.1-4-1-2 0-3.9 1.2-5 3-2.1 3.7-.5 9.1 1.5 12.1 1 1.5 2.2 3.1 3.8 3 1.5-.1 2.1-1 3.9-1s2.4 1 4 1 2.7-1.5 3.7-2.9c1.2-1.7 1.6-3.3 1.7-3.4-.1-.1-3.2-1.3-3.2-4.9zm-3.1-9c.8-1 1.4-2.4 1.2-3.8-1.2 0-2.7.8-3.5 1.8-.8.9-1.5 2.3-1.3 3.7 1.4.1 2.8-.7 3.6-1.7z"/></symbol>
+
+  <symbol id="dribbble" viewBox="0 0 24 24"><path d="M12 0c-6.7 0-12 5.3-12 12s5.3 12 12 12 12-5.3 12-12-5.3-12-12-12zm7.9 5.7c1.3 1.7 2.1 3.9 2.3 6.1-.4-.1-2.4-.4-4.7-.4-.8 0-1.5 0-2.3.1 0-.1-.1-.3-.3-.5l-.7-1.5c3.7-1.4 5.3-3.4 5.7-3.8zm-7.9-3.8c2.5 0 4.9.9 6.7 2.5-.3.4-1.9 2.3-5.2 3.6-1.6-2.9-3.3-5.3-3.7-5.9.6-.1 1.4-.2 2.2-.2zm-4.4 1c.4.6 2.1 3 3.7 5.8-4.4 1.2-8.2 1.2-9.2 1.2h-.1c.8-3.1 2.9-5.6 5.6-7zm-5.7 9.1v-.3h.3c1.2 0 5.6-.1 10.1-1.5l.8 1.6c-.1 0-.3 0-.4.1-5.1 1.6-7.9 6-8.3 6.7-1.6-1.7-2.5-4.1-2.5-6.6zm10.1 10.1c-2.3 0-4.4-.8-6.1-2.1.3-.5 2.4-4.4 7.9-6.3 1.3 3.6 2 6.7 2.1 7.6-1.2.6-2.6.8-3.9.8zm5.7-1.8c-.1-.8-.7-3.6-2-7.1.7-.1 1.3-.1 2-.1 2.1 0 3.7.4 4.1.5-.3 2.8-1.8 5.2-4.1 6.7z"/></symbol>
+
+  <symbol id="facebook" viewBox="0 0 24 24"><path d="M24 1.3v21.3c0 .7-.6 1.3-1.3 1.3h-6.1v-9.3h3.1l.5-3.6h-3.6v-2.2c0-1.1.3-1.8 1.8-1.8h1.9v-3.2c-.3 0-1.5-.1-2.8-.1-2.8 0-4.7 1.7-4.7 4.8v2.7h-3.1v3.6h3.1v9.2h-11.5c-.7 0-1.3-.6-1.3-1.3v-21.4c0-.7.6-1.3 1.3-1.3h21.3c.8 0 1.4.6 1.4 1.3z"/></symbol>
+
+  <symbol id="facebook2" viewBox="0 0 512 512"><path d="M288 176v-64c0-17.664 14.336-32 32-32h32v-80h-64c-53.024 0-96 42.976-96 96v80h-64v80h64v256h96v-256h64l32-80h-96z"/></symbol>
+   
+  <symbol id="fb-like" viewBox="0 0 20 20"><path d="M0 8v12h5v-12h-5zm2.5 10.8c-.4 0-.8-.3-.8-.8 0-.4.3-.8.8-.8s.8.3.8.8c0 .4-.4.8-.8.8zm3.5-.8h9.5c1.1 0 1.7-1 1.7-1.7 0-.3-.4-1-.4-1 1.4-.3 1.7-1.2 1.7-1.7-.1-.5-.3-.9-.5-1 1-.4 1.5-1.1 1.4-1.9-.1-.8-1-1.5-1-1.5 1-.6.9-1.5.9-1.5-.3-1.3-1.5-1.7-1.7-1.7h-5.6s.3-.5.3-2.4-1.3-3.6-2.6-3.6c0 0-.7.1-1 .3v3.5l-2.7 4.4v9.8z"/></symbol>
+  
+  <symbol id="googlePlus" viewBox="0 1 24 24"><path d="M7.8 13.5h4.6c-.6 2-2.5 3.4-4.6 3.4-2.7 0-4.9-2.2-4.9-4.9s2.2-4.9 4.9-4.9c1.1 0 2.1.3 3 1l1.8-2.4c-1.4-1.1-3-1.6-4.8-1.6-4.3 0-7.9 3.5-7.9 7.9s3.5 7.9 7.9 7.9 7.9-3.5 7.9-7.9v-1.5h-7.9v3zM21.7 11v-2.2h-2v2.2h-2.2v2h2.2v2.2h2v-2.2h2.2v-2z"/></symbol>
+  
+  <symbol id="instagram" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3.3"/><path d="M13,0H7C2.2,0,0,2.2,0,7v6c0,4.8,2.1,7,7,7h6c4.8,0,7-2.2,7-7V7C20,2.2,17.9,0,13,0z M10,15.1c-2.8,0-5.1-2.3-5.1-5.1 S7.2,4.9,10,4.9s5.1,2.3,5.1,5.1S12.8,15.1,10,15.1z M15.3,5.9c-0.7,0-1.2-0.5-1.2-1.2c0-0.7,0.5-1.2,1.2-1.2s1.2,0.5,1.2,1.2 C16.5,5.3,16,5.9,15.3,5.9z"/></symbol>
+
+  <symbol id="behance" viewBox="0 0 511.958 511.958"><path d="M210.624 240.619c10.624-5.344 18.656-11.296 24.16-17.728 9.792-11.584 14.624-26.944 14.624-45.984 0-18.528-4.832-34.368-14.496-47.648-16.128-21.632-43.424-32.704-82.016-33.28h-152.896v312.096h142.56c16.064 0 30.944-1.376 44.704-4.192 13.76-2.848 25.664-8.064 35.744-15.68 8.96-6.624 16.448-14.848 22.4-24.544 9.408-14.656 14.112-31.264 14.112-49.76 0-17.92-4.128-33.184-12.32-45.728-8.288-12.544-20.448-21.728-36.576-27.552zm-147.552-90.432h68.864c15.136 0 27.616 1.632 37.408 4.864 11.328 4.704 16.992 14.272 16.992 28.864 0 13.088-4.32 22.24-12.864 27.392-8.608 5.152-19.776 7.744-33.472 7.744h-76.928v-68.864zm108.896 198.24c-7.616 3.68-18.336 5.504-32.064 5.504h-76.832v-83.232h77.888c13.568.096 24.128 1.888 31.68 5.248 13.44 6.08 20.128 17.216 20.128 33.504 0 19.2-6.912 32.128-20.8 38.976zM327.168 110.539h135.584v38.848h-135.584zM509.856 263.851c-2.816-18.08-9.024-33.984-18.688-47.712-10.592-15.552-24.032-26.944-40.384-34.144-16.288-7.232-34.624-10.848-55.04-10.816-34.272 0-62.112 10.72-83.648 32-21.472 21.344-32.224 52.032-32.224 92.032 0 42.656 11.872 73.472 35.744 92.384 23.776 18.944 51.232 28.384 82.4 28.384 37.728 0 67.072-11.232 88.032-33.632 13.408-14.144 20.992-28.064 22.656-41.728h-62.464c-3.616 6.752-7.808 12.032-12.608 15.872-8.704 7.04-20.032 10.56-33.92 10.56-13.216 0-24.416-2.912-33.76-8.704-15.424-9.28-23.488-25.536-24.512-48.672h170.464c.256-19.936-.384-35.264-2.048-45.824zm-166.88 5.984c2.24-15.008 7.68-26.912 16.32-35.712 8.64-8.768 20.864-13.184 36.512-13.216 14.432 0 26.496 4.128 36.32 12.416 9.696 8.352 15.168 20.48 16.288 36.512h-105.44z"/></symbol>
+  
+  <symbol id="linkedin" viewBox="0 0 24 24"><path d="M5.9 21.9h-4.7v-14.2h4.7v14.2zm-2.3-16.1c-1.6 0-2.6-1.1-2.6-2.5s1-2.5 2.7-2.5c1.6 0 2.6 1 2.6 2.5-.1 1.4-1.2 2.5-2.7 2.5zm19.2 16.1h-4.7v-7.6c0-2-.7-3.3-2.3-3.3-1.3 0-2.1.9-2.5 1.7-.1.3-.1.8-.1 1.2v7.9h-4.7v-14.1h4.7v2c.7-.9 1.7-2.3 4.3-2.3 3.1 0 5.5 2.1 5.5 6.4v8.2h-.2z"/></symbol>
+
+  <symbol id="medium" viewBox="0 0 130.8 104"><path d="M15.5 21.2c.2-1.6-.5-3.2-1.7-4.3l-12.1-14.7v-2.2h38l29.3 64.4 25.8-64.4h36.2v2.2l-10.5 10c-.9.7-1.3 1.8-1.2 2.9v73.7c0 1.1.3 2.2 1.2 2.9l10.2 10v2.2h-51.3v-2.2l10.6-10.2c1-1 1-1.3 1-2.9v-59.6l-29.4 74.7h-4l-34.2-74.7v50.3c0 2.2.4 4.2 1.9 5.7l13.7 16.8v2.2h-39v-2.2l13.8-16.7c1.5-1.5 1.8-3.3 1.8-5.7l-.1-58.2z"/></symbol>
+  
+  <symbol id="pinterest" viewBox="0 0 24 24"><path d="M5.9 13.9c1.2-2-.4-2.5-.6-4-1-6.1 7.1-10.2 11.4-6 2.9 2.9 1 12-3.7 11-4.6-.9 2.2-8.1-1.4-9.5-3-1.1-4.6 3.6-3.2 5.9-.8 4-2.5 7.7-1.8 12.7 2.3-1.7 3.1-4.8 3.7-8.1 1.2.7 1.8 1.4 3.3 1.5 5.5.4 8.6-5.4 7.8-10.7-.7-4.7-5.5-7.1-10.6-6.6-4.1.4-8.1 3.7-8.3 8.3-.1 2.8.7 4.9 3.4 5.5z"/></symbol>
+  
+  <symbol id="stumbleupon" viewBox="0 0 24 24"><path d="M13.3 9.6l1.6.8 2.5-.8v-1.4c0-3-2.4-5.4-5.4-5.4s-5.4 2.4-5.4 5.4v7.5c0 .7-.6 1.3-1.3 1.3s-1.3-.6-1.3-1.3v-3.2h-4v3.2c0 3 2.4 5.4 5.4 5.4s5.4-2.4 5.4-5.4v-7.5c0-.7.6-1.3 1.3-1.3s1.3.6 1.3 1.3l-.1 1.4zm6.6 2.9v3.2c0 .7-.6 1.3-1.3 1.3s-1.3-.6-1.3-1.3v-3.2l-2.5.8-1.6-.8v3.2c0 3 2.4 5.4 5.4 5.4s5.4-2.4 5.4-5.4v-3.2h-4.1z"/></symbol>
+  
+  <symbol id="twitter" viewBox="0 1 24 23"><path d="M21.5 7.6v.6c0 6.6-5 14.1-14 14.1-2.8 0-5.4-.8-7.6-2.2l1.2.1c2.3 0 4.4-.8 6.1-2.1-2.2 0-4-1.5-4.6-3.4.3.1.6.1.9.1.5 0 .9-.1 1.3-.2-2.1-.6-3.8-2.6-3.8-5 .7.4 1.4.6 2.2.6-1.3-.9-2.2-2.4-2.2-4.1 0-.9.2-1.8.7-2.5 2.4 3 6.1 5 10.2 5.2-.1-.4-.1-.7-.1-1.1 0-2.7 2.2-5 4.9-5 1.4 0 2.7.6 3.6 1.6 1-.3 2.1-.7 3-1.3-.4 1.2-1.1 2.1-2.2 2.7 1-.1 1.9-.4 2.8-.8-.6 1.1-1.4 2-2.4 2.7z"/></symbol>
+  
+  <symbol id="tumblr" viewBox="0 0 23 23"><path d="M12.573 4.94v-4.94h-3.188c-.072.183-.11.4-.11.622-.034.107-.072.184-.072.293-.328 1.829-1.28 3.11-2.892 3.807-.476.218-.914.253-1.39.218v3.987h2.342c.039 5.603.039 8.493.039 8.64v.332c.294 2.449 1.573 3.914 3.843 4.463.914.257 1.901.366 2.892.366 1.279-.036 2.525-.256 3.771-.659v-4.685c-.731.22-1.395.402-1.977.583-1.135.333-2.087.113-2.857-.619-.073-.11-.183-.257-.221-.403-.106-.586-.178-1.206-.178-1.795v-6.222h5.083v-3.988h-5.085z"/></symbol>
+
+  <symbol id="xing" viewBox="0 0 24 24"><path d="M3.647 4.74c-.208 0-.384.073-.472.216-.091.148-.077.338.02.531l2.34 4.051v.02l-3.678 6.49c-.096.191-.091.383 0 .531.088.142.244.236.452.236h3.461c.518 0 .767-.349.944-.669l3.737-6.608-2.38-4.15c-.172-.307-.433-.649-.964-.649h-3.46zm14.542-4.74c-.517 0-.741.326-.927.659l-7.702 13.658 4.918 9.023c.172.307.437.659.967.659h3.457c.208 0 .371-.079.459-.221.092-.148.09-.343-.007-.535l-4.88-8.915v-.023l7.664-13.551c.096-.191.098-.386.007-.534-.088-.142-.252-.221-.46-.221h-3.496z"/></symbol>
+
+  <symbol id="whatsapp" viewBox="0 0 512 512"><path d="M256.064 0h-.128c-141.152 0-255.936 114.816-255.936 256 0 56 18.048 107.904 48.736 150.048l-31.904 95.104 98.4-31.456c40.48 26.816 88.768 42.304 140.832 42.304 141.152 0 255.936-114.848 255.936-256s-114.784-256-255.936-256zm148.96 361.504c-6.176 17.44-30.688 31.904-50.24 36.128-13.376 2.848-30.848 5.12-89.664-19.264-75.232-31.168-123.68-107.616-127.456-112.576-3.616-4.96-30.4-40.48-30.4-77.216s18.656-54.624 26.176-62.304c6.176-6.304 16.384-9.184 26.176-9.184 3.168 0 6.016.16 8.576.288 7.52.32 11.296.768 16.256 12.64 6.176 14.88 21.216 51.616 23.008 55.392 1.824 3.776 3.648 8.896 1.088 13.856-2.4 5.12-4.512 7.392-8.288 11.744-3.776 4.352-7.36 7.68-11.136 12.352-3.456 4.064-7.36 8.416-3.008 15.936 4.352 7.36 19.392 31.904 41.536 51.616 28.576 25.44 51.744 33.568 60.032 37.024 6.176 2.56 13.536 1.952 18.048-2.848 5.728-6.176 12.8-16.416 20-26.496 5.12-7.232 11.584-8.128 18.368-5.568 6.912 2.4 43.488 20.48 51.008 24.224 7.52 3.776 12.48 5.568 14.304 8.736 1.792 3.168 1.792 18.048-4.384 35.52z"/></symbol>
+  
+  <symbol id="youtube" viewBox="0 0 24 24"><path d="M23.6 6.3c-.3-1.2-1.4-2.2-2.6-2.3-3-.3-6-.3-9-.3s-6 0-9 .3c-1.2.1-2.3 1.1-2.6 2.3-.4 1.8-.4 3.8-.4 5.7 0 1.9 0 3.9.4 5.7.3 1.2 1.4 2.2 2.6 2.3 3 .3 6 .3 9 .3s6 0 9-.3c1.3-.1 2.3-1.1 2.6-2.4.4-1.7.4-3.7.4-5.6 0-1.9 0-3.9-.4-5.7zm-14.1 9v-6.6l6.5 3.3-6.5 3.3z"/></symbol>
+
+</svg>
+
+<!-- Panel Top #05 -->
+<nav class="panel top">
+  <div class="sections desktop">
+    <div class="left"><a href="#" title="Geohazards"><img src="assets/img/Logo.png" class="logo"></a></div>
+    <div class="center">
+      <ul class="menu">
+        <li><a id="menu_home" href="#home" class="active_menu">Home</a></li>
+        <li><a id="menu_aboutus" href="#aboutus">Quiénes Somos</a></li>
+        <li><a id="menu_lineas" href="#lineas">Líneas de Investigación</a></li>
+        <li><a id="menu_proyectos" href="#proyectos">Proyectos</a></li>
+        <li><a id="menu_publicaciones" href="#publicaciones">Publicaciones</a></li>
+        <li><a id="menu_congresos" href="#congresos">Congresos</a></li>
+        <li><a id="menu_recursos" href="#recursos">Recursos</a></li>
+        <li><a id="menu_contacto" href="#contacto">Contacto</a></li>
       </ul>
     </div>
-  </nav>
+    <div class="right"><a class="button gradient btn-visor" href="visor-geohazard.html" >Geovisor</a></div>
+  </div>
+  <div class="sections compact hidden">
+    <div class="left"><a href="https://geohazards.com.co/index.html" title="Geohazards"><img src="assets/img/Logo.png" class="logo-s"></a></div>
+    <div class="right"><span class="button actionButton sidebarTrigger" data-sidebar-id="1"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu"></use></svg></span</div>
+  </div>
+</nav>
 
+<!-- Sidebar -->
+<nav class="sidebar" data-sidebar-id="1">
+  <div class="close"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use></svg></div>
+  <div class="content">
+    <a href="#" title="Geohazards"><img src="assets/img/Logo.png" class="logo-mob"></a>
+    <ul class="mainMenu margin-top-3">
+      <li><a id="mob_menu_home" href="#home" class="active_menu">Home</a></li>
+      <li><a id="mob_menu_aboutus" href="#aboutus">Quiénes Somos</a></li>
+      <li><a id="mob_menu_lineas" href="#lineas">Líneas de Investigación</a></li>
+      <li><a id="mob_menu_proyectos" href="#proyectos">Proyectos</a></li>
+      <li><a id="mob_menu_publicaciones" href="#publicaciones">Publicaciones</a></li>
+      <li><a id="mob_menu_congresos" href="#congresos">Congresos</a></li>
+      <li><a id="mob_menu_recursos" href="#recursos">Recursos</a></li>
+      <li><a id="mob_menu_contacto" href="#contacto">Contacto</a></li>
+    </ul>
+    <ul class="social opacity-8">
+      <li><a href="https://www.facebook.com/GeohazardsUnal/"><i class="fa-brands fa-facebook"></i></a></li>
+      <li><a href="https://www.instagram.com/geohazards_unalmed/"><i class="fa-brands fa-instagram"></i></a></li>
+    </ul>
+  </div>
+</nav>
 
-  <!-- Carousel de imágenes  -->
-  <!-- Carousel -->
-
-  <div id="carousel-imgs">
-    <div class="slider-imgs">
-      <div id="carouselImagesGeohazards" class="carousel slide" data-ride="carousel">
-        <ol id="indicators" class="carousel-indicators"></ol>
-        <div id="carouselContent"></div>
-        <a class="carousel-control-prev" href="#carouselImagesGeohazards" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselImagesGeohazards" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+<!-- Slide Home -->
+<section class="slide fade-6 kenBurns" data-name="home">
+  <div class="content">
+    <div class="container" style="padding-bottom: 20px;">
+      <div class="wrap">
+      
+        <div class="fix-12-12" style="overflow: auto;">
+          <div class="ae-3 fromLeft">
+            <ul class="flex fixedSpaces verticalCenter reverse" style="margin-right: 15px;">
+              <li class="col-12 middle p-0">
+                <div class="slider-imgs">
+                <div id="carouselImagesGeohazards" class="carousel" data-ride="carousel">
+                  <ol id="indicators" class="carousel-indicators"></ol>
+                  <div id="carouselContent"></div>
+                  <a class="carousel-control-prev" href="#carouselImagesGeohazards" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselImagesGeohazards" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
       </div>
     </div>
-  </div> 
+  </div>
+  <div class="background" style="background-image:url(assets/img/background/grupoCompleto.jpg)"></div>
+</section>
 
-  <!-- Modal Carousel -->
-
-  <div class="modal fade" id="modalCarousel" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title font-weight-bold" id="tituloModalCarousel"></h4>
-          <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container-fluid poster-size">
-            <object id="ref_pdf" data="" type="application/pdf" width="100%" height="100%">
-              <p>Si no puedes visualizar el afiche<a id="ref_alt" href="">click aquí</a></p>
-            </object>
-          </div>
+<!-- Modal Carousel -->
+<div class="modal fade" id="modal_carousel" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title font-weight-bold" id="tituloModalCarousel"></h4>
+        <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid poster-size">
+          <object id="ref_pdf" data="" type="application/pdf" width="100%" height="100%">
+            <p>Si no puedes visualizar el afiche<a id="ref_alt" href="">click aquí</a></p>
+          </object>
         </div>
       </div>
     </div>
   </div>
-  
-  <!-- Informaciòn Semillero -->
-  <section id="semillero" class="container col-lg-12 col-md-12 col-sm-12 col-12"> 
-    <div style="
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-content: center;
-      justify-content: space-between;
-      align-items: center;
-    "><h3 class="titulo-principal d-inline-block"><a>Semillero</a></h3> <button class="btn-trans" onclick="Traducir()"> <i class="fa-solid fa-language"></i></button> </div>
-    <button class="btn-toggle"><i class="fas fa-angle-double-left"></i></button>
-    <div id="main" class="row">
-      <div id="barra-lateral" class="col-lg-3 col-sm-3 col-md-3 col-4"> 
-        <div class="carta">
-          <div class="cara-frontal">
-            <ul class="lista-campos nav" id="menu-principal">
-              <li class="nav-item"><a class="trans nav-link activar-menu" data-toggle="tab" href="#tab-1">Quiénes somos</a><a class="trans d-none nav-link activar-menu" data-toggle="tab" href="#tab-1">About us</a></li>
-              <li class="nav-item trigger-li"><a class="trans nav-link" data-toggle="tab" href="#tab-2">Líneas de investigación</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2">Research topics</a></li>
-              <!-- <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-3">Investigadores</a></li> -->
-              <li class="nav-item trigger-proy"><a class="nav-link" data-toggle="tab" href="#tab-4">Proyectos</a></li>
-              <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-5">Publicaciones</a></li>
-              <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-6">Congresos</a></li>
-            </ul>
-          </div>
-          <div class="cara-posterior d-flex flex-column d-flex flex-column text-center">
-            <div class="parte-lineas-inv">
-              <!-- <h5>Líneas de investigación</h5>
-              <hr class="linea-sep"> -->
-              <ul id="menu-lineas" class="lineas-investigacion nav d-flex flex-column justify-content-around align-items-center">
-                <li class="nav-item"><a  class="trans nav-link activar-menu" id="primer-elem-li" data-toggle="tab" href="#tab-2-1">Avenidas torrenciales</a><a  class=" trans d-none nav-link activar-menu" id="primer-elem-li" data-toggle="tab" href="#tab-2-1">Debris Flow</a></li>
-                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-2">Geomorfometría</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-2">Geomorphometry and Landscape Evolution</a></li>
-                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-3">Umbrales de lluvia</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-3">Critical Rainfall Thresholds</a></li>
-                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-4">Movimientos en masa</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-4">Mass Movements</a></li>
-                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-5">Machine Learning</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-5">Machine Learning</a></li>
-                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-6">Perfil de meteorización</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-6">Weathering Profile</a></li>
-                <li class="nav-item"><a class="trans nav-link" data-toggle="tab" href="#tab-2-7">Análisis geoespacial</a><a class="trans d-none nav-link" data-toggle="tab" href="#tab-2-7">Geospatial Analysis</a></li>
-              </ul>
-              <a class="cerrar-li"><i class="fas fa-times-circle"></i></a>
-            </div>
-            <div class="parte-proyectos">
-              <!-- <h5>Proyectos</h5>
-              <hr class="linea-sep"> -->
-              <ul id ="menu-proyectos" class="proyectos d-flex flex-column justify-content-around align-items-center">
-                <li class="nav-item"><a class="nav-link activar-menu" id="primer-elem-proy" data-toggle="tab" href="#tab-4-1">PNUD</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-4-2">AMVA</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-4-3">DAAD</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-4-5">Municipio de Andes</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-4-6">Municipio de Copacabana</a></li>
-              </ul>
-              <a class="cerrar-proy"><i class="fas fa-times-circle"></i></a>
-            </div>
-          </div>
+</div>
+
+<!-- Slide About Us -->
+<section class="slide fade-6 kenBurns" data-name="aboutus">
+  <div class="content">
+    <div class="container">
+      <div class="wrap">
+          
+        <div class="fix-12-12">
+          <ul class="grid">
+            <li class="col-5-12 right" id="aboutus_content">
+            </li>
+            <li class="col-7-12 left ae-5 fromCenter parte_profe" id="aboutus_img">
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="background" style="background-image:url(assets/img/background/aboutus.jpg)"></div>
+</section>
+
+<!-- Slide Líneas de Investigación -->
+<section class="slide fade-6 kenBurns" data-name="lineas">
+  <div class="content">
+    <div class="container">
+      <div class="wrap">
+        <div class="fix-12-12">
+          <ul class="flex verticalCenter">
+            <li class="col-12 cell-27">
+              <div class="fix-12">
+                <div class="ae-3 fromRight">
+                  <div id="main-lineas" class="row">
+                    <div id="barra-lateral" class="col-lg-3 col-sm-3 col-md-3 col-4"> 
+                      <div class="carta">
+                        <div class="cara-posterior d-flex flex-column d-flex flex-column text-center">
+                          <div class="parte-lineas-inv">
+                            <ul id="menu-lineas" class="lineas-investigacion nav d-flex flex-column justify-content-around align-items-center"></ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="mostrar-contenido" class="col-lg-9 col-md-9 col-sm-9 col-8">
+                      <div class="tab-content" id="content-lineas"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
-      <!-- Mostrar el contenido en la parte derecha -->
-      <div id="mostrar-contenido" class="col-lg-9 col-md-9 col-sm-9 col-8">
-        <div class="tab-content">
-          <!-- Inicio Quiéens somos -->
-          <div class="tab-pane active show" id="tab-1">
-            <div class="container-fluid quienes-somos">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-7 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="descripcion">
-                    <h6 class="trans">¿QUIÉNES SOMOS?</h6><h6 class="trans d-none">¿ABOUT US?</h6>
-                    <p class="trans">El semillero de investigación GEOHAZARDS se encuentra adscrito al departamento de 
-                      Geociencias y Medio Ambiente de la Facultad de Minas en la Universidad Nacional de Colombia - sede Medellín. 
-                      Es un semillero 
-                      interdisciplinario compuesto por profesores, investigadores y estudiantes 
-                      de las áreas de la ingeniería. 
-                      El Semillero está orientado al conocimiento y desarrollo de modelos geociencias, gestión del riesgo de desastres, 
-                      análisis geoespacial, sensores remotos, geotecnia y geomorfología.</p>
-                    <p class="trans d-none">The GEOHAZARDS research group is part of the Department of Geosciences and Environment at the Faculty of Mining at the National University of Colombia - Medellin campus. It is an interdisciplinary research group composed of professors, researchers, and students from engineering fields. The group is focused on the knowledge and development of geoscientific models, disaster risk management, geospatial analysis, remote sensing, geotechnical engineering, and geomorphology.</p>
-                  </div>
-                </div>
-                <div class="col-lg-1"><div class="vl"></div></div>
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 logo-profe d-flex flex-column justify-content-center align-items-center">
-                  <div class="parte-izquierda d-flex flex-column align-items-center text-center">
-                    <img src="images/edier_foto.jpg" width="auto" height="204" class="boton foto-profesor"/>
-                    <p>Edier V. Aristizábal G. <br> Director</p>
-                    <img src="images/LOGO_FINAL_V2.png" width="130px" height="148px" class="imagen-logo"/>
-                    <h6>GEOHAZARDS<br>Semillero de Investigación</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Descripción perfil del profesor Edier -->
-            <div class="container-fluid resume">
-              <div class="row mx-auto control-desbor">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante mt-4 " src="images/edier_foto.jpg" width="auto" height="250">
-                    <ul class="contactos-edier d-flex flex-column align-items-start">
-                      <li><a>evaristizabalg@unal.edu.co</a></li>
-                      <li><a target="_blank" href="https://edieraristizabal.github.io/index.html">edieraristizabal.github.io</a></li>
-                      <li><a target="_blank" href="http://scienti.colciencias.gov.co:8081/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0001237853"><i class="bi bi-file-earmark-person"></i>&nbsp;Cvlac</a></li>
-                      <li><a target="_blank" href="https://www.linkedin.com/in/edier-aristizabal-3118411a/?originalSubdomain=co"><i class="fab fa-linkedin"></i>&nbsp;linkedin</a></li>
-                      <li><a target="_blank" href="https://scholar.google.com/citations?user=LbieiBQAAAAJ&hl=en"><i class="fas fa-graduation-cap"></i>&nbsp;Scholar</a></li>
-                      <li><a target="_blank" href="https://www.researchgate.net/profile/Edier-Aristizabal"><i class="fab fa-researchgate"></i>&nbsp;Research Gate</a></li>
-                      <li><a target="_blank" href="https://github.com/edieraristizabal"><i class="fab fa-github"></i>&nbsp;Github</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1 d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>Edier V. Aristizábal G.</h1>
-                    <p>Ingeniero geólogo<br>
-                      Universidad Nacional de Colombia - sede Medellín. <br><br>                    
-                      Especialista en riesgos de origen geológico y asociados con el clima. <br>
-                      Universidad de Ginebra (Suiza).<br><br>
-                      Magister en ciencias e ingeniería<br>
-                      Universidad de Shimane (Japón).<br><br>
-                      Doctorado en ingeniería con énfasis en recursos hidráulicos<br>
-                      Universidad Nacional de Colombia - sede Medellín.
-                    </p>
-                  </div>
-                </div>
-                <span class="cerrar-perfil"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-            <!-- Fin del perfil del profesor Edier     -->
-          </div>
-          <!-- Fin de Quieénes somos -->
-          <!-- Comienzo lineas de investigación -->
-          <div class="tab-pane show" id="tab-2">
-            <div class="container avenida-torr-1">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="ilustracion">
-                    <h6 class="titulo-campo-izq">Avenidas torrenciales</h6>
-                    <img src="images/Avenida_torrrencial.png" width="254px" height="247px" alt="">
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="descripcion-linea">
-                    <h6 class="trans titulo-campo-der">Avenidas torrenciales</h6><h6 class="trans d-none titulo-campo-der">Debris Flow</h6>
-                    <p class="trans text-justify">
-                      Las avenidas torrenciales son fenómenos complejos de origen hidrometeorológico y geológico
-                      comunes en ambientes tropicales. Se componen de mezclas variables de agua y sedimento que
-                      alcanzan altas velocidades a lo largo de drenajes de montaña y que, por sus extensas zonas de
-                      influencia, se constituyen una amenaza tanto para la infraestructura como para las vidas humanas.
-                      El entendimiento de estos procesos, así como la zonificación del territorio según su susceptibilidad
-                      y amenaza ante ellos se establece como un elemento de alta importancia para la gestión del riesgo
-                      y el ordenamiento territorial que provee herramientas útiles para las autoridades y los tomadores
-                      de decisiones para establecer estrategias enfocadas a la mitigación del riesgo y la protección de la
-                      vida. Existen múltiples estrategias que permiten abordar estos análisis de susceptibilidad y
-                      amenaza desde perspectivas geológicas y geomorfológicas hasta modelaciones hidráulicas y de
-                      enrutamiento de fluidos no Newtonianos donde se hace uso de tecnologías como los sensores
-                      remotos, análisis de campo, procesamientos estadísticos, técnicas de inteligencia artificial, entre
-                      otros.
-                    </p>
-                    <p class="trans d-none text-justify">
-                      Debris Flow are complex phenomena of hydro-meteorological and geological origin commonly found in tropical environments. They consist of varying mixtures of water and sediment that reach high speeds along mountain drainages and, due to their extensive areas of influence, pose a threat to both infrastructure and human lives. Understanding these processes and zoning the territory based on its susceptibility and vulnerability to them is of utmost importance for risk management and territorial planning. This provides valuable tools for authorities and decision-makers to establish strategies focused on risk mitigation and life protection.
-                      There are multiple strategies to address susceptibility and vulnerability analysis, ranging from geological and geomorphological perspectives to hydraulic modeling and non-Newtonian fluid routing. These approaches make use of technologies such as remote sensors, field analysis, statistical processing, artificial intelligence techniques, among others.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Comienzo proyectos -->
-          <div class="tab-pane show" id="tab-4">
-            <div class="container-fluid">
-              <div class="row control-desbor">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-md-2 order-lg-1 d-flex flex-column justify-content-center">
-                  <div class="contenido-referente d-flex flex-column justify-content-center">
-                    <a class="img-relacionada"><img class="img-fluid" src="images/etcr-removebg-preview.png" width="auto" height="268px"  alt=""></a>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-md-1 order-lg-2 d-flex flex-column justify-content-center">
-                  <div class="descripcion-proyecto">
-                    <h6 class="titulo-proyecto">ETRC</h6>
-                    <p class="text-justify">
-                      El proyecto consiste en los estudios de factibilidad y prefactibilidad en los AETCR 
-                      (Antiguos Espacios Territoriales de Capacitación y Reincorporación)
-                       con el Ministerio de Vivienda la Agencia de 
-                       Reincorporación Nacional (ARN) y el PNUD, en el cual se encuentran 
-                       participando invetigadores de maestría y estudiantes de pregrado. Este es un proyecto 
-                       de extensión de la Universidad Nacional de Colombia que tiene como 
-                       director al profesor Edier Aristizábal. <br><br>En estos AETCR se realizan estudios 
-                       básicos de amenaza y de detalle de acuerdo con el decreto 1077 de 2015. En el 2020 se estudiaron los AETCR: 
-                       Los Monos (Dpto Cauca), Filipinas (Dpto Arauca), La Fila (Dpto Tolima), Llano Grande (Dpto Antioquia) 
-                       y Mutatá (Dpto Antioquia). Actualmente se están realizando los estudios de 9 AETCR adicionales en los
-                       departamentos de Cauca, Guaviare, Nariño, Caquetá y La Guajira.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>   
-          </div>
-          <div class="tab-pane show" id="tab-5">
-            <div class="container">
-              <div class="wrap-all row">
-                <div class="row titulo-publicaciones mx-auto d-flex flex-column align-items-center justify-content-center">
-                  <h3>Publicaciones</h3>
-                  <ul class="year-pub d-flex flex-row justify-content-center">
-                    <li><a href="#2021">2021</a></li>
-                    <li><a href="#2020">2020</a></li>
-                    <li><a href="#2019">2019</a></li>
-                  </ul>
-                  <div class="cabeza-pagina mx-auto">
-                    <h5 class="text-center mx-auto">“In God we trust. All others must bring data”</h5>
-                    <h6 class="text-center">-W. Edwards Deming (1900–1993)-</h6>
-                    <hr class="separador-pub mx-auto">
-                  </div>
-                </div>
-                <h4 id="2021" class="year">2021</h4>
-                <!-- Más reciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/14-November2021-2.jpg" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Marin, R. J., Velásquez, M. F., García, E. F., Alvioli, M., & Aristizábal, E. (2021).
-                       Assessing two methods of defining rainfall intensity and duration thresholds for 
-                       shallow landslides in data-scarce catchments of the Colombian Andean Mountains. 
-                       Catena, 206, 105563.                                         
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://www.sciencedirect.com/science/article/abs/pii/S0341816221004215" target="_blank">ScienceDirect</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://geohazards.com.co/documentos/CATENA.pdf" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Segunda más reciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/1-January 2021-2.jpg" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Arango, M. I., Aristizábal, E., & Gómez, F. (2021). Morphometrical analysis of
-                       torrential flows-prone catchments in tropical and mountainous terrain of the Colombian 
-                       Andes by machine learning techniques.
-                       Natural Hazards, 105(1), 983-1012                           
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://link.springer.com/article/10.1007/s11069-020-04346-5" target="_blank">SpringerLink</a></li>
-                      
-                    </ul>
-                  </div>
-                </div>
-                <!-- Anexada -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2-February2021-2.jpg" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Martínez-Carvajal, H. E., Aristizábal, E., & García-Aristizábal, E. F. (2021). 
-                      A case study on causation of the landslide on 26 October 2016 in the northern Colombian 
-                      Andes. Dyna, 88(216), 22-30.                                         
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://revistas.unal.edu.co/index.php/dyna/article/view/88600" target="_blank">DYNA</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Tercera más reciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/3-February2021-2-2.jpg" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Marin, R. J., García, E. F., & Aristizábal, E. (2021). 
-                      Assessing the effectiveness of TRIGRS for predicting unstable areas in a
-                       tropical mountain basin (Colombian Andes). Geotechnical and Geological 
-                       Engineering, 39(3), 2329-2346.                                        
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://link.springer.com/article/10.1007/s10706-020-01630-w" target="_blank">SpringerLink</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Décima segunda más reciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/12,13-October2021-2.jpg" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Aristizábal, E. (2021,October).  Definition of rainfall thresholds for shallow 
-                      landslides in Colombian tropical mountainous terrains. Conference.
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      
-                      <li class="pdf"><a class="btn btn-dark" href=" https://geohazards.com.co/slider_img/poster_RainfallThresholds_5_3.pdf" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
+    </div>
+  </div>
+  <div class="background" style="background-image:url(assets/img/background/lineas.jpg)"></div>
+</section>
 
-                <!-- Décima tercera reciente-->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/12,13-October2021-2.jpg" width="140" height="auto" alt="">
+<!-- Slide Proyectos -->
+<section class="slide fade-6 kenBurns"  data-name="proyectos">
+  <div class="content">
+    <div class="container">
+      <div class="wrap">
+        <div class="fix-12-12">
+          <ul class="flex verticalCenter">
+            <li class="col-12 cell-27">
+              <div class="fix-12">
+                <div class="ae-3 fromLeft">
+                  <div id="main-proyectos" class="row">
+                    <div id="mostrar-contenido" class="col-lg-9 col-md-9 col-sm-9 col-8">
+                      <div class="tab-content" id="content-proyectos"></div>
+                    </div>
+                    <div id="barra-lateral" class="col-lg-3 col-sm-3 col-md-3 col-4"> 
+                      <div class="carta">
+                        <div class="cara-posterior d-flex flex-column d-flex flex-column text-center">
+                          <div class="parte-lineas-inv">
+                            <ul id="menu-proyectos" class="lineas-investigacion nav d-flex flex-column justify-content-around align-items-center"></ul>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Aristizábal, E. Naranjo, K. García, J. Aguilar, A. (2021,October).
-                      LANDSLIDE AND TORRENTIAL FLOW SUSCEPTIBILITY CONDITIONS REGARDING LANDSCAPE EVOLUTION 
-                      IN THE NORTHERN COLOMBIAN ANDES. Conference.
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      
-                      <li class="pdf"><a class="btn btn-dark" href=" https://geohazards.com.co/slider_img/Poster_Aristizabal_Naranjo_Garcia.pdf" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
                 </div>
-                <!-- Décima primera publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/11-August2021-2.jpg" width="140" height="auto" alt="">
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="background" style="background-image:url(assets/img/background/proyectos.jpg)"></div>
+</section>
+
+<!-- Slide Publicaciones -->
+<section class="slide fade-6 kenBurns" data-name="publicaciones">
+  <div class="content">
+    <div class="container">
+      <div class="wrap">
+        <div class="fix-12-12 toCenter">
+          <ul class="flex verticalCenter">
+            <li class="col-12 cell-27">
+              <div class="fix-12">
+                <div class="ae-3">
+                  <div id="main-publicaciones" class="row">
+                    <div id="barra-lateral" class="col-lg-3 col-sm-3 col-md-3 col-4"> 
+                      <div class="carta">
+                        <div class="cara-posterior d-flex flex-column d-flex flex-column text-center">
+                          <div class="parte-lineas-inv">
+                            <ul id="menu-publicaciones" class="lineas-investigacion nav d-flex flex-column justify-content-around align-items-center"></ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="mostrar-contenido" class="col-lg-9 col-md-9 col-sm-9 col-8">
+                      <div class="tab-content w-100" id="content-publicaciones"></div>
                     </div>
                   </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Palacio, J., Aristizábal, Guthrie, R. Echeverri, O. (2021, August).  
-                      DebrisFlow Predictor: Herramienta para la propagación de movimientos en masa tipo flujos. Conference.
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://geohazards.com.co/documentos/DebrisFlowPredictor_ppt.pdf" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
                 </div>
-                <!-- Cuarta más reciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/4,5,6,7,8,9,10-March2021-2.jpg" width="140" height="auto" alt="">
+              </div>
+            </li>
+          </ul>
+        </div>     
+      </div>
+    </div>
+  </div>
+  <div class="background" style="background-image:url(assets/img/background/publicaciones.jpg)"></div>
+</section>
+
+<!-- Slide Congresos -->
+<section class="slide fade-6 kenBurns" data-name="congresos">
+  <div class="content">
+    <div class="container">
+      <div class="wrap">
+      
+        <div class="fix-12-12 toCenter">
+          <ul class="flex verticalCenter">
+            <li class="col-12 cell-27">
+              <div class="fix-12">
+                <div class="ae-3">
+                  <div id="main-congresos" class="row">
+                    <div id="mostrar-contenido" class="col-lg-9 col-md-9 col-sm-9 col-8">
+                      <div class="tab-content w-100" id="content-congresos"></div>
+                    </div>
+                    <div id="barra-lateral" class="col-lg-3 col-sm-3 col-md-3 col-4"> 
+                      <div class="carta">
+                        <div class="cara-posterior d-flex flex-column d-flex flex-column text-center">
+                          <div class="parte-lineas-inv">
+                            <ul id="menu-congresos" class="lineas-investigacion nav d-flex flex-column justify-content-around align-items-center"></ul>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Cardona, F. G., Giraldo, E. A., Arango, M. I., & Mergili, 
-                      M. (2021). Regional and detailed multi-hazard assessment of debris-flow 
-                      processes in the Colombian Andes (No. EGU21-13139). Copernicus Meetings. Poster.                                       
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://meetingorganizer.copernicus.org/EGU21/EGU21-13139.html" target="_blank">Abstract</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://geohazards.com.co/documentos/Regional and detailed multi-hazard assessment of debris-flow processes in the Colombian Andes.pdf" target="_blank">Póster</a></li>
-                    </ul>
-                  </div>
                 </div>
-                <!-- Quinta más reeciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/4,5,6,7,8,9,10-March2021-2.jpg" width="140" height="auto" alt="">
+              </div>
+            </li>
+          </ul>
+        </div>   
+
+      </div>
+    </div>
+  </div>
+  <div class="background" style="background-image:url(assets/img/background/congresos.jpg)"></div>
+</section>
+
+<!-- Slide Recursos -->
+<section class="slide fade-6 kenBurns" data-name="recursos">
+  <div class="content">
+    <div class="container">
+      <div class="wrap">
+      
+        <div class="fix-12-12 toCenter">
+          <ul class="flex verticalCenter">
+            <li class="col-12 cell-27">
+              <div class="fix-12">
+                <div class="ae-3">
+                  <div id="main-recursos" class="row">
+                    <div id="mostrar-contenido" class="col-12">
+                      <div class="tab-content w-100" id="content-recursos"></div>
                     </div>
                   </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Cardona, E. C., & Aristizábal, E. (2021). Morphometrical analysis of Debris flow fans 
-                      and torrential catchments in mountainous terrain in the northern Colombian Andes by 
-                      machine learning techniques (No. EGU21-3680). Copernicus Meetings. Poster.
-                                       
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://ui.adsabs.harvard.edu/abs/2021EGUGA..23.3680C/abstract" target="_blank">Abstract</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://geohazards.com.co/documentos/Poster EGU tesis2 edit.pdf" target="_blank">Póster</a></li>
-                    </ul>
-                  </div>
                 </div>
-                <!-- Sexta más reciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/4,5,6,7,8,9,10-March2021-2.jpg" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Jaramillo-González, R., Aristizábal, E., & García-Aristizábal, E. F. (2021, April). 
-                      Rainfall Thresholds for Shallow Landslides by coupled Physically-Based Models and 
-                      Machine Learning methods in Colombian Andes Basins. In EGU General Assembly Conference 
-                      Abstracts (pp. EGU21-9123). Poster.
-          
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://www.researchgate.net/publication/350609205_Rainfall_Thresholds_for_Shallow_Landslides_by_coupled_Physically-_Based_Models_and_Machine_Learning_methods_in_Colombian_Andes_Basins" target="_blank">Abstract</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Séptima más reciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/4,5,6,7,8,9,10-March2021-2.jpg" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Palacio, J., Aristizábal, E., Mergili, M., & Echeverri, O. (2021, March). 
-                      Shallow landslide occurrence and propagation in tropical mountainous terrain with 
-                      open source models. A case study in the Colombian Andes. In EGU General Assembly 
-                      Conference Abstracts (pp. EGU21-5819). Poster.
-          
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://www.researchgate.net/publication/350620424_Shallow_landslide_occurrence_and_propagation_in_tropical_mountainous_terrain_with_open_source_models_A_case_study_in_the_Colombian_Andes" target="_blank">Abstract</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://geohazards.com.co/documentos/Poster_EGU.pdf" target="_blank">Póster</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Octava más recinte -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/4,5,6,7,8,9,10-March2021-2.jpg" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                  Giraldo, E. V. A. (2021). Hydro-meteorological hazard analysis for 
-                  new settlements framed in the Colombian peace process (No. EGU21-13833). 
-                  Copernicus Meetings. Poster.
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://ui.adsabs.harvard.edu/abs/2021EGUGA..2313833A/abstract" target="_blank">Abstract</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://geohazards.com.co/documentos/EGU_ETCR_2021_F.pdf" target="_blank">Póster</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Novena más reciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/4,5,6,7,8,9,10-March2021-2.jpg" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Bedoya, K. N., Aristizábal, E., Hölbling, D., García, J., Aguilar, A., & Ortiz, 
-                      D. (2021). Approach for analyzing landslide and torrential flow hazard conditions
-                       in relation to landscape evolution in the northern Colombian Andes (No. EGU21-8508). 
-                       Copernicus Meetings. Poster.
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://ui.adsabs.harvard.edu/abs/2021EGUGA..23.8508N/abstract" target="_blank">Abstract</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://geohazards.com.co/documentos/POster_EGU_1.pdf" target="_blank">Póster</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Décima más reciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/4,5,6,7,8,9,10-March2021-2.jpg" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Herrera, D., & Aristizábal, E. (2021, April). Artificial Intelligence and machine learning
-                       model for spatial and temporal prediction of drought in the Colombia Caribbean region. 
-                       In EGU General Assembly Conference Abstracts (pp. EGU21-3599). Poster
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://meetingorganizer.copernicus.org/EGU21/EGU21-3599.html" target="_blank">Abstract</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://geohazards.com.co/documentos/EGU Poster V5.pdf" target="_blank">Póster</a></li>
-                    </ul>
-                  </div>
-                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
                 
-                <!-- Décimo cuarta reciente -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/portada-1 1.png" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>
-                      Ospina-Gutiérrez, J.P., Aristizábal, E., 2021, Aplicación de inteligencia artificial y técnicas de aprendizaje automático para la evaluación de la susceptibilidad por
-movimientos en masa: Revista Mexicana de Ciencias Geológicas, v. 38, núm. 1, p. 43-54.
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark" href="http://www.rmcg.unam.mx/index.php/rmcg" target="_blank">RMCG</a></li>
-                      <!-- <li class="pdf"><a class="btn btn-dark" href="http://www.rmcg.unam.mx/index.php/rmcg/article/view/1605/1414" target="_blank">PDF</a></li> -->
-                    </ul>
-                  </div>
-                </div>
-                <h4 id="2020" class="year">2020</h4>
-                <!-- Tercera publicacion -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2020-Paper 1-2-3.png" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>The relationship between rainfall and landslide in the Aburrá Valley,
-                      northern Colombian Andes 
-                      Aristizábal, Edier; García, Edwin                                          
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://www.researchgate.net/publication/349485434_The_relationship_between_rainfall_and_landslide_in_the_Aburra_Valley_northern_Colombian_Andes" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Cuarta publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2020-Paper 1-2-3.png" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>Spatial and temporal patterns of fatal landslides in Colombia
-                      Gómez, Derly; Aristizábal, Edier; García, Edwin                      
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark" href="https://www.researchgate.net/publication/349485431_Spatial_and_temporal_patterns_of_fatal_landslides_in_Colombia" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Quinta publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2020-Paper 1-2-3.png" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>Assessing torrential flow susceptibility using triggering andpropagation models for tropical mountainous regions, a case study ofthe northern Andes, Colombia
-                      Arango, Maria; Aristizábal, Edier; Jaboyedoff, Michel; McArdell, Brian                      
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark" href="https://www.researchgate.net/publication/349506244_Assessing_torrential_flow_susceptibility_using_triggering_and_propagation_models_for_tropical_mountainous_regions_a_case_study_of_the_northern_Andes_Colombia" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Sexta publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2020-Paper 4.png" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>Probabilistic landslide susceptibility analysis in tropical mountainous terrain using the physically based  r.slope.stability model.
-                      Palacio Cordoba, J., Mergili, M., and Aristizábal, E.                      
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark" href="https://nhess.copernicus.org/articles/20/815/2020/" target="_blank">NHESS</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://nhess.copernicus.org/articles/20/815/2020/nhess-20-815-2020.pdf" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Séptima publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2020-Paper 5.png" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>Hazard Analysis of Hydrometeorological Concatenated Processes in the Colombian Andes.
-                      Aristizábal E., Arango Carmona M.I., Gómez F.J., López Castro S.M., De Villeros Severiche A., Riaño Quintanilla A.F.                       
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://link.springer.com/chapter/10.1007%2F978-3-030-34397-2_2" target="_blank">SpringerLink</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Octava publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2020-Paper 6.png" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>Spatial and temporal patterns and the socioeconomic impacts of landslides in the tropical and mountainous Colombian Andes
-                      Aristizábal, Edier & Sanchez, Oscar                      
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/disa.12391" target="_blank">DISASTERS</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Novena publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2020-Paper 7.png" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>Definición y clasificación de las avenidas torrenciales y su impacto en los Andes colombianos
-                      Aristizábal, Edier; Arango Carmona, María Isabel; García López, Ingrid Kattherine                      
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="pdf"><a class="btn btn-dark" href="https://revistas.unal.edu.co/index.php/rcg/article/view/72612" target="_blank">RCG</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://www.researchgate.net/publication/338220178_Definicion_y_clasificacion_de_las_avenidas_torrenciales_y_su_impacto_en_los_Andes_colombianos" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <h4 id="2019" class="year">2019</h4>
-                <!-- Décima publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2019-Paper 1.PNG" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>Aristizábal, E., López, S., Sánchez, O., Vásquez, M., Rincón, F., Ruiz-Vásquez, D., Restrepo, S.,  y  Valencia,  J.S.  (2019).  Evaluación  de  la  amenaza  por  movimientos  en  masa  detonados  por  lluvias  para  una  región  de  los  Andes  colombianos  estimando  la  probabilidad  espacial,  temporal,  y  magnitud.Boletín  de  Geología, 41(3), 85-105. doi: 10.18273/revbol.v41n3-2019004                                            
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark font-low" class="btn btn-dark" href="https://revistas.uis.edu.co/index.php/revistaboletindegeologia/article/view/10000" target="_blank">Boletín de Geología</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://revistas.uis.edu.co/index.php/revistaboletindegeologia/article/view/10000/10030" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Onceava publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2019-Paper 2.PNG" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>E. Aristizabal,M.  Vásquezy  D. Ruiz,“Métodos estadísticos  para  la evaluación    de    la    susceptibilidad    por    movimientos    en    masa”. TecnoLógicas, vol. 22, no. 46, pp. 39-60, 2019.                      
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark" href="https://doi.org/10.22430/22565337.1247" target="_blank">TécnoLógicas</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://revistas.itm.edu.co/index.php/tecnologicas/article/view/1247/1332" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Doceava publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2019-Paper 3.PNG" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>R. J. Marín, E.F. García, and E. Aristizábal, “Umbrales de lluvia para deslizamientos  superficiales  basados  en  modelos  físicos:  aplicación en una subcuenca del Valle de Aburrá (Colombia),” DYNA, vol. 86, no. 210, pp. 312–322, 2019
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark" href="https://doi.org/10.15446/dyna.v86n210.77166" target="_blank">DYNA</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://revistas.unal.edu.co/index.php/dyna/article/view/77166/72238" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Decimo tercera publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2019-Paper 4.PNG" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-6 col-md-6 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>E. Aristizábal, A. De Villeros and F. Riaño-Quintanilla “Inventario y análisis de desastres por fenómenos de origen natural en el departamento de Antioquia durante el año 2018” Bol. Cienc. Tierra, Número 46, p. 15-18, 2019.
-                    </p>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista font-low"><a class="btn btn-dark font-low" href="https://doi.org/10.15446/rbct.n46.77482" target="_blank">Bol. Ciencias de la tierra</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://revistas.unal.edu.co/index.php/rbct/article/view/77482/71710" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Catoceava publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2019-Paper 5.PNG" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>GUERRERO, Luis Angel; ARISTIZABAL GIRALDO, Edier Vicente. Estimación y análisis de umbrales críticos de lluvia para la ocurrencia de avenidas torrenciales en el Valle de Aburrá (Antioquia). Revista EIA, [S.l.], v. 16, n. 32, p. 97-111, june 2019. ISSN 2463-0950, DOI:10.24050/reia.v16i32.1281.
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark" href="https://doi.org/10.24050/reia.v16i32.1281" target="_blank">EIA</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://revistas.eia.edu.co/index.php/reveia/article/view/1281/1249" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Quinta publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2019-Paper 6.PNG" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>Naranjo Bedoya, K., Aristizábal Giraldo, E., & Morales Rodelo, J. (2019). Influence of the ENSO on the spatial and temporal variability ocurrence of landslides triggered by rain in the Andean region. Ingeniería Y Ciencia, 15(29), 11-42
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark font-low" href="https://doi.org/10.17230/ingciencia.15.29.1" target="_blank">Ingeniería y Ciencia</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="http://publicaciones.eafit.edu.co/index.php/ingciencia/article/view/5393/4396" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Dieciseava publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="bibliografia col-lg-9 col-md-9 col-sm-12 col-12  d-flex flex-column justify-content-center pl-4">
-                    <p>Bedoya-Soto JM, Aristizábal E, Carmona AM and Poveda G (2019) Seasonal Shift of the Diurnal Cycle of Rainfall Over Medellin's Valley, Central Andes of Colombia (1998–2005). Front. Earth Sci. 7:92. doi: 10.3389/feart.2019.00092.
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark" href="https://doi.org/10.3389/feart.2019.00092" target="_blank">Earth Sci</a></li>
-                      <li class="pdf"><a class="btn btn-dark mt-md-3" href="https://www.readcube.com/articles/10.3389/feart.2019.00092" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Siguiente publicación -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2019-Paper 7.PNG" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>Martínez-Carvajal, H. E., Guimaraes-Silva, M. T. M., García-Aristizábal, E. F., AristizábalGiraldo, E. V., & Larios-Benavides, M. A. (2018). A mathematical approach for assessing landslide vulnerability. Earth Sciences Research Journal, 22(4), 251-273. DOI: https://doi.org/10.15446/esrj.v22n4.68553.
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista"><a class="btn btn-dark" href="https://doi.org/10.15446/esrj.v22n4.68553" target="_blank">Earth Sci</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="http://www.scielo.org.co/pdf/esrj/v22n4/1794-6190-esrj-22-04-251.pdf" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Siguiente publicacion -->
-                <div class="row publicacion mx-auto d-flex align-content-center">
-                  <div class="revista col-md-2 col-lg-2 d-flex justify-content-center align-items-center">
-                    <div class="img-revista d-flex align-items-center">
-                      <img class="img-fluid d-none d-md-block" src="images/2019-Paper 8.PNG" width="140" height="auto" alt="">
-                    </div>
-                  </div>
-                  <div class="bibliografia col-lg-7 col-md-7 col-sm-12 col-12  d-flex flex-column justify-content-center">
-                    <p>García-Aristizábal, E. F., Aristizábal Giraldo, E. V., Marín Sánchez, R. J., & Guzmán Martínez, J. C. (2019). Implementation of the TRIGRS model with reliability analysis for hazard assessment of shallow rainfall-triggered landslides. TecnoLógicas, 22(44), 111-129
-                    </p>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-flex flex-column justify-content-center align-content-start">
-                    <ul class="botones d-flex flex-row flex-md-column justify-content-around">
-                      <li class="link-revista font-low"><a class="btn btn-dark font-low" href="https://doi.org/10.22430/22565337.1037" target="_blank">TecnoLógicas</a></li>
-                      <li class="pdf"><a class="btn btn-dark" href="https://revistas.itm.edu.co/index.php/tecnologicas/article/view/1037/1175" target="_blank">PDF</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <!-- --- -->
-            </div>
-          </div>
-          <!-- Comienzo de congreso -->
-          <div class="tab-pane show" id="tab-6">
-            <div class="container-fluid contenido-congreso">
-              <div class="titulo-congreso">NatRiskChange 2021</div>
-              <!-- Ponencia Profe Edier-->
-              <div class="row congreso">
-                <div class="col-lg-10 col-md-12 col-sm-12 col-12">
-                  <h5>
-                    "Debris flows induced by Multiple Occurrence
-                    Regional Landslides Events in the Colombian
-                    Andes
-                    "
-                  </h5>
-                  <p>Ponente: Edier V. Aristizábal G.<br><span>NatRiskChange - Octubre del 2021</span></p>
-                </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                  <button type="button" data-toggle="modal" data-target="#resumen-natrisk1" class="boton-abstract" target="_blank">Abstract</button>
-                </div>
-              </div>
-              <!-- Parte modal 1 -->
-              <div class="modal fade" id="resumen-natrisk1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container-fluid resumen-size">
-                        <object data="./documentos/NatRiskChange21.pdf" type="application/pdf" width="100%" height="100%">
-                          <p>Si no puedes visualizar este archivo<a href="./documentos/NatRiskChange21.pdf">click aquí</a></p>
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Ponencia Federico -->
-              <div class="row congreso">
-                <div class="col-lg-10 col-md-12 col-sm-12 col-12">
-                  <h5>
-                    "Landslide and torrential flow susceptibility conditions regarding landscape evolution in the Northern Colombian Andes"
-                  </h5>
-                  <p>Ponente: Edier V. Aristizábal G.<br><span>NatRiskChange - Octubre del 2021</span></p>
-                </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                  <!-- <button type="button" data-toggle="modal" data-target="#resumen-mariana" class="boton-abstract" target="_blank">Abstract</button> -->
-                </div>
-              </div>
-              <!-- Parte modal 1 -->
-              <div class="modal fade" id="resumen-mariana" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container-fluid resumen-size">
-                        <object data="./documentos/resumen_mariana-compressed.pdf" type="application/pdf" width="100%" height="100%">
-                          <p>Si no puedes visualizar este archivo<a href="./documentos/resumen_mariana-compressed.pdf">click aquí</a></p>
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row congreso">
-                <div class="col-lg-10 col-md-12 col-sm-12 col-12">
-                  <h5>
-                    "Definition of Rainfall Thresholds for Shallow Landslides in Colombian Tropical Mountainous Terrains"
-                  </h5>
-                  <p>Ponente: Edier V. Aristizábal G.<br><span>NatRiskChange - Octubre del 2021</span></p>
-                </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                  <!-- <button type="button" data-toggle="modal" data-target="#resumen-mariana" class="boton-abstract" target="_blank">Abstract</button> -->
-                </div>
-              </div>
-              <!-- Parte modal 1 -->
-              <div class="modal fade" id="resumen-mariana" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container-fluid resumen-size">
-                        <object data="./documentos/resumen_mariana-compressed.pdf" type="application/pdf" width="100%" height="100%">
-                          <p>Si no puedes visualizar este archivo<a href="./documentos/resumen_mariana-compressed.pdf">click aquí</a></p>
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Ponencias EGU -->
-              <div class="titulo-congreso">European Geosciences Union 2021</div>
-              <div class="row congreso">
-                <div class="col-lg-10 col-md-12 col-sm-12 col-12">
-                  <h5>
-                    "Hydro-meteorological hazard analysis for new settlements framed in the Colombian 
-                    peace process"
-                  </h5>
-                  <p>Ponente: Edier V. Aristizábal G.<br><span>European Geosciences Union (EGU) - 2021</span></p>
-                </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                  <button type="button" data-toggle="modal" data-target="#resumen-mariana" class="boton-abstract" target="_blank">Abstract</button>
-                </div>
-              </div>
-              <!-- Parte modal 1 -->
-              <div class="modal fade" id="resumen-mariana" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container-fluid resumen-size">
-                        <object data="./documentos/resumen_mariana-compressed.pdf" type="application/pdf" width="100%" height="100%">
-                          <p>Si no puedes visualizar este archivo<a href="./documentos/resumen_mariana-compressed.pdf">click aquí</a></p>
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Ponencia Federico -->
-              <div class="row congreso">
-                <div class="col-lg-10 col-md-12 col-sm-12 col-12">
-                  <h5>
-                    "Regional and detailed multi-hazard assessment of debris-flow processes in the Colombian Andes"
-                  </h5>
-                  <p>Ponente: Federico Gómez Cardona<br><span>European Geosciences Union (EGU) - 2021</span></p>
-                </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                  <button type="button" data-toggle="modal" data-target="#resumen-federico" class="boton-abstract" target="_blank">Abstract</button>
-                </div>
-              </div>
-              <!-- Parte modal -->
-              <div class="modal fade" id="resumen-federico" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container-fluid resumen-size">
-                        <object data="./documentos/resumen_federico.pdf" type="application/pdf" width="100%" height="100%">
-                          <p>Si no puedes visualizar este archivo<a href="./documentos/resumen_federico.pdf">click aquí</a></p>
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Ponencia Johnatan -->
-              <div class="row congreso">
-                <div class="col-lg-10 col-md-12 col-sm-12 col-12">
-                  <h5>
-                    "Shallow landslide occurrence and propagation in tropical mountainous terrain with 
-                    open source models. A case study in the Colombian Andes"
-                  </h5>
-                  <p>Ponente: Johnnatan Palacio Córdoba<br><span>European Geosciences Union (EGU) - 2021</span></p>
-                </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                  <button type="button" data-toggle="modal" data-target="#resumen-johnnatan" class="boton-abstract" target="_blank">Abstract</button>
-                </div>
-              </div>
-              <!-- Parte modal -->
-              <div class="modal fade" id="resumen-johnnatan" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container-fluid resumen-size">
-                        <object data="./documentos/resumen_jhonatan.pdf" type="application/pdf" width="100%" height="100%">
-                          <p>Si no puedes visualizar este archivo<a href="./documentos/resumen_jhonatan.pdf">click aquí</a></p>
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Ponencia Daissy -->
-              <div class="row congreso">
-                <div class="col-lg-10 col-md-12 col-sm-12 col-12">
-                  <h5>
-                    "Artificial Intelligence and machine learning model for spatial and temporal 
-                    prediction of drought in the Colombia Caribbean region"
-
-                  </h5>
-                  <p>Ponente: Daissy Herrera Posada<br><span>European Geosciences Union (EGU) - 2021</span></p>
-                </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                  <button type="button" data-toggle="modal" data-target="#resumen-daissy" class="boton-abstract" target="_blank">Abstract</button>
-                </div>
-              </div>
-              <!-- Parte modal -->
-              <div class="modal fade" id="resumen-daissy" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container-fluid resumen-size">
-                        <object data="./documentos/resumen_daissy-converted-compressed.pdf" type="application/pdf" width="100%" height="100%">
-                          <p>Si no puedes visualizar este archivo<a href="./documentos/resumen_daissy-converted-compressed.pdf">click aquí</a></p>
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Ponencia Karolina -->
-              <div class="row congreso">
-                <div class="col-lg-10 col-md-12 col-sm-12 col-12">
-                  <h5>
-                    "Approach for analyzing landslide and torrential flow hazard conditions in 
-                    relation to landscape evolution in the northern Colombian Andes"
-
-                  </h5>
-                  <p>Ponente: Karolina Naranjo Bedoya<br><span>European Geosciences Union (EGU) - 2021</span></p>
-                </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                  <button type="button" data-toggle="modal" data-target="#resumen-karolina" class="boton-abstract" target="_blank">Abstract</button>
-                </div>
-              </div>
-              <!-- Parte modal -->
-              <div class="modal fade" id="resumen-karolina" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container-fluid resumen-size">
-                        <object data="./documentos/resumen_karolina-compressed.pdf" type="application/pdf" width="100%" height="100%">
-                          <p>Si no puedes visualizar este archivo<a href="./documentos/resumen_karolina-compressed.pdf">click aquí</a></p>
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Ponencia Emanuel -->
-              <div class="row congreso">
-                <div class="col-lg-10 col-md-12 col-sm-12 col-12">
-                  <h5>
-                    "Morphometrical analysis of fans and torrential catchments in mountainous terrain in the 
-                    northern Colombian Andes by machine learning techniques"
-                  </h5>
-                  <p>Ponente: Emanuel Castillo Cardona <br><span>European Geosciences Union (EGU) - 2021</span></p>
-
-                </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                  <button type="button" data-toggle="modal" data-target="#resumen-emanuel" class="boton-abstract" target="_blank">Abstract</button>
-                </div>
-              </div>
-              <!-- Parte modal -->
-              <div class="modal fade" id="resumen-emanuel" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container-fluid resumen-size">
-                        <object data="./documentos/resumen_emanuel-converted-compressed.pdf" type="application/pdf" width="100%" height="100%">
-                          <p>Si no puedes visualizar este archivo<a href="./documentos/resumen_emanuel-converted-compressed.pdf">click aquí</a></p>
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Fin congreso -->
-          <!-- Fin publicaciones -->
-          <!---------------- Inicio descripcion lineas de investigación ----------->
-          <!-- Avenidas torrenciales -->
-          <div class="tab-pane show" id="tab-2-1">
-            <div class="container avenida-torr">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="ilustracion">
-                    <h6 class="titulo-campo-izq">Avenidas torrenciales</h6>
-                    <img src="images/Avenida_torrrencial.png" width="auto" height="247px" alt="">
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="descripcion-linea">
-                    <h6 class="trans titulo-campo-der">Avenidas torrenciales</h6><h6 class="trans d-none titulo-campo-der">Debris Flow</h6>
-                    <p class="trans text-justify">
-                      Las avenidas torrenciales son fenómenos complejos de origen hidrometeorológico y geológico
-                      comunes en ambientes tropicales. Se componen de mezclas variables de agua y sedimento que
-                      alcanzan altas velocidades a lo largo de drenajes de montaña y que, por sus extensas zonas de
-                      influencia, se constituyen una amenaza tanto para la infraestructura como para las vidas humanas.
-                      El entendimiento de estos procesos, así como la zonificación del territorio según su susceptibilidad
-                      y amenaza ante ellos se establece como un elemento de alta importancia para la gestión del riesgo
-                      y el ordenamiento territorial que provee herramientas útiles para las autoridades y los tomadores
-                      de decisiones para establecer estrategias enfocadas a la mitigación del riesgo y la protección de la
-                      vida. Existen múltiples estrategias que permiten abordar estos análisis de susceptibilidad y
-                      amenaza desde perspectivas geológicas y geomorfológicas hasta modelaciones hidráulicas y de
-                      enrutamiento de fluidos no Newtonianos donde se hace uso de tecnologías como los sensores
-                      remotos, análisis de campo, procesamientos estadísticos, técnicas de inteligencia artificial, entre
-                      otros.
-                    </p>
-                    <p class="trans d-none text-justify">
-                      Debris Flow are complex phenomena of hydro-meteorological and geological origin commonly found in tropical environments. They consist of varying mixtures of water and sediment that reach high speeds along mountain drainages and, due to their extensive areas of influence, pose a threat to both infrastructure and human lives. Understanding these processes and zoning the territory based on its susceptibility and vulnerability to them is of utmost importance for risk management and territorial planning. This provides valuable tools for authorities and decision-makers to establish strategies focused on risk mitigation and life protection.
-                      There are multiple strategies to address susceptibility and vulnerability analysis, ranging from geological and geomorphological perspectives to hydraulic modeling and non-Newtonian fluid routing. These approaches make use of technologies such as remote sensors, field analysis, statistical processing, artificial intelligence techniques, among others.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Maria Isabel Arango-->
-            <div class="container-fluid resume-2" >
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante" src="images/f3.jpg" width="auto" height="250">
-                    <ul class="contactos d-flex flex-column align-items-start">
-                      <li><a>miarangoc@unal.edu.co</a></li>
-                      <li><a href="https://www.linkedin.com/in/maria-isabel-arango-9748b3a6/?originalSubdomain=co" target="_blank"><i class="fab fa-linkedin"></i>&nbsp;linkedin</a></li>
-                      <li><a href="https://www.researchgate.net/profile/Maria-Arango-Carmona" target="_blank"><i class="fab fa-researchgate"></i>&nbsp;Research Gate</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1  d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>Maria Isabel Arango</h1>
-                    <p>Ingeniera geóloga y estudiante de maestría en ciencias de la geoinformación y sensores remotos con énfasis en reducción del riesgo de desastres de la Universidad de Twente en Países Bajos. Sus áreas de interés son los modelos en base física de amenazas hidrometeorológicas, en especial la evaluación de la amenaza por avenidas torrenciales en zonas tropicales. 
-                    Su tesis de maestría tiene como objetivo evaluar la idoneidad del uso de modelos multi-amenaza integrados para evaluar dichos fenómenos. <br>
-                    Poseo habilidades para los Sistemas de Información Geográfica (SIG) y sensores remotos, y habilidades básicas de programación en Python y R.
-                    </p>
-                  </div>
-                  
-                </div>
-                <span class="cerrar-perfil-2"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-            <!-- Federico Gutierrez -->
-            <div class="container-fluid resume-3" >
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante" src="images/federico_foto.jpg" width="auto" height="250">
-                    <ul class="contactos d-flex flex-column align-items-start">
-                      <li><a>fejgomezca@unal.edu.co</a></li>
-                      <li><a href="https://www.linkedin.com/in/federicogmz/" target="_blank"><i class="fab fa-linkedin"></i>&nbsp;linkedin</a></li>
-                      <li><a href="https://orcid.org/0000-0002-8525-4354" target="_blank"><i class="fab fa-orcid"></i>&nbsp;Orcid</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1  d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>Federico Gómez</h6>
-                    <p>Ingeniero geólogo con experiencia en temas relacionados con estudios de modelación, evaluación y zonificación de susceptibilidad, amenaza y vulnerabilidad de fenómenos naturales y riesgos geológicos aplicados en la formulación de planes de ordenación y manejo de cuencas, ordenamiento territorial y/o planificación ambiental y estudios de amenaza enfocados a la gestión del riesgo.<br><br>
-                    Conocimientos de sistemas de información geográfica (SIG), R, python, análisis estadísticos, modelos físicos y machine learning.
-                    </p>
-                  </div>
-                </div>
-                <span class="cerrar-perfil-3"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-          </div>
-          <!-- Geomorfometría -->
-          <div class="tab-pane show" id="tab-2-2">
-            <div class="container geomorfometria">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="ilustracion">
-                    <h6 class="titulo-campo-izq">Geomorfometría y evolución del paisaje</h6>
-                    <img src="images/Geomorfometria.png" width="254px" height="247px" alt="">
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="descripcion-linea">
-                    <h6 class="trans titulo-campo-der">Geomorfometría y evolución del paisaje</h6><h6 class="trans d-none titulo-campo-der">Geomorphometry and Landscape Evolution </h6>
-                    <p class="trans text-justify">
-                      La red de drenaje y la topografía son sensibles al registro de perturbaciones en el paisaje.
-                      Diferentes parámetros morfométricos contribuyen al entendimiento de la respuesta de las laderas
-                      y de las cuencas a la ocurrencia de movimientos en masa y avenidas torrenciales. El objetivo es
-                      obtener una mejor comprensión del control morfométrico sobre la ocurrencia de movimientos en
-                      masa y avenidas torrenciales a través de la geomorfología de procesos y la información derivada
-                      de los modelos de elevación digital (DEM). Se utiliza la geomorfología cuantitativa para encontrar
-                      patrones de anomalías morfométricas asociadas con la evolución del paisaje y a la ocurrencia de
-                      estos eventos en los Andes del norte de Colombia.</p>
-                    <p class="trans d-none text-justify">
-                      The drainage network and topography are sensitive to disturbances in the landscape. 
-                      Different morphometric parameters contribute to the understanding of how slopes and basins respond to mass movements and torrential rivers occurrences. The objective is to gain a better understanding of the morphometric control on the occurrence of mass movements and torrential rivers through process geomorphology and information derived from digital elevation models (DEMs). Quantitative geomorphology is used to identify patterns of morphometric anomalies associated with landscape evolution and the occurrence of these events in the northern Andes of Colombia.                      
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Karolina Naranjo -->
-            <div class="container-fluid resume-4" >
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante" src="images/karolina2_foto.jpeg" width="auto" height="250">
-                    <ul class="contactos d-flex flex-column align-items-start">
-                      <li><a>knaranjobe@unal.edu.co</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1 d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>Karolina Naranjo</h1>
-                    <p>Ingeniera geóloga y estudiante de maestría en Medio Ambiente y Desarrollo de Universidad Nacional de Colombia.  Actualmente me encuentro trabajando en geomorfología cuantitativa de procesos en el norte de los Andes Colombianos.
-                    Sus intereses están enfocados en entender las condiciones actuales de amenaza por movimientos en masa y avenidas torrenciales desde la evolución del paisaje a través de índices morfométricos de las cuencas y drenajes.
-                    Posee conocimientos en el manejo de Sistemas de Información Geográfica (SIG) tales como ArcGis y QGis y en técnicas de fotointerpretación.
-                    </p>
-                  </div>
-                  
-                </div>
-                <span class="cerrar-perfil-4"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-          </div>
-          <!-- Umbrales críticos de lluvia -->
-          <div class="tab-pane show" id="tab-2-3">
-            <div class="container umbrales">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="ilustracion">
-                    <h6 class="titulo-campo-izq">Umbrales críticos de lluvia</h6>
-                    <img src="images/Avenida_torrrencial.png" width="254px" height="247px" alt="">
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="descripcion-linea">
-                    <h6 class="trans titulo-campo-der">Umbrales críticos de lluvia</h6><h6 class="trans d-none titulo-campo-der">Critical Rainfall Thresholds</h6>
-                    <p class="trans text-justify">
-                      Un umbral de lluvia se define como la condición de lluvia que después de ser alcanzada o excedida
-                      incrementa la posible ocurrencia de un movimiento en masa, teniendo en cuenta las lluvias
-                      intensas como el más común de los desencadenantes de los movimientos en masa se consideran
-                      los umbrales de lluvia como una herramienta muy útil en los modelos de alerta temprana para
-                      predecir movimientos en masa superficiales. Los umbrales de lluvia pueden ser Empíricos o de
-                      Base Física: Los umbrales de lluvia empíricos se definen a partir de inventarios y datos históricos
-                      de movimientos en masa y de lluvia acumulada aplicando métodos estadísticos y heurísticos para
-                      su definición. Por otro lado, los umbrales de lluvia a partir de modelos de base física tienen en
-                      cuenta los efectos de la lluvia en el subsuelo acoplando modelos hidrológicos y geotécnicos lo que
-                      provee un mejor entendimiento del comportamiento físico de la lluvia a través de la ladera y sus
-                      procesos de infiltración dando a lugar una predicción espacial y temporal del fenómeno.
-                    </p>
-                    <p class="trans d-none text-justify">
-                      A rainfall threshold is defined as the rainfall condition that, when reached or exceeded, increases the potential occurrence of a mass movement. Considering intense rainfall as the most common trigger for mass movements, rainfall thresholds are considered a very useful tool in early warning models for predicting shallow mass movements. Rainfall thresholds can be Empirical or Physics-Based: Empirical rainfall thresholds are defined based on inventories and historical data of mass movements and accumulated rainfall, using statistical and heuristic methods for their determination. On the other hand, physics-based rainfall thresholds take into account the effects of rainfall on the subsurface by coupling hydrological and geotechnical models, which provides a better understanding of the physical behavior of rainfall across the slope and its infiltration processes, resulting in a spatial and temporal prediction of the phenomenon.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Ricardo Jaramillo -->
-            <div class="container-fluid resume-5" >
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante" src="images/ricardo2_foto.jpg" width="auto" height="250">
-                    <ul class="contactos d-flex flex-column align-items-start">
-                      <li><a>rijaramillog@unal.edu.co</a></li>
-                      <li><a href="https://www.researchgate.net/profile/Ricardo-Jaramillo-Gonzalez" target="_blank"><i class="fab fa-researchgate"></i>&nbsp;Research Gate</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1 d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>Ricardo Jaramillo</h1>
-                    <p>
-                      Geólogo de la Universidad EAFIT, estudiante de maestría en ingeniería- 
-                      Recursos Hidráulicos. Su trabajo de investigación se enfoca en la definición 
-                      de umbrales de lluvia para movimientos en masa superficiales a partir del 
-                      acoplamiento de modelos de estabilidad distribuidos de base física y modelos 
-                      de machine learning.  Profesionalmente, se ha desempeñado como geólogo junior 
-                      en proyectos de planeación del territorio.  Posee manejo de los software de 
-                      estabilidad distribuida: TRIGRS, Scoops3D y sistemas de información geográfica: 
-                      Arcgis y QGIS.
-                    </p>
-                  </div>
-                </div>
-                <span class="cerrar-perfil-5"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-          </div>
-          <!-- Movimientos en masa -->
-          <div class="tab-pane show" id="tab-2-4">
-            <div class="container movimientos-masa">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="ilustracion">
-                    <h6 class="titulo-campo-izq">Movimientos en masa</h6>
-                    <img src="images/MenM.png" width="254px" height="247px" alt="">
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="descripcion-linea">
-                    <h6 class="trans titulo-campo-der">Movimientos en masa</h6><h6 class="trans d-none titulo-campo-der">Mass Movements</h6>
-                    <p class="trans text-justify">
-                      En Colombia, los desastres con el mayor número de pérdidas humanas son los originados por
-                      movimientos en masa, representando el 36% de las muertes desde 1970 al 2011 (Campos García y
-                      cols., 2011), donde un porcentaje representativo de los movimientos en masa son detonados por
-                      lluvias prolongadas o intensas (Aristizábal, Vélez, y Martínez, 2016). Por lo anterior, se hace
-                      indispensable el estudio detallado de los movimientos en masa desde distintos componentes que
-                      integran la ocurrencia y propagación del evento, como lo es el componente hidrológico,
-                      geotécnico y de sedimentos.
-                    </p>
-                    <p class="trans d-none text-justify">
-                      In Colombia, disasters with the highest number of human casualties are those caused by mass movements, accounting for 36% of deaths from 1970 to 2011 (Campos García et al., 2011). A significant percentage of these mass movements are triggered by prolonged or intense rainfall (Aristizábal, Vélez, and Martínez, 2016). Therefore, a detailed study of mass movements is essential, considering various components that contribute to the occurrence and propagation of the event, such as the hydrological, geotechnical, and sediment aspects.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Jhonatan Palacio -->
-            <div class="container-fluid resume-6" >
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante" src="images/jhonatan_2_foto.jpg" width="auto" height="250">
-                    <ul class="contactos d-flex flex-column align-items-start">
-                      <li><a>japalacioc@unal.edu.co </a></li>
-                      <li><a href="https://www.researchgate.net/profile/Johnnatan-Palacio" target="_blank"><i class="fab fa-researchgate"></i>&nbsp;Research Gate</a></li>
-                      <li><a target="_blank" href="https://scholar.google.es/citations?user=WSGNHRUAAAAJ&hl=es&oi=ao"><i class="fas fa-graduation-cap"></i>&nbsp;Scholar</a></li>
-                      <li><a href="https://orcid.org/0000-0002-1603-4614" target="_blank"><i class="fab fa-orcid"></i>&nbsp;Orcid</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1 d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>Johnnatan  Palacio</h1>
-                    <p>
-                      Ingeniero civil de la Facultad de Minas (2018) y estudiante de maestría en ingeniería- geotecnia en la misma facultad. Como profesional 
-                      ha participado en estudios de amenaza y susceptibilidad por movimientos en masa y proyectos 
-                      de construcción. Su investigación se desarrolla actualmente en la ocurrencia y propagación 
-                      de movimientos en masa superficiales. <br><br>
-                      
-                      Posee conocimientos de Sistemas de Información Geográfica (SIG) y software de estabilidad.
-
-                    </p>
-                  </div>
-                  
-                </div>
-                <span class="cerrar-perfil-6"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-            <!-- Daissy Herrera -->
-            <div class="container-fluid resume-7">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante" src="images/dassy2_foto.jpeg" width="auto" height="250">
-                    <ul class="contactos d-flex flex-column align-items-start">
-                      <li><a>dmherrerap@unal.edu.co</a></li>
-                      <li><a href="https://orcid.org/0000-0002-4165-1278" target="_blank"><i class="fab fa-orcid"></i>&nbsp;Orcid</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1 d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>Daissy Herrera</h1>
-                    <p>
-                      Ingeniera Ambiental de la universidad Nacional de Colombia y estudiante de Maestría en Ingeniería - Recursos hidráulicos de la facultad de Minas, Universidad Nacional de Colombia.
-                      Actualmente se encuentra trabajando en el desarrollo de un modelo acoplado para la identificación de movimientos que tenga en cuenta aspectos hidrológicos, geotecnicos, sedimentos, y propagación. <br>
-                      Su intereses son la hidrológica en ladera. <br><br>
-                      Posee conocimiento en Python, Arcgis y procesamiento de información satelital.
-                    </p>
-                  </div>
-                  
-                </div>
-                <span class="cerrar-perfil-7"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-          </div>
-          <!-- Machine Learning -->
-          <div class="tab-pane show" id="tab-2-5">
-            <div class="container machine-learning">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12  d-flex flex-column justify-content-center align-items-center">
-                  <div class="ilustracion">
-                    <h6 class="titulo-campo-izq">Machine Learning</h6>
-                    <img src="images/Machine_learning.png" width="254px" height="247px" alt="">
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="descripcion-linea">
-                    <h6 class="trans titulo-campo-der">Machine Learning</h6><h6 class="trans d-none titulo-campo-der">Machine Learning</h6>
-                    <p class="trans text-justify">
-                      Se centra en la aplicación de técnicas de inteligencia artificial para lograr una aproximación en el
-                      entendimiento de amenazas naturales como movimientos en masa y avenidas torrenciales.
-                      Realizar modelos a partir de datos espaciales y temporales que permitan identificar cuándo un
-                      área bajo cierta cantidad de precipitación es más susceptible ante un evento de estas
-                      características, contribuiría como insumo para la toma de decisiones y la planificación del
-                      territorio.
-                    </p>
-                    <p class="trans d-none text-justify">
-                      It focuses on the application of artificial intelligence techniques to achieve an approximation in understanding natural hazards such as mass movements and torrential rivers. Building models based on spatial and temporal data that allow the identification of when an area, under a certain amount of precipitation, is more susceptible to such an event would contribute as input for decision-making and territorial planning.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- David Palacio -->
-            <div class="container-fluid resume-8">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante" src="images/david_palacio.jpeg" width="auto" height="250">
-                    <ul class="contactos d-flex flex-column align-items-start">
-                      <li><a>dpalacioj@unal.edu.co</a></li>
-                      <li><a target="_blank" href="www.linkedin.com/in/david-palacio-jiménez-438982168"><i class="fab fa-linkedin"></i>&nbsp;linkedin</a></li>
-                      <li><a target="_blank" href="https://scholar.google.com/citations?user=InL5jRAAAAAJ&hl=es"><i class="fas fa-graduation-cap"></i>&nbsp;Scholar</a></li>
-                      <li><a target="_blank" href="https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000115207"><i class="bi bi-file-earmark-person"></i>&nbsp;Cvlac</a></li>
-                      <li><a target="_blank" href="https://orcid.org/0000-0001-6570-0815"><i class="fab fa-orcid"></i>&nbsp;Orcid</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1 d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>David Palacio</h1>
-                    <p>
-                      Ingeniero geólogo e ingeniero de productividad y calidad, estudiante de la maestría en ingeniería - analítica de la Universidad Nacional de Colombia. Actualmente se encuentra investigando sobre los umbrales de lluvia críticos detonantes de avenidas torrenciales mediante técnicas de inteligencia artificial y aprendizaje de máquinas.<br><br>
-                      Sus intereses están orientados a entender los procesos morfodinámicos y su impacto en el territorio, desde un enfoque de la gestión del riesgo y las técnicas de la analítica de datos.
-                      Posee conocimientos en el manejo de ArcGIS, QGIS, Python y R.
-                    </p>
-                  </div>
-                  
-                </div>
-                <span class="cerrar-perfil-8"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-          </div>
-          <!-- Perfil de meteorización -->
-          <div class="tab-pane show" id="tab-2-6">
-            <div class="container perfil-meteor">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="ilustracion">
-                    <h6 class="titulo-campo-izq">Perfil de meteorización</h6>
-                    <img src="images/MenM.png" width="254px" height="247px" alt="">
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="descripcion-linea">
-                    <h6 class="trans titulo-campo-der">Perfil de meteorización</h6><h6 class="trans d-none titulo-campo-der">Weathering Profile</h6>
-                    <p class="trans text-justify">
-                      La transformación y alteración de la roca en suelo dado procesos físicos y químicos hace parte del
-                      proceso de meteorización que se ve especialmente desarrollado en los ambientes tropicales, como
-                      Colombia, que junto a su ubicación espacial y condiciones de precipitaciones y temperaturas dan
-                      espesores y características de perfiles profundos modelando así características en el paisaje, y
-                      controlando las condiciones de amenaza por fenómenos geológicos.
-                    </p>
-                    <p class="trans d-none text-justify">
-                      The transformation and alteration of rock into soil through physical and chemical processes are part of the weathering process, which is particularly pronounced in tropical environments like Colombia. Along with its spatial location and precipitation and temperature conditions, this weathering process leads to the development of deep profiles, shaping landscape characteristics, and influencing the conditions of geological hazards.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Mariana Vasquez -->
-            <div class="container-fluid resume-9">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante" src="images/DSC_9884.JPG" width="auto" height="250">
-                    <ul class="contactos d-flex flex-column align-items-start">
-                      <li><a>mvasquezg@unal.edu.co </a></li>
-                      <li><a href="https://www.researchgate.net/profile/Mariana-Vasquez-4" target="_blank"><i class="fab fa-researchgate"></i>&nbsp;Research Gate</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1 d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>Mariana Vasquéz</h1>
-                    <p>
-                      Egresada de la Facultad de Minas en ingeniería geológica, a lo largo de la carrera universitaria exploró varios campos como la mineralogía, ciencias del mar, geocronología y morfodinámica, encontrando en todos ellos temas realmente apasionantes. Actualmente se orienta a trabajar el análisis y estudio de amenazas geomorfológicas aplicando técnicas GIS y análisis estadístico de múltiples variables, entre las que destacan las temáticas morfométricas. 
-                      Se encuentro cursando la maestría en medio ambiente y desarrollo con el objetivo de enfocar el trabajo en la caracterización de perfiles de meteorización para entender procesos de morfogénesis                      y morfodinamicos formadores de suelo y paisaje.
-                    </p>
-                  </div>
-                </div>
-                <span class="cerrar-perfil-9"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-          </div>
-          <!-- Análisis geoespacial -->
-          <div class="tab-pane show" id="tab-2-7">
-            <div class="container geoespacial">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="ilustracion">
-                    <h6 class="titulo-campo-izq">Análisis geoespacial</h6>
-                    <img src="images/GeoAnalisis.png" width="254px" height="247px" alt="">
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
-                  <div class="descripcion-linea">
-                    <h6 class="trans titulo-campo-der">Análisis geoespacial</h6><h6 class="trans d-none titulo-campo-der">Geospatial Analysis</h6>
-                    <p class="trans text-justify">
-                      Con el avance reciente de los sensores remotos, se ha abierto la posibilidad de brindar 
-                      información con cada vez de mejor resolución espacial y temporal. Adicionalmente, 
-                      los datos provenientes de sensores remotos son en parte libre y gratuita, dando paso a 
-                      que cada vez más investigadores puedan acceder a la información y permitiendo el análisis
-                       de diversas variables en zonas con escasez de información o de difícil acceso.
-                    </p>
-                    <p class="trans d-none text-justify">
-                      With the recent advancement of remote sensing technology, the possibility of providing information with increasingly better spatial and temporal resolution has been opened. Additionally, the data obtained from remote sensors are, in part, free and accessible, allowing more researchers to access this information and enabling the analysis of various variables in areas with limited information or difficult access.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Federico análisis geoespacial -->
-            <div class="container-fluid resume-10" >
-              <div class="row control-desbor">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante" src="images/federico_foto.jpg" width="auto" height="250">
-                    <ul class="contactos d-flex flex-column align-items-start">
-                      <li><a>fejgomezca@unal.edu.co</a></li>
-                      <li><a href="https://www.linkedin.com/in/federicogmz/" target="_blank"><i class="fab fa-linkedin"></i>&nbsp;linkedin</a></li>
-                      <li><a href="https://orcid.org/0000-0002-8525-4354" target="_blank"><i class="fab fa-orcid"></i>&nbsp;Orcid</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1  d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>Federico Gómez</h6>
-                    <p>Ingeniero geólogo con experiencia en temas relacionados con estudios de modelación, evaluación y zonificación de susceptibilidad, amenaza y vulnerabilidad de fenómenos naturales y riesgos geológicos aplicados en la formulación de planes de ordenación y manejo de cuencas, ordenamiento territorial y/o planificación ambiental y estudios de amenaza enfocados a la gestión del riesgo.<br><br>
-                    Conocimientos de SIG, R, python, análisis estadísticos, modelos físicos y machine learning.
-                    </p>
-                  </div>
-                  
-                </div>
-                <span class="cerrar-perfil-10"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-            <!-- Daissy herrera - geoespacial -->
-            <div class="container-fluid resume-11">
-              <div class="row control-desbor mx-auto">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2 d-flex flex-column justify-content-center align-items-center text-center">
-                  <div class="imagen-contactos">
-                    <img class="imagen-integrante" src="images/dassy2_foto.jpeg" width="auto" height="250">
-                    <ul class="contactos d-flex flex-column align-items-start">
-                      <li><a>dmherrerap@unal.edu.co</a></li>
-                      <li><a href="https://orcid.org/0000-0002-4165-1278" target="_blank"><i class="fab fa-orcid"></i>&nbsp;Orcid</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-lg-2 order-md-1 order-sm-1 d-flex flex-column justify-content-center align-items-center">
-                  <div class="perfil">
-                    <h6>Daissy Herrera</h1>
-                    <p>
-                      Ingeniera Ambiental de la universidad Nacional de Colombia y estudiante de Maestría en Ingeniería - Recursos hidráulicos de la facultad de Minas, Universidad Nacional de Colombia.
-                      Actualmente se encuentra trabajando en el desarrollo de un modelo acoplado para la identificación de movimientos que tenga en cuenta aspectos hidrológicos, geotecnicos, sedimentos, y propagación. <br>
-                      Su intereses son la hidrológica en ladera. <br><br>
-                      Posee conocimiento en Python, Arcgis y procesamiento de información satelital.
-                    </p>
-                  </div>
-                </div>
-                <span class="cerrar-perfil-11"><i class="fas fa-times-circle"></i></span>
-              </div>
-            </div>
-          </div>
-          <!-- Fin de descripcion lineas de investigación -->
-
-          
-          <!-- Inicio seccion proyectos (cara posterior) -->
-          <!-- ETCR -->
-          <div class="tab-pane show" id="tab-4-1">
-            <div class="container-fluid">
-              <div class="row control-desbor">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-md-2 order-lg-1 d-flex flex-column justify-content-center">
-                  <div class="contenido-referente d-flex flex-column justify-content-center">
-                    <a class="img-relacionada mx-auto"><img class="img-fluid" src="images/etcr-removebg-preview.png" width="auto" height="268px"  alt=""></a>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-md-1 order-lg-2 d-flex flex-column justify-content-center">
-                  <div class="descripcion-proyecto">
-                    <h6 class="titulo-proyecto">ETCR</h6>
-                    <p class="text-justify">
-                      El proyecto consiste en los estudios de factibilidad y prefactibilidad en los AETCR 
-                      (Antiguos Espacios Territoriales de Capacitación y Reincorporación)
-                       con el Ministerio de Vivienda la Agencia de 
-                       Reincorporación Nacional (ARN) y el PNUD, en el cual se encuentran 
-                       participando invetigadores de maestría y estudiantes de pregrado. Este es un proyecto 
-                       de extensión de la Universidad Nacional de Colombia que tiene como 
-                       director al profesor Edier Aristizábal. <br><br>En estos AETCR se realizan estudios 
-                       básicos de amenaza y de detalle de acuerdo con el decreto 1077 de 2015. En el 2020 se estudiaron los AETCR: 
-                       Los Monos (Dpto Cauca), Filipinas (Dpto Arauca), La Fila (Dpto Tolima), Llano Grande (Dpto Antioquia) 
-                       y Mutatá (Dpto Antioquia). Actualmente se están realizando los estudios de 9 AETCR adicionales en los
-                       departamentos de Cauca, Guaviare, Nariño, Caquetá y La Guajira.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- AMVA -->
-          <div class="tab-pane show" id="tab-4-2">
-            <div class="container-fluid">
-              <div class="row control-desbor">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-md-2 order-lg-1 d-flex flex-column justify-content-center">
-                  <div class="contenido-referente d-flex flex-column justify-content-center">
-                    <a><img class="img-fluid" src="images/amva.png" width="auto" height="268px"  alt=""></a>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-md-1 order-lg-2 d-flex flex-column justify-content-center">
-                  <div class="descripcion-proyecto">
-                    <h6 class="titulo-proyecto">Área Metropolitana del Valle del Aburrá <br> <span class="amva-titulo">Estudios básicos de amenaza</span></h6>
-                    <p class="text-justify">
-                      Estudios básicos de amenaza por movimientos en masa, inundaciones y avenidas torrenciales en los municipios de Caldas, 
-                      La Estrella, Envigado, Itagüí, Bello, Copacabana y Barbosa, para la incorporación de la gestión del riesgo en la planificación territorial.
-                      En este proyecto se evalúo y zonificó la susceptibilidad y amenaza a la ocurrencia de fenómenos como movimientos 
-                      en masa, inundación y avenidas torrencial que permite aplicar la zonificación de áreas con condición de amenaza 
-                      y riesgo según lo estipulado en el Decreto 1077 de 2015.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Alemania -->
-          <div class="tab-pane show" id="tab-4-3">
-            <div class="container-fluid">
-              <div class="row control-desbor">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-md-2 order-lg-1 d-flex flex-column justify-content-center">
-                  <div class="contenido-referente d-flex flex-column justify-content-center">
-                    <a><img class="img-fluid" src="images/Logo_Universidad_Tecnica_de_Berlin.png" width="auto" height="268px"  alt=""></a>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-md-1 order-lg-2 d-flex flex-column justify-content-center">
-                  <div class="descripcion-proyecto">
-                    <h6 class="titulo-proyecto">Universidad Técnica de Berlín</h6>
-                    <p class="text-justify">
-                      Junto con estudiantes de posgrado de la  Universidad Técnica de Berlín, se propone ejecutar técnicas cualitativas y cuantitativas para la determinación de la susceptibilidad por movimientos en masa detonados por lluvia en los Andes Colombianos, con el objetivo de desarrollar sistemas de alerta temprana ante movimientos en masa
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Municipio de Andes -->
-          <div class="tab-pane show" id="tab-4-5">
-            <div class="container-fluid">
-              <div class="row control-desbor">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-md-2 order-lg-1 d-flex flex-column justify-content-center">
-                  <div class="contenido-referente d-flex flex-column justify-content-center">
-                    <a><img class="img-fluid" src="images/andes.png" width="auto" height="268px"  alt=""></a>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-md-1 order-lg-2 d-flex flex-column justify-content-center">
-                  <div class="descripcion-proyecto">
-                    <h6 class="titulo-proyecto">Municipio de Andes <br> <span class="amva-titulo">Estudios básicos de Amenazas</span></h6>
-                    <p class="text-justify">
-                      Estudio básico de amenaza por movimientos en masa, inundaciones y avenidas torrenciales en el municipio de Andes para la incorporación de la gestión del
-                      riesgo en la planificación territorial.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Copacabana -->
-          <div class="tab-pane show" id="tab-4-6">
-            <div class="container-fluid">
-              <div class="row control-desbor">
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12 order-md-2 order-lg-1 d-flex flex-column justify-content-center">
-                  <div class="contenido-referente d-flex flex-column justify-content-center">
-                    <a><img class="img-fluid" src="images/copa.svg.png" width="auto" height="268px"  alt=""></a>
-                  </div>
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 order-md-1 order-lg-2 d-flex flex-column justify-content-center">
-                  <div class="descripcion-proyecto">
-                    <h6 class="titulo-proyecto">Copacabana</h6>
-                    <p class="text-justify">
-                      Estudio para la determinación de las causas del deslizamiento en la vereda el Cabuyal dentro del Municipio de Copacabana y la viabilidad de continuar operaciones en la cantera Las Nieve I. 2016
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Fin seccion proyectos -->
-        </div>
       </div>
     </div>
-  </section>
-  <!-- Fin Semillero -->
-
-
-  <!-- Comienzo recursos -->
-  <div class="info-recursos container-fluid mx-auto">
-    <h3 class="trans titulo-inventario">Recursos</h3><h3 class="trans d-none titulo-inventario">Resources</h3>
-    <div>
-      <a class="bullet parrafo-inventario" href="http://repositorio.gestiondelriesgo.gov.co/handle/20.500.11762/40444" target="_blank">Comisión Nacional Asesora para la Investigación en Gestión del Riesgo de Desastres (CNAIGRD). 2023. Investigaciones
-        en gestión del riesgo de desastres para Colombia. Contribuciones locales, regionales y nacionales. Unidad Nacional para
-        la Gestión del Riesgo de Desastres. Bogotá, Colombia. 
-      </a>
-    </div>
-    <br/>
-    <div>
-      <a class="bullet parrafo-inventario" href="https://edieraristizabal.github.io/Libro_cartoGeotecnia/intro.html" target="_blank">Aristizábal, Edier. 2022. Libro Guía del curso Cartografía Geotécnica. Universidad Nacional de Colombia, Departamento de Geociencias y Medio Ambiente, Facultad de Minas.</a>
-    </div>
-    <div class="mt-4">
-      <a class="bullet parrafo-inventario" href="./simposio-geoamenazas.html" target="_blank">Memorias III Simposio Geoamenazas</a>
-    </div>
-    <p class="parrafo-inventario"> 
-    </p>
   </div>
-  <!-- Fin recursos -->
+  <div class="background" style="background-image:url(assets/img/background/recursos.jpg)"></div>
+</section>
 
+<!-- Slide Contacto -->
+<section class="slide fade-6 kenBurns" data-name="contacto">
+  <div class="content">
+    <div class="container">
+      <div class="wrap">
+      
+        <div class="fix-12-12">
+          <ul class="grid">
+            <li class="col-6-12 right" id="contacto_content">
+            </li>
+            <li class="col-6-12 left ae-5 fromCenter" id="contacto_img">
+            </li>
+          </ul>
+        </div>  
 
-  <!-- Comienzo inventario -->
-  <div class="info-inventario container-fluid mx-auto">
-    <h3 class="trans titulo-inventario">Inventario de desastres</h3><h3 class="trans d-none titulo-inventario">Disaster Inventory</h3>
-    <p class="parrafo-inventario">El Semillero Geohazards ha desarrollado un aplicativo que permite visualizar y reportar eventos de 
-    movimientos en masa y desastres naturales ocurridos en Colombia y en el departamento de Antioquia.
-    </p>
-  </div>
-  <div class="envoltura mx-auto">
-    <div class="container-fluid" id="mapas">
-      <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-12 d-flex justify-content-center">
-          <div class="text-center">
-            <img class="imagen-mapa-ant" src='../images/VisorGeohazards.jpg' alt="">
-            <a class="btn btn-comun1 mt-2" href="./visor-geohazard.html">Consultar</a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-12 col-12">
-          <div class="reportar d-flex flex-column align-items-center justify-content-center">
-            <p class="titulo-reportar">Para reportar un evento regístrate y sé partícipe de este proyecto</p>
-            <hr class="sep-reportar">
-            <a class="btn btn-comun1" href="" target="_blank">Reportar</a>
-          </div>
-        </div>
       </div>
     </div>
-
   </div>
-<!-- Fin inventario -->
+  <div class="background" style="background-image:url(assets/img/background/contacto.jpg)"></div>
+</section>
+<!-- Panel Bottom #01 -->
+<nav class="panel bottom forceMobileView">
+  <div class="sections desktop">
+    <div class="left"></div>
+    <div class="center"><span class="nextSlide"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-down"></use></svg></span></div>
+    <div class="right"></div>
+  </div>
+</nav>
 
 
-
-  <footer id="contacto">
-    <div class="container-fluid " id="main_footer">
-      <div class="row contenido_footer">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12 primera_col order-2 order-sm-1 order-md-1 order-lg-1">
-          <div class="unalmed text-center mt-lg-2">
-            <p class="mb-lg-4">Departamento de Geociencias y Medioambiente<br>Facultad de Minas<br>​Universidad Nacional de Colombia</p>
-            <a href="https://medellin.unal.edu.co/" target="_blank"><img width="295px" height="123px" src="images/kisspng-national-university-of-colombia-at-medelln-natio-crome-5b0ff0cfd74539 3 (1).svg" alt="Logo_UnalMed"></a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12 segunda_col order-3 order-sm-2 order-md-2 order-lg-2">
-          <div class="oficina text-center mt-lg-2">
-            <p class="mx-auto"><i class="fa-solid fa-location-dot"></i></i>&nbsp;Medellín, Carrera 80 No 65-22, M2-211<br><i class="fas fa-phone-alt"></i>&nbsp;(57)(4) 425 51 97</p>
-            <p class="correo_sem mx-auto"><i class="fas fa-envelope"></i>&nbsp;geohazards_med@unal.edu.co</p>
-            <div class="escudo_geohazards d-flex justify-content-center align-items-center">
-              <img width="105.3" height="122.4" src="images/LOGO_FINAL_V2.png" alt="Logo_Semillero">
-              <p class="geo">GEOHAZARDS <br> <span>SEMILLERO DE INVESTIGACIÓN</span></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-12 col-sm-12 col-12 d-flex align-items-center order-1 order-sm-2 order-md-3 order-lg-3">
-          <div class="insc d-flex flex-column align-content-center mx-auto">
-            <p class="pregunta">¿Quieres estar al tanto de las novedades?</p>
-            <hr class="linea-inscribete mx-auto">
-            <a class="inscribete mx-auto" href="./suscribirse.html">SUSCRÍBETE</a>
-            <ul class="iconos-redes mx-auto d-flex justify-content-lg-center">
-              <li><a>¡Síguenos!</a></li>
-              <li><a href="https://www.facebook.com/GeohazardsUnal/" target="_blank"><i class="fab fa-facebook"></i></a></li>
-              <li><a href="https://www.instagram.com/geohazards_unalmed/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-    <script src="js/jquery-3.5.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="data/datos.js"></script>
+<!-- Loading Progress Bar -->
+<div class="progress-bar blue"></div>
 
 </body>
 </html>

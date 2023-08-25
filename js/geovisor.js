@@ -160,7 +160,7 @@ function AgregarContenidoMapasBase() {
         '<div class="col-6 col-basemap" id="baseMap_'+ i +'" onclick="CargarMapaBase(id)">'+
             '<div class="item-basemap '+ (i===0?"active":"") +'">'+
                 '<div class="img-basemap">'+
-                    '<img class="img-fluid" src="images/Basemap/'+ mapasBase[i].icon +'">'+
+                    '<img class="img-fluid" src="./assets/img/Basemap/'+ mapasBase[i].icon +'">'+
                 '</div>'+
                 '<div class="text-center text-basemap">'+
                     '<h6><b>'+ mapasBase[i].name +'</b></h6>'+

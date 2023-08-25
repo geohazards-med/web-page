@@ -328,3 +328,25 @@ main .contenido-mapa #map .leaflet-popup-content {
   font-size: 1rem;
   margin-top: 15px !important;
 }
+
+.logo {
+  width: 100px;
+}
+
+.btn-visor {
+  color: #333333;
+  text-decoration: none !important;
+  background: #ffffff;
+  border: 1px solid black;
+  box-shadow: #000000b8 4px -4px 20px 0px;
+  font-size: 20px !important;
+  padding: 7px 11px !important;
+  font-weight: bold;
+}
+
+.btn-visor:hover {
+  color: white;
+  background: #247461;
+  border-color: #247461;
+  /* border: none; */
+}
