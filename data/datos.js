@@ -75,7 +75,7 @@ var datos = {
   },
   "carrusel": {
     "items": [{
-        "img": "assets/img/slider_img/grupoCompleto.jpg",
+        "img": "./assets/img/slider_img/grupoCompleto.jpg",
         "img_alt": "Grupo Geohazards",
         "titulo": "¡Haz parte del semillero!",
         "fecha": "Publicado el 19 de julio del 2023",
@@ -83,7 +83,7 @@ var datos = {
         "btn": []
       },
       {
-        "img": "assets/img/slider_img/FelicitacionesDistincion.jpg",
+        "img": "./assets/img/slider_img/FelicitacionesDistincion.jpg",
         "img_alt": "Felicitaciones",
         "titulo": "¡Felicitaciones!",
         "fecha": "Publicado el 04 de agosto del 2023",
@@ -91,7 +91,7 @@ var datos = {
         "btn": []
       },
       {
-        "img": "assets/img/slider_img/OportunidadPHD1.gif",
+        "img": "./assets/img/slider_img/OportunidadPHD1.gif",
         "img_alt": "Oportunidad de PHD",
         "titulo": "Oportunidad PHD en Polonia",
         "fecha": "Publicado el 19 de julio del 2023",
@@ -104,7 +104,7 @@ var datos = {
         }]
       },
       {
-        "img": "assets/img/slider_img/OportunidadPHD2.jpg",
+        "img": "./assets/img/slider_img/OportunidadPHD2.jpg",
         "img_alt": "Oportunidad de PHD",
         "titulo": "Oportunidad PHD en Polonia",
         "fecha": "Publicado el 19 de julio del 2023",
@@ -117,7 +117,7 @@ var datos = {
         }]
       },
       {
-        "img": "assets/img/slider_img/libro_ungr.png",
+        "img": "./assets/img/slider_img/libro_ungr.png",
         "img_alt": "Libro UNGR",
         "titulo": "Investigaciones en gestión del riesgo de desastres para Colombia",
         "fecha": "Publicado el 27 de mayo del 2023",
@@ -130,7 +130,7 @@ var datos = {
         }]
       },
       {
-        "img": "assets/img/slider_img/reconocimiento_asaf_aguilar.png",
+        "img": "./assets/img/slider_img/reconocimiento_asaf_aguilar.png",
         "img_alt": "Reconocimiento Asaf Aguilar",
         "titulo": "Reconocimiento",
         "fecha": "Publicado el 27 de octubre del 2022",
@@ -138,7 +138,7 @@ var datos = {
         "btn": []
       },
       {
-        "img": "assets/img/slider_img/libro_guia_cartografia_geotecnica.png",
+        "img": "./assets/img/slider_img/libro_guia_cartografia_geotecnica.png",
         "img_alt": "Libro guía - Cartografía Geotécnica",
         "titulo": "Libro guía - Cartografía Geotécnica",
         "fecha": "Publicado el 2 de septiembre de 2022",
@@ -151,7 +151,7 @@ var datos = {
         }]
       },
       {
-        "img": "assets/img/slider_img/poster1_alemania.png",
+        "img": "./assets/img/slider_img/poster1_alemania.png",
         "img_alt": "NatRiskChange 2021",
         "titulo": "NatRiskChange 2021",
         "fecha": "Publicado el 12 de octubre de 2021",
@@ -164,7 +164,7 @@ var datos = {
         }]
       },
       {
-        "img": "assets/img/slider_img/poster2_it.png",
+        "img": "./assets/img/slider_img/poster2_it.png",
         "img_alt": "NatRiskChange 2021",
         "titulo": "NatRiskChange 2021",
         "fecha": "Publicado el 12 de octubre de 2021",
@@ -177,7 +177,7 @@ var datos = {
         }]
       },
       {
-        "img": "assets/img/slider_img/presentacion_profesor.png",
+        "img": "./assets/img/slider_img/presentacion_profesor.png",
         "img_alt": "NatRiskChange 2021",
         "titulo": "NatRiskChange 2021",
         "fecha": "Publicado el 12 de octubre de 2021",
@@ -195,7 +195,7 @@ var datos = {
         }]
       },
       {
-        "img": "assets/img/slider_img/libro_ungrd.png",
+        "img": "./assets/img/slider_img/libro_ungrd.png",
         "img_alt": "Libro UNGRD",
         "titulo": "Compartimos el libro:",
         "fecha": "Publicado el 11 de mayo de 2021",
@@ -213,7 +213,7 @@ var datos = {
         }]
       },
       {
-        "img": "assets/img/slider_img/publicacion2021.png",
+        "img": "./assets/img/slider_img/publicacion2021.png",
         "img_alt": "Aplicación de inteligencia artificial",
         "titulo": "Nueva publicación",
         "fecha": "Publicado el 03 de abril de 2021",
@@ -234,27 +234,27 @@ var datos = {
     "modals": {
       "NatRiskChange1": {
         "titulo": "NatRiskChange 2021",
-        "url_pdf": "assets/docs/slider_img/Poster Alemania.pdf"
+        "url_pdf": "./assets/docs/slider_img/Poster Alemania.pdf"
       },
       "NatRiskChange2": {
         "titulo": "NatRiskChange 2021",
-        "url_pdf": "assets/docs/slider_img/poster_RainfallThresholds_5_3.pdf"
+        "url_pdf": "./assets/docs/slider_img/poster_RainfallThresholds_5_3.pdf"
       },
       "NatRiskChange3": {
         "titulo": "NatRiskChange 2021",
-        "url_pdf": "assets/docs/slider_img/NatRiskChange21.pdf"
+        "url_pdf": "./assets/docs/slider_img/NatRiskChange21.pdf"
       },
       "ArticuloMachineLearning": {
         "titulo": "Aplicación de inteligencia artificial y técnicas de aprendizaje automático",
-        "url_pdf": "assets/docs/slider_img/publicacion1.pdf"
+        "url_pdf": "./assets/docs/slider_img/publicacion1.pdf"
       },
       "OportudidadPHD1": {
         "titulo": "Oportunidad PHD en Polonia",
-        "url_pdf": "assets/docs/slider_img/IEDS_2023_US_02_Babia_English.pdf"
+        "url_pdf": "./assets/docs/slider_img/IEDS_2023_US_02_Babia_English.pdf"
       },
       "OportudidadPHD2": {
         "titulo": "Oportunidad PHD en Polonia",
-        "url_pdf": "assets/docs/slider_img/IEDS_2023_US_01_Vietnam_English.pdf"
+        "url_pdf": "./assets/docs/slider_img/IEDS_2023_US_01_Vietnam_English.pdf"
       }
     }
   },

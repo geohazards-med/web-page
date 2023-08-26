@@ -16,7 +16,7 @@ $(document).ready(function () {
     var datosModal = datos["carrusel"]["modals"][id];
     console.log(datosModal);
     $("#tituloModalCarousel").html(datosModal["titulo"]);
-    $("#ref_pdf").attr("data", datosModal["url_pdf"]);
+    $("#ref_pdf").attr("src", datosModal["url_pdf"]);
     $("#ref_alt").attr("href", datosModal["url_pdf"]);
   });
 
@@ -24,6 +24,11 @@ $(document).ready(function () {
     e.preventDefault();
     $(".menu li a").removeClass("active_menu");
     $("#"+e.target.id).addClass("active_menu");
+  });
+  $("#menu-lineas li a").click(function (e) { 
+    e.preventDefault();
+    $("#menu-lineas li a").removeClass("active");
+    $("#"+e.target.id).addClass("active");
   });
 
   // Selecciona los elementos que deseas observar
