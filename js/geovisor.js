@@ -87,6 +87,8 @@ $(document).ready(function () {
             $('#'+idPopover[1]).popover("hide");
         });        
     });
+
+    setTimeout(function () {graficarCapa("btn_Colombia")}, 1000);
     
 });
 

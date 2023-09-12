@@ -131,6 +131,7 @@ main .contenido-mapa #map .leaflet-popup-content {
 }
 
 #sidebar .btn-comun {
+  font-size: 3rem;
   color: #247461;
   background: #ffffff;
   border-color: #247461;
@@ -168,10 +169,16 @@ main .contenido-mapa #map .leaflet-popup-content {
   padding-top: 5px;
 }
 #sidebar #capas .label-capas {
-  font-size: 1rem;
+  font-size: 3rem;
+}
+#sidebar #capas select {
+  font-size: 3rem;
+}
+#sidebar #capas input {
+  font-size: 3rem;
 }
 #sidebar #cargarCapa .file-cargarCapa {
-  font-size: 1rem;
+  font-size: 3rem;
 }
 #sidebar #cargarCapa #content-input-cargarCapa {
   padding-top: 15px;
@@ -181,7 +188,7 @@ main .contenido-mapa #map .leaflet-popup-content {
   border: solid 1px #0f3e91;
   border-radius: 5px;
   padding: 10px;
-  font-size: 1rem;
+  font-size: 3rem;
   width: 95%;
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.75);
 }
@@ -349,4 +356,18 @@ main .contenido-mapa #map .leaflet-popup-content {
   background: #247461;
   border-color: #247461;
   /* border: none; */
+}
+
+#sidebar #descargaCapa label {
+  font-size: 3rem;
+}
+#sidebar #descargaCapa select {
+  font-size: 3rem;
+}
+#sidebar #descargaCapa input {
+  font-size: 3rem;
+}
+
+.h5{
+  font-size: 3rem !important;
 }

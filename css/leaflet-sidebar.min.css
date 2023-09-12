@@ -166,6 +166,7 @@
 }
 
 .leaflet-sidebar-pane {
+    color: black;
     display: none;
     left: 0;
     right: 0;
