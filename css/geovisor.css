@@ -60,7 +60,7 @@ main .contenido-mapa #map .leaflet-popup-content {
   max-height: 250px;
   overflow: auto;
   font-family: "Rubik", sans-serif;
-  font-size: 1.1rem;
+  font-size: 3rem;
 }
 
 .popover {
