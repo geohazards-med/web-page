@@ -87,6 +87,8 @@ $(document).ready(function () {
             $('#'+idPopover[1]).popover("hide");
         });        
     });
+
+    // setTimeout(function () {graficarCapa("btn_Colombia")}, 1000);
     
 });
 
@@ -160,7 +162,7 @@ function AgregarContenidoMapasBase() {
         '<div class="col-6 col-basemap" id="baseMap_'+ i +'" onclick="CargarMapaBase(id)">'+
             '<div class="item-basemap '+ (i===0?"active":"") +'">'+
                 '<div class="img-basemap">'+
-                    '<img class="img-fluid" src="images/Basemap/'+ mapasBase[i].icon +'">'+
+                    '<img class="img-fluid" src="./assets/img/Basemap/'+ mapasBase[i].icon +'">'+
                 '</div>'+
                 '<div class="text-center text-basemap">'+
                     '<h6><b>'+ mapasBase[i].name +'</b></h6>'+
@@ -415,11 +417,11 @@ function graficarCapa(id) {
                             L.geoJson(point,{
                                 onEachFeature: function(feature, layer) {
                                     if (feature.properties) {
-                                    layer.bindPopup(Object.keys(feature.properties).map(function(k) {
-                                    return k + ": " + feature.properties[k];
-                                    }).join("<br />"), {
-                                    maxHeight: 200
-                                    });
+                                        layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+                                            return k + ": " + feature.properties[k];
+                                        }).join("<br />"), {
+                                            maxHeight: 200
+                                        });
                                     }
                                 }
                             }).addTo(markers);
@@ -468,10 +470,10 @@ function graficarCapa(id) {
                     L.geoJson(point,{
                         onEachFeature: function(feature, layer) {
                             if (feature.properties) {
-                            layer.bindPopup(Object.keys(feature.properties).map(function(k) {
-                            return k + ": " + feature.properties[k];
-                            }).join("<br />"), {
-                            maxHeight: 200
+                                layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+                                    return k + ": " + feature.properties[k];
+                                }).join("<br />"), {
+                                    maxHeight: 200
                             });
                             }
                         }
@@ -976,6 +978,9 @@ firebase.auth().onAuthStateChanged(function(user) {
                         AgregarFiltrosRegistro();
                     });
                     AgregarFiltrosRegistro();
+                    markers.on('click', function(e) {
+                        editPoint(e);
+                    }); 
                 }
             } else {
                 console.log("No data available");
@@ -1369,6 +1374,13 @@ function anadirCapaRegistro(id) {
     }
 }
 
+function editPoint(e) {
+    layergeojson = e.layer.toGeoJSON();
+    console.log('====================================');
+    console.log(layergeojson);
+    console.log('====================================');
+}
+
 // BDValle();
 function BDValle() {
     var dbResult = []
@@ -1421,4 +1433,19 @@ function BDValle() {
 // bdFun()
 function bdFun() {
     console.log(db["bd"]);
+}
+
+// bdRefac();
+function bdRefac() {
+    for (let index = 0; index < bd_re["ant"].length; index++) {
+        const element = bd_re["ant"][index];
+        element["bd"] = "ant";
+        element["active"] = true;
+    }
+    for (let index = 0; index < bd_re["col"].length; index++) {
+        const element = bd_re["col"][index];
+        element["bd"] = "col";
+        element["active"] = true;
+    }
+    console.log(bd_re);
 }
