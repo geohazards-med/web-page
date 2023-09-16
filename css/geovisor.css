@@ -373,6 +373,9 @@ main .contenido-mapa #map .leaflet-popup-content {
 #sidebar #registrarEvento input {
   font-size: 3rem;
 }
+#sidebar #registrarEvento textarea {
+  font-size: 3rem;
+}
 
 .h5{
   font-size: 3rem !important;
