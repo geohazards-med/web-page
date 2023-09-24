@@ -88,7 +88,7 @@ $(document).ready(function () {
         });        
     });
 
-    // setTimeout(function () {graficarCapa("btn_Colombia")}, 1000);
+    setTimeout(function () {graficarCapa("btn_Colombia")}, 1000);
     
 });
 
@@ -380,7 +380,6 @@ function graficarCapa(id) {
     const detonante = $("#selectDetonante").val();
     const muertes = $("#selectMuertes").val();
     if(idCapa == "Colombia") {
-
         if (dbCol.length === 0) {
             database.ref().child("col").get().then((snapshot) => {
                 if (snapshot.exists()) {
@@ -390,41 +389,44 @@ function graficarCapa(id) {
                     console.log(dbCol);
                     for (let i = 0; i < dbCol.length; i++) {
                         const element = dbCol[i];
-                        var dateEvent = new Date(element['date'].split(" ")[0]);
-                        auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
-                        auxLng = parseFloat(auxLoc[0]);
-                        auxLat = parseFloat(auxLoc[1]);
-                        if ((element["department"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
-                            const auxDate = adjustDate(dateEvent);
-                            var point = L.marker([auxLat, auxLng]).toGeoJSON();             
-                            L.extend(point.properties, {
-                                id: i,
-                                Tipo: element['type'],
-                                Fecha: auxDate,
-                                Detonante: element['triggering'],
-                                Fuente: element['source'],
-                                Departamento: element['department'],
-                                Municipio: element['town'],
-                                Pueblo: element['county'],
-                                Sitio: element['site'],
-                                Incertidumbre: element['uncertainty'],
-                                Norte: auxLat,
-                                Este: auxLng,
-                                Fallecidos: element['fatalities'],
-                                Economicas: element['losses'],
-                                Notas: element['add']
-                                });
-                            L.geoJson(point,{
-                                onEachFeature: function(feature, layer) {
-                                    if (feature.properties) {
-                                        layer.bindPopup(Object.keys(feature.properties).map(function(k) {
-                                            return k + ": " + feature.properties[k];
-                                        }).join("<br />"), {
-                                            maxHeight: 200
-                                        });
+                        if (element.active) {
+                            var dateEvent = new Date(element['date'].split(" ")[0]);
+                            auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
+                            auxLng = parseFloat(auxLoc[0]);
+                            auxLat = parseFloat(auxLoc[1]);
+                            if ((element["department"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                                const auxDate = adjustDate(dateEvent);
+                                var point = L.marker([auxLat, auxLng]).toGeoJSON();             
+                                L.extend(point.properties, {
+                                    bd: "col",
+                                    id: i,
+                                    Tipo: element['type'],
+                                    Fecha: auxDate,
+                                    Detonante: element['triggering'],
+                                    Fuente: element['source'],
+                                    Departamento: element['department'],
+                                    Municipio: element['town'],
+                                    Pueblo: element['county'],
+                                    Sitio: element['site'],
+                                    Incertidumbre: element['uncertainty'],
+                                    Norte: auxLat,
+                                    Este: auxLng,
+                                    Fallecidos: element['fatalities'],
+                                    Economicas: element['losses'],
+                                    Notas: element['add']
+                                    });
+                                L.geoJson(point,{
+                                    onEachFeature: function(feature, layer) {
+                                        if (feature.properties) {
+                                            layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+                                                return k + ": " + feature.properties[k];
+                                            }).join("<br />"), {
+                                                maxHeight: 200
+                                            });
+                                        }
                                     }
-                                }
-                            }).addTo(markers);
+                                }).addTo(markers);
+                            }
                         }
                         
                     }
@@ -437,47 +439,50 @@ function graficarCapa(id) {
                     notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
                 }
             }).catch((error) => {
-                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar la geología');
+                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos');
                 console.log(error);
             });
         }else{
             for (let i = 0; i < dbCol.length; i++) {
                 const element = dbCol[i];
-                var dateEvent = new Date(element['date'].split(" ")[0]);
-                auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
-                auxLng = parseFloat(auxLoc[0]);
-                auxLat = parseFloat(auxLoc[1]);
-                if ((element["department"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
-                    const auxDate = adjustDate(dateEvent);
-                    var point = L.marker([auxLat, auxLng]).toGeoJSON();                
-                    L.extend(point.properties, {
-                        id: i,
-                        Tipo: element['type'],
-                        Fecha: auxDate,
-                        Detonante: element['triggering'],
-                        Fuente: element['source'],
-                        Departamento: element['department'],
-                        Municipio: element['town'],
-                        Pueblo: element['county'],
-                        Sitio: element['site'],
-                        Incertidumbre: element['uncertainty'],
-                        Norte: auxLat,
-                        Este: auxLng,
-                        Fallecidos: element['fatalities'],
-                        Economicas: element['losses'],
-                        Notas: element['add']
-                        });
-                    L.geoJson(point,{
-                        onEachFeature: function(feature, layer) {
-                            if (feature.properties) {
-                                layer.bindPopup(Object.keys(feature.properties).map(function(k) {
-                                    return k + ": " + feature.properties[k];
-                                }).join("<br />"), {
-                                    maxHeight: 200
+                if (element.active) {
+                    var dateEvent = new Date(element['date'].split(" ")[0]);
+                    auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
+                    auxLng = parseFloat(auxLoc[0]);
+                    auxLat = parseFloat(auxLoc[1]);
+                    if ((element["department"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                        const auxDate = adjustDate(dateEvent);
+                        var point = L.marker([auxLat, auxLng]).toGeoJSON();                
+                        L.extend(point.properties, {
+                            bd: "col",
+                            id: i,
+                            Tipo: element['type'],
+                            Fecha: auxDate,
+                            Detonante: element['triggering'],
+                            Fuente: element['source'],
+                            Departamento: element['department'],
+                            Municipio: element['town'],
+                            Pueblo: element['county'],
+                            Sitio: element['site'],
+                            Incertidumbre: element['uncertainty'],
+                            Norte: auxLat,
+                            Este: auxLng,
+                            Fallecidos: element['fatalities'],
+                            Economicas: element['losses'],
+                            Notas: element['add']
                             });
+                        L.geoJson(point,{
+                            onEachFeature: function(feature, layer) {
+                                if (feature.properties) {
+                                    layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+                                        return k + ": " + feature.properties[k];
+                                    }).join("<br />"), {
+                                        maxHeight: 200
+                                });
+                                }
                             }
-                        }
-                    }).addTo(markers);
+                        }).addTo(markers);
+                    }
                 }
                 
             }
@@ -486,8 +491,6 @@ function graficarCapa(id) {
             notification.success('¡Listo!', 'Se cargó con exito los eventos');
             console.log(capaPuntos.toGeoJSON());
         }
-
-        
     }
     if(idCapa == "Antioquia") {
         if (dbAnt.length === 0) {
@@ -499,42 +502,45 @@ function graficarCapa(id) {
                     console.log(dbAnt);
                     for (let i = 0; i < dbAnt.length; i++) {
                         const element = dbAnt[i];
-                        var dateEvent = new Date(element['date'].split(" ")[0]);
-                        auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
-                        auxLng = parseFloat(auxLoc[0]);
-                        auxLat = parseFloat(auxLoc[1]);
-                        if ((element["subregion"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
-                            const auxDate = adjustDate(dateEvent);
-                            var point = L.marker([auxLat, auxLng]).toGeoJSON();                
-                            L.extend(point.properties, {
-                                id: i,
-                                Tipo: element['type'],
-                                Fecha: auxDate,
-                                Detonante: element['triggering'],
-                                DetonanDes: element['triggering_description'],
-                                Fuente: element['source'],
-                                Subregion: element['subregion'],
-                                Municipio: element['town'],
-                                Pueblo: element['county'],
-                                Sitio: element['site'],
-                                Incertidumbre: element['uncertainty'],
-                                Norte: auxLat,
-                                Este: auxLng,
-                                Fallecidos: element['fatalities'],
-                                Economicas: element['losses'],
-                                Notas: element['add']
-                              });
-                            L.geoJson(point,{
-                                onEachFeature: function(feature, layer) {
-                                  if (feature.properties) {
-                                    layer.bindPopup(Object.keys(feature.properties).map(function(k) {
-                                    return k + ": " + feature.properties[k];
-                                    }).join("<br />"), {
-                                    maxHeight: 200
-                                    });
-                                  }
-                                }
-                            }).addTo(markers);
+                        if (element.active){
+                            var dateEvent = new Date(element['date'].split(" ")[0]);
+                            auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
+                            auxLng = parseFloat(auxLoc[0]);
+                            auxLat = parseFloat(auxLoc[1]);
+                            if ((element["subregion"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                                const auxDate = adjustDate(dateEvent);
+                                var point = L.marker([auxLat, auxLng]).toGeoJSON();                
+                                L.extend(point.properties, {
+                                    bd: "ant",
+                                    id: i,
+                                    Tipo: element['type'],
+                                    Fecha: auxDate,
+                                    Detonante: element['triggering'],
+                                    DetonanDes: element['triggering_description'],
+                                    Fuente: element['source'],
+                                    Subregion: element['subregion'],
+                                    Municipio: element['town'],
+                                    Pueblo: element['county'],
+                                    Sitio: element['site'],
+                                    Incertidumbre: element['uncertainty'],
+                                    Norte: auxLat,
+                                    Este: auxLng,
+                                    Fallecidos: element['fatalities'],
+                                    Economicas: element['losses'],
+                                    Notas: element['add']
+                                });
+                                L.geoJson(point,{
+                                    onEachFeature: function(feature, layer) {
+                                      if (feature.properties) {
+                                        layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+                                        return k + ": " + feature.properties[k];
+                                        }).join("<br />"), {
+                                        maxHeight: 200
+                                        });
+                                      }
+                                    }
+                                }).addTo(markers);
+                            }
                         }
                         
                     }
@@ -547,50 +553,52 @@ function graficarCapa(id) {
                     notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
                 }
             }).catch((error) => {
-                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar la geología');
+                notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos');
                 console.log(error);
             });
         }else{
             for (let i = 0; i < dbAnt.length; i++) {
                 const element = dbAnt[i];
-                var dateEvent = new Date(element['date'].split(" ")[0]);
-                auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
-                auxLng = parseFloat(auxLoc[0]);
-                auxLat = parseFloat(auxLoc[1]);
-                if ((element["subregion"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
-                    const auxDate = adjustDate(dateEvent);
-                    var point = L.marker([auxLat, auxLng]).toGeoJSON();                
-                    L.extend(point.properties, {
-                        id: i,
-                        Tipo: element['type'],
-                        Fecha: auxDate,
-                        Detonante: element['triggering'],
-                        DetonanDes: element['triggering_description'],
-                        Fuente: element['source'],
-                        Subregion: element['subregion'],
-                        Municipio: element['town'],
-                        Pueblo: element['county'],
-                        Sitio: element['site'],
-                        Incertidumbre: element['uncertainty'],
-                        Norte: auxLat,
-                        Este: auxLng,
-                        Fallecidos: element['fatalities'],
-                        Economicas: element['losses'],
-                        Notas: element['add']
-                      });
-                    L.geoJson(point,{
-                        onEachFeature: function(feature, layer) {
-                          if (feature.properties) {
-                            layer.bindPopup(Object.keys(feature.properties).map(function(k) {
-                            return k + ": " + feature.properties[k];
-                            }).join("<br />"), {
-                            maxHeight: 200
-                            });
-                          }
-                        }
-                    }).addTo(markers);
+                if (element.active){
+                    var dateEvent = new Date(element['date'].split(" ")[0]);
+                    auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
+                    auxLng = parseFloat(auxLoc[0]);
+                    auxLat = parseFloat(auxLoc[1]);
+                    if ((element["subregion"] === depart || depart === "Todos" ) && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                        const auxDate = adjustDate(dateEvent);
+                        var point = L.marker([auxLat, auxLng]).toGeoJSON();                
+                        L.extend(point.properties, {
+                            bd: "ant",
+                            id: i,
+                            Tipo: element['type'],
+                            Fecha: auxDate,
+                            Detonante: element['triggering'],
+                            DetonanDes: element['triggering_description'],
+                            Fuente: element['source'],
+                            Subregion: element['subregion'],
+                            Municipio: element['town'],
+                            Pueblo: element['county'],
+                            Sitio: element['site'],
+                            Incertidumbre: element['uncertainty'],
+                            Norte: auxLat,
+                            Este: auxLng,
+                            Fallecidos: element['fatalities'],
+                            Economicas: element['losses'],
+                            Notas: element['add']
+                        });
+                        L.geoJson(point,{
+                            onEachFeature: function(feature, layer) {
+                              if (feature.properties) {
+                                layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+                                return k + ": " + feature.properties[k];
+                                }).join("<br />"), {
+                                maxHeight: 200
+                                });
+                              }
+                            }
+                        }).addTo(markers);
+                    }
                 }
-                
             }
             markers.addTo(capaPuntos);
             markers.addTo(map);
@@ -931,7 +939,7 @@ function saveToFile(content, filename) {
         type: "text/plain;charset=utf-8"
     }), file);
 }
-  
+
 //Función que filtra los datos según el mpio seleccionado y construye el geojson
 function DescargarDatosJSON(baseDatos, clase, filtro, filtrotipo, numero_real){
     let archivoFinal = {...baseDatos}
@@ -966,6 +974,9 @@ firebase.auth().onAuthStateChanged(function(user) {
                     $("#registrarEvento").toggleClass("d-none");
                     $("#registropane").append(
                         '<div class="col-12 p-0">'+
+                            '<label for="id_editPoint" id="label_id_editPoint" class="bold label-capas d-none">id:</label>'+
+                            '<input type="text" class="form-control d-none w-50 ml-3" disabled id="id_editPoint" value="">'+
+                            '<button class="btn btn-comun mt-0 ml-3 d-none" id="btn_is_new" onclick="nuevoRegistro(id)">Añadir Nuevo</button>'+
                             '<label for="selectCapaRegistro" class="bold label-capas">Escoja el Inventario:</label>'+
                             '<select class="form-control" id="selectCapaRegistro">'+
                                 '<option value="Colombia">Colombia</option>'+
@@ -1123,6 +1134,8 @@ function AgregarFiltrosRegistro(){
                             '<textarea type="number" class="form-control" id="selectNotas" value="0"></textarea></div>';
     
             textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btnAñadir_Col" onclick="anadirCapaRegistro(id)">Añadir</button>';
+            textAppend += '<button class="btn btn-comun ml-3 mt-3 d-none" id="btnEditar_Col" onclick="editarCapaRegistro(id)">Editar</button>';
+            textAppend += '<button class="btn btn-comun ml-3 mt-3 d-none" id="btnBorrar_Col" onclick="borrarCapaRegistro(id)">Borrar</button>';
         }
         else{
             textAppend = "<h5 class='mt-2'>Active la capa de Colombia</h5>";
@@ -1245,6 +1258,8 @@ function AgregarFiltrosRegistro(){
                             '<textarea type="number" class="form-control" id="selectNotas" value="0"></textarea></div>';
     
             textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btnAñadir_Ant" onclick="anadirCapaRegistro(id)">Añadir</button>';
+            textAppend += '<button class="btn btn-comun ml-3 mt-3 d-none" id="btnEditar_Ant" onclick="editarCapaRegistro(id)">Editar</button>';
+            textAppend += '<button class="btn btn-comun ml-3 mt-3 d-none" id="btnBorrar_Ant" onclick="borrarCapaRegistro(id)">Borrar</button>';
         }
         else{
             textAppend = "<h5 class='mt-2'>Active la capa de Antioquia</h5>";
@@ -1372,13 +1387,161 @@ function anadirCapaRegistro(id) {
             notification.alert('¡Error!', 'Ocurrió un error al intentar guardar el evento');
         });
     }
+
+    
+}
+
+function editarCapaRegistro(id) {
+    const idCapa = id.split("_")[1];
+    $("#"+id).attr("disabled", true);
+    idPoint = $("#id_editPoint").val();
+    if(idCapa == "Col") {
+        auxpoint = {
+            active: true,
+            bd: "col",
+            location : "["+$("#lngRegister").val()+", "+$("#latRegister").val()+"]",
+            date : $("#fechita").val(),
+            type : $("#selectTipo0").val(),
+            department: $("#selectDepartamento0").val(),
+            town : $("#selectCiudad0").val(),
+            county : $("#selectPueblo0").val(),
+            site : $("#selectSitio0").val(),
+            uncertainty : $("#selectIncert0").val(),
+            triggering : $("#selectDetonante0").val(),
+            fatalities : $("#selectMuertes1").val(),
+            losses : $("#selectPerdidas").val(),
+            source : $("#selectFuente0").val(),
+            add : $("#selectNotas").val(),
+        }
+        database.ref('col/'+idPoint).set(
+            auxpoint
+        ).then((snapshot) => {
+            console.log("Guardó");
+            dbCol[idPoint] = auxpoint;
+            notification.success('¡Listo!', 'Se editó con exito el evento');
+            $("#"+id).attr("disabled", false);
+        }).catch((error) => {
+            console.error(error);
+            notification.alert('¡Error!', 'Ocurrió un error al intentar editar el evento');
+        });
+    }
+    if(idCapa == "Ant") {
+        auxpoint = {
+            active: true,
+            bd: "ant",
+            location : "["+lngRegister+", "+latRegister+"]",
+            date : $("#fechita").val(),
+            type : $("#selectTipo0").val(),
+            subregion: $("#selectDepartamento0").val(),
+            town : $("#selectCiudad0").val(),
+            county : $("#selectPueblo0").val(),
+            site : $("#selectSitio0").val(),
+            uncertainty : $("#selectIncert0").val(),
+            triggering : $("#selectDetonante0").val(),
+            fatalities : $("#selectMuertes1").val(),
+            losses : $("#selectPerdidas").val(),
+            source : $("#selectFuente0").val(),
+            add : $("#selectNotas").val(),
+            triggering_description : $("#selectDescripDeto").val()
+        }
+        database.ref('ant/'+dbAnt.length).set(
+            auxpoint
+        ).then((snapshot) => {
+            console.log("Guardó");
+            dbAnt[idPoint] = auxpoint
+            notification.success('¡Listo!', 'Se editó con exito el evento');
+            $("#"+id).attr("disabled", false);
+        }).catch((error) => {
+            console.error(error);
+            notification.alert('¡Error!', 'Ocurrió un error al intentar editar el evento');
+        });
+    }
+}
+
+function borrarCapaRegistro(id) {
+    const idCapa = id.split("_")[1];
+    $("#"+id).attr("disabled", true);
+    idPoint = $("#id_editPoint").val();
+    auxPoint = "";
+    if(idCapa == "Col") {
+        auxPoint = dbCol[idPoint];
+    }
+    if(idCapa == "Ant") {
+        auxPoint = dbAnt[idPoint];
+    }
+    database.ref(auxPoint.bd+'/'+idPoint+'/'+'active').set(
+        false
+    ).then((snapshot) => {
+        console.log("Guardó");
+        dbCol[idPoint].active = false;
+        notification.success('¡Listo!', 'Se desactivó con exito el evento');
+        $("#"+id).attr("disabled", false);
+    }).catch((error) => {
+        console.error(error);
+        notification.alert('¡Error!', 'Ocurrió un error al intentar desacrtivar el evento');
+    });
 }
 
 function editPoint(e) {
-    layergeojson = e.layer.toGeoJSON();
-    console.log('====================================');
+    layergeojson = e.layer.toGeoJSON().properties;
     console.log(layergeojson);
-    console.log('====================================');
+    sidebar.open('registrarEvento');
+    $("#label_id_editPoint").removeClass("d-none");
+    $("#id_editPoint").removeClass("d-none");
+    $("#btn_is_new").removeClass("d-none");
+    $("#label_id_editPoint").addClass("d-inline-block");
+    $("#id_editPoint").addClass("d-inline-block");
+    $("#btn_is_new").addClass("d-inline-block");
+
+    $("#id_editPoint").val(layergeojson.id);
+
+    if (layergeojson.bd == "ant") {
+        $("#selectCapaRegistro").val("Antioquia")
+        AgregarFiltrosRegistro();
+        $("#lngRegister").val(layergeojson.Este);
+        $("#latRegister").val(layergeojson.Norte);
+        $("#fechita").val(layergeojson.Fecha);
+        $("#selectTipo0").val(layergeojson.Tipo);
+        $("#selectDepartamento0").val(layergeojson.Subregion);
+        $("#selectCiudad0").val(layergeojson.Municipio);
+        $("#selectPueblo0").val(layergeojson.Pueblo);
+        $("#selectSitio0").val(layergeojson.Sitio);
+        $("#selectIncert0").val(layergeojson.Incertidumbre);
+        $("#selectDetonante0").val(layergeojson.Detonante);
+        $("#selectDescripDeto").val(layergeojson.DetonanDes);
+        $("#selectMuertes1").val(layergeojson.Fallecidos);
+        $("#selectPerdidas").val(layergeojson.Economicas);
+        $("#selectFuente0").val(layergeojson.Fuente);
+        $("#selectNotas").val(layergeojson.Notas);
+    }else{
+        $("#selectCapaRegistro").val("Colombia")
+        AgregarFiltrosRegistro();
+        $("#lngRegister").val(layergeojson.Este);
+        $("#latRegister").val(layergeojson.Norte);
+        $("#fechita").val(layergeojson.Fecha);
+        $("#selectTipo0").val(layergeojson.Tipo);
+        $("#selectDepartamento0").val(layergeojson.Departamento);
+        $("#selectCiudad0").val(layergeojson.Municipio);
+        $("#selectPueblo0").val(layergeojson.Pueblo);
+        $("#selectSitio0").val(layergeojson.Sitio);
+        $("#selectIncert0").val(layergeojson.Incertidumbre);
+        $("#selectDetonante0").val(layergeojson.Detonante);
+        $("#selectMuertes1").val(layergeojson.Fallecidos);
+        $("#selectPerdidas").val(layergeojson.Economicas);
+        $("#selectFuente0").val(layergeojson.Fuente);
+        $("#selectNotas").val(layergeojson.Notas);
+
+    }
+
+    $("#btnEditar_Col").removeClass("d-none");
+    $("#btnBorrar_Col").removeClass("d-none");
+    $("#btnAñadir_Col").addClass("d-none");
+
+}
+
+function nuevoRegistro(id) {
+    AgregarFiltrosRegistro();
+    $("#id_editPoint").val("");
 }
 
 // BDValle();
