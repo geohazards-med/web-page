@@ -83,6 +83,19 @@ var datos = {
         "btn": []
       },
       {
+        "img": "./assets/img/slider_img/Workshop.jpg",
+        "img_alt": "Workshop on Current and Future Challenges in Landslide Research and Disaster Risk",
+        "titulo": "Workshop on Current and Future Challenges in Landslide Research and Disaster Risk Reduction in Colombia and Germany",
+        "fecha": "Publicado el 24 de septiembre del 2023",
+        "texto": 'Tenemos el agrado de invitarlos a nuestro taller sobre Desafíos actuales y futuros en la investigación de deslizamientos y reducción del riesgo de desastres (RRD) en Colombia y Alemania”, que se llevará a cabo en Berlín los días 20 y 21 de noviembre de 2023.',
+        "btn": [{
+          "link": "",
+          "texto": "Más información",
+          "modal": true,
+          "modal_info": "WorkshopBerlin",
+        }]
+      },
+      {
         "img": "./assets/img/slider_img/FelicitacionesDistincion.jpg",
         "img_alt": "Felicitaciones",
         "titulo": "¡Felicitaciones!",
@@ -232,6 +245,10 @@ var datos = {
       },
     ],
     "modals": {
+      "WorkshopBerlin": {
+        "titulo": "Workshop on Current and Future Challenges in Landslide Research and Disaster Risk",
+        "url_pdf": "./assets/docs/slider_img/LARARR_workshop_1st_circular_v2.pdf"
+      },
       "NatRiskChange1": {
         "titulo": "NatRiskChange 2021",
         "url_pdf": "./assets/docs/slider_img/Poster Alemania.pdf"
