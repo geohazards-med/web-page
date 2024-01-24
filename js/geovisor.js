@@ -1306,6 +1306,7 @@ function anadirCapaRegistro(id) {
     if(idCapa == "Col") {
         database.ref('col/'+dbCol.length).set(
             {
+                active:true,
                 location : "["+lngRegister+", "+latRegister+"]",
                 date : $("#fechita").val(),
                 type : $("#selectTipo0").val(),
@@ -1347,6 +1348,7 @@ function anadirCapaRegistro(id) {
     if(idCapa == "Ant") {
         database.ref('ant/'+dbAnt.length).set(
             {
+                active: true,
                 location : "["+lngRegister+", "+latRegister+"]",
                 date : $("#fechita").val(),
                 type : $("#selectTipo0").val(),
@@ -1612,3 +1614,40 @@ function bdRefac() {
     }
     console.log(bd_re);
 }
+
+// DeleteEvent()
+function DeleteEvent(params) {
+
+    var delAnt = [];
+    var delCol = [];
+
+    var surces = ['Bnomberos Medellín','Bnopmberos Medellín','Bnopmberose Medellín','Boimberos Medellín','Bomberios Medellín','Bomberis Medellín','Bomberos Medellin.','Bomberos Medellion','Bomberos Medellín','Bomberos Medellínº','Bomberos Medlelin','Simpad']
+
+
+    for (let index = 0; index < bd_re["ant"].length; index++) {
+        const element = bd_re["ant"][index];
+        if (element["active"] == undefined) {
+            element["active"] = true;
+        }
+        if (surces.includes(element["source"])) {
+            delAnt.push(element);
+            element["active"] = false;
+        }
+    }
+    for (let index = 0; index < bd_re["col"].length; index++) {
+        const element = bd_re["col"][index];
+        if (element["active"] == undefined) {
+            element["active"] = true;
+        }
+        if (surces.includes(element["source"])) {
+            delCol.push(element);
+            element["active"] = false;
+        }
+    }
+
+    console.log(delAnt);
+    console.log(delCol);
+    console.log(bd_re);
+}
+
+
