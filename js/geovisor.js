@@ -1324,6 +1324,7 @@ function anadirCapaRegistro(id) {
         ).then((snapshot) => {
             console.log("Guardó");
             dbCol.push({
+                active: true,
                 location : "["+lngRegister+", "+latRegister+"]",
                 date : $("#fechita").val(),
                 type : $("#selectTipo0").val(),
@@ -1367,6 +1368,7 @@ function anadirCapaRegistro(id) {
         ).then((snapshot) => {
             console.log("Guardó");
             dbAnt.push({
+                active: true,
                 location : "["+lngRegister+", "+latRegister+"]",
                 date : $("#fechita").val(),
                 type : $("#selectTipo0").val(),
