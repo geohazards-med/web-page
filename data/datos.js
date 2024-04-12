@@ -83,74 +83,6 @@ var datos = {
         "btn": []
       },
       {
-        "img": "./assets/img/slider_img/Workshop.jpg",
-        "img_alt": "Workshop on Current and Future Challenges in Landslide Research and Disaster Risk",
-        "titulo": "Workshop on Current and Future Challenges in Landslide Research and Disaster Risk Reduction in Colombia and Germany",
-        "fecha": "Publicado el 24 de septiembre del 2023",
-        "texto": 'Tenemos el agrado de invitarlos a nuestro taller sobre Desafíos actuales y futuros en la investigación de deslizamientos y reducción del riesgo de desastres (RRD) en Colombia y Alemania”, que se llevará a cabo en Berlín los días 20 y 21 de noviembre de 2023.',
-        "btn": [{
-          "link": "",
-          "texto": "Más información",
-          "modal": true,
-          "modal_info": "WorkshopBerlin",
-        }]
-      },
-      {
-        "img": "./assets/img/slider_img/FelicitacionesDistincion.jpg",
-        "img_alt": "Felicitaciones",
-        "titulo": "¡Felicitaciones!",
-        "fecha": "Publicado el 04 de agosto del 2023",
-        "texto": '"Esta distinción es un testimonio del compromiso incansable que ha demostrado en la búsqueda de un impacto positivo en nuestras comunidades, utilizando su conocimiento, habilidades y pasión para abordar problemáticas sociales, ambientales y económicas con una perspectiva integradora y solidaria"',
-        "btn": []
-      },
-      {
-        "img": "./assets/img/slider_img/OportunidadPHD1.gif",
-        "img_alt": "Oportunidad de PHD",
-        "titulo": "Oportunidad PHD en Polonia",
-        "fecha": "Publicado el 19 de julio del 2023",
-        "texto": 'El Semillero de Investigación Geohazards invita a participar en esta oportunidad de PHD en el proyecto <i>"Debris flows in the area of Mt Babia Góra - reconstruction, characterization and modelling"</i> del <i>"Institute of Earth Sciences University of Silensia in Katowice (INoZ US), Poland"</i>',
-        "btn": [{
-          "link": "",
-          "texto": "Más información",
-          "modal": true,
-          "modal_info": "OportudidadPHD1",
-        }]
-      },
-      {
-        "img": "./assets/img/slider_img/OportunidadPHD2.jpg",
-        "img_alt": "Oportunidad de PHD",
-        "titulo": "Oportunidad PHD en Polonia",
-        "fecha": "Publicado el 19 de julio del 2023",
-        "texto": 'El Semillero de Investigación Geohazards invita a participar en esta oportunidad de PHD en el proyecto <i>"Recognition of landslide geohazards in relation to the relief and climate of North Vietnam"</i> del <i>"Institute of Earth Sciences University of Silensia in Katowice (INoZ US), Poland"</i>',
-        "btn": [{
-          "link": "",
-          "texto": "Más información",
-          "modal": true,
-          "modal_info": "OportudidadPHD2",
-        }]
-      },
-      {
-        "img": "./assets/img/slider_img/libro_ungr.png",
-        "img_alt": "Libro UNGR",
-        "titulo": "Investigaciones en gestión del riesgo de desastres para Colombia",
-        "fecha": "Publicado el 27 de mayo del 2023",
-        "texto": "Compartimos este libro desarrollado por la Unidad Nacional para la Gestión del Riesgo a desastres (UNGRD), que consiste de una recopilación de artículos relevantes en materia investigación en gestión del riesgo para Colombia. <br> El capítulo 4 hace parte de una investigación desarrollada por nuestro Semillero Geohazards.",
-        "btn": [{
-          "link": "http://repositorio.gestiondelriesgo.gov.co/handle/20.500.11762/40444",
-          "texto": "Descargar",
-          "modal": false,
-          "modal_info": ""
-        }]
-      },
-      {
-        "img": "./assets/img/slider_img/reconocimiento_asaf_aguilar.png",
-        "img_alt": "Reconocimiento Asaf Aguilar",
-        "titulo": "Reconocimiento",
-        "fecha": "Publicado el 27 de octubre del 2022",
-        "texto": "Felicitamos al estudiante de ingeniería geológica Asaf Aguilar, integrante del Semillero Geohazards, por ser el ganador de los premios MEDELLÍN INVESTIGA. Reconocimiento que le otorga la Alcaldía de Medellín por su trabajo sobre movimientos en masa y avenidas torrenciales en Antioquia.",
-        "btn": []
-      },
-      {
         "img": "./assets/img/slider_img/libro_guia_cartografia_geotecnica.png",
         "img_alt": "Libro guía - Cartografía Geotécnica",
         "titulo": "Libro guía - Cartografía Geotécnica",
@@ -160,85 +92,36 @@ var datos = {
           "link": "https://edieraristizabal.github.io/Libro_cartoGeotecnia/intro.html",
           "texto": "Consultar",
           "modal": false,
-          "modal_info": ""
+          "modal_info": "",
         }]
       },
       {
-        "img": "./assets/img/slider_img/poster1_alemania.png",
-        "img_alt": "NatRiskChange 2021",
-        "titulo": "NatRiskChange 2021",
-        "fecha": "Publicado el 12 de octubre de 2021",
-        "texto": 'Te invitamos a conocer el póster presentado en el NatRiskChange 2021: "Landslide and torrential flow susceptibility conditions regarding landscape evolution in the Northern Colombian Andes".',
+        "img": "./assets/img/slider_img/UNGR2024.jpg",
+        "img_alt": "El Planeta pide la palabra",
+        "titulo": "El Planeta pide la palabra",
+        "fecha": "Publicado el 11 de abril de 2024",
+        "texto": 'Reviva el evento organizado por la Unidad Nacional para la Gestión del Riesgo de Desastres donde participó nuestro semillero "Del deslizamiento a la avenida torrencial"',
         "btn": [{
-          "link": "",
-          "texto": "Póster",
-          "modal": true,
-          "modal_info": "NatRiskChange1",
-        }]
-      },
-      {
-        "img": "./assets/img/slider_img/poster2_it.png",
-        "img_alt": "NatRiskChange 2021",
-        "titulo": "NatRiskChange 2021",
-        "fecha": "Publicado el 12 de octubre de 2021",
-        "texto": 'Te invitamos a conocer el póster presentado en el NatRiskChange 2021: "Definition of Rainfall Thresholds for Shallow Landslides in Colombian Tropical Mountainous Terrains".',
-        "btn": [{
-          "link": "",
-          "texto": "Póster",
-          "modal": true,
-          "modal_info": "NatRiskChange2",
-        }]
-      },
-      {
-        "img": "./assets/img/slider_img/presentacion_profesor.png",
-        "img_alt": "NatRiskChange 2021",
-        "titulo": "NatRiskChange 2021",
-        "fecha": "Publicado el 12 de octubre de 2021",
-        "texto": 'Conozca nuestro trabajo presentado en el NatRiskChange 2021: "Debris flows induced by Multiple Occurrence Regional Landslides Events in the Colombian Andes".',
-        "btn": [{
-          "link": "",
-          "texto": "Abstract",
-          "modal": true,
-          "modal_info": "NatRiskChange3",
+          "link": "https://www.youtube.com/live/KNDUx7UIDuY?si=qk0q1NfCOhGK0cQ1",
+          "texto": "YouTube",
+          "modal": false,
+          "modal_info": "",
         }, {
-          "link": "https://edieraristizabal.github.io/Presentaciones/NatHaz2021.html",
+          "link": "https://edieraristizabal.github.io/Presentaciones/UNGRD2024.html",
           "texto": "Presentación",
           "modal": false,
           "modal_info": "",
         }]
       },
       {
-        "img": "./assets/img/slider_img/libro_ungrd.png",
-        "img_alt": "Libro UNGRD",
-        "titulo": "Compartimos el libro:",
-        "fecha": "Publicado el 11 de mayo de 2021",
-        "texto": '<i>"<b>Investigaciones en gestión del riesgo de desastres para Colombia: avances, perspectivas y casos de estudio</b>"</i> publicado por la Unidad Nacional de Gestión del Riesgo de Desastres (UNGRD).<br class="vista-grande"> Para consultar y descargar el libro, puede ingresar en los siguientes enlaces:',
-        "btn": [{
-          "link": "https://repositorio.gestiondelriesgo.gov.co/handle/20.500.11762/32470",
-          "texto": "Repositorio UNGRD",
-          "modal": false,
-          "modal_info": "",
-        }, {
-          "link": "http://cedir.gestiondelriesgo.gov.co",
-          "texto": "CEDIR",
-          "modal": false,
-          "modal_info": "",
-        }]
-      },
-      {
-        "img": "./assets/img/slider_img/publicacion2021.png",
-        "img_alt": "Aplicación de inteligencia artificial",
+        "img": "./assets/img/slider_img/SAES.gif",
+        "img_alt": "South America Earth Science Journal",
         "titulo": "Nueva publicación",
-        "fecha": "Publicado el 03 de abril de 2021",
-        "texto": 'Aplicación de inteligencia artificial y técnicas de aprendizaje automático para la evaluación de la susceptibilidad por movimientos en masa. Revista Mexicana de Ciencias Geológicas.',
+        "fecha": "Publicado el 23 de mayo de 2023",
+        "texto": 'Landslides forecasting using satellite rainfall estimations and machine learning in the Colombian Andean region.',
         "btn": [{
-          "link": "",
+          "link": "https://www.sciencedirect.com/science/article/abs/pii/S0895981123001049?via%3Dihub",
           "texto": "Artículo",
-          "modal": true,
-          "modal_info": "ArticuloMachineLearning",
-        }, {
-          "link": "http://rmcg.geociencias.unam.mx/index.php/rmcg/index",
-          "texto": "Revista",
           "modal": false,
           "modal_info": "",
         }]
@@ -253,26 +136,6 @@ var datos = {
         "titulo": "NatRiskChange 2021",
         "url_pdf": "./assets/docs/slider_img/Poster Alemania.pdf"
       },
-      "NatRiskChange2": {
-        "titulo": "NatRiskChange 2021",
-        "url_pdf": "./assets/docs/slider_img/poster_RainfallThresholds_5_3.pdf"
-      },
-      "NatRiskChange3": {
-        "titulo": "NatRiskChange 2021",
-        "url_pdf": "./assets/docs/slider_img/NatRiskChange21.pdf"
-      },
-      "ArticuloMachineLearning": {
-        "titulo": "Aplicación de inteligencia artificial y técnicas de aprendizaje automático",
-        "url_pdf": "./assets/docs/slider_img/publicacion1.pdf"
-      },
-      "OportudidadPHD1": {
-        "titulo": "Oportunidad PHD en Polonia",
-        "url_pdf": "./assets/docs/slider_img/IEDS_2023_US_02_Babia_English.pdf"
-      },
-      "OportudidadPHD2": {
-        "titulo": "Oportunidad PHD en Polonia",
-        "url_pdf": "./assets/docs/slider_img/IEDS_2023_US_01_Vietnam_English.pdf"
-      }
     }
   },
   "aboutus": {
@@ -1091,7 +954,49 @@ var datos = {
     ],
   },
   "congresos": {
-    "anos": ["NatRiskChange 2021", "European Geosciences Union 2021"],
+    "anos": ["6th World Landslide Forum","DFHM8","NatRiskChange 2021", "European Geosciences Union 2021"],
+    "6th World Landslide Forum": [{
+      "name": "LANDSCAPE EVOLUTION AS KEY TO UNDERSTANDING LANDSLIDE PATTERNS IN THE NORTHERN COLOMBIAN ANDES",
+      "auth": "Edier Aristizabal, Oliver Korup",
+      "link": "./assets/img/congresos/WLF6/aristizabal-korup.png"
+    },
+    {
+      "name": "RANDOM FOREST MODEL AND GRIDDED PRECIPITATION PRODUCTS APPLIED TO LANDSLIDES FORECASTING IN THE COLOMBIAN ANDEAN REGION",
+      "auth": "Derly Gómez, Edier Aristizabal, Edwin García",
+      "link": "./assets/img/congresos/WLF6/gomezetal.png"
+    },
+    {
+      "name": "IDENTIFICATION OF UNSTABLE SLOPES IN MEDELLÍN (COLOMBIA): FIRST RESULTS FROM SENTINEL-1 INSAR",
+      "auth": "Jorge Pedro Galve, Anna Barra, Johnny Vega, Edier Aristizabal4",
+      "link": "./assets/img/congresos/WLF6/jpetal.png"
+    },
+    {
+      "name": "WHAT TRIGGERED EL GUASIMO LANDSLIDE? DISTINCT ELEMENT ANALYSIS OF A LARGE PALEO LANDSLIDE IN THE COLOMBIAN ANDES",
+      "auth": "Anika Braun, Martin Tzschoppe, Anne-Sophie Mreyen, Katrin Dohmen, Fernandez-Steeger Tomás Manue, Edier Aristizabal",
+      "link": "./assets/img/congresos/WLF6/braunetal.png"
+    },
+    {
+      "name": "LANDSLIDE HAZARD ASSESSMENT IN THE COLOMBIAN ANDES",
+      "auth": "Edier Aristizabal, Edwin García",
+      "link": "./assets/img/congresos/WLF6/aristizabal-garcia.png"
+    },
+    {
+      "name": "DEFINITION OF RAINFALL THRESHOLDS FOR SHALLOW LANDSLIDES IN COLOMBIAN TROPICAL MOUNTAINOUS CATCHMENTS ACOPLING PHYSICALLY-BASED MODEL TRIGRS AND PROBABILITY DENSITY FUNCTION",
+      "auth": "Ricardo Jaramillo-Gonzalez, Edier Aristizabal, Edwin García, Roberto José Marín Sánchez",
+      "link": "./assets/img/congresos/WLF6/jaramilloetal.png"
+    },
+  ],
+    "DFHM8": [{
+      "name": "Morphological characteristics of drainage networks related to landslide cluster in the Colombian Andean",
+      "auth": "Karolina Naranjo1, Edier Aristizábal and Johnnatan Palacio",
+      "link": "https://www.e3s-conferences.org/articles/e3sconf/abs/2023/52/e3sconf_dfhm82023_05015/e3sconf_dfhm82023_05015.html"
+    },
+    {
+      "name": "Definition of Rainfall Thresholds for Shallow Landslides in Colombian Tropical Mountainous Catchments as Debris Flow Triggering Mechanism",
+      "auth": "Ricardo Jaramillo-González, Luis Martínez, Edier Aristizábal, Edwin García and Roberto J. Marín",
+      "link": "https://www.e3s-conferences.org/articles/e3sconf/abs/2023/52/e3sconf_dfhm82023_05009/e3sconf_dfhm82023_05009.html"
+    },
+  ],
     "NatRiskChange 2021": [{
         "name": "Debris flows induced by Multiple Occurrence Regional Landslides Events in the Colombian Andes",
         "auth": "Edier V. Aristizábal G.",
@@ -1155,6 +1060,10 @@ var datos = {
     {
       "name": "Memorias III Simposio Geoamenazas",
       "link": "simposio-geoamenazas.html"
+    },
+    {
+      "name": "Memorias 6th World Landslide Forum",
+      "link": "https://wlf6.org/wp-content/uploads/2023/12/WLF6_ABSTRACT-BOOK_FINAL.pdf"
     },
   ],
   "contacto": {
