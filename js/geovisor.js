@@ -372,7 +372,7 @@ function graficarCapa(id) {
     const idCapa = id.split("_")[1];
     markers.clearLayers();
     capaPuntos.clearLayers();
-    const afterDate = ($("#afterDate").val() !== '') ? new Date($("#afterDate").val()) : new Date("1925-01-01");
+    const afterDate = ($("#afterDate").val() !== '') ? new Date($("#afterDate").val()) : new Date("1880-01-01");
     const beforeDate = ($("#beforeDate").val() !== '') ? new Date($("#beforeDate").val()) : new Date();
     const depart = $("#selectDepartamento").val();
     const city = $("#selectCiudad").val();
