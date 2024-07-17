@@ -1,7 +1,7 @@
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDExn9nzkr1pZrolfUvAxvy3sZWUiyHOOU",
-  authDomain: "geohazards.com.co",
+  authDomain: "geohazards-unal.firebaseapp.com",
   databaseURL: "https://geohazards-unal-default-rtdb.firebaseio.com",
   projectId: "geohazards-unal",
   storageBucket: "geohazards-unal.appspot.com",
@@ -17,10 +17,36 @@ const database = firebase.database();
 
 // FirebaseUI config.
 var uiConfig = {
+  callbacks: {
+    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+      // User successfully signed in.
+      // Return type determines whether we continue the redirect automatically
+      // or whether we leave that to developer to handle.
+      return true;
+    },
+    uiShown: function() {
+      // The widget is rendered.
+      // Hide the loader.
+      document.getElementById('loader').style.display = 'none';
+    }
+  },
+  signInFlow: 'popup',
   signInSuccessUrl: 'visor-geohazard.html',
   signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    {
+      // Leave the lines as is for the providers you want to offer your users.
+      provider : firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      scopes: [
+        'https://www.googleapis.com/auth/contacts.readonly'
+      ],
+      customParameters: {
+        // Forces account selection even when one account
+        // is available.
+        prompt: 'select_account'
+      }
+
+
+    }
   ],
   // tosUrl and privacyPolicyUrl accept either url string or a callback
   // function.
