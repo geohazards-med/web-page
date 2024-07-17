@@ -1,7 +1,7 @@
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDExn9nzkr1pZrolfUvAxvy3sZWUiyHOOU",
-  authDomain: "geohazards-unal.firebaseapp.com",
+  authDomain: "geohazards.com.co",
   databaseURL: "https://geohazards-unal-default-rtdb.firebaseio.com",
   projectId: "geohazards-unal",
   storageBucket: "geohazards-unal.appspot.com",
