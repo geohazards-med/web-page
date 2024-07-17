@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="css/leaflet-sidebar.min.css">
     <!-- Estilos de las notificaciones del visor -->
     <link rel="stylesheet" href="css/leaflet-notifications.css">
+    <!-- Markers -->
+    <link type="text/css" rel="stylesheet" href="css/leaflet.awesome-markers.css" />
     <!-- Estilos del Visor -->
     <link rel="stylesheet" href="css/geovisor.css">
     <link rel="stylesheet" href="css/MarkerCluster.css">
@@ -119,8 +121,10 @@
             <li><a href="#home" role="tab" title="Información del Visor"><i class="fa-solid fa-circle-info"></i></a></li>
             <!-- Mapas Base -->
             <li><a href="#basemap" role="tab" title="Selección Mapa Base"><i class="fa-solid fa-map"></i></a></li>
-            <!-- Capas por País -->
-            <li><a href="#capas" role="tab"><i class="fa-solid fa-layer-group" title="Selección de Capas por Países"></i></a></li>
+            <!-- Inventario -->
+            <li><a href="#capas" role="tab"><i class="fa-solid fa-layer-group" title="Inventario"></i></a></li>
+            <!-- Estaciones -->
+            <li><a href="#estaciones" role="tab"><i class="fa-solid fa-map-pin" title="Estaciones"></i></a></li>
             <!-- Cargar Capas -->
             <li><a href="#cargarCapa" role="tab"><i class="fa-solid fa-upload" title="Cargar Capas"></i></a></li>
             <!-- Descargar Capas -->
@@ -168,16 +172,32 @@
             <br>
             <div id="basemapContent"></div>
         </div>
-        <!-- Contenido Capas por País -->
+        <!-- Contenido Inventario -->
         <div class="leaflet-sidebar-pane" id="capas">
             <h1 class="leaflet-sidebar-header">
-                Selector de Capas
+                Selector de Inventarios
                 <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
             </h1>
             <br>
             <div class="h-100 w-100">
                 <div class="container-fluid">
                     <div id="capasContent" class="row"></div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Contenido Estaciones -->
+        <div class="leaflet-sidebar-pane" id="estaciones">
+            <h1 class="leaflet-sidebar-header">
+                Selector de Estaciones
+                <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <br>
+            <button class="btn btn-comun ml-3 mt-3" id="btn_est" onclick="CargarEstaciones()">Cargar Estaciones</button>
+            <br>
+            <div class="h-100 w-100">
+                <div class="container-fluid">
+                    <div id="est_content" class="row"></div>
                 </div>
             </div>
 
@@ -252,6 +272,97 @@
   <!-- Fin Main -->
 
 
+
+
+
+  <!-- Modal Estaciones -->
+  <div class="modal fade" id="modal-estaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header estilo-modales">
+                <h5 class="modal-title" id="exampleModalLabel">Estaciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <h5 class="w-100 font-weight-bold mx-auto text-center" id="id-edit-estaciones"></h5>
+                    <input id="estaciones-id" type="hidden">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="form-group col-sm-6 col-md-3">
+                                <label for="est-fecha-1" class="bold">Fecha</label>
+                                <input disabled type="date" class="form-control" id="est-fecha-1">
+                            </div>
+                            <div class="form-group col-sm-6 col-md-3">
+                                <label for="est-estacion-1" class="bold">Estación</label>
+                                <input disabled type="text" class="form-control" id="est-estacion-1">
+                            </div>
+                            <div class="form-group col-sm-6 col-md-3">
+                                <label for="est-tipoEstacion-1" class="bold">Tipo de Estación</label>
+                                <input disabled type="text" class="form-control" id="est-tipoEstacion-1">
+                            </div>
+                            <div class="form-group col-sm-6 col-md-3">
+                                <label for="est-propietario-3" class="bold">Propietario</label>
+                                <input disabled type="text" class="form-control" id="est-propietario-3">
+                            </div>
+                            <div class="form-group col-sm-6 col-md-3">
+                                <label for="est-formatos-1" class="bold">Formatos</label>
+                                <input disabled type="text" class="form-control" id="est-formatos-1">
+                            </div>
+                            <div class="form-group col-sm-6 col-md-3">
+                                <label for="est-norte-1" class="bold">Norte</label>
+                                <input disabled type="number" step=0.000000000000001 class="form-control" id="est-norte-1">
+                            </div>
+                            <div class="form-group col-sm-6 col-md-3">
+                                <label for="est-este-1" class="bold">Este</label>
+                                <input disabled type="number" step=0.000000000000001 class="form-control" id="est-este-1">
+                            </div>
+                            <div class="form-group col-sm-6 col-md-3">
+                                <label for="est-altura-1" class="bold">Altura</label>
+                                <input disabled type="number" step=0.000000000000001 class="form-control" id="est-altura-1">
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="est-fotos-1" class="bold">Fotografías Estación</label>
+                                <textarea disabled class="form-control" rows="2" id="est-fotos-1"></textarea/>
+                            </div>
+                            <div class="form-group col-12 row" id="contenedorFotos"></div>
+                            <div class="form-group col-12">
+                                <label for="est-fotosLib-1" class="bold">Fotografías Libreta</label>
+                                <textarea disabled class="form-control" rows="2" id="est-fotosLib-1"></textarea/>
+                            </div>
+                            <div class="form-group col-12 row" id="contenedorFotosLib"></div>
+                            <div class="form-group col-12">
+                                <label for="est-observaciones-1" class="bold">Observaciones</label>
+                                <textarea disabled class="form-control" rows="2" id="est-observaciones-1"></textarea/>
+                            </div>
+                            <div class="col-12">
+                                <h3 class="w-100 font-weight-bold mx-auto text-center bold titulo-formatos">Formatos</h3>
+                                <div class="row">
+                                    <div class=" col-12">
+                                        <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                                        
+                                        </ul>
+                                        <div class="tab-content" id="myTabsContent">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" tabindex="2">Cerrar</button>
+                    </div>
+                </div>
+                
+               
+            </form>
+    </div>
+</div>
+</div>
+
+
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -277,7 +388,8 @@
     <script src="js/lib/leaflet-VectorIcon.js"></script>
     <!-- Plugins pára visualización de varios tipos de información -->
     <script src="js/lib/leaflet-omnivore.min.js"></script>
-   
+    <!-- Awasome Markers -->
+    <script src="js/lib/leaflet.awesome-markers.js"></script>
     <script src="js/lib/leaflet.markercluster.js"></script>
     <!-- Plugins de ESRI para importar mapas base y capas -->
     <script src="js/lib/esri-leaflet.js"></script>
@@ -318,7 +430,10 @@
     <script src="data/complete.js"></script>
     <script src="data/Antioquia.js"></script>
     <script src="data/Colombia.js"></script>
+    <script src="data/bd_estaciones.js"></script>
+    <script src="data/bd_estaciones_1.js"></script>
     <!-- Script Visor -->
+    <script src="js/gestion-estaciones.js"></script>
     <script src="js/geovisor.js"></script>
 
 </body>

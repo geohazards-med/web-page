@@ -130,13 +130,13 @@ main .contenido-mapa #map .leaflet-popup-content {
   margin-bottom: 15px;
 }
 
-#sidebar .btn-comun {
+.btn-comun {
   font-size: 3rem;
   color: #247461;
   background: #ffffff;
   border-color: #247461;
 }
-#sidebar .btn-comun:hover {
+.btn-comun:hover {
   color: #ffffff;
   background: #247461;
   border-color: #247461;
@@ -379,4 +379,122 @@ main .contenido-mapa #map .leaflet-popup-content {
 
 .h5{
   font-size: 3rem !important;
+}
+
+
+
+
+.modal-dialog{
+  width: 90vw;
+  max-width: none;
+}
+.modal-dialog .estilo-modales{
+  background: #247461;
+  color: #ffffff;
+}
+.modal-dialog .estilo-modales .close{
+  color: #ffffff;
+}
+
+.modal-dialog .estilo-modales.btn {
+  color: #247461;
+  background: #ffffff;
+  border-color: #247461;
+}
+.modal-dialog .estilo-modales.btn:hover {
+  color: #ffffff;
+  background: #247461;
+  border-color: #247461;
+}
+
+.modal-content{
+  width: 90%;
+  margin: auto;
+}
+
+.form-control {
+  font-size: 2.5rem;
+}
+
+.modal-footer button {
+  font-size: 3rem;
+}
+
+
+.content-list.est{
+  display: block;
+  width: 100%;
+  font-size: 2.5rem;
+}
+
+.switchi {
+  top: 3px;
+  position: relative;
+  display: inline-block;
+  width: 26px;
+  height: 16px;
+}
+.switchi input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switchi input:checked + .slider {
+  background-color: #333;
+}
+.switchi input:checked + .slider:before {
+  transform: translateX(10px);
+}
+.switchi .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  border: 1px solid #333;
+  transition: all 0.4s ease;
+}
+.switchi .slider:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #247461;
+  transition: all 0.4s ease;
+}
+.switchi .slider.round {
+  border-radius: 34px;
+}
+.switchi .slider.round:before {
+  border-radius: 50%;
+}
+
+
+.leaflet-popup-content p{
+  margin: 0;
+  font-size: 16px;
+}
+
+
+div.modal-content {
+  background-color: #ffffffcb;
+  border-radius: 10px;
+  color: #333;
+}
+
+#myTabsContent{
+  position: relative;
+  background: #fff6;
+}
+
+#myTabsContent .tab-pane{
+  overflow-x: hidden;
+}
+
+.modal-footer{
+  margin-top: 45px;
 }
