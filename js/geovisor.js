@@ -695,10 +695,13 @@ function AgregarFiltros() {
     if (capa === "Colombia") {
         for (let i = 0; i < Colombia.length; i++) {
             const element = Colombia[i];
-            departamentos.push(element["department"])
-            ciudades.push(element["town"])
-            tipos.push(element["type"])
-            trigger.push(element["triggering"])
+            if (element["active"]) {
+                departamentos.push(element["department"])
+                ciudades.push(element["town"])
+                tipos.push(element["type"])
+                trigger.push(element["triggering"])
+
+            }
         }
         var departamentosUnique = getUnique(departamentos);
         var ciudadesUnique = getUnique(ciudades);
@@ -750,10 +753,13 @@ function AgregarFiltros() {
     } else if (capa === "Antioquia") {
         for (let i = 0; i < Antioquia.length; i++) {
             const element = Antioquia[i];
-            departamentos.push(element["subregion"])
-            ciudades.push(element["town"])
-            tipos.push(element["type"])
-            trigger.push(element["triggering"])
+            if (element["active"]) {
+                departamentos.push(element["subregion"])
+                ciudades.push(element["town"])
+                tipos.push(element["type"])
+                trigger.push(element["triggering"])
+                
+            }
         }
         var departamentosUnique = getUnique(departamentos);
         var ciudadesUnique = getUnique(ciudades);
@@ -956,37 +962,44 @@ function graficarCapa(id) {
                             auxLat = parseFloat(auxLoc[1]);
                             if ((element["subregion"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
                                 const auxDate = adjustDate(dateEvent);
-                                var point = L.marker([auxLat, auxLng]).toGeoJSON();
-                                L.extend(point.properties, {
-                                    bd: "ant",
-                                    id: i,
-                                    Tipo: element['type'],
-                                    Fecha: auxDate,
-                                    Detonante: element['triggering'],
-                                    DetonanDes: element['triggering_description'],
-                                    Fuente: element['source'],
-                                    Subregion: element['subregion'],
-                                    Municipio: element['town'],
-                                    Pueblo: element['county'],
-                                    Sitio: element['site'],
-                                    Incertidumbre: element['uncertainty'],
-                                    Norte: auxLat,
-                                    Este: auxLng,
-                                    Fallecidos: element['fatalities'],
-                                    Economicas: element['losses'],
-                                    Notas: element['add']
-                                });
-                                L.geoJson(point, {
-                                    onEachFeature: function (feature, layer) {
-                                        if (feature.properties) {
-                                            layer.bindPopup(Object.keys(feature.properties).map(function (k) {
-                                                return k + ": " + feature.properties[k];
-                                            }).join("<br />"), {
-                                                maxHeight: 200
-                                            });
+                                if (auxLoc[0] === "" || auxLoc[1] === "") {
+                                    console.log(i);
+                                    console.log("Error en la latitud o longitud");
+                                }
+                                else{
+                                    var point = L.marker([auxLat, auxLng]).toGeoJSON();
+                                    L.extend(point.properties, {
+                                        bd: "ant",
+                                        id: i,
+                                        Tipo: element['type'],
+                                        Fecha: auxDate,
+                                        Detonante: element['triggering'],
+                                        DetonanDes: element['triggering_description'],
+                                        Fuente: element['source'],
+                                        Subregion: element['subregion'],
+                                        Municipio: element['town'],
+                                        Pueblo: element['county'],
+                                        Sitio: element['site'],
+                                        Incertidumbre: element['uncertainty'],
+                                        Norte: auxLat,
+                                        Este: auxLng,
+                                        Fallecidos: element['fatalities'],
+                                        Economicas: element['losses'],
+                                        Notas: element['add']
+                                    });
+                                    L.geoJson(point, {
+                                        onEachFeature: function (feature, layer) {
+                                            if (feature.properties) {
+                                                layer.bindPopup(Object.keys(feature.properties).map(function (k) {
+                                                    return k + ": " + feature.properties[k];
+                                                }).join("<br />"), {
+                                                    maxHeight: 200
+                                                });
+                                            }
                                         }
-                                    }
-                                }).addTo(markers);
+                                    }).addTo(markers);
+
+                                }
                             }
                         }
 
@@ -2120,24 +2133,30 @@ function DeleteEvent(params) {
 
 // ajustarAnt()
 function ajustarAnt() {
-    for (let index = 0; index < revisados.length; index++) {
-        const element = revisados[index];
-        ant_db_no[element["id"]]["type"] = element["Tipo"];
-        // ant_db_no[element["id"]]["date"] = element["Fecha"];
-        ant_db_no[element["id"]]["triggering"] = element["Detonante"];
-        ant_db_no[element["id"]]["triggering_description"] = element["DetonanDes"];
-        ant_db_no[element["id"]]["source"] = element["Fuente"];
-        ant_db_no[element["id"]]["subregion"] = element["Subregion"];
-        ant_db_no[element["id"]]["town"] = element["Municipio"];
-        ant_db_no[element["id"]]["county"] = element["Pueblo"];
-        ant_db_no[element["id"]]["site"] = element["Sitio"];
-        ant_db_no[element["id"]]["uncertainty"] = element["Incertidum"];
-        ant_db_no[element["id"]]["location"] = "[" + element["Este"] + ", " + element["Norte"] + "]";
-        ant_db_no[element["id"]]["fatalities"] = element["Fallecidos"];
-        ant_db_no[element["id"]]["losses"] = element["Economicas"];
-        ant_db_no[element["id"]]["add"] = element["Notas"];
+    var news_events = [];
+    for (let index = 0; index < db_to_ant.length; index++) {
+        const element = db_to_ant[index];
+        var event= {};
+        event["active"] = true;
+        event["bd"] = "ant";
+        event["type"] = element["Tipo"];
+        event["date"] = element["Fecha"];
+        event["triggering"] = element["Detonante"];
+        event["triggering_description"] = "";
+        event["source"] = element["Fuente"];
+        event["subregion"] = "";
+        event["town"] = element["Municipio"];
+        event["county"] = element["Pueblo"];
+        event["site"] = element["Sitio"];
+        event["uncertainty"] = element["Incertidum"];
+        event["location"] = "[" + element["Este"].replace(",", ".") + ", " + element["Norte"].replace(",", ".") + "]";
+        event["fatalities"] = element["Fallecidos"];
+        event["losses"] = element["Economicas"];
+        event["add"] = element["Notas"];
+
+        news_events.push(event);
     }
-    console.log(ant_db_no);
+    console.log(news_events);
 }
 
 // ajustarCoord()
@@ -2186,4 +2205,13 @@ function ajustarEstaciones() {
         }
     }
     console.log(estaciones_new);
+}
+
+añadir_campos()
+function añadir_campos() {
+    for (let i = 0; i < bd_ant_añadir_campos.length; i++) {
+        bd_ant_añadir_campos[i]["subtype"] = "";
+        bd_ant_añadir_campos[i]["picture_link"] = "";
+    }
+    console.log(bd_ant_añadir_campos);
 }
