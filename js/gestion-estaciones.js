@@ -802,7 +802,7 @@ function GraficarEstacion(isEdit, id, addInEdit){
         formularioForm += 
         '<div class="form-group col-sm-6 col-md-3">'+
           '<label for="'+noformato+'_'+eleTag+j+'" class="bold">'+eleName+'</label>'+
-          '<input type="text" class="form-control" id="'+noformato+'_'+eleTag+j+'" value="'+(isEdit? formato[eleTag] : "")+'"></input>'+
+          '<input disabled type="text" class="form-control" id="'+noformato+'_'+eleTag+j+'" value="'+(isEdit? formato[eleTag] : "")+'"></input>'+
         '</div>';
         idsFormatos[auxTipoFormat+'_'+eleTag+'_'+j] = noformato+'_'+eleTag+j;
       }
@@ -810,7 +810,7 @@ function GraficarEstacion(isEdit, id, addInEdit){
         formularioForm += 
         '<div class="form-group col-sm-6 col-md-3">'+
           '<label for="'+noformato+'_'+eleTag+j+'" class="bold">'+eleName+'</label>'+
-          '<select class="form-control" id="'+noformato+'_'+eleTag+j+'">';
+          '<select disabled class="form-control" id="'+noformato+'_'+eleTag+j+'">';
             for (let k = 0; k < eleStringArray.length; k++) {
               if (isEdit) {
                 if(eleStringArray[k] == formato[eleTag]){
