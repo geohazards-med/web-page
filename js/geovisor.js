@@ -72,8 +72,14 @@ var markerCat = L.AwesomeMarkers.icon({
 var markerInv = L.AwesomeMarkers.icon({
     icon: 'hill-rockslide',
     prefix: 'fa',
-    markerColor: 'cadetblue'
+    markerColor: 'blue'
 });
+
+var markerViv = L.AwesomeMarkers.icon({
+    icon: 'house-user',
+    prefix:'fa',
+    markerColor: 'blue'
+  });
 
 //Función Principal ----->
 
@@ -290,6 +296,11 @@ var capasEst = [{
         active: 1
     },
     {
+        name: "Viviendas",
+        capa: L.layerGroup(),
+        active: 1
+    },
+    {
         name: "Sin Tipo",
         capa: L.layerGroup(),
         active: 1
@@ -376,6 +387,14 @@ function CargarEstaciones() {
                         auxmarker = markerInv;
                         auxcapa = "inv"
                     }
+                    if (dbEstaciones[i]['Formularios']['count_VIVIENDA']>0) {
+                        for (let k = 0; k < dbEstaciones[i]['Formularios']['count_VIVIENDA']; k++) {
+                          auxFormatosPopUp += 'VIVIENDA_' + dbEstaciones[i]['Formularios']['Form_VIVIENDA']['Form_VIVIENDA_'+k]['idformatoValpa'] + ', ';   
+                        }
+                        auxmarker = markerViv;
+                        auxcapa = "vivienda"
+                      }
+          
 
 
                     L.extend(point.properties, {
@@ -407,10 +426,15 @@ function CargarEstaciones() {
                         puntico.addTo(capasEst[1].capa)
                     } else if (auxcapa === "cat") {
                         puntico.addTo(capasEst[2].capa)
-                    } else if (auxcapa === "inv") {
+                    } 
+                    else if (auxcapa === "inv") {
                         puntico.addTo(capasEst[3].capa)
-                    } else {
+                    } 
+                    else if (auxcapa === "vivienda") {
                         puntico.addTo(capasEst[4].capa)
+                    } 
+                    else {
+                        puntico.addTo(capasEst[5].capa)
                     }
 
 
@@ -2178,20 +2202,20 @@ function ajustarCoord() {
 // ajustarEstaciones()
 function ajustarEstaciones() {
 
-    cont = estaciones.cont.cont
+    cont = estaciones2.cont.cont
 
     console.log(cont);
-    estaciones_new = []
+    estaciones_new = bd_re;
 
-    // for (let index = 0; index < cont; index++) {
-    //     const element = estaciones["estacion_"+index];
-    //     if (element["activo"]) {
-    //         estaciones_new.push(element);
-    //     }
-    //     else {
-    //         // console.log(index);
-    //     }
-    // }
+    for (let index = 0; index < cont; index++) {
+        const element = estaciones2["estacion_"+index];
+        if (element["activo"]) {
+            estaciones_new.push(element);
+        }
+        else {
+            // console.log(index);
+        }
+    }
     cont = estaciones1.cont.cont
 
     console.log(cont);
@@ -2207,7 +2231,7 @@ function ajustarEstaciones() {
     console.log(estaciones_new);
 }
 
-añadir_campos()
+// añadir_campos()
 function añadir_campos() {
     for (let i = 0; i < bd_ant_añadir_campos.length; i++) {
         bd_ant_añadir_campos[i]["subtype"] = "";
