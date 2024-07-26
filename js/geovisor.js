@@ -878,6 +878,7 @@ function graficarCapa(id) {
                                     bd: "col",
                                     id: i,
                                     Tipo: element['type'],
+                                    Subtipo: element['subtype'],
                                     Fecha: auxDate,
                                     Detonante: element['triggering'],
                                     Fuente: element['source'],
@@ -890,7 +891,8 @@ function graficarCapa(id) {
                                     Este: auxLng,
                                     Fallecidos: element['fatalities'],
                                     Economicas: element['losses'],
-                                    Notas: element['add']
+                                    Notas: element['add'],
+                                    LinkFoto: element['picture_link']
                                 });
                                 L.geoJson(point, {
                                     onEachFeature: function (feature, layer) {
@@ -934,6 +936,7 @@ function graficarCapa(id) {
                             bd: "col",
                             id: i,
                             Tipo: element['type'],
+                            Subtipo: element['subtype'],
                             Fecha: auxDate,
                             Detonante: element['triggering'],
                             Fuente: element['source'],
@@ -946,7 +949,8 @@ function graficarCapa(id) {
                             Este: auxLng,
                             Fallecidos: element['fatalities'],
                             Economicas: element['losses'],
-                            Notas: element['add']
+                            Notas: element['add'],
+                            LinkFoto: element['picture_link']
                         });
                         L.geoJson(point, {
                             onEachFeature: function (feature, layer) {
@@ -996,6 +1000,7 @@ function graficarCapa(id) {
                                         bd: "ant",
                                         id: i,
                                         Tipo: element['type'],
+                                        Subtipo: element['subtype'],
                                         Fecha: auxDate,
                                         Detonante: element['triggering'],
                                         DetonanDes: element['triggering_description'],
@@ -1009,7 +1014,8 @@ function graficarCapa(id) {
                                         Este: auxLng,
                                         Fallecidos: element['fatalities'],
                                         Economicas: element['losses'],
-                                        Notas: element['add']
+                                        Notas: element['add'],
+                                        LinkFoto: element['picture_link']
                                     });
                                     L.geoJson(point, {
                                         onEachFeature: function (feature, layer) {
@@ -1055,6 +1061,7 @@ function graficarCapa(id) {
                             bd: "ant",
                             id: i,
                             Tipo: element['type'],
+                            Subtipo: element['subtype'],
                             Fecha: auxDate,
                             Detonante: element['triggering'],
                             DetonanDes: element['triggering_description'],
@@ -1068,7 +1075,8 @@ function graficarCapa(id) {
                             Este: auxLng,
                             Fallecidos: element['fatalities'],
                             Economicas: element['losses'],
-                            Notas: element['add']
+                            Notas: element['add'],
+                            LinkFoto: element['picture_link']
                         });
                         L.geoJson(point, {
                             onEachFeature: function (feature, layer) {
@@ -1527,6 +1535,7 @@ function AgregarFiltrosRegistro() {
     var sitio = [];
     var incertidumbre = [];
     var tipos = [];
+    var subtipos = [];
     var trigger = [];
     var fuente = [];
 
@@ -1541,6 +1550,7 @@ function AgregarFiltrosRegistro() {
                 sitio.push(element["site"])
                 incertidumbre.push(element["uncertainty"])
                 tipos.push(element["type"])
+                subtipos.push(element["subtype"])
                 trigger.push(element["triggering"])
                 fuente.push(element["source"])
             }
@@ -1549,6 +1559,7 @@ function AgregarFiltrosRegistro() {
             var pueblosUnique = getUnique(pueblos);
             var sitioUnique = getUnique(sitio);
             var tiposUnique = getUnique(tipos);
+            var subtiposUnique = getUnique(subtipos);
             var incertidumbreUnique = getUnique(incertidumbre);
             var triggerUnique = getUnique(trigger);
             var fuenteUnique = getUnique(fuente);
@@ -1567,6 +1578,15 @@ function AgregarFiltrosRegistro() {
                 '<select class="form-control col-6 d-inline-block" id="selectTipo1">';
             for (let i = 0; i < tiposUnique.length; i++) {
                 const element = tiposUnique[i];
+                textAppend += '<option value="' + element + '">' + element + '</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">' +
+                '<label for="selectTipo1" class="bold d-block label-capas">Subtipo:</label>' +
+                '<input type="text" class="form-control col-6 d-inline-block" id="selectSubtipo0" value="">' +
+                '<select class="form-control col-6 d-inline-block" id="selectSubtipo1">';
+            for (let i = 0; i < subtiposUnique.length; i++) {
+                const element = subtiposUnique[i];
                 textAppend += '<option value="' + element + '">' + element + '</option>';
             }
             textAppend += '</select></div>';
@@ -1642,6 +1662,9 @@ function AgregarFiltrosRegistro() {
             textAppend += '<div class="col-12">' +
                 '<label for="selectNotas" class="bold label-capas">Notas:</label>' +
                 '<textarea type="number" class="form-control" id="selectNotas" value="0"></textarea></div>';
+            textAppend += '<div class="col-12">' +
+                '<label for="selectNotas" class="bold label-capas">Link Fotos:</label>' +
+                '<textarea type="number" class="form-control" id="selectLink" value="0"></textarea></div>';
 
             textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btnAñadir_Col" onclick="anadirCapaRegistro(id)">Añadir</button>';
             textAppend += '<button class="btn btn-comun ml-3 mt-3 d-none" id="btnEditar_Col" onclick="editarCapaRegistro(id)">Editar</button>';
@@ -1658,6 +1681,7 @@ function AgregarFiltrosRegistro() {
                 ciudades.push(element["town"])
                 pueblos.push(element["county"])
                 sitio.push(element["site"])
+                subtipos.push(element["subtype"])
                 incertidumbre.push(element["uncertainty"])
                 tipos.push(element["type"])
                 trigger.push(element["triggering"])
@@ -1668,6 +1692,7 @@ function AgregarFiltrosRegistro() {
             var pueblosUnique = getUnique(pueblos);
             var sitioUnique = getUnique(sitio);
             var tiposUnique = getUnique(tipos);
+            var subtiposUnique = getUnique(subtipos);
             var incertidumbreUnique = getUnique(incertidumbre);
             var triggerUnique = getUnique(trigger);
             var fuenteUnique = getUnique(fuente);
@@ -1686,6 +1711,15 @@ function AgregarFiltrosRegistro() {
                 '<select class="form-control col-6 d-inline-block" id="selectTipo1">';
             for (let i = 0; i < tiposUnique.length; i++) {
                 const element = tiposUnique[i];
+                textAppend += '<option value="' + element + '">' + element + '</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">' +
+                '<label for="selectTipo1" class="bold d-block label-capas">Subtipo:</label>' +
+                '<input type="text" class="form-control col-6 d-inline-block" id="selectSubtipo0" value="">' +
+                '<select class="form-control col-6 d-inline-block" id="selectSubtipo1">';
+            for (let i = 0; i < subtiposUnique.length; i++) {
+                const element = subtiposUnique[i];
                 textAppend += '<option value="' + element + '">' + element + '</option>';
             }
             textAppend += '</select></div>';
@@ -1764,6 +1798,9 @@ function AgregarFiltrosRegistro() {
             textAppend += '<div class="col-12">' +
                 '<label for="selectNotas" class="bold label-capas">Notas:</label>' +
                 '<textarea type="number" class="form-control" id="selectNotas" value="0"></textarea></div>';
+            textAppend += '<div class="col-12">' +
+                '<label for="selectNotas" class="bold label-capas">Link Fotos:</label>' +
+                '<textarea type="number" class="form-control" id="selectLink" value="0"></textarea></div>';
 
             textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btnAñadir_Ant" onclick="anadirCapaRegistro(id)">Añadir</button>';
             textAppend += '<button class="btn btn-comun ml-3 mt-3 d-none" id="btnEditar_Ant" onclick="editarCapaRegistro(id)">Editar</button>';
@@ -1779,6 +1816,9 @@ function AgregarFiltrosRegistro() {
 
     $("#selectTipo1").change(function () {
         $("#selectTipo0").val($("#selectTipo1").val());
+    });
+    $("#selectSubtipo1").change(function () {
+        $("#selectSubtipo0").val($("#selectSubtipo1").val());
     });
     $("#selectDepartamento1").change(function () {
         $("#selectDepartamento0").val($("#selectDepartamento1").val());
@@ -1816,6 +1856,7 @@ function anadirCapaRegistro(id) {
             location: "[" + lngRegister + ", " + latRegister + "]",
             date: $("#fechita").val(),
             type: $("#selectTipo0").val(),
+            subtype: $("#selectSubtipo0").val(),
             department: $("#selectDepartamento0").val(),
             town: $("#selectCiudad0").val(),
             county: $("#selectPueblo0").val(),
@@ -1826,6 +1867,7 @@ function anadirCapaRegistro(id) {
             losses: $("#selectPerdidas").val(),
             source: $("#selectFuente0").val(),
             add: $("#selectNotas").val(),
+            picture_link: $("#selectLink").val(),
         }).then((snapshot) => {
             console.log("Guardó");
             dbCol.push({
@@ -1833,6 +1875,7 @@ function anadirCapaRegistro(id) {
                 location: "[" + lngRegister + ", " + latRegister + "]",
                 date: $("#fechita").val(),
                 type: $("#selectTipo0").val(),
+                subtype: $("#selectSubtipo0").val(),
                 department: $("#selectDepartamento0").val(),
                 town: $("#selectCiudad0").val(),
                 county: $("#selectPueblo0").val(),
@@ -1843,6 +1886,7 @@ function anadirCapaRegistro(id) {
                 losses: $("#selectPerdidas").val(),
                 source: $("#selectFuente0").val(),
                 add: $("#selectNotas").val(),
+                picture_link: $("#selectLink").val(),
             })
             notification.success('¡Listo!', 'Se guardó con exito el evento');
             $("#" + id).attr("disabled", false);
@@ -1857,6 +1901,7 @@ function anadirCapaRegistro(id) {
             location: "[" + lngRegister + ", " + latRegister + "]",
             date: $("#fechita").val(),
             type: $("#selectTipo0").val(),
+            subtype: $("#selectSubtipo0").val(),
             subregion: $("#selectDepartamento0").val(),
             town: $("#selectCiudad0").val(),
             county: $("#selectPueblo0").val(),
@@ -1867,6 +1912,7 @@ function anadirCapaRegistro(id) {
             losses: $("#selectPerdidas").val(),
             source: $("#selectFuente0").val(),
             add: $("#selectNotas").val(),
+            picture_link: $("#selectLink").val(),
             triggering_description: $("#selectDescripDeto").val()
         }).then((snapshot) => {
             console.log("Guardó");
@@ -1875,6 +1921,7 @@ function anadirCapaRegistro(id) {
                 location: "[" + lngRegister + ", " + latRegister + "]",
                 date: $("#fechita").val(),
                 type: $("#selectTipo0").val(),
+                subtype: $("#selectSubtipo0").val(),
                 subregion: $("#selectDepartamento0").val(),
                 town: $("#selectCiudad0").val(),
                 county: $("#selectPueblo0").val(),
@@ -1885,6 +1932,7 @@ function anadirCapaRegistro(id) {
                 losses: $("#selectPerdidas").val(),
                 source: $("#selectFuente0").val(),
                 add: $("#selectNotas").val(),
+                picture_link: $("#selectLink").val(),
                 triggering_description: $("#selectDescripDeto").val()
             })
             notification.success('¡Listo!', 'Se guardó con exito el evento');
@@ -1909,6 +1957,7 @@ function editarCapaRegistro(id) {
             location: "[" + $("#lngRegister").val() + ", " + $("#latRegister").val() + "]",
             date: $("#fechita").val(),
             type: $("#selectTipo0").val(),
+            subtype: $("#selectSubtipo0").val(),
             department: $("#selectDepartamento0").val(),
             town: $("#selectCiudad0").val(),
             county: $("#selectPueblo0").val(),
@@ -1919,6 +1968,7 @@ function editarCapaRegistro(id) {
             losses: $("#selectPerdidas").val(),
             source: $("#selectFuente0").val(),
             add: $("#selectNotas").val(),
+            picture_link: $("#selectLink").val(),
         }
         database.ref('col/' + idPoint).set(
             auxpoint
@@ -1939,6 +1989,7 @@ function editarCapaRegistro(id) {
             location: "[" + lngRegister + ", " + latRegister + "]",
             date: $("#fechita").val(),
             type: $("#selectTipo0").val(),
+            subtype: $("#selectSubtipo0").val(),
             subregion: $("#selectDepartamento0").val(),
             town: $("#selectCiudad0").val(),
             county: $("#selectPueblo0").val(),
@@ -1949,6 +2000,7 @@ function editarCapaRegistro(id) {
             losses: $("#selectPerdidas").val(),
             source: $("#selectFuente0").val(),
             add: $("#selectNotas").val(),
+            picture_link: $("#selectLink").val(),
             triggering_description: $("#selectDescripDeto").val()
         }
         database.ref('ant/' + dbAnt.length).set(
@@ -2009,6 +2061,7 @@ function editPoint(e) {
         $("#latRegister").val(layergeojson.Norte);
         $("#fechita").val(layergeojson.Fecha);
         $("#selectTipo0").val(layergeojson.Tipo);
+        $("#selectSubtipo0").val(layergeojson.Subtipo);
         $("#selectDepartamento0").val(layergeojson.Subregion);
         $("#selectCiudad0").val(layergeojson.Municipio);
         $("#selectPueblo0").val(layergeojson.Pueblo);
@@ -2020,6 +2073,7 @@ function editPoint(e) {
         $("#selectPerdidas").val(layergeojson.Economicas);
         $("#selectFuente0").val(layergeojson.Fuente);
         $("#selectNotas").val(layergeojson.Notas);
+        $("#selectLink").val(layergeojson.LinkFoto);
     } else {
         $("#selectCapaRegistro").val("Colombia")
         AgregarFiltrosRegistro();
@@ -2027,6 +2081,7 @@ function editPoint(e) {
         $("#latRegister").val(layergeojson.Norte);
         $("#fechita").val(layergeojson.Fecha);
         $("#selectTipo0").val(layergeojson.Tipo);
+        $("#selectSubtipo0").val(layergeojson.Subtipo);
         $("#selectDepartamento0").val(layergeojson.Departamento);
         $("#selectCiudad0").val(layergeojson.Municipio);
         $("#selectPueblo0").val(layergeojson.Pueblo);
@@ -2037,6 +2092,7 @@ function editPoint(e) {
         $("#selectPerdidas").val(layergeojson.Economicas);
         $("#selectFuente0").val(layergeojson.Fuente);
         $("#selectNotas").val(layergeojson.Notas);
+        $("#selectLink").val(layergeojson.LinkFoto);
 
     }
 
