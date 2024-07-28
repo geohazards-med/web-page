@@ -310,7 +310,7 @@ var capasEst = [{
 
 
 function CargarEstaciones() {
-    map.spin(true);
+    map.spin(true, spinOpts);
     if (dbEstaciones.length === 0) {
         database.ref().child('EstacionesCampo').get().then((snapshot) => {
             if (snapshot.exists()) {
@@ -441,7 +441,7 @@ function CargarEstaciones() {
 
                 }
                 console.log(allData.toGeoJSON());
-                map.spin(false);
+                map.spin(false, spinOpts);
                 notification.success('¡Listo!', 'Se cargó con exito las estaciones, elija cuales desea ver');
 
                 for (let j = 0; j < capasEst.length; j++) {
@@ -846,6 +846,7 @@ function adjustDate(date) {
 }
 
 function graficarCapa(id) {
+    map.spin(true, spinOpts);
     const idCapa = id.split("_")[1];
     markers.clearLayers();
     capaPuntos.clearLayers();
@@ -913,6 +914,7 @@ function graficarCapa(id) {
                     markers.addTo(capaPuntos);
                     markers.addTo(map);
                     notification.success('¡Listo!', 'Se cargó con exito los eventos');
+                    map.spin(false);
                     console.log(capaPuntos.toGeoJSON());
                 } else {
                     console.log("No data available");
@@ -972,6 +974,7 @@ function graficarCapa(id) {
             markers.addTo(capaPuntos);
             markers.addTo(map);
             notification.success('¡Listo!', 'Se cargó con exito los eventos');
+            map.spin(false);
             console.log(capaPuntos.toGeoJSON());
         }
     }
@@ -1040,6 +1043,7 @@ function graficarCapa(id) {
                     markers.addTo(capaPuntos);
                     markers.addTo(map);
                     notification.success('¡Listo!', 'Se cargó con exito los eventos');
+                    map.spin(false);
                     console.log(capaPuntos.toGeoJSON());
                 } else {
                     console.log("No data available");
@@ -1099,6 +1103,7 @@ function graficarCapa(id) {
             markers.addTo(capaPuntos);
             markers.addTo(map);
             notification.success('¡Listo!', 'Se cargó con exito los eventos');
+            map.spin(false);
             console.log(capaPuntos.toGeoJSON());
         }
     }
