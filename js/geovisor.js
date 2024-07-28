@@ -871,6 +871,7 @@ function graficarCapa(id) {
                             auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
                             auxLng = parseFloat(auxLoc[0]);
                             auxLat = parseFloat(auxLoc[1]);
+                            element["fatalities"] = parseInt(element["fatalities"]);
                             if ((element["department"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
                                 const auxDate = adjustDate(dateEvent);
                                 var point = L.marker([auxLat, auxLng]).toGeoJSON();
@@ -929,6 +930,7 @@ function graficarCapa(id) {
                     auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
                     auxLng = parseFloat(auxLoc[0]);
                     auxLat = parseFloat(auxLoc[1]);
+                    element["fatalities"] = parseInt(element["fatalities"]);
                     if ((element["department"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
                         const auxDate = adjustDate(dateEvent);
                         var point = L.marker([auxLat, auxLng]).toGeoJSON();
@@ -988,6 +990,7 @@ function graficarCapa(id) {
                             auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
                             auxLng = parseFloat(auxLoc[0]);
                             auxLat = parseFloat(auxLoc[1]);
+                            element["fatalities"] = parseInt(element["fatalities"]);
                             if ((element["subregion"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
                                 const auxDate = adjustDate(dateEvent);
                                 if (auxLoc[0] === "" || auxLoc[1] === "") {
@@ -1054,6 +1057,7 @@ function graficarCapa(id) {
                     auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
                     auxLng = parseFloat(auxLoc[0]);
                     auxLat = parseFloat(auxLoc[1]);
+                    element["fatalities"] = parseInt(element["fatalities"]);
                     if ((element["subregion"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
                         const auxDate = adjustDate(dateEvent);
                         var point = L.marker([auxLat, auxLng]).toGeoJSON();
@@ -1863,7 +1867,7 @@ function anadirCapaRegistro(id) {
             site: $("#selectSitio0").val(),
             uncertainty: $("#selectIncert0").val(),
             triggering: $("#selectDetonante0").val(),
-            fatalities: $("#selectMuertes1").val(),
+            fatalities: parseInt($("#selectMuertes1").val()),
             losses: $("#selectPerdidas").val(),
             source: $("#selectFuente0").val(),
             add: $("#selectNotas").val(),
@@ -1882,7 +1886,7 @@ function anadirCapaRegistro(id) {
                 site: $("#selectSitio0").val(),
                 uncertainty: $("#selectIncert0").val(),
                 triggering: $("#selectDetonante0").val(),
-                fatalities: $("#selectMuertes1").val(),
+                fatalities: parseInt($("#selectMuertes1").val()),
                 losses: $("#selectPerdidas").val(),
                 source: $("#selectFuente0").val(),
                 add: $("#selectNotas").val(),
@@ -1908,7 +1912,7 @@ function anadirCapaRegistro(id) {
             site: $("#selectSitio0").val(),
             uncertainty: $("#selectIncert0").val(),
             triggering: $("#selectDetonante0").val(),
-            fatalities: $("#selectMuertes1").val(),
+            fatalities: parseInt($("#selectMuertes1").val()),
             losses: $("#selectPerdidas").val(),
             source: $("#selectFuente0").val(),
             add: $("#selectNotas").val(),
@@ -1928,7 +1932,7 @@ function anadirCapaRegistro(id) {
                 site: $("#selectSitio0").val(),
                 uncertainty: $("#selectIncert0").val(),
                 triggering: $("#selectDetonante0").val(),
-                fatalities: $("#selectMuertes1").val(),
+                fatalities: parseInt($("#selectMuertes1").val()),
                 losses: $("#selectPerdidas").val(),
                 source: $("#selectFuente0").val(),
                 add: $("#selectNotas").val(),
