@@ -498,3 +498,8 @@ div.modal-content {
 .modal-footer{
   margin-top: 45px;
 }
+
+.separador{
+  border: 1px black dotted;
+  margin: 10px 0;
+}

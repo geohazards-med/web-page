@@ -77,9 +77,9 @@ var markerInv = L.AwesomeMarkers.icon({
 
 var markerViv = L.AwesomeMarkers.icon({
     icon: 'house-user',
-    prefix:'fa',
+    prefix: 'fa',
     markerColor: 'blue'
-  });
+});
 
 //Función Principal ----->
 
@@ -116,31 +116,7 @@ $(document).ready(function () {
     AgregarCapas();
     // Agregar Descargas 
     AgregarDescargas();
-    // Inicialización de los Popover que muestran la información de las capas por países
-    $('[data-toggle="popover"]').popover({
-        title: function () {
-            const idPopover = this.id.split("_");
-            var contentPopover = '<div class="title-popover"><b>' + paises[idPopover[1]]["arrayCapas"][idPopover[2]]["name"] + '</b></div> <div id="close-' + this.id + '" class="close-popover" ><i class="fa-solid fa-xmark"></i></div>';
-            return contentPopover;
-        },
-        content: function () {
-            const idPopover = this.id.split("_");
-            var contentPopover = "<p>Texto de descripción de la capa</p>";
-            contentPopover += '<b>Autor: </b>' + paises[idPopover[1]]["arrayCapas"][idPopover[2]]["attribution"] + '<br>';
-            contentPopover += '<a target="_blank" href="' + paises[idPopover[1]]["arrayCapas"][idPopover[2]]["url"] + '"><b>URL del Recurso</b></a>';
-            return contentPopover;
-        }
-    });
-    // Función para el funcionamiento del botón cerrar de los Popover de información
-    $('[data-toggle="popover"]').on('shown.bs.popover', function () {
-        console.log(this.id);
-        $("#close-" + this.id).click(function (e) {
-            e.preventDefault();
-            const idPopover = this.id.split("close-");
-            console.log(idPopover[1]);
-            $('#' + idPopover[1]).popover("hide");
-        });
-    });
+
 
     setTimeout(function () {
         graficarCapa("btn_Colombia")
@@ -310,6 +286,7 @@ var capasEst = [{
 
 
 function CargarEstaciones() {
+    $("#btn_est").attr("disabled", true);
     map.spin(true, spinOpts);
     if (dbEstaciones.length === 0) {
         database.ref().child('EstacionesCampo').get().then((snapshot) => {
@@ -387,14 +364,14 @@ function CargarEstaciones() {
                         auxmarker = markerInv;
                         auxcapa = "inv"
                     }
-                    if (dbEstaciones[i]['Formularios']['count_VIVIENDA']>0) {
+                    if (dbEstaciones[i]['Formularios']['count_VIVIENDA'] > 0) {
                         for (let k = 0; k < dbEstaciones[i]['Formularios']['count_VIVIENDA']; k++) {
-                          auxFormatosPopUp += 'VIVIENDA_' + dbEstaciones[i]['Formularios']['Form_VIVIENDA']['Form_VIVIENDA_'+k]['idformatoValpa'] + ', ';   
+                            auxFormatosPopUp += 'VIVIENDA_' + dbEstaciones[i]['Formularios']['Form_VIVIENDA']['Form_VIVIENDA_' + k]['idformatoValpa'] + ', ';
                         }
                         auxmarker = markerViv;
                         auxcapa = "vivienda"
-                      }
-          
+                    }
+
 
 
                     L.extend(point.properties, {
@@ -426,14 +403,11 @@ function CargarEstaciones() {
                         puntico.addTo(capasEst[1].capa)
                     } else if (auxcapa === "cat") {
                         puntico.addTo(capasEst[2].capa)
-                    } 
-                    else if (auxcapa === "inv") {
+                    } else if (auxcapa === "inv") {
                         puntico.addTo(capasEst[3].capa)
-                    } 
-                    else if (auxcapa === "vivienda") {
+                    } else if (auxcapa === "vivienda") {
                         puntico.addTo(capasEst[4].capa)
-                    } 
-                    else {
+                    } else {
                         puntico.addTo(capasEst[5].capa)
                     }
 
@@ -470,6 +444,7 @@ function CargarEstaciones() {
         }).catch((error) => {
             console.error(error);
             notification.alert('¡Error!', 'No se pudo cargar la capa');
+            $("#btn_est").attr("disabled", false);
         });
     }
 }
@@ -610,58 +585,58 @@ $('#modal-estaciones').on('shown.bs.modal', function (e) {
     $("#myTabsContent").empty();
     $("#contenedorFotos").empty();
     $("#contenedorFotosLib").empty();
-  
+
     const feature = dbEstaciones[id];
-    var formatos='';
-  
-    if(feature["Formularios"].count_UGS_Rocas>0){
-      for (let j = 0; j < feature["Formularios"].count_UGS_Rocas; j++) {
-        if (feature["Formularios"]["Form_UGS_Rocas"]["Form_UGS_Rocas_"+j].activo) {
-          formatos += "UGSR" + feature["Formularios"]["Form_UGS_Rocas"]["Form_UGS_Rocas_"+j].noformato+', '; 
+    var formatos = '';
+
+    if (feature["Formularios"].count_UGS_Rocas > 0) {
+        for (let j = 0; j < feature["Formularios"].count_UGS_Rocas; j++) {
+            if (feature["Formularios"]["Form_UGS_Rocas"]["Form_UGS_Rocas_" + j].activo) {
+                formatos += "UGSR" + feature["Formularios"]["Form_UGS_Rocas"]["Form_UGS_Rocas_" + j].noformato + ', ';
+            }
         }
-      }
     }
-    if(feature["Formularios"].count_UGS_Suelos>0){
-      for (let j = 0; j < feature["Formularios"].count_UGS_Suelos; j++) {
-        if (feature["Formularios"]["Form_UGS_Suelos"]["Form_UGS_Suelos_"+j].activo) {
-          formatos += "UGSS" + feature["Formularios"]["Form_UGS_Suelos"]["Form_UGS_Suelos_"+j].noformato + ', '; 
+    if (feature["Formularios"].count_UGS_Suelos > 0) {
+        for (let j = 0; j < feature["Formularios"].count_UGS_Suelos; j++) {
+            if (feature["Formularios"]["Form_UGS_Suelos"]["Form_UGS_Suelos_" + j].activo) {
+                formatos += "UGSS" + feature["Formularios"]["Form_UGS_Suelos"]["Form_UGS_Suelos_" + j].noformato + ', ';
+            }
         }
-      }
     }
-    if(feature["Formularios"].count_SGMF>0){
-      for (let j = 0; j < feature["Formularios"].count_SGMF; j++) {
-        if (feature["Formularios"]["Form_SGMF"]["Form_SGMF_"+j].activo) {
-          formatos += "SGMF" + feature["Formularios"]["Form_SGMF"]["Form_SGMF_"+j].noformato + ', '; 
+    if (feature["Formularios"].count_SGMF > 0) {
+        for (let j = 0; j < feature["Formularios"].count_SGMF; j++) {
+            if (feature["Formularios"]["Form_SGMF"]["Form_SGMF_" + j].activo) {
+                formatos += "SGMF" + feature["Formularios"]["Form_SGMF"]["Form_SGMF_" + j].noformato + ', ';
+            }
         }
-      }
     }
-    if(feature["Formularios"].count_CATALOGO>0){
-      for (let j = 0; j < feature["Formularios"].count_CATALOGO; j++) {
-        if (feature["Formularios"]["Form_CATALOGO"]["Form_CATALOGO_"+j].activo) {
-          formatos += "CATALOGO_" + feature["Formularios"]["Form_CATALOGO"]["Form_CATALOGO_"+j].ID_PARTE + ', '; 
+    if (feature["Formularios"].count_CATALOGO > 0) {
+        for (let j = 0; j < feature["Formularios"].count_CATALOGO; j++) {
+            if (feature["Formularios"]["Form_CATALOGO"]["Form_CATALOGO_" + j].activo) {
+                formatos += "CATALOGO_" + feature["Formularios"]["Form_CATALOGO"]["Form_CATALOGO_" + j].ID_PARTE + ', ';
+            }
         }
-      }
     }
-    if(feature["Formularios"].count_INVENTARIO>0){
-      for (let j = 0; j < feature["Formularios"].count_INVENTARIO; j++) {
-        if (feature["Formularios"]["Form_INVENTARIO"]["Form_INVENTARIO_"+j].activo) {
-          formatos += "INVENTARIO_" + feature["Formularios"]["Form_INVENTARIO"]["Form_INVENTARIO_"+j].ID_PARTE + ', '; 
+    if (feature["Formularios"].count_INVENTARIO > 0) {
+        for (let j = 0; j < feature["Formularios"].count_INVENTARIO; j++) {
+            if (feature["Formularios"]["Form_INVENTARIO"]["Form_INVENTARIO_" + j].activo) {
+                formatos += "INVENTARIO_" + feature["Formularios"]["Form_INVENTARIO"]["Form_INVENTARIO_" + j].ID_PARTE + ', ';
+            }
         }
-      }
     }
-  
+
     if ((formatos == '')) {
-      formatos = "Ninguno";
-    }else{
-      formatos = formatos.substring(0, formatos.length - 2);
+        formatos = "Ninguno";
+    } else {
+        formatos = formatos.substring(0, formatos.length - 2);
     }
-  
-    $("#id-edit-estaciones").html("Registro con ID "+ id)
+
+    $("#id-edit-estaciones").html("Registro con ID " + id)
     // pasa las celdas capturadas al form modal de rasgos para su edicion
     $("#estaciones-id").val(id);
-    $('#est-fecha-1').val(feature.Fecha);        
+    $('#est-fecha-1').val(feature.Fecha);
     $('#est-estacion-1').val(feature.Estacion);
-    $('#est-tipoEstacion-1').val(feature.TipoEstacion);                
+    $('#est-tipoEstacion-1').val(feature.TipoEstacion);
     $('#est-formatos-1').val(formatos);
     $('#est-norte-1').val(lat);
     $('#est-este-1').val(lng);
@@ -670,17 +645,16 @@ $('#modal-estaciones').on('shown.bs.modal', function (e) {
     $('#est-fotosLib-1').val(feature.FotosLib);
     $('#est-observaciones-1').val(feature.Observaciones);
     if (feature.TextoLibreta !== undefined) {
-      $('#est-textollib-1').val(feature.TextoLibreta);
-    }
-    else{
-      $('#est-textollib-1').val("");
+        $('#est-textollib-1').val(feature.TextoLibreta);
+    } else {
+        $('#est-textollib-1').val("");
     }
     $('#est-propietario-3').val(feature.Propietario);
-  
+
     $("#btnModalEditar").val(id);
-  
+
     GraficarEstacion(true, id, false);
-  });
+});
 
 
 
@@ -782,7 +756,7 @@ function AgregarFiltros() {
                 ciudades.push(element["town"])
                 tipos.push(element["type"])
                 trigger.push(element["triggering"])
-                
+
             }
         }
         var departamentosUnique = getUnique(departamentos);
@@ -857,6 +831,7 @@ function graficarCapa(id) {
     const type = $("#selectTipo").val();
     const detonante = $("#selectDetonante").val();
     const muertes = $("#selectMuertes").val();
+    var eventos_graficas = [];
     if (idCapa == "Colombia") {
         if (dbCol.length === 0) {
             database.ref().child("col").get().then((snapshot) => {
@@ -874,6 +849,7 @@ function graficarCapa(id) {
                             auxLat = parseFloat(auxLoc[1]);
                             element["fatalities"] = parseInt(element["fatalities"]);
                             if ((element["department"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                                eventos_graficas.push(element);
                                 const auxDate = adjustDate(dateEvent);
                                 var point = L.marker([auxLat, auxLng]).toGeoJSON();
                                 L.extend(point.properties, {
@@ -916,13 +892,16 @@ function graficarCapa(id) {
                     notification.success('¡Listo!', 'Se cargó con exito los eventos');
                     map.spin(false);
                     console.log(capaPuntos.toGeoJSON());
+                    RefrescarGraficas(eventos_graficas);
                 } else {
                     console.log("No data available");
                     notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
+                    map.spin(false);
                 }
             }).catch((error) => {
                 notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos');
                 console.log(error);
+                map.spin(false);
             });
         } else {
             for (let i = 0; i < dbCol.length; i++) {
@@ -934,6 +913,7 @@ function graficarCapa(id) {
                     auxLat = parseFloat(auxLoc[1]);
                     element["fatalities"] = parseInt(element["fatalities"]);
                     if ((element["department"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                        eventos_graficas.push(element);
                         const auxDate = adjustDate(dateEvent);
                         var point = L.marker([auxLat, auxLng]).toGeoJSON();
                         L.extend(point.properties, {
@@ -976,6 +956,7 @@ function graficarCapa(id) {
             notification.success('¡Listo!', 'Se cargó con exito los eventos');
             map.spin(false);
             console.log(capaPuntos.toGeoJSON());
+            RefrescarGraficas(eventos_graficas);
         }
     }
     if (idCapa == "Antioquia") {
@@ -999,8 +980,8 @@ function graficarCapa(id) {
                                 if (auxLoc[0] === "" || auxLoc[1] === "") {
                                     console.log(i);
                                     console.log("Error en la latitud o longitud");
-                                }
-                                else{
+                                } else {
+                                    eventos_graficas.push(element);
                                     var point = L.marker([auxLat, auxLng]).toGeoJSON();
                                     L.extend(point.properties, {
                                         bd: "ant",
@@ -1045,13 +1026,16 @@ function graficarCapa(id) {
                     notification.success('¡Listo!', 'Se cargó con exito los eventos');
                     map.spin(false);
                     console.log(capaPuntos.toGeoJSON());
+                    RefrescarGraficas(eventos_graficas);
                 } else {
                     console.log("No data available");
                     notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
+                    map.spin(false);
                 }
             }).catch((error) => {
                 notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos');
                 console.log(error);
+                map.spin(false);
             });
         } else {
             for (let i = 0; i < dbAnt.length; i++) {
@@ -1063,6 +1047,7 @@ function graficarCapa(id) {
                     auxLat = parseFloat(auxLoc[1]);
                     element["fatalities"] = parseInt(element["fatalities"]);
                     if ((element["subregion"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                        eventos_graficas.push(element);
                         const auxDate = adjustDate(dateEvent);
                         var point = L.marker([auxLat, auxLng]).toGeoJSON();
                         L.extend(point.properties, {
@@ -1105,6 +1090,7 @@ function graficarCapa(id) {
             notification.success('¡Listo!', 'Se cargó con exito los eventos');
             map.spin(false);
             console.log(capaPuntos.toGeoJSON());
+            RefrescarGraficas(eventos_graficas);
         }
     }
 }
@@ -1155,6 +1141,336 @@ function CerrarPopoverCapas(id) {
 
 //<----- Capas por País
 
+
+
+//Generar Graficas ----->
+let chart_total;
+let chart_trigger;
+let chart_mes;
+let chart_year;
+function RefrescarGraficas(data) {
+
+    const totals = data.reduce((acc, curr) => {
+        const type = curr.type;
+        const fatalities = parseInt(curr.fatalities, 10) || 0;
+
+        if (!acc[type]) {
+            acc[type] = {
+                count: 0,
+                fatalities: 0
+            };
+        }
+
+        acc[type].count += 1;
+        acc[type].fatalities += fatalities;
+
+        return acc;
+    }, {});
+
+    // Separar los datos en arrays individuales
+    const types = [];
+    const eventCounts = [];
+    const fatalities = [];
+
+    const maxCount = Math.max(...eventCounts);
+    const maxFatalities = Math.max(...fatalities);
+    const maxValue = Math.max(maxCount, maxFatalities);
+
+    for (const type in totals) {
+        if (totals.hasOwnProperty(type)) {
+            types.push(type);
+            eventCounts.push(totals[type].count);
+            fatalities.push(totals[type].fatalities);
+        }
+    }
+
+    console.log(types);
+    console.log(eventCounts);
+    console.log(fatalities);
+
+
+    const ctx = document.getElementById('total_events_fatal').getContext('2d');
+    if (chart_total) {
+        chart_total.destroy();
+    }
+
+    chart_total = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: types,
+            datasets: [{
+                    label: 'Number of Events',
+                    data: eventCounts,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Total Fatalities',
+                    data: fatalities,
+                    type: 'line',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 2,
+                    fill: false,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Number of Events'
+                    },
+                    grid: {
+                        drawOnChartArea: false, // Dibuja líneas de cuadrícula
+                        lineWidth: 1,
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    }
+                },
+                y1: {
+                    beginAtZero: true,
+                    type: 'linear',
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Total Fatalities'
+                    },
+                    grid: {
+                        drawOnChartArea: false, // Evita líneas de cuadrícula para este eje
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += context.raw;
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
+    // Contar registros agrupados por 'triggering'
+    const counts = data.reduce((acc, item) => {
+        const triggering = item.triggering;
+        if (!acc[triggering]) {
+            acc[triggering] = 0;
+        }
+        acc[triggering] += 1;
+        return acc;
+    }, {});
+
+    // Transformar el objeto en arrays
+    const triggeringTypes = Object.keys(counts);
+    const eventCountsTri = Object.values(counts);
+
+    // Mostrar los resultados en la consola
+    console.log('Triggering Types:', triggeringTypes);
+    console.log('Event Counts:', eventCountsTri);
+
+    // Calcular el total
+    const total = eventCountsTri.reduce((sum, count) => sum + count, 0);
+
+    // Calcular los porcentajes
+    const percentages = eventCountsTri.map(count => (count / total * 100).toFixed(1) + '%');
+
+
+
+    const ctx1 = document.getElementById('total_trigger').getContext('2d');
+    if (chart_trigger) {
+        chart_trigger.destroy();
+    }
+
+    chart_trigger = new Chart(ctx1, {
+        type: 'pie',
+        data: {
+            labels: triggeringTypes,
+            datasets: [{
+                data: eventCountsTri,
+                backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)', 'rgba(255, 159, 64, 0.5)', 'rgba(255, 99, 132, 0.5)'],
+                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)', 'rgba(255, 99, 132, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        generateLabels: function(chart) {
+                            const data = chart.data;
+                            if (data.labels.length && data.datasets.length) {
+                                return data.labels.map((label, i) => {
+                                    const dataset = data.datasets[0];
+                                    const total = dataset.data.reduce((sum, value) => sum + value, 0);
+                                    const value = dataset.data[i];
+                                    const percentage = (value / total * 100).toFixed(2) + '%';
+                                    return {
+                                        text: `${label}: ${percentage}`,
+                                        fillStyle: dataset.backgroundColor[i],
+                                        strokeStyle: dataset.borderColor[i],
+                                        lineWidth: dataset.borderWidth
+                                    };
+                                });
+                            }
+                            return [];
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = "Número de Eventos" || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += context.raw;
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
+     // Contar registros agrupados por mes
+     const countsByMonth = data.reduce((acc, item) => {
+        const date = new Date(item.date);
+        const monthYear = `${date.getMonth()+1}`;
+        if (!acc[monthYear]) {
+            acc[monthYear] = 0;
+        }
+        acc[monthYear] += 1;
+        return acc;
+    }, {});
+
+    // Transformar el objeto en arrays
+    const months = Object.keys(countsByMonth);
+    const eventCountsMes = Object.values(countsByMonth);
+
+    console.log('Months:', months);
+    console.log('Event Counts:', eventCountsMes);
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+
+    const ctx2 = document.getElementById('total_mes').getContext('2d');
+    if (chart_mes) {
+        chart_mes.destroy();
+    }
+    chart_mes = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: monthNames,
+            datasets: [{
+                label: 'Cantidad de Registros',
+                data: eventCountsMes,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Mes'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Cantidad de Registros'
+                    }
+                }
+            }
+        }
+    });
+
+
+    // Agrupar registros por año
+    const countsByYear = data.reduce((acc, item) => {
+        const date = new Date(item.date);
+        const year = date.getFullYear();
+        if (!acc[year]) {
+            acc[year] = 0;
+        }
+        acc[year] += 1;
+        return acc;
+    }, {});
+
+    // Preparar datos para el gráfico
+    const years = Object.keys(countsByYear);
+    const eventCountsYear = Object.values(countsByYear);
+
+    // Crear el gráfico
+    const ctx3 = document.getElementById('total_year').getContext('2d');
+    if (chart_year) {
+        chart_year.destroy();
+    }
+    chart_year = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'Cantidad de Registros',
+                data: eventCountsYear,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Año'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Cantidad de Registros'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+
+}
+
+//<----- Generar Graficas
 
 //Cargar Capas ----->
 
@@ -2225,7 +2541,7 @@ function ajustarAnt() {
     var news_events = [];
     for (let index = 0; index < db_to_ant.length; index++) {
         const element = db_to_ant[index];
-        var event= {};
+        var event = {};
         event["active"] = true;
         event["bd"] = "ant";
         event["type"] = element["Tipo"];
@@ -2273,11 +2589,10 @@ function ajustarEstaciones() {
     estaciones_new = bd_re;
 
     for (let index = 0; index < cont; index++) {
-        const element = estaciones2["estacion_"+index];
+        const element = estaciones2["estacion_" + index];
         if (element["activo"]) {
             estaciones_new.push(element);
-        }
-        else {
+        } else {
             // console.log(index);
         }
     }

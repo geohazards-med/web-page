@@ -125,6 +125,8 @@
             <li><a href="#capas" role="tab"><i class="fa-solid fa-layer-group" title="Inventario"></i></a></li>
             <!-- Estaciones -->
             <li><a href="#estaciones" role="tab"><i class="fa-solid fa-map-pin" title="Estaciones"></i></a></li>
+            <!-- Graficas -->
+            <li><a href="#graficas" role="tab"><i class="fa-solid fa-chart-pie" title="Estaciones"></i></a></li>
             <!-- Cargar Capas -->
             <li><a href="#cargarCapa" role="tab"><i class="fa-solid fa-upload" title="Cargar Capas"></i></a></li>
             <!-- Descargar Capas -->
@@ -200,6 +202,40 @@
                     <div id="est_content" class="row"></div>
                 </div>
             </div>
+
+        </div>
+
+        <!-- Contenido Graficas -->
+        <div class="leaflet-sidebar-pane" id="graficas">
+            <h1 class="leaflet-sidebar-header">
+                Gráficas 
+                <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <br>
+            <h4>Total de Eventos y Fallecimientos por Tipo</h4>
+            <br>
+            <canvas id="total_events_fatal"></canvas>
+            <div class="separador"></div>
+            <br>
+            <br>
+            <br>
+            <h4>Total de Eventos por cada Detonante</h4>
+            <br>
+            <canvas id="total_trigger"></canvas>
+            <div class="separador"></div>
+            <br>
+            <br>
+            <br>
+            <h4>Total de Eventos por Año</h4>
+            <br>
+            <canvas id="total_year"></canvas>
+            <div class="separador"></div>
+            <br>
+            <br>
+            <br>
+            <h4>Total de Eventos por Mes</h4>
+            <br>
+            <canvas id="total_mes"></canvas>
 
         </div>
 
@@ -372,6 +408,9 @@
     	<!-- Scripts -->
     <script src="js/plugins.js" type="text/javascript"></script>
     <script src="js/slides.js" type="text/javascript"></script>
+
+    <!-- Librería Gráficas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Date Format -->
     <script src="js/lib/dateFormat.min.js"></script>
