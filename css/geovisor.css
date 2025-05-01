@@ -503,3 +503,10 @@ div.modal-content {
   border: 1px black dotted;
   margin: 10px 0;
 }
+
+.texto-cita{
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  margin: 25px auto;
+}

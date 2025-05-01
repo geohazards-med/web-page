@@ -1606,6 +1606,7 @@ function GraficarFileKML(f) {
                     track.addTo(map);
                     try {
                         map.fitBounds(track.getBounds());
+                        console.log(track.toGeoJSON());
                     } catch (error) {
                         console.log(error);
                     }
