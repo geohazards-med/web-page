@@ -498,3 +498,15 @@ div.modal-content {
 .modal-footer{
   margin-top: 45px;
 }
+
+.separador{
+  border: 1px black dotted;
+  margin: 10px 0;
+}
+
+.texto-cita{
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  margin: 25px auto;
+}

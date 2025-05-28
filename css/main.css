@@ -593,3 +593,40 @@ li.link-revista, li.pdf{
   border-bottom: 2px solid #fff;
   border-radius: 2px;
 }
+
+#simposio{
+  margin-right: 35px;
+  padding: 0 0px;
+  opacity: 0.8;
+  font-size: 17px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+#simposio:hover{
+  opacity: 1;
+  color: #fff;
+  border-bottom: 2px solid #fff;
+  border-radius: 2px;
+}
+
+#menu{
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 0;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 60vw;
+  flex-direction: row;
+}
+
+#logo{
+  min-width: 120px;
+}
+
+.logo-s{
+  width: 120px;
+  min-width: 120px;
+}

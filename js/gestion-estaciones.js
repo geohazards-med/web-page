@@ -4,12 +4,30 @@ function ElementoFormato(nombre, clase, tag, stringArray) {
     this.tag = tag;
     this.stringArray = stringArray;
 }
+
+var listaElementosVIVIENDA = [
+  new ElementoFormato("ID Formato",  "edittext",  "idformatoValpa", 0),
+  new ElementoFormato("Tipo de Material",  "spinner",  "tipoMaterialValpa", ["Madera","Acero","Tapia","Concreto","Mampostería","Bahareque","Prefabricada","Lote vacío"]),
+  new ElementoFormato("Vereda o Sector",  "spinner",  "veredaValpa", ["No Aplica","","EL GUAYABO","EL LIBANO","MALLARINO","LA MACHONTA","EL BOSQUE","POTRERILLO","PLAYA RICA","LA MESETA","LA SARDINA","LA HERRADURA","LA FABIANA","LA GRACIELA","BOLAÑOS"]),
+  new ElementoFormato("Lugar",  "edittext",  "lugarValpa", 0),
+  new ElementoFormato("Inventario o Reporte de Daños",  "edittext",  "invValpa", 0),
+  new ElementoFormato("Nombre y Contacto de uno de los Dueños/as o Habitantes de la Casa",  "edittext",  "nombresValpa", 0),
+  new ElementoFormato("Número de Personas que Viven en la Casa",  "edittext",  "numeroValpa", 0),
+  new ElementoFormato( "Factores de fragilidad",  "titulo",  "titu", 0),
+  new ElementoFormato( "Tipología",  "spinner",  "tipologiaValpa", ["Construcciones simples - 1.0","Estructuras ligeras - 0.90","Estructuras con confinamiento deficiente - 0.70","Mampostería reforzada - 0.50","Edificaciones reforzadas - 0.3","Edificaciones con reforzamiento especial - 0.10"]  ),
+  new ElementoFormato( "Número de pisos - Salt",  "spinner",  "noPisosValpa", ["1 - 0.90","2 - 0.90","3 - 0.60","Mayor a 3 - 0.05"]),
+  new ElementoFormato( "Estado - Separación de grietas (mm) - Scon",  "spinner",  "estadoValpa", ["Muy bueno - 0mm - 0.00","Bueno - 0-0.5mm - 0.05","Deformaciones leves - 0.5-1.0mm - 0.25","Deformaciones medias - 1.0-5.0mm - 0.50","Deformaciones graves - 5.0-10.0mm - 0.75","Deformaciones muy graves - Mayores a 10mm - 1.00"] ),
+  new ElementoFormato( "Vida útil - Tipología",  "spinner",  "vidaUtilValpa", ["50 años - A y B","30 años - C y D","15 años - E","1-2 años - F"]),
+  new ElementoFormato( "Años de servicio",  "edittext",  "servicioValpa", 0),
+  new ElementoFormato( "Observaciones Adicionales",  "edittext",  "ObsValpa", 0)
+]
+
 var ElementoSueloResidualUGSR = new ElementoFormato( "Horizonte",  "secuenciaestratisuelosres",  "secuenciaestratisuelor", ['VI','V','IV']);
 var ElementoSueloResidualUGSS = new ElementoFormato( "Horizonte",  "secuenciaestrati",  "secuenciaestratisuelor", ['VI (Suelo Residual Menor a 10% F.R.*)','V (Saprolito Fino 10%-35% F.R.*)','IV (Saprolito Grueso 35%-70% F.R.*)']);
 
 var listaElementosUGSR = [
   new ElementoFormato( "Número Formato",  "edittext",  "noformato", 0),
-  new ElementoFormato( "Municipio",  "spinner",  "municipios", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA']),
+  new ElementoFormato( "Municipio",  "spinner",  "municipios", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA', 'VALPARAISO', 'ACACIAS']),
   new ElementoFormato( "Vereda",  "edittext",  "vereda", 0),
   new ElementoFormato( "Número de la Estación",  "edittext",  "noestacion", 0),
   new ElementoFormato( "Clase Afloramiento",  "spinner",  "claseaflor", ['Natural','Corte superficial','Excavación subterránea','Trinchera, Apique']),
@@ -59,7 +77,7 @@ var listaElementosUGSFotosAnexas = [
 
 var listaElementosUGSS = [
   new ElementoFormato( "Número Formato",  "edittext",  "noformato", 0),
-  new ElementoFormato( "Municipio",  "spinner",  "municipios", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA']),
+  new ElementoFormato( "Municipio",  "spinner",  "municipios", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA', 'VALPARAISO', 'ACACIAS']),
   new ElementoFormato( "Vereda",  "edittext",  "vereda", 0),
   new ElementoFormato( "Número de la Estación",  "edittext",  "noestacion", 0),
   new ElementoFormato( "Clase Afloramiento",  "spinner",  "claseaflor", ['Natural','Corte superficial','Excavación subterránea','Trinchera, Apique']),
@@ -105,7 +123,7 @@ var listaElementosUGSS = [
 
 var listaElementosSGMF =[
   new ElementoFormato( "Número Formato",  "edittext",  "noformato", 0),
-  new ElementoFormato( "Municipio",  "spinner",  "municipios", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA']),
+  new ElementoFormato( "Municipio",  "spinner",  "municipios", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA', 'VALPARAISO', 'ACACIAS']),
   new ElementoFormato( "Vereda",  "edittext",  "vereda", 0),
   new ElementoFormato( "Número de la Estación",  "edittext",  "noestacion", 0),
   new ElementoFormato( "Tipo de Ambiente (Marque varios si es necesario)","radiocheck","ambiente",["Morfoestructural","Volcánico","Denudacional","Fluvial-Lagunar","Marino-Costero","Glacial-Periglacial","Eólico","Kárstico","Antropogénico"]),
@@ -160,7 +178,7 @@ var listaElementosCAT = [
   new ElementoFormato("CONFIABILIDAD FECHA EVENTO","spinnerMM","ConfiFechaMM",["Exacta","Certeza mes y año","Certeza Año","Confiabilidad baja","Incierta"]),
   new ElementoFormato("FECHA REPORTE","edittextMM","FECHA_REP",0),
   new ElementoFormato("SIMMA","edittextMM","COD_SIMMA",0),
-  new ElementoFormato("Municipio",  "spinnerMM",  "NOM_MUN", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA']),
+  new ElementoFormato("Municipio",  "spinnerMM",  "NOM_MUN", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA', 'VALPARAISO', 'ACACIAS']),
   new ElementoFormato("Vereda",  "edittextMM",  "VEREDA", 0),
   new ElementoFormato("SITIO","edittext","SITIO",0),
   new ElementoFormato("Latitud","edittext","latitudMM",0),
@@ -204,7 +222,7 @@ var listaElementosINV = [
   new ElementoFormato("CONFIABILIDAD FECHA EVENTO","spinnerMM","ConfiFechaMM",["Exacta","Certeza mes y año","Certeza Año","Confiabilidad baja","Incierta"]),
   new ElementoFormato("FECHA REPORTE","edittextMM","FECHA_REP",0),
   new ElementoFormato("SIMMA","edittextMM","COD_SIMMA",0),
-  new ElementoFormato("Municipio",  "spinnerMM",  "NOM_MUN", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA']),
+  new ElementoFormato("Municipio",  "spinnerMM",  "NOM_MUN", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA', 'VALPARAISO', 'ACACIAS']),
   new ElementoFormato("Vereda",  "edittextMM",  "VEREDA", 0),
   new ElementoFormato("Sitio","edittext","SITIO",0),
   new ElementoFormato("REFERENCIA GEOGRÁFICA","edittextMM","REF_GEOGRF",0),
@@ -293,7 +311,7 @@ var listaElementosUSOS = [
   new ElementoFormato("Número de Planilla","edittext","NOPLANILLA", 0),
   new ElementoFormato("Nombre del Intérprete","edittext","PROPIETARIO", 0),
   new ElementoFormato("Periodo de Interpretación (Mes/Año)","edittext","PERIODO", 0),
-  new ElementoFormato("Municipio",  "spinner",  "MUNICIPIO", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA']),
+  new ElementoFormato("Municipio",  "spinner",  "MUNICIPIO", ['AGUADAS','ARANZAZU','FILADELFIA','MARQUETALIA','RIOSUCIO','SUPIA', 'VALPARAISO', 'ACACIAS']),
   new ElementoFormato("Fecha","edittext","FECHA", 0),
   new ElementoFormato("Sensor Utilizado","edittext","SENSOR", 0),
 ];
@@ -528,6 +546,14 @@ function GraficarEstacion(isEdit, id, addInEdit){
   var addFormato = "Ninguno";
 
   if (isEdit) {
+    if(dbEstaciones[id]["Formularios"].count_VIVIENDA>0){
+      for (let j = 0; j < dbEstaciones[id]["Formularios"].count_VIVIENDA; j++) {
+        var formato = dbEstaciones[id]["Formularios"]["Form_VIVIENDA"]["Form_VIVIENDA_"+j]; 
+        if (formato.activo) {
+          GraficarVIVIENDA(isEdit, j, id, false);          
+        }             
+      }
+    }
     if(dbEstaciones[id]["Formularios"].count_UGS_Rocas>0){
       for (let j = 0; j < dbEstaciones[id]["Formularios"].count_UGS_Rocas; j++) {
         var formato = dbEstaciones[id]["Formularios"]["Form_UGS_Rocas"]["Form_UGS_Rocas_"+j]; 
@@ -581,6 +607,22 @@ function GraficarEstacion(isEdit, id, addInEdit){
   }
   else{
     addFormato = addInEdit ? $('#add-est-formatos-select disabled-edit').val() : $('#add-est-formatos-select disabled').val();
+    if (addFormato == 'VIVIENDA') {
+      if (addInEdit) {
+        var auxContVIVIENDA = dbEstaciones[id]["Formularios"].count_VIVIENDA;
+        if (dbEstaciones[id]["Formularios"]["Form_VIVIENDA"] === undefined) {
+          dbEstaciones[id]["Formularios"]["Form_VIVIENDA"] = {};
+        }
+        dbEstaciones[id]["Formularios"]["Form_VIVIENDA"]["Form_VIVIENDA_"+auxContVIVIENDA] ={activo:true};
+        GraficarVIVIENDA(isEdit, auxContVIVIENDA, id, true);
+        dbEstaciones[id]["Formularios"].count_VIVIENDA = auxContVIVIENDA+1;
+        contAddVIVIENDA++;
+      }
+      else{
+        GraficarVIVIENDA(isEdit, contAddVIVIENDA, 0, false);
+        contAddVIVIENDA++;
+      }
+    }
     if (addFormato == 'UGSR') {
       if (addInEdit) {
         var auxContRocas = dbEstaciones[id]["Formularios"].count_UGS_Rocas;
@@ -699,6 +741,141 @@ function GraficarEstacion(isEdit, id, addInEdit){
       }
     }
     if (addFormato != 'Ninguno') {}
+  }
+
+  function GraficarVIVIENDA(isEdit, j, id, addInEdit) {
+    var auxTipoFormat = 'VIVIENDA';
+    var formato; 
+    var noformato; 
+    var estacion; 
+    if (isEdit || addInEdit) {
+      if (isEdit) {
+        formato = dbEstaciones[id]["Formularios"]["Form_VIVIENDA"]["Form_VIVIENDA_"+j]; 
+        noformato = auxTipoFormat +'_'+ formato.idformatoValpa; 
+        estacion = dbEstaciones[id]["Estacion"]; 
+      }
+      else{
+        noformato = auxTipoFormat + j; 
+        estacion = dbEstaciones[id]["Estacion"]; 
+      }
+      var myTabs ='<li class="nav-item">';
+      if(primerForm){
+        myTabs += '<a class="nav-link active" id="'+auxTipoFormat+'tab-'+j+'" data-toggle="tab" href="#'+auxTipoFormat+'tabcontent-'+j+'" role="tab" aria-controls="'+noformato+'_'+estacion+'" aria-selected="true">';
+        primerForm = false;
+      }
+      else{
+        myTabs +='<a class="nav-link" id="'+auxTipoFormat+'tab-'+j+'" data-toggle="tab" href="#'+auxTipoFormat+'tabcontent-'+j+'" role="tab" aria-controls="'+noformato+'_'+estacion+'" aria-selected="true">';
+      }
+      myTabs +='<h4>'+noformato+'</h4></a></li>';
+      $("#myTabs").append(myTabs);      
+      
+    }
+    else{
+      noformato = auxTipoFormat + j; 
+      estacion = "nuevaEstacion"; 
+      myTabs ='<li class="nav-item">';
+      if(primerFormAdd){
+        myTabs += '<a class="nav-link active" id="'+auxTipoFormat+'tab-'+j+'" data-toggle="tab" href="#'+auxTipoFormat+'tabcontent-'+j+'" role="tab" aria-controls="'+noformato+'_'+estacion+'" aria-selected="true">';
+        primerFormAdd = false;
+      }
+      else{
+        myTabs +='<a class="nav-link" id="'+auxTipoFormat+'tab-'+j+'" data-toggle="tab" href="#'+auxTipoFormat+'tabcontent-'+j+'" role="tab" aria-controls="'+noformato+'_'+estacion+'" aria-selected="true">';
+      }
+      myTabs +='<h4>'+noformato+'</h4></a></li>';
+      $("#myTabsAdd").append(myTabs);
+    }
+
+    var formularioForm = '<div class="row">'
+
+    for (let i = 0; i < listaElementosVIVIENDA.length; i++) {
+      var eleTag = listaElementosVIVIENDA[i].tag;
+      var eleName = listaElementosVIVIENDA[i].nombre;
+      var eleClase = listaElementosVIVIENDA[i].clase;
+      var eleStringArray = listaElementosVIVIENDA[i].stringArray;
+      if (eleClase == "titulo") {
+        formularioForm += 
+        '<div class="form-group col-12">'+
+          '<label class="bold">'+eleName+'</label>'+
+        '</div>';
+      }
+      if (eleClase == "edittext") {
+        formularioForm += 
+        '<div class="form-group col-sm-6 col-md-3">'+
+          '<label for="'+noformato+'_'+eleTag+j+'" class="bold">'+eleName+'</label>'+
+          '<input disabled type="text" class="form-control" id="'+noformato+'_'+eleTag+j+'" value="'+(isEdit? formato[eleTag] : "")+'"></input>'+
+        '</div>';
+        idsFormatos[auxTipoFormat+'_'+eleTag+'_'+j] = noformato+'_'+eleTag+j;
+      }
+      if (eleClase == "spinner") {
+        formularioForm += 
+        '<div class="form-group col-sm-6 col-md-3">'+
+          '<label for="'+noformato+'_'+eleTag+j+'" class="bold">'+eleName+'</label>'+
+          '<select disabled class="form-control" id="'+noformato+'_'+eleTag+j+'">';
+            for (let k = 0; k < eleStringArray.length; k++) {
+              if (isEdit) {
+                if(eleStringArray[k] == formato[eleTag]){
+                  formularioForm += '<option selected="selected" value="'+eleStringArray[k]+'">'+eleStringArray[k]+'</option>';
+                }
+                else{
+                  formularioForm += '<option value="'+eleStringArray[k]+'">'+eleStringArray[k]+'</option>';
+                }
+              }
+              else{
+                formularioForm += '<option value="'+eleStringArray[k]+'">'+eleStringArray[k]+'</option>';
+              } 
+            }
+        formularioForm += '</select></div>';
+        idsFormatos[auxTipoFormat+'_'+eleTag+'_'+j] = noformato+'_'+eleTag+j;
+      }
+    }
+
+    // formularioForm += 
+    // '<div class="col-3">'+
+    //   '<button id="VIVIENDA-btn-borrar-'+ id +'-'+j+'" class="btn estilo-modales">Borrar Formato</button>'+
+    // '</div>';      
+    
+    formularioForm += '</div>';
+
+    if (isEdit || addInEdit) {
+      var auxAppend = "";
+      if(primerForm1){
+        auxAppend = '<div class="tab-pane fade show active" id="'+auxTipoFormat+'tabcontent-'+j+'" role="tabpanel" aria-labelledby="'+noformato+'_'+estacion+'-tab">'+formularioForm+'</div>'
+        $("#myTabsContent").append(auxAppend);
+        primerForm1 = false
+      }else{
+        auxAppend = '<div class="tab-pane fade" id="'+auxTipoFormat+'tabcontent-'+j+'" role="tabpanel" aria-labelledby="'+noformato+'_'+estacion+'-tab">'+formularioForm+'</div>'
+        $("#myTabsContent").append(auxAppend);
+      }
+    }
+    else{
+      var auxAppend = "";
+      if(primerForm1Add){
+        auxAppend = '<div class="tab-pane fade show active" id="'+auxTipoFormat+'tabcontent-'+j+'" role="tabpanel" aria-labelledby="'+noformato+'_'+estacion+'-tab">'+formularioForm+'</div>'
+        primerForm1Add = false
+      }else{
+        auxAppend = '<div class="tab-pane fade" id="'+auxTipoFormat+'tabcontent-'+j+'" role="tabpanel" aria-labelledby="'+noformato+'_'+estacion+'-tab">'+formularioForm+'</div>'
+      }
+      $("#myTabsContentAdd").append(auxAppend);
+    }
+
+    $('#VIVIENDA-btn-borrar-'+id+'-'+j).click(function (e) { 
+      e.preventDefault();
+      var idfo = parseInt($(this).attr('id').split('-')[3]);
+      var f = parseInt($(this).attr('id').split('-')[4]);
+      estaciones["estacion_"+idfo]["Formularios"]["Form_VIVIENDA"]["Form_VIVIENDA_"+f]['activo'] = false; 
+      $("#VIVIENDAtab-"+f).addClass('d-none');
+      $("#VIVIENDAtabcontent-"+f).addClass('d-none');
+      
+      notice(`Se ha Borrado exitosamente el Formato VIVIENDA ${f} en la Estación ${estacion}, Proceda a guardar los cambios en la estación.`, {
+        type: 'success', 
+        position: 'topcenter', 
+        appendType: 'append',
+        closeBtn: false,
+        autoClose: 4000,
+        className: '',
+      })
+    
+    });
   }
 
   function GraficarUGSR(isEdit, j, id, addInEdit) {
@@ -1193,10 +1370,10 @@ function GraficarEstacion(isEdit, id, addInEdit){
                   formularioFormDisc += '<input disabled type="file" class="form-control col-sm-6 col-md-4 col-lg-3" id="fotoAnexa_UGSR_'+auxDiscont+'_'+jDisc+'" onchange="handleFilesAflor(this.files, id)">'
                 }
 
-                formularioFormDisc +=
-                '<div class="col-3">'+
-                  '<button id="estBorrarFotoUGSR-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Foto Anexa</button>'+
-                '</div>';
+                // formularioFormDisc +=
+                // '<div class="col-3">'+
+                //   '<button id="estBorrarFotoUGSR-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Foto Anexa</button>'+
+                // '</div>';
 
           formularioFormDisc += '</div></div></div></div>';
 
@@ -1629,10 +1806,10 @@ function GraficarEstacion(isEdit, id, addInEdit){
               formularioFormDisc += '<input disabled type="file" class="form-control col-sm-6 col-md-4 col-lg-3" id="fotoAnexa_UGSS_'+auxDiscont+'_'+jDisc+'" onchange="handleFilesAflor(this.files, id)">'
             }
 
-            formularioFormDisc +=
-            '<div class="col-3">'+
-              '<button id="estBorrarFotoUGSS-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Foto Anexa</button>'+
-            '</div>';
+            // formularioFormDisc +=
+            // '<div class="col-3">'+
+            //   '<button id="estBorrarFotoUGSS-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Foto Anexa</button>'+
+            // '</div>';
 
       formularioFormDisc += '</div></div></div></div>';
 
@@ -2033,10 +2210,10 @@ function GraficarEstacion(isEdit, id, addInEdit){
             }
           }
 
-        formularioFormDisc +=
-        '<div class="col-3">'+
-          '<button id="estBorrarSGMF-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar SGMF</button>'+
-        '</div>';
+        // formularioFormDisc +=
+        // '<div class="col-3">'+
+        //   '<button id="estBorrarSGMF-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar SGMF</button>'+
+        // '</div>';
 
       formularioFormDisc += '</div></div></div></div>';
 
@@ -2132,9 +2309,9 @@ function GraficarEstacion(isEdit, id, addInEdit){
             }
 
             formularioFormDisc +=
-            '<div class="col-3">'+
-              '<button id="estBorrarFotoSGMF-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Foto Anexa</button>'+
-            '</div>';
+            // '<div class="col-3">'+
+            //   '<button id="estBorrarFotoSGMF-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Foto Anexa</button>'+
+            // '</div>';
 
       formularioFormDisc += '</div></div></div></div>';
 
@@ -2466,10 +2643,10 @@ function GraficarEstacion(isEdit, id, addInEdit){
               }
             }
 
-            formularioFormDisc +=
-            '<div class="col-3">'+
-              '<button id="estBorrarDanoCat-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Daño</button>'+
-            '</div>';
+            // formularioFormDisc +=
+            // '<div class="col-3">'+
+            //   '<button id="estBorrarDanoCat-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Daño</button>'+
+            // '</div>';
 
       formularioFormDisc += '</div></div></div></div>';
 
@@ -2957,10 +3134,10 @@ function GraficarEstacion(isEdit, id, addInEdit){
               }
             }
 
-            formularioFormDisc +=
-            '<div class="col-3">'+
-              '<button id="estBorrarDanoInv-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Daño</button>'+
-            '</div>';
+            // formularioFormDisc +=
+            // '<div class="col-3">'+
+            //   '<button id="estBorrarDanoInv-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Daño</button>'+
+            // '</div>';
 
       formularioFormDisc += '</div></div></div></div>';
 
@@ -3055,10 +3232,10 @@ function GraficarEstacion(isEdit, id, addInEdit){
               formularioFormDisc += '<input disabled type="file" class="form-control col-sm-6 col-md-4 col-lg-3" id="fotoAnexa_INVENTARIO_'+auxDiscont+'_'+jDisc+'" onchange="handleFilesAflor(this.files, id)">'
             }
 
-            formularioFormDisc +=
-            '<div class="col-3">'+
-              '<button id="estBorrarFotoINVENTARIO-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Foto Anexa</button>'+
-            '</div>';
+            // formularioFormDisc +=
+            // '<div class="col-3">'+
+            //   '<button id="estBorrarFotoINVENTARIO-'+id+'-'+jDisc+'-'+auxDiscont+'-'+(addInEdit||isEdit?"1":"0")+'" class="btn estilo-modales">Borrar Foto Anexa</button>'+
+            // '</div>';
 
       formularioFormDisc += '</div></div></div></div>';
 
@@ -4609,7 +4786,7 @@ function ElementoGenerar(col,nombre, clase, tag, idCampo, stringArray) {
 
 var ListaGenerarGeneral = [
   new ElementoGenerar("4","Vereda", "input disabled", "Vereda", "veredaTL", []),
-  new ElementoGenerar("4","Municipio", "select disabled", "Municipio", "muniTL", ["","AGUADAS","ARANZAZU","FILADELFIA","MARQUETALIA","RIOSUCIO","SUPIA"]),
+  new ElementoGenerar("4","Municipio", "select disabled", "Municipio", "muniTL", ["","AGUADAS","ARANZAZU","FILADELFIA","MARQUETALIA","RIOSUCIO","SUPIA", 'VALPARAISO', 'ACACIAS']),
   new ElementoGenerar("6","Coordenada", "input disabled", "Coordenada", "coorTL", []),
   new ElementoGenerar("4","Altura", "input disabled", "Altura", "alturaTL", [])
 ];
@@ -4698,7 +4875,7 @@ var ListaGenerarSGMF = [
 var ListaGenerarCMM = [
   new ElementoGenerar("12","Referencia Geográfica", "textarea disabled", "Referencia Geográfica", "refGeoTL", []),
   new ElementoGenerar("4","Vereda", "input disabled", "Vereda CMM", "veredaTL", []),
-  new ElementoGenerar("4","Municipio", "select disabled", "Municipio", "muniTL", ["","AGUADAS","ARANZAZU","FILADELFIA","MARQUETALIA","RIOSUCIO","SUPIA"]),
+  new ElementoGenerar("4","Municipio", "select disabled", "Municipio", "muniTL", ["","AGUADAS","ARANZAZU","FILADELFIA","MARQUETALIA","RIOSUCIO","SUPIA", 'VALPARAISO', 'ACACIAS']),
   new ElementoGenerar("6","Coordenada", "input disabled", "Coordenada", "coorTL", []),
   new ElementoGenerar("4","Altura", "input disabled", "Altura", "alturaTL", []),
   new ElementoGenerar("4","Fecha Evento", "input disabled", "Fecha Evento", "fechaEventoTL", []),

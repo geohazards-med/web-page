@@ -72,7 +72,13 @@ var markerCat = L.AwesomeMarkers.icon({
 var markerInv = L.AwesomeMarkers.icon({
     icon: 'hill-rockslide',
     prefix: 'fa',
-    markerColor: 'cadetblue'
+    markerColor: 'blue'
+});
+
+var markerViv = L.AwesomeMarkers.icon({
+    icon: 'house-user',
+    prefix: 'fa',
+    markerColor: 'blue'
 });
 
 //Función Principal ----->
@@ -110,31 +116,7 @@ $(document).ready(function () {
     AgregarCapas();
     // Agregar Descargas 
     AgregarDescargas();
-    // Inicialización de los Popover que muestran la información de las capas por países
-    $('[data-toggle="popover"]').popover({
-        title: function () {
-            const idPopover = this.id.split("_");
-            var contentPopover = '<div class="title-popover"><b>' + paises[idPopover[1]]["arrayCapas"][idPopover[2]]["name"] + '</b></div> <div id="close-' + this.id + '" class="close-popover" ><i class="fa-solid fa-xmark"></i></div>';
-            return contentPopover;
-        },
-        content: function () {
-            const idPopover = this.id.split("_");
-            var contentPopover = "<p>Texto de descripción de la capa</p>";
-            contentPopover += '<b>Autor: </b>' + paises[idPopover[1]]["arrayCapas"][idPopover[2]]["attribution"] + '<br>';
-            contentPopover += '<a target="_blank" href="' + paises[idPopover[1]]["arrayCapas"][idPopover[2]]["url"] + '"><b>URL del Recurso</b></a>';
-            return contentPopover;
-        }
-    });
-    // Función para el funcionamiento del botón cerrar de los Popover de información
-    $('[data-toggle="popover"]').on('shown.bs.popover', function () {
-        console.log(this.id);
-        $("#close-" + this.id).click(function (e) {
-            e.preventDefault();
-            const idPopover = this.id.split("close-");
-            console.log(idPopover[1]);
-            $('#' + idPopover[1]).popover("hide");
-        });
-    });
+
 
     setTimeout(function () {
         graficarCapa("btn_Colombia")
@@ -290,6 +272,11 @@ var capasEst = [{
         active: 1
     },
     {
+        name: "Viviendas",
+        capa: L.layerGroup(),
+        active: 1
+    },
+    {
         name: "Sin Tipo",
         capa: L.layerGroup(),
         active: 1
@@ -299,7 +286,8 @@ var capasEst = [{
 
 
 function CargarEstaciones() {
-    map.spin(true);
+    $("#btn_est").attr("disabled", true);
+    map.spin(true, spinOpts);
     if (dbEstaciones.length === 0) {
         database.ref().child('EstacionesCampo').get().then((snapshot) => {
             if (snapshot.exists()) {
@@ -376,6 +364,14 @@ function CargarEstaciones() {
                         auxmarker = markerInv;
                         auxcapa = "inv"
                     }
+                    if (dbEstaciones[i]['Formularios']['count_VIVIENDA'] > 0) {
+                        for (let k = 0; k < dbEstaciones[i]['Formularios']['count_VIVIENDA']; k++) {
+                            auxFormatosPopUp += 'VIVIENDA_' + dbEstaciones[i]['Formularios']['Form_VIVIENDA']['Form_VIVIENDA_' + k]['idformatoValpa'] + ', ';
+                        }
+                        auxmarker = markerViv;
+                        auxcapa = "vivienda"
+                    }
+
 
 
                     L.extend(point.properties, {
@@ -409,15 +405,17 @@ function CargarEstaciones() {
                         puntico.addTo(capasEst[2].capa)
                     } else if (auxcapa === "inv") {
                         puntico.addTo(capasEst[3].capa)
-                    } else {
+                    } else if (auxcapa === "vivienda") {
                         puntico.addTo(capasEst[4].capa)
+                    } else {
+                        puntico.addTo(capasEst[5].capa)
                     }
 
 
 
                 }
                 console.log(allData.toGeoJSON());
-                map.spin(false);
+                map.spin(false, spinOpts);
                 notification.success('¡Listo!', 'Se cargó con exito las estaciones, elija cuales desea ver');
 
                 for (let j = 0; j < capasEst.length; j++) {
@@ -446,6 +444,7 @@ function CargarEstaciones() {
         }).catch((error) => {
             console.error(error);
             notification.alert('¡Error!', 'No se pudo cargar la capa');
+            $("#btn_est").attr("disabled", false);
         });
     }
 }
@@ -586,58 +585,58 @@ $('#modal-estaciones').on('shown.bs.modal', function (e) {
     $("#myTabsContent").empty();
     $("#contenedorFotos").empty();
     $("#contenedorFotosLib").empty();
-  
+
     const feature = dbEstaciones[id];
-    var formatos='';
-  
-    if(feature["Formularios"].count_UGS_Rocas>0){
-      for (let j = 0; j < feature["Formularios"].count_UGS_Rocas; j++) {
-        if (feature["Formularios"]["Form_UGS_Rocas"]["Form_UGS_Rocas_"+j].activo) {
-          formatos += "UGSR" + feature["Formularios"]["Form_UGS_Rocas"]["Form_UGS_Rocas_"+j].noformato+', '; 
+    var formatos = '';
+
+    if (feature["Formularios"].count_UGS_Rocas > 0) {
+        for (let j = 0; j < feature["Formularios"].count_UGS_Rocas; j++) {
+            if (feature["Formularios"]["Form_UGS_Rocas"]["Form_UGS_Rocas_" + j].activo) {
+                formatos += "UGSR" + feature["Formularios"]["Form_UGS_Rocas"]["Form_UGS_Rocas_" + j].noformato + ', ';
+            }
         }
-      }
     }
-    if(feature["Formularios"].count_UGS_Suelos>0){
-      for (let j = 0; j < feature["Formularios"].count_UGS_Suelos; j++) {
-        if (feature["Formularios"]["Form_UGS_Suelos"]["Form_UGS_Suelos_"+j].activo) {
-          formatos += "UGSS" + feature["Formularios"]["Form_UGS_Suelos"]["Form_UGS_Suelos_"+j].noformato + ', '; 
+    if (feature["Formularios"].count_UGS_Suelos > 0) {
+        for (let j = 0; j < feature["Formularios"].count_UGS_Suelos; j++) {
+            if (feature["Formularios"]["Form_UGS_Suelos"]["Form_UGS_Suelos_" + j].activo) {
+                formatos += "UGSS" + feature["Formularios"]["Form_UGS_Suelos"]["Form_UGS_Suelos_" + j].noformato + ', ';
+            }
         }
-      }
     }
-    if(feature["Formularios"].count_SGMF>0){
-      for (let j = 0; j < feature["Formularios"].count_SGMF; j++) {
-        if (feature["Formularios"]["Form_SGMF"]["Form_SGMF_"+j].activo) {
-          formatos += "SGMF" + feature["Formularios"]["Form_SGMF"]["Form_SGMF_"+j].noformato + ', '; 
+    if (feature["Formularios"].count_SGMF > 0) {
+        for (let j = 0; j < feature["Formularios"].count_SGMF; j++) {
+            if (feature["Formularios"]["Form_SGMF"]["Form_SGMF_" + j].activo) {
+                formatos += "SGMF" + feature["Formularios"]["Form_SGMF"]["Form_SGMF_" + j].noformato + ', ';
+            }
         }
-      }
     }
-    if(feature["Formularios"].count_CATALOGO>0){
-      for (let j = 0; j < feature["Formularios"].count_CATALOGO; j++) {
-        if (feature["Formularios"]["Form_CATALOGO"]["Form_CATALOGO_"+j].activo) {
-          formatos += "CATALOGO_" + feature["Formularios"]["Form_CATALOGO"]["Form_CATALOGO_"+j].ID_PARTE + ', '; 
+    if (feature["Formularios"].count_CATALOGO > 0) {
+        for (let j = 0; j < feature["Formularios"].count_CATALOGO; j++) {
+            if (feature["Formularios"]["Form_CATALOGO"]["Form_CATALOGO_" + j].activo) {
+                formatos += "CATALOGO_" + feature["Formularios"]["Form_CATALOGO"]["Form_CATALOGO_" + j].ID_PARTE + ', ';
+            }
         }
-      }
     }
-    if(feature["Formularios"].count_INVENTARIO>0){
-      for (let j = 0; j < feature["Formularios"].count_INVENTARIO; j++) {
-        if (feature["Formularios"]["Form_INVENTARIO"]["Form_INVENTARIO_"+j].activo) {
-          formatos += "INVENTARIO_" + feature["Formularios"]["Form_INVENTARIO"]["Form_INVENTARIO_"+j].ID_PARTE + ', '; 
+    if (feature["Formularios"].count_INVENTARIO > 0) {
+        for (let j = 0; j < feature["Formularios"].count_INVENTARIO; j++) {
+            if (feature["Formularios"]["Form_INVENTARIO"]["Form_INVENTARIO_" + j].activo) {
+                formatos += "INVENTARIO_" + feature["Formularios"]["Form_INVENTARIO"]["Form_INVENTARIO_" + j].ID_PARTE + ', ';
+            }
         }
-      }
     }
-  
+
     if ((formatos == '')) {
-      formatos = "Ninguno";
-    }else{
-      formatos = formatos.substring(0, formatos.length - 2);
+        formatos = "Ninguno";
+    } else {
+        formatos = formatos.substring(0, formatos.length - 2);
     }
-  
-    $("#id-edit-estaciones").html("Registro con ID "+ id)
+
+    $("#id-edit-estaciones").html("Registro con ID " + id)
     // pasa las celdas capturadas al form modal de rasgos para su edicion
     $("#estaciones-id").val(id);
-    $('#est-fecha-1').val(feature.Fecha);        
+    $('#est-fecha-1').val(feature.Fecha);
     $('#est-estacion-1').val(feature.Estacion);
-    $('#est-tipoEstacion-1').val(feature.TipoEstacion);                
+    $('#est-tipoEstacion-1').val(feature.TipoEstacion);
     $('#est-formatos-1').val(formatos);
     $('#est-norte-1').val(lat);
     $('#est-este-1').val(lng);
@@ -646,17 +645,16 @@ $('#modal-estaciones').on('shown.bs.modal', function (e) {
     $('#est-fotosLib-1').val(feature.FotosLib);
     $('#est-observaciones-1').val(feature.Observaciones);
     if (feature.TextoLibreta !== undefined) {
-      $('#est-textollib-1').val(feature.TextoLibreta);
-    }
-    else{
-      $('#est-textollib-1').val("");
+        $('#est-textollib-1').val(feature.TextoLibreta);
+    } else {
+        $('#est-textollib-1').val("");
     }
     $('#est-propietario-3').val(feature.Propietario);
-  
+
     $("#btnModalEditar").val(id);
-  
+
     GraficarEstacion(true, id, false);
-  });
+});
 
 
 
@@ -695,10 +693,13 @@ function AgregarFiltros() {
     if (capa === "Colombia") {
         for (let i = 0; i < Colombia.length; i++) {
             const element = Colombia[i];
-            departamentos.push(element["department"])
-            ciudades.push(element["town"])
-            tipos.push(element["type"])
-            trigger.push(element["triggering"])
+            if (element["active"]) {
+                departamentos.push(element["department"])
+                ciudades.push(element["town"])
+                tipos.push(element["type"])
+                trigger.push(element["triggering"])
+
+            }
         }
         var departamentosUnique = getUnique(departamentos);
         var ciudadesUnique = getUnique(ciudades);
@@ -750,10 +751,13 @@ function AgregarFiltros() {
     } else if (capa === "Antioquia") {
         for (let i = 0; i < Antioquia.length; i++) {
             const element = Antioquia[i];
-            departamentos.push(element["subregion"])
-            ciudades.push(element["town"])
-            tipos.push(element["type"])
-            trigger.push(element["triggering"])
+            if (element["active"]) {
+                departamentos.push(element["subregion"])
+                ciudades.push(element["town"])
+                tipos.push(element["type"])
+                trigger.push(element["triggering"])
+
+            }
         }
         var departamentosUnique = getUnique(departamentos);
         var ciudadesUnique = getUnique(ciudades);
@@ -816,6 +820,7 @@ function adjustDate(date) {
 }
 
 function graficarCapa(id) {
+    map.spin(true, spinOpts);
     const idCapa = id.split("_")[1];
     markers.clearLayers();
     capaPuntos.clearLayers();
@@ -826,6 +831,7 @@ function graficarCapa(id) {
     const type = $("#selectTipo").val();
     const detonante = $("#selectDetonante").val();
     const muertes = $("#selectMuertes").val();
+    var eventos_graficas = [];
     if (idCapa == "Colombia") {
         if (dbCol.length === 0) {
             database.ref().child("col").get().then((snapshot) => {
@@ -841,13 +847,16 @@ function graficarCapa(id) {
                             auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
                             auxLng = parseFloat(auxLoc[0]);
                             auxLat = parseFloat(auxLoc[1]);
+                            element["fatalities"] = parseInt(element["fatalities"]);
                             if ((element["department"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                                eventos_graficas.push(element);
                                 const auxDate = adjustDate(dateEvent);
                                 var point = L.marker([auxLat, auxLng]).toGeoJSON();
                                 L.extend(point.properties, {
                                     bd: "col",
                                     id: i,
                                     Tipo: element['type'],
+                                    Subtipo: element['subtype'],
                                     Fecha: auxDate,
                                     Detonante: element['triggering'],
                                     Fuente: element['source'],
@@ -860,7 +869,8 @@ function graficarCapa(id) {
                                     Este: auxLng,
                                     Fallecidos: element['fatalities'],
                                     Economicas: element['losses'],
-                                    Notas: element['add']
+                                    Notas: element['add'],
+                                    LinkFoto: element['picture_link']
                                 });
                                 L.geoJson(point, {
                                     onEachFeature: function (feature, layer) {
@@ -880,14 +890,18 @@ function graficarCapa(id) {
                     markers.addTo(capaPuntos);
                     markers.addTo(map);
                     notification.success('¡Listo!', 'Se cargó con exito los eventos');
+                    map.spin(false);
                     console.log(capaPuntos.toGeoJSON());
+                    RefrescarGraficas(eventos_graficas);
                 } else {
                     console.log("No data available");
                     notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
+                    map.spin(false);
                 }
             }).catch((error) => {
                 notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos');
                 console.log(error);
+                map.spin(false);
             });
         } else {
             for (let i = 0; i < dbCol.length; i++) {
@@ -897,13 +911,16 @@ function graficarCapa(id) {
                     auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
                     auxLng = parseFloat(auxLoc[0]);
                     auxLat = parseFloat(auxLoc[1]);
+                    element["fatalities"] = parseInt(element["fatalities"]);
                     if ((element["department"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                        eventos_graficas.push(element);
                         const auxDate = adjustDate(dateEvent);
                         var point = L.marker([auxLat, auxLng]).toGeoJSON();
                         L.extend(point.properties, {
                             bd: "col",
                             id: i,
                             Tipo: element['type'],
+                            Subtipo: element['subtype'],
                             Fecha: auxDate,
                             Detonante: element['triggering'],
                             Fuente: element['source'],
@@ -916,7 +933,8 @@ function graficarCapa(id) {
                             Este: auxLng,
                             Fallecidos: element['fatalities'],
                             Economicas: element['losses'],
-                            Notas: element['add']
+                            Notas: element['add'],
+                            LinkFoto: element['picture_link']
                         });
                         L.geoJson(point, {
                             onEachFeature: function (feature, layer) {
@@ -936,7 +954,9 @@ function graficarCapa(id) {
             markers.addTo(capaPuntos);
             markers.addTo(map);
             notification.success('¡Listo!', 'Se cargó con exito los eventos');
+            map.spin(false);
             console.log(capaPuntos.toGeoJSON());
+            RefrescarGraficas(eventos_graficas);
         }
     }
     if (idCapa == "Antioquia") {
@@ -954,39 +974,49 @@ function graficarCapa(id) {
                             auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
                             auxLng = parseFloat(auxLoc[0]);
                             auxLat = parseFloat(auxLoc[1]);
+                            element["fatalities"] = parseInt(element["fatalities"]);
                             if ((element["subregion"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
                                 const auxDate = adjustDate(dateEvent);
-                                var point = L.marker([auxLat, auxLng]).toGeoJSON();
-                                L.extend(point.properties, {
-                                    bd: "ant",
-                                    id: i,
-                                    Tipo: element['type'],
-                                    Fecha: auxDate,
-                                    Detonante: element['triggering'],
-                                    DetonanDes: element['triggering_description'],
-                                    Fuente: element['source'],
-                                    Subregion: element['subregion'],
-                                    Municipio: element['town'],
-                                    Pueblo: element['county'],
-                                    Sitio: element['site'],
-                                    Incertidumbre: element['uncertainty'],
-                                    Norte: auxLat,
-                                    Este: auxLng,
-                                    Fallecidos: element['fatalities'],
-                                    Economicas: element['losses'],
-                                    Notas: element['add']
-                                });
-                                L.geoJson(point, {
-                                    onEachFeature: function (feature, layer) {
-                                        if (feature.properties) {
-                                            layer.bindPopup(Object.keys(feature.properties).map(function (k) {
-                                                return k + ": " + feature.properties[k];
-                                            }).join("<br />"), {
-                                                maxHeight: 200
-                                            });
+                                if (auxLoc[0] === "" || auxLoc[1] === "") {
+                                    console.log(i);
+                                    console.log("Error en la latitud o longitud");
+                                } else {
+                                    eventos_graficas.push(element);
+                                    var point = L.marker([auxLat, auxLng]).toGeoJSON();
+                                    L.extend(point.properties, {
+                                        bd: "ant",
+                                        id: i,
+                                        Tipo: element['type'],
+                                        Subtipo: element['subtype'],
+                                        Fecha: auxDate,
+                                        Detonante: element['triggering'],
+                                        DetonanDes: element['triggering_description'],
+                                        Fuente: element['source'],
+                                        Subregion: element['subregion'],
+                                        Municipio: element['town'],
+                                        Pueblo: element['county'],
+                                        Sitio: element['site'],
+                                        Incertidumbre: element['uncertainty'],
+                                        Norte: auxLat,
+                                        Este: auxLng,
+                                        Fallecidos: element['fatalities'],
+                                        Economicas: element['losses'],
+                                        Notas: element['add'],
+                                        LinkFoto: element['picture_link']
+                                    });
+                                    L.geoJson(point, {
+                                        onEachFeature: function (feature, layer) {
+                                            if (feature.properties) {
+                                                layer.bindPopup(Object.keys(feature.properties).map(function (k) {
+                                                    return k + ": " + feature.properties[k];
+                                                }).join("<br />"), {
+                                                    maxHeight: 200
+                                                });
+                                            }
                                         }
-                                    }
-                                }).addTo(markers);
+                                    }).addTo(markers);
+
+                                }
                             }
                         }
 
@@ -994,14 +1024,18 @@ function graficarCapa(id) {
                     markers.addTo(capaPuntos);
                     markers.addTo(map);
                     notification.success('¡Listo!', 'Se cargó con exito los eventos');
+                    map.spin(false);
                     console.log(capaPuntos.toGeoJSON());
+                    RefrescarGraficas(eventos_graficas);
                 } else {
                     console.log("No data available");
                     notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos de la base de datos, no hay datos');
+                    map.spin(false);
                 }
             }).catch((error) => {
                 notification.alert('¡Error!', 'Ocurrió un error al intentar cargar los eventos');
                 console.log(error);
+                map.spin(false);
             });
         } else {
             for (let i = 0; i < dbAnt.length; i++) {
@@ -1011,13 +1045,16 @@ function graficarCapa(id) {
                     auxLoc = element['location'].replace("[", "").replace("]", "").split(", ");
                     auxLng = parseFloat(auxLoc[0]);
                     auxLat = parseFloat(auxLoc[1]);
+                    element["fatalities"] = parseInt(element["fatalities"]);
                     if ((element["subregion"] === depart || depart === "Todos") && (element["town"] === city || city === "Todas") && (element["type"] === type || type === "Todos") && (element["triggering"] === detonante || detonante === "Todos") && (element["fatalities"] >= muertes) && (dateEvent >= afterDate && dateEvent <= beforeDate)) {
+                        eventos_graficas.push(element);
                         const auxDate = adjustDate(dateEvent);
                         var point = L.marker([auxLat, auxLng]).toGeoJSON();
                         L.extend(point.properties, {
                             bd: "ant",
                             id: i,
                             Tipo: element['type'],
+                            Subtipo: element['subtype'],
                             Fecha: auxDate,
                             Detonante: element['triggering'],
                             DetonanDes: element['triggering_description'],
@@ -1031,7 +1068,8 @@ function graficarCapa(id) {
                             Este: auxLng,
                             Fallecidos: element['fatalities'],
                             Economicas: element['losses'],
-                            Notas: element['add']
+                            Notas: element['add'],
+                            LinkFoto: element['picture_link']
                         });
                         L.geoJson(point, {
                             onEachFeature: function (feature, layer) {
@@ -1050,7 +1088,9 @@ function graficarCapa(id) {
             markers.addTo(capaPuntos);
             markers.addTo(map);
             notification.success('¡Listo!', 'Se cargó con exito los eventos');
+            map.spin(false);
             console.log(capaPuntos.toGeoJSON());
+            RefrescarGraficas(eventos_graficas);
         }
     }
 }
@@ -1101,6 +1141,336 @@ function CerrarPopoverCapas(id) {
 
 //<----- Capas por País
 
+
+
+//Generar Graficas ----->
+let chart_total;
+let chart_trigger;
+let chart_mes;
+let chart_year;
+function RefrescarGraficas(data) {
+
+    const totals = data.reduce((acc, curr) => {
+        const type = curr.type;
+        const fatalities = parseInt(curr.fatalities, 10) || 0;
+
+        if (!acc[type]) {
+            acc[type] = {
+                count: 0,
+                fatalities: 0
+            };
+        }
+
+        acc[type].count += 1;
+        acc[type].fatalities += fatalities;
+
+        return acc;
+    }, {});
+
+    // Separar los datos en arrays individuales
+    const types = [];
+    const eventCounts = [];
+    const fatalities = [];
+
+    const maxCount = Math.max(...eventCounts);
+    const maxFatalities = Math.max(...fatalities);
+    const maxValue = Math.max(maxCount, maxFatalities);
+
+    for (const type in totals) {
+        if (totals.hasOwnProperty(type)) {
+            types.push(type);
+            eventCounts.push(totals[type].count);
+            fatalities.push(totals[type].fatalities);
+        }
+    }
+
+    console.log(types);
+    console.log(eventCounts);
+    console.log(fatalities);
+
+
+    const ctx = document.getElementById('total_events_fatal').getContext('2d');
+    if (chart_total) {
+        chart_total.destroy();
+    }
+
+    chart_total = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: types,
+            datasets: [{
+                    label: 'Number of Events',
+                    data: eventCounts,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Total Fatalities',
+                    data: fatalities,
+                    type: 'line',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 2,
+                    fill: false,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Number of Events'
+                    },
+                    grid: {
+                        drawOnChartArea: false, // Dibuja líneas de cuadrícula
+                        lineWidth: 1,
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    }
+                },
+                y1: {
+                    beginAtZero: true,
+                    type: 'linear',
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Total Fatalities'
+                    },
+                    grid: {
+                        drawOnChartArea: false, // Evita líneas de cuadrícula para este eje
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += context.raw;
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
+    // Contar registros agrupados por 'triggering'
+    const counts = data.reduce((acc, item) => {
+        const triggering = item.triggering;
+        if (!acc[triggering]) {
+            acc[triggering] = 0;
+        }
+        acc[triggering] += 1;
+        return acc;
+    }, {});
+
+    // Transformar el objeto en arrays
+    const triggeringTypes = Object.keys(counts);
+    const eventCountsTri = Object.values(counts);
+
+    // Mostrar los resultados en la consola
+    console.log('Triggering Types:', triggeringTypes);
+    console.log('Event Counts:', eventCountsTri);
+
+    // Calcular el total
+    const total = eventCountsTri.reduce((sum, count) => sum + count, 0);
+
+    // Calcular los porcentajes
+    const percentages = eventCountsTri.map(count => (count / total * 100).toFixed(1) + '%');
+
+
+
+    const ctx1 = document.getElementById('total_trigger').getContext('2d');
+    if (chart_trigger) {
+        chart_trigger.destroy();
+    }
+
+    chart_trigger = new Chart(ctx1, {
+        type: 'pie',
+        data: {
+            labels: triggeringTypes,
+            datasets: [{
+                data: eventCountsTri,
+                backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)', 'rgba(255, 159, 64, 0.5)', 'rgba(255, 99, 132, 0.5)'],
+                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)', 'rgba(255, 99, 132, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        generateLabels: function(chart) {
+                            const data = chart.data;
+                            if (data.labels.length && data.datasets.length) {
+                                return data.labels.map((label, i) => {
+                                    const dataset = data.datasets[0];
+                                    const total = dataset.data.reduce((sum, value) => sum + value, 0);
+                                    const value = dataset.data[i];
+                                    const percentage = (value / total * 100).toFixed(2) + '%';
+                                    return {
+                                        text: `${label}: ${percentage}`,
+                                        fillStyle: dataset.backgroundColor[i],
+                                        strokeStyle: dataset.borderColor[i],
+                                        lineWidth: dataset.borderWidth
+                                    };
+                                });
+                            }
+                            return [];
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = "Número de Eventos" || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += context.raw;
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
+     // Contar registros agrupados por mes
+     const countsByMonth = data.reduce((acc, item) => {
+        const date = new Date(item.date);
+        const monthYear = `${date.getMonth()+1}`;
+        if (!acc[monthYear]) {
+            acc[monthYear] = 0;
+        }
+        acc[monthYear] += 1;
+        return acc;
+    }, {});
+
+    // Transformar el objeto en arrays
+    const months = Object.keys(countsByMonth);
+    const eventCountsMes = Object.values(countsByMonth);
+
+    console.log('Months:', months);
+    console.log('Event Counts:', eventCountsMes);
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+
+    const ctx2 = document.getElementById('total_mes').getContext('2d');
+    if (chart_mes) {
+        chart_mes.destroy();
+    }
+    chart_mes = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: monthNames,
+            datasets: [{
+                label: 'Cantidad de Registros',
+                data: eventCountsMes,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Mes'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Cantidad de Registros'
+                    }
+                }
+            }
+        }
+    });
+
+
+    // Agrupar registros por año
+    const countsByYear = data.reduce((acc, item) => {
+        const date = new Date(item.date);
+        const year = date.getFullYear();
+        if (!acc[year]) {
+            acc[year] = 0;
+        }
+        acc[year] += 1;
+        return acc;
+    }, {});
+
+    // Preparar datos para el gráfico
+    const years = Object.keys(countsByYear);
+    const eventCountsYear = Object.values(countsByYear);
+
+    // Crear el gráfico
+    const ctx3 = document.getElementById('total_year').getContext('2d');
+    if (chart_year) {
+        chart_year.destroy();
+    }
+    chart_year = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'Cantidad de Registros',
+                data: eventCountsYear,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Año'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Cantidad de Registros'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+
+}
+
+//<----- Generar Graficas
 
 //Cargar Capas ----->
 
@@ -1236,6 +1606,7 @@ function GraficarFileKML(f) {
                     track.addTo(map);
                     try {
                         map.fitBounds(track.getBounds());
+                        console.log(track.toGeoJSON());
                     } catch (error) {
                         console.log(error);
                     }
@@ -1490,6 +1861,7 @@ function AgregarFiltrosRegistro() {
     var sitio = [];
     var incertidumbre = [];
     var tipos = [];
+    var subtipos = [];
     var trigger = [];
     var fuente = [];
 
@@ -1504,6 +1876,7 @@ function AgregarFiltrosRegistro() {
                 sitio.push(element["site"])
                 incertidumbre.push(element["uncertainty"])
                 tipos.push(element["type"])
+                subtipos.push(element["subtype"])
                 trigger.push(element["triggering"])
                 fuente.push(element["source"])
             }
@@ -1512,6 +1885,7 @@ function AgregarFiltrosRegistro() {
             var pueblosUnique = getUnique(pueblos);
             var sitioUnique = getUnique(sitio);
             var tiposUnique = getUnique(tipos);
+            var subtiposUnique = getUnique(subtipos);
             var incertidumbreUnique = getUnique(incertidumbre);
             var triggerUnique = getUnique(trigger);
             var fuenteUnique = getUnique(fuente);
@@ -1530,6 +1904,15 @@ function AgregarFiltrosRegistro() {
                 '<select class="form-control col-6 d-inline-block" id="selectTipo1">';
             for (let i = 0; i < tiposUnique.length; i++) {
                 const element = tiposUnique[i];
+                textAppend += '<option value="' + element + '">' + element + '</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">' +
+                '<label for="selectTipo1" class="bold d-block label-capas">Subtipo:</label>' +
+                '<input type="text" class="form-control col-6 d-inline-block" id="selectSubtipo0" value="">' +
+                '<select class="form-control col-6 d-inline-block" id="selectSubtipo1">';
+            for (let i = 0; i < subtiposUnique.length; i++) {
+                const element = subtiposUnique[i];
                 textAppend += '<option value="' + element + '">' + element + '</option>';
             }
             textAppend += '</select></div>';
@@ -1605,6 +1988,9 @@ function AgregarFiltrosRegistro() {
             textAppend += '<div class="col-12">' +
                 '<label for="selectNotas" class="bold label-capas">Notas:</label>' +
                 '<textarea type="number" class="form-control" id="selectNotas" value="0"></textarea></div>';
+            textAppend += '<div class="col-12">' +
+                '<label for="selectNotas" class="bold label-capas">Link Fotos:</label>' +
+                '<textarea type="number" class="form-control" id="selectLink" value="0"></textarea></div>';
 
             textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btnAñadir_Col" onclick="anadirCapaRegistro(id)">Añadir</button>';
             textAppend += '<button class="btn btn-comun ml-3 mt-3 d-none" id="btnEditar_Col" onclick="editarCapaRegistro(id)">Editar</button>';
@@ -1621,6 +2007,7 @@ function AgregarFiltrosRegistro() {
                 ciudades.push(element["town"])
                 pueblos.push(element["county"])
                 sitio.push(element["site"])
+                subtipos.push(element["subtype"])
                 incertidumbre.push(element["uncertainty"])
                 tipos.push(element["type"])
                 trigger.push(element["triggering"])
@@ -1631,6 +2018,7 @@ function AgregarFiltrosRegistro() {
             var pueblosUnique = getUnique(pueblos);
             var sitioUnique = getUnique(sitio);
             var tiposUnique = getUnique(tipos);
+            var subtiposUnique = getUnique(subtipos);
             var incertidumbreUnique = getUnique(incertidumbre);
             var triggerUnique = getUnique(trigger);
             var fuenteUnique = getUnique(fuente);
@@ -1649,6 +2037,15 @@ function AgregarFiltrosRegistro() {
                 '<select class="form-control col-6 d-inline-block" id="selectTipo1">';
             for (let i = 0; i < tiposUnique.length; i++) {
                 const element = tiposUnique[i];
+                textAppend += '<option value="' + element + '">' + element + '</option>';
+            }
+            textAppend += '</select></div>';
+            textAppend += '<div class="col-12">' +
+                '<label for="selectTipo1" class="bold d-block label-capas">Subtipo:</label>' +
+                '<input type="text" class="form-control col-6 d-inline-block" id="selectSubtipo0" value="">' +
+                '<select class="form-control col-6 d-inline-block" id="selectSubtipo1">';
+            for (let i = 0; i < subtiposUnique.length; i++) {
+                const element = subtiposUnique[i];
                 textAppend += '<option value="' + element + '">' + element + '</option>';
             }
             textAppend += '</select></div>';
@@ -1727,6 +2124,9 @@ function AgregarFiltrosRegistro() {
             textAppend += '<div class="col-12">' +
                 '<label for="selectNotas" class="bold label-capas">Notas:</label>' +
                 '<textarea type="number" class="form-control" id="selectNotas" value="0"></textarea></div>';
+            textAppend += '<div class="col-12">' +
+                '<label for="selectNotas" class="bold label-capas">Link Fotos:</label>' +
+                '<textarea type="number" class="form-control" id="selectLink" value="0"></textarea></div>';
 
             textAppend += '<button class="btn btn-comun ml-3 mt-3" id="btnAñadir_Ant" onclick="anadirCapaRegistro(id)">Añadir</button>';
             textAppend += '<button class="btn btn-comun ml-3 mt-3 d-none" id="btnEditar_Ant" onclick="editarCapaRegistro(id)">Editar</button>';
@@ -1742,6 +2142,9 @@ function AgregarFiltrosRegistro() {
 
     $("#selectTipo1").change(function () {
         $("#selectTipo0").val($("#selectTipo1").val());
+    });
+    $("#selectSubtipo1").change(function () {
+        $("#selectSubtipo0").val($("#selectSubtipo1").val());
     });
     $("#selectDepartamento1").change(function () {
         $("#selectDepartamento0").val($("#selectDepartamento1").val());
@@ -1779,16 +2182,18 @@ function anadirCapaRegistro(id) {
             location: "[" + lngRegister + ", " + latRegister + "]",
             date: $("#fechita").val(),
             type: $("#selectTipo0").val(),
+            subtype: $("#selectSubtipo0").val(),
             department: $("#selectDepartamento0").val(),
             town: $("#selectCiudad0").val(),
             county: $("#selectPueblo0").val(),
             site: $("#selectSitio0").val(),
             uncertainty: $("#selectIncert0").val(),
             triggering: $("#selectDetonante0").val(),
-            fatalities: $("#selectMuertes1").val(),
+            fatalities: parseInt($("#selectMuertes1").val()),
             losses: $("#selectPerdidas").val(),
             source: $("#selectFuente0").val(),
             add: $("#selectNotas").val(),
+            picture_link: $("#selectLink").val(),
         }).then((snapshot) => {
             console.log("Guardó");
             dbCol.push({
@@ -1796,16 +2201,18 @@ function anadirCapaRegistro(id) {
                 location: "[" + lngRegister + ", " + latRegister + "]",
                 date: $("#fechita").val(),
                 type: $("#selectTipo0").val(),
+                subtype: $("#selectSubtipo0").val(),
                 department: $("#selectDepartamento0").val(),
                 town: $("#selectCiudad0").val(),
                 county: $("#selectPueblo0").val(),
                 site: $("#selectSitio0").val(),
                 uncertainty: $("#selectIncert0").val(),
                 triggering: $("#selectDetonante0").val(),
-                fatalities: $("#selectMuertes1").val(),
+                fatalities: parseInt($("#selectMuertes1").val()),
                 losses: $("#selectPerdidas").val(),
                 source: $("#selectFuente0").val(),
                 add: $("#selectNotas").val(),
+                picture_link: $("#selectLink").val(),
             })
             notification.success('¡Listo!', 'Se guardó con exito el evento');
             $("#" + id).attr("disabled", false);
@@ -1820,16 +2227,18 @@ function anadirCapaRegistro(id) {
             location: "[" + lngRegister + ", " + latRegister + "]",
             date: $("#fechita").val(),
             type: $("#selectTipo0").val(),
+            subtype: $("#selectSubtipo0").val(),
             subregion: $("#selectDepartamento0").val(),
             town: $("#selectCiudad0").val(),
             county: $("#selectPueblo0").val(),
             site: $("#selectSitio0").val(),
             uncertainty: $("#selectIncert0").val(),
             triggering: $("#selectDetonante0").val(),
-            fatalities: $("#selectMuertes1").val(),
+            fatalities: parseInt($("#selectMuertes1").val()),
             losses: $("#selectPerdidas").val(),
             source: $("#selectFuente0").val(),
             add: $("#selectNotas").val(),
+            picture_link: $("#selectLink").val(),
             triggering_description: $("#selectDescripDeto").val()
         }).then((snapshot) => {
             console.log("Guardó");
@@ -1838,16 +2247,18 @@ function anadirCapaRegistro(id) {
                 location: "[" + lngRegister + ", " + latRegister + "]",
                 date: $("#fechita").val(),
                 type: $("#selectTipo0").val(),
+                subtype: $("#selectSubtipo0").val(),
                 subregion: $("#selectDepartamento0").val(),
                 town: $("#selectCiudad0").val(),
                 county: $("#selectPueblo0").val(),
                 site: $("#selectSitio0").val(),
                 uncertainty: $("#selectIncert0").val(),
                 triggering: $("#selectDetonante0").val(),
-                fatalities: $("#selectMuertes1").val(),
+                fatalities: parseInt($("#selectMuertes1").val()),
                 losses: $("#selectPerdidas").val(),
                 source: $("#selectFuente0").val(),
                 add: $("#selectNotas").val(),
+                picture_link: $("#selectLink").val(),
                 triggering_description: $("#selectDescripDeto").val()
             })
             notification.success('¡Listo!', 'Se guardó con exito el evento');
@@ -1872,6 +2283,7 @@ function editarCapaRegistro(id) {
             location: "[" + $("#lngRegister").val() + ", " + $("#latRegister").val() + "]",
             date: $("#fechita").val(),
             type: $("#selectTipo0").val(),
+            subtype: $("#selectSubtipo0").val(),
             department: $("#selectDepartamento0").val(),
             town: $("#selectCiudad0").val(),
             county: $("#selectPueblo0").val(),
@@ -1882,6 +2294,7 @@ function editarCapaRegistro(id) {
             losses: $("#selectPerdidas").val(),
             source: $("#selectFuente0").val(),
             add: $("#selectNotas").val(),
+            picture_link: $("#selectLink").val(),
         }
         database.ref('col/' + idPoint).set(
             auxpoint
@@ -1902,6 +2315,7 @@ function editarCapaRegistro(id) {
             location: "[" + lngRegister + ", " + latRegister + "]",
             date: $("#fechita").val(),
             type: $("#selectTipo0").val(),
+            subtype: $("#selectSubtipo0").val(),
             subregion: $("#selectDepartamento0").val(),
             town: $("#selectCiudad0").val(),
             county: $("#selectPueblo0").val(),
@@ -1912,6 +2326,7 @@ function editarCapaRegistro(id) {
             losses: $("#selectPerdidas").val(),
             source: $("#selectFuente0").val(),
             add: $("#selectNotas").val(),
+            picture_link: $("#selectLink").val(),
             triggering_description: $("#selectDescripDeto").val()
         }
         database.ref('ant/' + dbAnt.length).set(
@@ -1972,6 +2387,7 @@ function editPoint(e) {
         $("#latRegister").val(layergeojson.Norte);
         $("#fechita").val(layergeojson.Fecha);
         $("#selectTipo0").val(layergeojson.Tipo);
+        $("#selectSubtipo0").val(layergeojson.Subtipo);
         $("#selectDepartamento0").val(layergeojson.Subregion);
         $("#selectCiudad0").val(layergeojson.Municipio);
         $("#selectPueblo0").val(layergeojson.Pueblo);
@@ -1983,6 +2399,7 @@ function editPoint(e) {
         $("#selectPerdidas").val(layergeojson.Economicas);
         $("#selectFuente0").val(layergeojson.Fuente);
         $("#selectNotas").val(layergeojson.Notas);
+        $("#selectLink").val(layergeojson.LinkFoto);
     } else {
         $("#selectCapaRegistro").val("Colombia")
         AgregarFiltrosRegistro();
@@ -1990,6 +2407,7 @@ function editPoint(e) {
         $("#latRegister").val(layergeojson.Norte);
         $("#fechita").val(layergeojson.Fecha);
         $("#selectTipo0").val(layergeojson.Tipo);
+        $("#selectSubtipo0").val(layergeojson.Subtipo);
         $("#selectDepartamento0").val(layergeojson.Departamento);
         $("#selectCiudad0").val(layergeojson.Municipio);
         $("#selectPueblo0").val(layergeojson.Pueblo);
@@ -2000,6 +2418,7 @@ function editPoint(e) {
         $("#selectPerdidas").val(layergeojson.Economicas);
         $("#selectFuente0").val(layergeojson.Fuente);
         $("#selectNotas").val(layergeojson.Notas);
+        $("#selectLink").val(layergeojson.LinkFoto);
 
     }
 
@@ -2120,24 +2539,30 @@ function DeleteEvent(params) {
 
 // ajustarAnt()
 function ajustarAnt() {
-    for (let index = 0; index < revisados.length; index++) {
-        const element = revisados[index];
-        ant_db_no[element["id"]]["type"] = element["Tipo"];
-        // ant_db_no[element["id"]]["date"] = element["Fecha"];
-        ant_db_no[element["id"]]["triggering"] = element["Detonante"];
-        ant_db_no[element["id"]]["triggering_description"] = element["DetonanDes"];
-        ant_db_no[element["id"]]["source"] = element["Fuente"];
-        ant_db_no[element["id"]]["subregion"] = element["Subregion"];
-        ant_db_no[element["id"]]["town"] = element["Municipio"];
-        ant_db_no[element["id"]]["county"] = element["Pueblo"];
-        ant_db_no[element["id"]]["site"] = element["Sitio"];
-        ant_db_no[element["id"]]["uncertainty"] = element["Incertidum"];
-        ant_db_no[element["id"]]["location"] = "[" + element["Este"] + ", " + element["Norte"] + "]";
-        ant_db_no[element["id"]]["fatalities"] = element["Fallecidos"];
-        ant_db_no[element["id"]]["losses"] = element["Economicas"];
-        ant_db_no[element["id"]]["add"] = element["Notas"];
+    var news_events = [];
+    for (let index = 0; index < db_to_ant.length; index++) {
+        const element = db_to_ant[index];
+        var event = {};
+        event["active"] = true;
+        event["bd"] = "ant";
+        event["type"] = element["Tipo"];
+        event["date"] = element["Fecha"];
+        event["triggering"] = element["Detonante"];
+        event["triggering_description"] = "";
+        event["source"] = element["Fuente"];
+        event["subregion"] = "";
+        event["town"] = element["Municipio"];
+        event["county"] = element["Pueblo"];
+        event["site"] = element["Sitio"];
+        event["uncertainty"] = element["Incertidum"];
+        event["location"] = "[" + element["Este"].replace(",", ".") + ", " + element["Norte"].replace(",", ".") + "]";
+        event["fatalities"] = element["Fallecidos"];
+        event["losses"] = element["Economicas"];
+        event["add"] = element["Notas"];
+
+        news_events.push(event);
     }
-    console.log(ant_db_no);
+    console.log(news_events);
 }
 
 // ajustarCoord()
@@ -2159,20 +2584,19 @@ function ajustarCoord() {
 // ajustarEstaciones()
 function ajustarEstaciones() {
 
-    cont = estaciones.cont.cont
+    cont = estaciones2.cont.cont
 
     console.log(cont);
-    estaciones_new = []
+    estaciones_new = bd_re;
 
-    // for (let index = 0; index < cont; index++) {
-    //     const element = estaciones["estacion_"+index];
-    //     if (element["activo"]) {
-    //         estaciones_new.push(element);
-    //     }
-    //     else {
-    //         // console.log(index);
-    //     }
-    // }
+    for (let index = 0; index < cont; index++) {
+        const element = estaciones2["estacion_" + index];
+        if (element["activo"]) {
+            estaciones_new.push(element);
+        } else {
+            // console.log(index);
+        }
+    }
     cont = estaciones1.cont.cont
 
     console.log(cont);
@@ -2186,4 +2610,13 @@ function ajustarEstaciones() {
         }
     }
     console.log(estaciones_new);
+}
+
+// añadir_campos()
+function añadir_campos() {
+    for (let i = 0; i < bd_ant_añadir_campos.length; i++) {
+        bd_ant_añadir_campos[i]["subtype"] = "";
+        bd_ant_añadir_campos[i]["picture_link"] = "";
+    }
+    console.log(bd_ant_añadir_campos);
 }
