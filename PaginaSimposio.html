@@ -1,0 +1,2851 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IV Simposio Geoamenazas | Universidad Nacional de Colombia</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .timeline-time {
+                border-bottom: 2px solid var(--primary-green);
+                padding-bottom: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .ponente-principal {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .multimedia-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        :root {
+            --primary-green: #003c1f;
+            --secondary-green: #005a2e;
+            --accent-gold: #d4af37;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            overflow-x: hidden;
+        }
+        
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), 
+                        url('Minas2.jpg') center/cover;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            animation: fadeIn 1s ease;
+        }
+        
+        .logo img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: scale(1.1);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-green);
+        }
+        
+        .btn-inscripcion {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            animation: pulse 2s infinite;
+        }
+        
+        .btn-inscripcion:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+        }
+        
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-gray);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 60, 31, 0.7), rgba(0, 60, 31, 0.5)), 
+                        url('Minas2.jpg') center/cover;
+            z-index: -1;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: fadeInUp 1.5s ease 0.5s both;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .hero-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .hero-info-item i {
+            color: var(--accent-gold);
+        }
+        
+        .hero-cta {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--primary-green);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            margin-top: 2rem;
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+            background: #e5c048;
+        }
+        
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 100px 5%;
+            background: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .section-subtitle {
+            color: var(--primary-green);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent-gold);
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .about-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .about-card-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .about-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+        
+        .about-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .theme-section {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-top: 3rem;
+        }
+        
+        .theme-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+        
+        .theme-section p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Programa Section */
+        .programa-section {
+            padding: 100px 5%;
+            background: white;
+        }
+        
+        .programa-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .programa-timeline {
+            margin-top: 3rem;
+        }
+        
+        .timeline-block {
+            background: var(--light-gray);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .timeline-header i {
+            color: var(--accent-gold);
+        }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .timeline-item:hover::before {
+            opacity: 1;
+        }
+        
+        .timeline-item.destacado {
+            background: linear-gradient(135deg, #f8f9fa, #e8f5e9);
+            border: 2px solid var(--primary-green);
+        }
+        
+        .timeline-time {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timeline-content h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+        }
+        
+        .timeline-content p {
+            color: #666;
+        }
+        
+        .timeline-content i {
+            color: var(--accent-gold);
+            margin-right: 0.5rem;
+        }
+        
+        .timeline-break {
+            text-align: center;
+            padding: 2rem;
+            background: var(--accent-gold);
+            color: white;
+            border-radius: 50px;
+            margin: 2rem 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .programa-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .btn-download {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-download:hover {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* Expertos Section */
+        .expertos-section {
+            padding: 100px 5%;
+            background: var(--light-gray);
+        }
+        
+        .expertos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .ponente-principal {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 4rem;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow-hover);
+            overflow: hidden;
+        }
+        
+        .ponente-principal-img {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        
+        .ponente-principal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .ponente-principal:hover .ponente-principal-img img {
+            transform: scale(1.05);
+        }
+        
+        .ponente-overlay {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .ponente-principal-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .ponente-tag {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+        
+        .ponente-principal-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .ponente-titulo {
+            color: var(--primary-green);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .ponente-bio {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .ponente-tema {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .ponente-tema i {
+            color: var(--primary-green);
+            font-size: 1.5rem;
+        }
+        
+        .expertos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .experto-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .experto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .experto-img {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .experto-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .experto-card:hover .experto-img img {
+            transform: scale(1.1);
+        }
+        
+        .experto-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 60, 31, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .experto-card:hover .experto-overlay {
+            opacity: 1;
+        }
+        
+        .experto-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .experto-social a {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            transition: all 0.3s ease;
+        }
+        
+        .experto-social a:hover {
+            background: var(--accent-gold);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .experto-info {
+            padding: 2rem;
+        }
+        
+        .experto-info h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .experto-cargo {
+            color: var(--primary-green);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .experto-tema {
+            color: #666;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        .ver-mas-expertos {
+            text-align: center;
+        }
+        
+        .btn-ver-mas {
+            background: none;
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-ver-mas:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+        
+        /* Multimedia Section */
+        .multimedia-section {
+            padding: 100px 5%;
+            background: white;
+        }
+        
+        .multimedia-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .multimedia-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .tab-btn {
+            background: var(--light-gray);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tab-btn.active {
+            background: var(--primary-green);
+            color: white;
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background: #e0e0e0;
+        }
+        
+        .tab-content {
+            min-height: 400px;
+        }
+        
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 60, 31, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        /* Videos Grid */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .video-item {
+            background: var(--light-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .play-button i {
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            margin-left: 5px;
+        }
+        
+        .video-item:hover .play-button {
+            background: var(--accent-gold);
+        }
+        
+        .video-item:hover .play-button i {
+            color: white;
+        }
+        
+        .video-item h4 {
+            padding: 1.5rem 1.5rem 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-gray);
+        }
+        
+        .video-item p {
+            padding: 0 1.5rem 1.5rem;
+            color: #666;
+        }
+        
+        /* Recursos Grid */
+        .recursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .recurso-item {
+            background: var(--light-gray);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .recurso-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .recurso-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .recurso-icon i {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .recurso-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .recurso-item p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .recurso-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-green);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .recurso-download:hover {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+        }
+        
+        /* Registro Section */
+        .registro-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #f8f9fa, #e8f5e9);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .registro-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 60, 31, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .registro-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .registro-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .registro-destacado {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-hover);
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: pulse 3s infinite;
+        }
+        
+        .registro-destacado i {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .registro-destacado h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+        
+        .registro-beneficios {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .registro-beneficios h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .registro-beneficios ul {
+            list-style: none;
+        }
+        
+        .registro-beneficios li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .registro-beneficios i {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+        }
+        
+        .registro-pasos h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .pasos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .paso {
+            text-align: center;
+            position: relative;
+        }
+        
+        .paso-numero {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .paso::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-green);
+            opacity: 0.3;
+        }
+        
+        .paso:last-child::after {
+            display: none;
+        }
+        
+        .registro-qr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .qr-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-hover);
+            text-align: center;
+        }
+        
+        .qr-container img {
+            width: 250px;
+            height: 250px;
+            margin-bottom: 1rem;
+        }
+        
+        .qr-container p {
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+        
+        .btn-registro-directo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--accent-gold);
+            color: var(--primary-green);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-registro-directo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .registro-nota {
+            background: rgba(0, 60, 31, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 300px;
+        }
+        
+        .registro-nota i {
+            color: var(--primary-green);
+            font-size: 1.5rem;
+        }
+        
+        /* Ubicación Section */
+        .ubicacion-section {
+            padding: 100px 5%;
+            background: white;
+        }
+        
+        .ubicacion-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .ubicacion-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .ubicacion-card {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .ubicacion-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .ubicacion-icon i {
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        .ubicacion-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .como-llegar h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .transporte-opciones {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .transporte-item {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .transporte-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .transporte-item i {
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .transporte-item h5 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ubicacion-extra h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .ubicacion-extra ul {
+            list-style: none;
+        }
+        
+        .ubicacion-extra li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .ubicacion-extra i {
+            color: var(--primary-green);
+            width: 20px;
+        }
+        
+        .ubicacion-mapa {
+            height: 600px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* Patrocinadores Section */
+        .patrocinadores-section {
+            padding: 100px 5%;
+            background: var(--light-gray);
+        }
+        
+        .patrocinadores-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .organizadores {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .organizadores h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 2rem;
+        }
+        
+        .organizadores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .organizador-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .organizador-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .organizador-item img {
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+        
+        .organizador-item p {
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        
+        .patrocinadores-grid h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .logos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .logo-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow);
+        }
+        
+        .logo-item img {
+            max-height: 60px;
+            max-width: 150px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        
+        .logo-item:hover img {
+            filter: grayscale(0%);
+        }
+        
+        /* Contacto Section */
+        .contacto-section {
+            padding: 100px 5%;
+            background: white;
+        }
+        
+        .contacto-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contacto-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .contacto-info h3,
+        .contacto-formulario h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .contacto-items {
+            margin-bottom: 3rem;
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contacto-item i {
+            width: 50px;
+            height: 50px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .contacto-item h4 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+        }
+        
+        .redes-sociales h4 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+        }
+        
+        .social-link.facebook { background: #3b5998; }
+        .social-link.twitter { background: #1da1f2; }
+        .social-link.instagram { background: #e1306c; }
+        .social-link.linkedin { background: #0077b5; }
+        .social-link.youtube { background: #ff0000; }
+        
+        /* Formulario */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+        
+        .btn-enviar {
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-enviar:hover {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 80px 5% 20px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+        
+        .footer-column p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul a:hover {
+            color: var(--accent-gold);
+            padding-left: 5px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 25px 0 0 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .newsletter-form input::placeholder {
+            color: #aaa;
+        }
+        
+        .newsletter-form button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            background: var(--accent-gold);
+            color: var(--primary-green);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background: #e5c048;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background: var(--accent-gold);
+            color: var(--primary-green);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #aaa;
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .scroll-top:hover {
+            background: var(--secondary-green);
+            transform: translateY(-5px);
+        }
+        
+        .scroll-top.show {
+            display: flex;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .registro-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .pasos-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .paso::after {
+                display: none;
+            }
+            
+            .ubicacion-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .ubicacion-mapa {
+                height: 400px;
+            }
+            
+            .contacto-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <img src="logo-unal.png" alt="UNAL">
+                <span>IV SIMPOSIO GEOAMENAZAS</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#acerca">Acerca</a></li>
+                <li><a href="#programa">Programa</a></li>
+                <li><a href="#expertos">Expertos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#inscripcion" class="btn-inscripcion">¡Inscríbete Gratis!</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Universidad Nacional de Colombia - Facultad de Minas</p>
+            <h1 class="hero-title">IV SIMPOSIO GEOAMENAZAS</h1>
+            <div class="hero-info">
+                <div class="hero-info-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>6 de Agosto, 2025</span>
+                </div>
+                <div class="hero-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Auditorio Alejandro López M3</span>
+                </div>
+            </div>
+            <a href="#inscripcion" class="hero-cta">Regístrate Ahora - Entrada Gratuita</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down" style="color: white; font-size: 2rem;"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="acerca">
+        <div class="about-container">
+            <div class="section-header">
+                <p class="section-subtitle">Semillero de Investigación GEOHAZARDS</p>
+                <h2 class="section-title">Acerca del Simposio</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Descripción General</h3>
+                    <p>Únete a nosotros en este importante evento donde expertos discutirán los desafíos y avances en la comprensión y mitigación de geoamenazas. Un espacio para el aprendizaje, la colaboración y la búsqueda de soluciones innovadoras en la gestión del riesgo.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3>Objetivos</h3>
+                    <p>Promover el intercambio de conocimientos entre académicos, profesionales y estudiantes sobre las últimas investigaciones en geoamenazas. Fomentar la colaboración interdisciplinaria para abordar los retos actuales en la evaluación y gestión del riesgo geológico.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>¿A quién va dirigido?</h3>
+                    <p>Investigadores, profesionales, estudiantes de pregrado y posgrado, funcionarios públicos y todas las personas interesadas en la temática de geoamenazas, gestión del riesgo y ciencias de la tierra.</p>
+                </div>
+            </div>
+            
+            <div class="theme-section">
+                <h3>Temática Principal</h3>
+                <p>"Avances en la evaluación de la amenaza y susceptibilidad por movimientos en masa: Integrando ciencia, tecnología y comunidad para la gestión del riesgo"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programa Section -->
+    <section class="programa-section" id="programa">
+        <div class="programa-container">
+            <div class="section-header">
+                <p class="section-subtitle">Agenda del Evento</p>
+                <h2 class="section-title">Programa Detallado</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="programa-timeline">
+                <!-- Mañana -->
+                <div class="timeline-block">
+                    <div class="timeline-header">
+                        <h3><i class="fas fa-sun"></i> Sesión Matutina</h3>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">8:00 - 8:30</div>
+                        <div class="timeline-content">
+                            <h4>Registro y Café de Bienvenida</h4>
+                            <p>Recepción de participantes y networking inicial</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item destacado">
+                        <div class="timeline-time">8:30 - 9:30</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-star"></i> Ponencia Magistral</h4>
+                            <p><strong>Luigi Lombardo</strong> - Avances en la evaluación de la amenaza y susceptibilidad por movimientos en masa</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">9:30 - 11:00</div>
+                        <div class="timeline-content">
+                            <h4>Presentación de Proyectos</h4>
+                            <p>6 presentaciones de 15 minutos cada una</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">11:00 - 11:15</div>
+                        <div class="timeline-content">
+                            <h4>Pausa Café / Networking</h4>
+                            <p>Espacio para intercambio y visita a stands</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">11:15 - 12:35</div>
+                        <div class="timeline-content">
+                            <h4>Sección: Expertos Responden (Parte 1)</h4>
+                            <p>4 mini-ponencias de 20 minutos con Q&A</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Almuerzo -->
+                <div class="timeline-break">
+                    <i class="fas fa-utensils"></i>
+                    <span>12:35 - 13:30 | Almuerzo Libre</span>
+                </div>
+                
+                <!-- Tarde -->
+                <div class="timeline-block">
+                    <div class="timeline-header">
+                        <h3><i class="fas fa-cloud-sun"></i> Sesión Vespertina</h3>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">13:30 - 14:30</div>
+                        <div class="timeline-content">
+                            <h4>Continuación Proyectos</h4>
+                            <p>4 presentaciones adicionales</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">14:30 - 15:50</div>
+                        <div class="timeline-content">
+                            <h4>Sección: Expertos Responden (Parte 2)</h4>
+                            <p>4 mini-ponencias adicionales</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item destacado">
+                        <div class="timeline-time">15:50 - 16:40</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-comments"></i> Diálogo: "Modelos de geoamenazas"</h4>
+                            <p>Mesa redonda con SGC, Geohazards y otros expertos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">17:05 - 17:15</div>
+                        <div class="timeline-content">
+                            <h4>Cierre y Conclusiones</h4>
+                            <p>Resumen ejecutivo y próximos pasos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="programa-cta">
+                <a href="programa-completo.pdf" class="btn-download">
+                    <i class="fas fa-download"></i> Descargar Programa Completo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertos Section -->
+    <section class="expertos-section" id="expertos">
+        <div class="expertos-container">
+            <div class="section-header">
+                <p class="section-subtitle">Conoce a nuestros ponentes</p>
+                <h2 class="section-title">Expertos Invitados</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <!-- Ponente Principal -->
+            <div class="ponente-principal">
+                <div class="ponente-principal-img">
+                    <img src="luigi-lombardo.jpg" alt="Luigi Lombardo">
+                    <div class="ponente-overlay">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="ponente-principal-info">
+                    <span class="ponente-tag">Ponente Magistral</span>
+                    <h3>Dr. Luigi Lombardo</h3>
+                    <p class="ponente-titulo">Experto Internacional en Modelado de Geoamenazas</p>
+                    <p class="ponente-bio">Reconocido investigador con más de 15 años de experiencia en el modelado estadístico y evaluación de amenazas por movimientos en masa. Sus investigaciones han contribuido significativamente al desarrollo de metodologías innovadoras para la predicción espacial y temporal de deslizamientos.</p>
+                    <div class="ponente-tema">
+                        <i class="fas fa-presentation"></i>
+                        <span>"Avances en la evaluación de la amenaza y susceptibilidad por movimientos en masa"</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Grid de Expertos -->
+            <div class="expertos-grid">
+                <div class="experto-card">
+                    <div class="experto-img">
+                        <img src="german-poveda.jpg" alt="Germán Poveda">
+                        <div class="experto-overlay">
+                            <div class="experto-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experto-info">
+                        <h4>Prof. Germán Poveda</h4>
+                        <p class="experto-cargo">Universidad Nacional de Colombia</p>
+                        <p class="experto-tema">"Dónde y cómo llueve en los Andes colombianos y su implicación en las amenazas hidrometeorológicas"</p>
+                    </div>
+                </div>
+                
+                <div class="experto-card">
+                    <div class="experto-img">
+                        <img src="silvana-montoya.jpg" alt="Silvana Montoya">
+                        <div class="experto-overlay">
+                            <div class="experto-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experto-info">
+                        <h4>Prof. Silvana Montoya</h4>
+                        <p class="experto-cargo">Universidad EAFIT</p>
+                        <p class="experto-tema">"Movimientos en masa detonados por sismos"</p>
+                    </div>
+                </div>
+                
+                <div class="experto-card">
+                    <div class="experto-img">
+                        <img src="edwin-garcia.jpg" alt="Edwin García">
+                        <div class="experto-overlay">
+                            <div class="experto-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experto-info">
+                        <h4>Prof. Edwin García</h4>
+                        <p class="experto-cargo">Universidad de Antioquia</p>
+                        <p class="experto-tema">"Movimientos en masa detonados por lluvia"</p>
+                    </div>
+                </div>
+                
+                <div class="experto-card">
+                    <div class="experto-img">
+                        <img src="mario-florez.jpg" alt="Mario Flórez">
+                        <div class="experto-overlay">
+                            <div class="experto-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experto-info">
+                        <h4>Ing. Mario Flórez</h4>
+                        <p class="experto-cargo">Experto en Gestión del Riesgo</p>
+                        <p class="experto-tema">"Evolución de la gestión del riesgo en Medellín"</p>
+                    </div>
+                </div>
+                
+                <div class="experto-card">
+                    <div class="experto-img">
+                        <img src="humberto-caballero.jpg" alt="Humberto Caballero">
+                        <div class="experto-overlay">
+                            <div class="experto-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experto-info">
+                        <h4>Prof. Humberto Caballero</h4>
+                        <p class="experto-cargo">Universidad Nacional de Colombia</p>
+                        <p class="experto-tema">"Evolución de la gestión del riesgo en la academia"</p>
+                    </div>
+                </div>
+                
+                <div class="experto-card">
+                    <div class="experto-img">
+                        <img src="carolina-garcia.jpg" alt="Carolina García">
+                        <div class="experto-overlay">
+                            <div class="experto-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experto-info">
+                        <h4>Dra. Carolina García</h4>
+                        <p class="experto-cargo">Especialista en Sistemas de Monitoreo</p>
+                        <p class="experto-tema">"Sistemas de alerta temprana: tecnología vs. comunidad"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ver-mas-expertos">
+                <button class="btn-ver-mas">Ver todos los ponentes <i class="fas fa-chevron-down"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multimedia Section -->
+    <section class="multimedia-section" id="multimedia">
+        <div class="multimedia-container">
+            <div class="section-header">
+                <p class="section-subtitle">Recursos visuales</p>
+                <h2 class="section-title">Galería Multimedia</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="multimedia-tabs">
+                <button class="tab-btn active" data-tab="fotos">
+                    <i class="fas fa-images"></i> Fotos
+                </button>
+                <button class="tab-btn" data-tab="videos">
+                    <i class="fas fa-video"></i> Videos
+                </button>
+                <button class="tab-btn" data-tab="recursos">
+                    <i class="fas fa-download"></i> Recursos
+                </button>
+            </div>
+            
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Fotos Tab -->
+                <div class="tab-pane active" id="fotos">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="evento-foto-1.jpg" alt="Simposio anterior">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="evento-foto-2.jpg" alt="Conferencias">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="evento-foto-3.jpg" alt="Networking">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="evento-foto-4.jpg" alt="Mesa redonda">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="evento-foto-5.jpg" alt="Presentaciones">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="evento-foto-6.jpg" alt="Auditorio">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Videos Tab -->
+                <div class="tab-pane" id="videos">
+                    <div class="videos-grid">
+                        <div class="video-item">
+                            <div class="video-thumbnail">
+                                <img src="video-thumb-1.jpg" alt="Video promocional">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <h4>Video Promocional del Simposio</h4>
+                            <p>Conoce más sobre el IV Simposio Geoamenazas</p>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-thumbnail">
+                                <img src="video-thumb-2.jpg" alt="Highlights anteriores">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <h4>Highlights de Simposios Anteriores</h4>
+                            <p>Revive los mejores momentos</p>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-thumbnail">
+                                <img src="video-thumb-3.jpg" alt="Entrevistas">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <h4>Entrevistas con Expertos</h4>
+                            <p>Perspectivas sobre geoamenazas</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recursos Tab -->
+                <div class="tab-pane" id="recursos">
+                    <div class="recursos-grid">
+                        <div class="recurso-item">
+                            <div class="recurso-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h4>Programa Detallado</h4>
+                            <p>Agenda completa del evento con horarios y ponentes</p>
+                            <a href="programa-detallado.pdf" class="recurso-download">
+                                <i class="fas fa-download"></i> Descargar PDF
+                            </a>
+                        </div>
+                        <div class="recurso-item">
+                            <div class="recurso-icon">
+                                <i class="fas fa-file-powerpoint"></i>
+                            </div>
+                            <h4>Plantilla para Presentaciones</h4>
+                            <p>Formato oficial para ponentes</p>
+                            <a href="plantilla-presentacion.pptx" class="recurso-download">
+                                <i class="fas fa-download"></i> Descargar PPT
+                            </a>
+                        </div>
+                        <div class="recurso-item">
+                            <div class="recurso-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h4>Guía para Autores</h4>
+                            <p>Instrucciones para el envío de resúmenes</p>
+                            <a href="guia-autores.pdf" class="recurso-download">
+                                <i class="fas fa-download"></i> Descargar PDF
+                            </a>
+                        </div>
+                        <div class="recurso-item">
+                            <div class="recurso-icon">
+                                <i class="fas fa-images"></i>
+                            </div>
+                            <h4>Kit de Prensa</h4>
+                            <p>Logos, banners y material promocional</p>
+                            <a href="kit-prensa.zip" class="recurso-download">
+                                <i class="fas fa-download"></i> Descargar ZIP
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registro Section -->
+    <section class="registro-section" id="inscripcion">
+        <div class="registro-container">
+            <div class="section-header">
+                <p class="section-subtitle">¡No te lo pierdas!</p>
+                <h2 class="section-title">Registro e Inscripción</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="registro-content">
+                <div class="registro-info">
+                    <div class="registro-destacado">
+                        <i class="fas fa-gift"></i>
+                        <h3>¡Entrada Completamente Gratuita!</h3>
+                        <p>El IV Simposio Geoamenazas es un evento sin costo. Queremos que todos los interesados puedan participar y beneficiarse del conocimiento compartido.</p>
+                    </div>
+                    
+                    <div class="registro-beneficios">
+                        <h4>Al registrarte obtienes:</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Acceso a todas las conferencias y ponencias</li>
+                            <li><i class="fas fa-check-circle"></i> Material digital del evento</li>
+                            <li><i class="fas fa-check-circle"></i> Certificado de participación</li>
+                            <li><i class="fas fa-check-circle"></i> Coffee breaks incluidos</li>
+                            <li><i class="fas fa-check-circle"></i> Networking con expertos y colegas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="registro-pasos">
+                        <h4>Pasos para inscribirte:</h4>
+                        <div class="pasos-grid">
+                            <div class="paso">
+                                <span class="paso-numero">1</span>
+                                <p>Escanea el código QR o haz clic en el botón</p>
+                            </div>
+                            <div class="paso">
+                                <span class="paso-numero">2</span>
+                                <p>Completa el formulario con tus datos</p>
+                            </div>
+                            <div class="paso">
+                                <span class="paso-numero">3</span>
+                                <p>Recibe la confirmación en tu email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="registro-qr">
+                    <div class="qr-container">
+                        <img src="qr-inscripcion.png" alt="Código QR para inscripción">
+                        <p>Escanea para inscribirte</p>
+                    </div>
+                    
+                    <a href="https://forms.gle/inscripcion-simposio" class="btn-registro-directo">
+                        <i class="fas fa-user-plus"></i> Inscríbete Ahora
+                    </a>
+                    
+                    <div class="registro-nota">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Sin fecha límite de inscripción. ¡Regístrate cuanto antes!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación Section -->
+    <section class="ubicacion-section" id="ubicacion">
+        <div class="ubicacion-container">
+            <div class="section-header">
+                <p class="section-subtitle">¿Dónde nos encontramos?</p>
+                <h2 class="section-title">Ubicación del Evento</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="ubicacion-content">
+                <div class="ubicacion-info">
+                    <div class="ubicacion-card">
+                        <div class="ubicacion-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Auditorio Alejandro López M3</h3>
+                        <p>Facultad de Minas, Universidad Nacional de Colombia<br>
+                        Sede Medellín<br>
+                        Carrera 80 No. 65-223<br>
+                        Medellín, Antioquia, Colombia</p>
+                    </div>
+                    
+                    <div class="como-llegar">
+                        <h4>¿Cómo llegar?</h4>
+                        
+                        <div class="transporte-opciones">
+                            <div class="transporte-item">
+                                <i class="fas fa-subway"></i>
+                                <h5>Metro</h5>
+                                <p>Estación Metro Plus linea O (Caribe - La Palma)<br>2 minutos caminando</p>
+                            </div>
+                            
+                            <div class="transporte-item">
+                                <i class="fas fa-bus"></i>
+                                <h5>Bus</h5>
+                                <p>Rutas: C6, 300, 301<br>Parada: Facultad de Minas</p>
+                            </div>
+                            
+                            <div class="transporte-item">
+                                <i class="fas fa-car"></i>
+                                <h5>Carro particular</h5>
+                                <p>Parqueadero disponible<br>Entrada por la Cra. 80</p>
+                            </div>
+                            
+                            <div class="transporte-item">
+                                <i class="fas fa-taxi"></i>
+                                <h5>Taxi/Uber</h5>
+                                <p>Punto de referencia:<br>Facultad de Minas UNAL</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ubicacion-extra">
+                        <h4>Información adicional</h4>
+                        <ul>
+                            <li><i class="fas fa-wheelchair"></i> Acceso para personas con movilidad reducida</li>
+                            <li><i class="fas fa-parking"></i> Parqueadero gratuito (cupos limitados)</li>
+                            <li><i class="fas fa-wifi"></i> WiFi disponible en todo el auditorio</li>
+                            <li><i class="fas fa-temperature-low"></i> Aire acondicionado</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="ubicacion-mapa">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6669.897375798415!2d-75.59323569352176!3d6.27100191606049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44293be2b564b7%3A0x12cc8ddcb9f6d6e4!2sFacultad%20de%20Minas!5e0!3m2!1ses!2sco!4v1748750866282!5m2!1ses!2sco"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patrocinadores Section -->
+    <section class="patrocinadores-section" id="patrocinadores">
+        <div class="patrocinadores-container">
+            <div class="section-header">
+                <p class="section-subtitle">Nuestros aliados</p>
+                <h2 class="section-title">Organizan y Apoyan</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="organizadores">
+                <h3>Organizan</h3>
+                <div class="organizadores-grid">
+                    <div class="organizador-item">
+                        <img src="logo-unal.png" alt="Universidad Nacional de Colombia">
+                        <p>Universidad Nacional de Colombia<br>Facultad de Minas, Sede Medellín</p>
+                    </div>
+                    <div class="organizador-item">
+                        <img src="logo-geohazards.png" alt="GEOHAZARDS">
+                        <p>Semillero de Investigación<br>GEOHAZARDS</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="patrocinadores-grid">
+                <h3>Apoyan</h3>
+                <div class="logos-grid">
+                    <div class="logo-item">
+                        <img src="patrocinador-1.png" alt="DAGRAN">
+                    </div>
+                    <div class="logo-item">
+                        <img src="patrocinador-2.png" alt="DAGRD">
+                    </div>
+                    <div class="logo-item">
+                        <img src="patrocinador-3.png" alt="Patrocinador 3">
+                    </div>
+                    <div class="logo-item">
+                        <img src="patrocinador-4.png" alt="Patrocinador 4">
+                    </div>
+                    <div class="logo-item">
+                        <img src="patrocinador-5.png" alt="Patrocinador 5">
+                    </div>
+                    <div class="logo-item">
+                        <img src="patrocinador-6.png" alt="Patrocinador 6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section class="contacto-section" id="contacto">
+        <div class="contacto-container">
+            <div class="section-header">
+                <p class="section-subtitle">¿Tienes preguntas?</p>
+                <h2 class="section-title">Contáctanos</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="contacto-content">
+                <div class="contacto-info">
+                    <h3>Información de Contacto</h3>
+                    
+                    <div class="contacto-items">
+                        <div class="contacto-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>geohazards@unal.edu.co<br>simposio2025@unal.edu.co</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contacto-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Teléfono</h4>
+                                <p>+57 (4) 425 5000 Ext. 12345<br>+57 300 123 4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contacto-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Horario de atención</h4>
+                                <p>Lunes a Viernes<br>8:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="redes-sociales">
+                        <h4>Síguenos en redes sociales</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link youtube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contacto-formulario">
+                    <h3>Envíanos un mensaje</h3>
+                    <form id="contactForm" action="https://formspree.io/f/mblyrelr" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Tu correo electrónico" required>
+                        </div>
+                        
+                        <div class="form-group">
+                          <input type="text" id="Entidad" name="Entidad" placeholder="Entidad, Empresa o Universidad" required>
+                      </div>
+
+                        <div class="form-group">
+                          <textarea name="Asistencia" rows="5" placeholder="Asistencia                                              (1)Sí,                                            (2)Firmo, Anótame, Apúntame, Voy, Obvio, De una, Activo... (3)sdfgsdfbsgf (Se entiende como Sí!)" required></textarea>
+                      </div>
+                        <button type="submit" class="btn-enviar">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>IV Simposio Geoamenazas</h4>
+                    <p>Un espacio para el aprendizaje, la colaboración y la búsqueda de soluciones en la gestión del riesgo geológico.</p>
+                    <div class="footer-logo">
+                        <img src="logo-unal-white.png" alt="UNAL">
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#acerca">Acerca del Simposio</a></li>
+                        <li><a href="#programa">Programa</a></li>
+                        <li><a href="#expertos">Ponentes</a></li>
+                        <li><a href="#inscripcion">Inscripción</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Código de Conducta</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Mantente Informado</h4>
+                    <p>Suscríbete para recibir las últimas noticias del simposio</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu email">
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 IV Simposio Geoamenazas - Universidad Nacional de Colombia. Todos los derechos reservados.</p>
+                <p>Desarrollado con <i class="fas fa-heart" style="color: var(--accent-gold);"></i> por el Semillero GEOHAZARDS</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Menu toggle para móvil
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        // Tabs functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Remove active class from all
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked
+                btn.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            // Formulario de contacto
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Aquí normalmente enviarías el formulario
+            alert('¡Gracias por tu mensaje! Te responderemos pronto.');
+            contactForm.reset();
+        });
+        
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Newsletter form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por suscribirte! Recibirás las últimas noticias del simposio.');
+            newsletterForm.reset();
+        });
+        
+        // Animación contador (opcional)
+        const animateValue = (obj, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+        
+        // Efecto parallax suave en hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-background');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+        
+        // Animación de entrada para elementos
+        const fadeElements = document.querySelectorAll('.registro-destacado, .ubicacion-card, .organizador-item, .contacto-item');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px) scale(0.95)';
+            el.style.transition = 'all 0.8s ease';
+            fadeObserver.observe(el);
+        });
+        
+        // Smooth scroll para enlaces del footer
+        document.querySelectorAll('.footer a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Efecto hover en logos de patrocinadores
+        const logoItems = document.querySelectorAll('.logo-item');
+        
+        logoItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'scale(1.05) rotate(2deg)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+        
+        // Loading animation (opcional)
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+        
+        // Fecha del evento countdown (opcional)
+        const eventDate = new Date('2025-08-06T08:00:00');
+        
+        function updateCountdown() {
+            const now = new Date();
+            const diff = eventDate - now;
+            
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                
+                // Aquí podrías actualizar un elemento de countdown si lo agregas
+            }
+        }
+        
+        // Actualizar cada minuto
+        setInterval(updateCountdown, 60000);
+        updateCountdown();
+        });
+        
+        // Gallery lightbox (simplified version)
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Here you could implement a lightbox
+                console.log('Gallery item clicked');
+            });
+        });
+        
+        // Ver más expertos button
+        const verMasBtn = document.querySelector('.btn-ver-mas');
+        
+        verMasBtn.addEventListener('click', () => {
+            // Toggle additional experts
+            verMasBtn.innerHTML = verMasBtn.innerHTML.includes('Ver todos') 
+                ? 'Ver menos <i class="fas fa-chevron-up"></i>' 
+                : 'Ver todos los ponentes <i class="fas fa-chevron-down"></i>';
+        });
+        
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements
+        document.querySelectorAll('.timeline-item, .experto-card, .gallery-item, .video-item, .recurso-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            }
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

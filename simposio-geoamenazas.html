@@ -6,18 +6,256 @@
     <title>IV Simposio Geoamenazas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
    
-    <style>
+    <style>      
+        :root {
+            --primary-green: #003c1f; /* Verde primario más oscuro */
+            --secondary-green: #005a2e; /* Verde secundario */
+            --accent-gold: #d4af37; /* Dorado para acentos */
+            --light-gray: #f5f5f5; /* Gris claro para fondos */
+            --dark-gray: #333333; /* Gris oscuro para texto principal */
+            --white: #ffffff; /* Blanco */
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra estándar */
+            --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra al pasar el mouse */
+        }      
+
+        /* Estilos generales del cuerpo */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-gray); /* Color de texto por defecto */
+        }
+       
+        /* Header */
+        .hero-bg {
+            background-image: url('assets/img/simposio/header/Delizamiento 2.jpg'); /* Asegúrate que esta ruta sea correcta */
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .header-content-container {
+            /* Este contenedor centrará el texto y logo, mientras la opacidad cubre todo el ancho */
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 5%;
+            background: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-subtitle {
+            color: var(--primary-green);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem; 
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent-gold);
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+              
+        /* Ubicación Section */
+        .ubicacion-section {
+            padding: 60px 5% 100px; 
+            background: var(--white); 
+        }
+        
+        .ubicacion-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .ubicacion-content {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 768px) { 
+            .ubicacion-content {
+                grid-template-columns: 1fr 1fr; 
+            }
+        }
+        
+        .ubicacion-card {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            position: relative; /* Necesario para el posicionamiento del pseudo-elemento */
+            z-index: 0; /* Para establecer un contexto de apilamiento */
+        }
+        
+        /* Estilo para la tarjeta de ubicación específica con imagen de fondo translúcida */
+        .ubicacion-card-auditorio-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Cambia esta URL a la ruta de tu imagen deseada */
+            background-image: url('assets/img/simposio/header/Minas2.jpg'); 
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1; /* Ajusta este valor para la claridad deseada (0.1 es muy claro) */
+            border-radius: 15px; /* Para que coincida con el borde redondeado de la tarjeta */
+            z-index: -1; /* Coloca el pseudo-elemento detrás del contenido de la tarjeta */
+        }
+
+        /* Asegura que el contenido de la tarjeta esté por encima del fondo */
+        .ubicacion-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .ubicacion-icon {
+            width: 70px; 
+            height: 70px; 
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .ubicacion-icon i { 
+            color: white;
+            font-size: 2rem; 
+        }
+        
+        .ubicacion-card h3 {
+            font-size: 1.5rem; 
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .ubicacion-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .como-llegar h4 {
+            font-size: 1.5rem; 
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-align: left;
+        }
+        
+        .transporte-opciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .transporte-item {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        
+        .transporte-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .transporte-item i { 
+            font-size: 1.8rem; 
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .transporte-item h5 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .ubicacion-mapa {
+            height: 450px; 
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+             .ubicacion-mapa {
+                height: 100%; 
+                min-height: 500px; 
+            }
+        }
+                       
+        /* Footer */
+        .footer {
+            background: var(--dark-gray);
+            color: #aaa; 
+            padding: 20px 5%; 
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-bottom {
+            padding-top: 1rem; 
+            padding-bottom: 1rem; 
+            text-align: center;
+            font-size: 0.9rem; 
+        }
+        .footer-bottom p {
+            margin-bottom: 0.5rem; 
+        }
+        .footer-bottom i.fa-heart { 
+            color: var(--accent-gold);
+        }
+
+      /* Clases de Tailwind usadas en el HTML original, mantenidas para compatibilidad */
       body {
           font-family: 'Inter', sans-serif;
-      }
-      .hero-bg {
-          /* Imagen de fondo para el encabezado */
-          /* Esta ruta local probablemente no se cargará en el entorno de vista previa. 
-             Asegúrate de que la ruta sea correcta en tu entorno de desarrollo. */
-          background-image: url('assets/img/simposio/header-footer/paisaje-andino-bg.jpg');
-          background-size: cover; /* Cubre todo el contenedor sin deformar la imagen */
-          background-position: center; /* Centra la imagen */
       }
       .gradient-text {
           background: -webkit-linear-gradient(#4F8A8B, #BDC3C7);
@@ -26,19 +264,21 @@
       }
       .card-hover:hover {
           transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
       }
       .schedule-item {
-          border-left: 3px solid #10B981; /* Emerald-500 */
+          border-left: 3px solid #10B981; /* Emerald-500 de Tailwind */
       }
+
   </style>
 
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-    <header class="hero-bg text-white shadow-lg">
-        <div class="container mx-auto px-6 py-12 md:py-20 text-center bg-black bg-opacity-60 rounded-b-lg">
-            <img src="assets/img/simposio/header/logo-simposio.png" alt="Logo IV Simposio Geoamenazas" class="h-20 md:h-28 mx-auto mb-6" onerror="this.onerror=null;this.src='https://placehold.co/150x80/EEEEEE/AAAAAA?text=Logo+Error';">
+    <header class="hero-bg text-white shadow-lg relative"> 
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="relative container mx-auto px-6 py-12 md:py-20 text-center header-content-container">
+            <img src="assets/img/simposio/header/logo-simposio.png" alt="Logo IV Simposio Geoamenazas" class="h-20 md:h-28 mx-auto mb-6" onerror="this.onerror=null;this.src='https://placehold.co/200x100/EEEEEE/AAAAAA?text=Logo+Error'; this.alt='Error cargando logo';">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">IV Simposio Geoamenazas</h1>
             <p class="text-xl md:text-2xl font-semibold">Medellín, Agosto 6 del 2025</p>
             <p class="text-lg md:text-xl mt-2">Auditorio Alejandro López M3, Facultad de Minas, Sede Medellín</p>
@@ -58,9 +298,9 @@
             <h2 class="text-3xl font-bold text-center mb-10 text-emerald-700">Ponente Principal</h2>
             <div class="flex justify-center">
                 <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover w-full md:w-1/2 lg:w-1/3">
-                    <img src="assets/img/simposio/ponentes/principal/luigi-lombardo.jpg" alt="Foto de Luigi Lombardo" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                    <img src="assets/img/simposio/expertos/luigi-lombardo.jpg" alt="Foto de Luigi Lombardo" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/128x128/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                     <h3 class="text-2xl font-semibold text-center text-emerald-600">Luigi Lombardo</h3>
-                    <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                    <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Profesor asociado en modelación de amenazas naturales basadas en datos en el ITC – Universidad de Twente (Países Bajos). Su trabajo se centra en la modelación espacio-temporal de deslizamientos, inundaciones, incendios y procesos compuestos, utilizando enfoques estadísticos y de inteligencia artificial.</p>
                     <p class="text-center text-gray-600 mb-2 font-medium">Ponencia Magistral</p>
                     <p class="text-center text-sm text-gray-500">
                         Avances en la evaluación de la amenaza y susceptibilidad por movimientos en masa.
@@ -73,72 +313,72 @@
             <h2 class="text-3xl font-bold text-center mb-10 text-emerald-700">Expertos Responden</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                    <img src="assets/img/simposio/ponentes/expertos/german-poveda.jpg" alt="Foto de Prof. Germán Poveda" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                    <img src="assets/img/simposio/expertos/german-poveda.jpg" alt="Foto de Prof. Germán Poveda" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                     <h3 class="text-xl font-semibold text-center text-emerald-600">Prof. Germán Poveda</h3>
-                    <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                    <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Profesor titular en la Escuela de Geociencias y Medio Ambiente de la Universidad Nacional de Colombia, sede Medellín. Es experto en hidrometeorología, cambio climático y modelación hidroclimática. Ha sido miembro del Panel Intergubernamental de Cambio Climático (IPCC) y es uno de los investigadores más reconocidos en el estudio de la variabilidad climática en los Andes y su relación con fenómenos extremos como lluvias intensas, inundaciones y deslizamientos.</p>
                     <p class="text-center text-sm text-gray-700 mt-1">
                         "Dónde y cómo llueve en los Andes colombianos y su implicación en las amenazas hidrometeorológicas."
                     </p>
                 </div>
 
                 <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                  <img src="assets/img/simposio/ponentes/expertos/german-poveda.jpg" alt="Foto de Prof. Germán Poveda" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                  <img src="assets/img/simposio/expertos/edwin-garcia.jpg" alt="Foto de Prof. Edwin García" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                   <h3 class="text-xl font-semibold text-center text-emerald-600">Prof. Edwin García</h3>
-                  <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                  <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Profesor de la Facultad de Ingeniería de la Universidad de Antioquia, con amplia experiencia en geotecnia, mecánica de suelos y procesos de remoción en masa. Su trabajo académico y profesional se ha centrado en el análisis del comportamiento de materiales en laderas, la evaluación de amenazas geotécnicas y la interacción entre la precipitación y la estabilidad del terreno.</p>
                   <p class="text-center text-sm text-gray-700 mt-1">
                       "Movimientos en masa detonados por lluvia"
                   </p>
                </div>
 
                <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                <img src="assets/img/simposio/ponentes/expertos/german-poveda.jpg" alt="Foto de Prof. Germán Poveda" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                <img src="assets/img/simposio/expertos/silvana-montoya.jpg" alt="Foto de Prof. Silvana Montoya" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                 <h3 class="text-xl font-semibold text-center text-emerald-600">Prof. Silvana Montoya</h3>
-                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Profesora e investigadora en la Escuela de Ciencias Aplicadas e Ingeniería de la Universidad EAFIT. Su trayectoria se ha enfocado en la geotecnia sísmica, el análisis de amenazas por movimientos en masa inducidos por sismos y la evaluación de estabilidad de laderas en contextos urbanos.</p>
                 <p class="text-center text-sm text-gray-700 mt-1">
                     "Movimientos en masa detonados por sismos"
                 </p>
                </div>
 
                <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                <img src="assets/img/simposio/ponentes/expertos/german-poveda.jpg" alt="Foto de Prof. Germán Poveda" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                <img src="assets/img/simposio/expertos/humberto-caballero.png" alt="Foto de Prof. Humberto Caballero" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                 <h3 class="text-xl font-semibold text-center text-emerald-600">Prof. Humberto Caballero</h3>
-                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Profesor jubilado e investigador de la Universidad Nacional de Colombia, sede Medellín, con una destacada trayectoria en los campos de la geomorfología, geología ambiental y gestión del riesgo de desastres. Ha sido formador de varias generaciones de geólogos e ingenieros, y ha trabajado activamente en el análisis de procesos geodinámicos, así como en la incorporación del enfoque territorial y ambiental en los estudios de amenaza. </p>
                 <p class="text-center text-sm text-gray-700 mt-1">
                     "Evolución de la gestión del riesgo en la academia"
                 </p>
                </div>
 
                <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                <img src="assets/img/simposio/ponentes/expertos/german-poveda.jpg" alt="Foto de Prof. Germán Poveda" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                <img src="assets/img/simposio/expertos/mario-florez.jpg" alt="Foto de Ing. Mario Florez" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                 <h3 class="text-xl font-semibold text-center text-emerald-600">Ing. Mario Florez</h3>
-                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Ingeniero geólogo con una amplia trayectoria en gestión del riesgo de desastres y ordenamiento territorial en el municipio de Medellín, donde ha trabajado por varias décadas en el Departamento Administrativo de Planeación. Ha liderado procesos clave en la incorporación del riesgo en los instrumentos de planificación urbana, así como en la formulación de políticas y estrategias para la mitigación de amenazas en zonas de ladera. </p>
                 <p class="text-center text-sm text-gray-700 mt-1">
                     "Evolución de la gestión del riesgo en Medellín"
                 </p>
                </div>
 
                <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                <img src="assets/img/simposio/ponentes/expertos/german-poveda.jpg" alt="Foto de Prof. Germán Poveda" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                <img src="assets/img/simposio/expertos/marco-gamboa.png" alt="Foto de Prof. Marco Gamboa" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                 <h3 class="text-xl font-semibold text-center text-emerald-600">Prof. Marco Gamboa</h3>
-                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Ingeniero geólogo con una amplia trayectoria en la evaluación de amenazas, gestión del riesgo de desastres y ordenamiento territorial en Colombia. Ha participado activamente en la formulación, aplicación y revisión de estudios de amenaza para planes de ordenamiento territorial, siendo un referente técnico en la implementación de la Ley 1523 de 2012.</p>
                 <p class="text-center text-sm text-gray-700 mt-1">
                     "Aciertos y desaciertos del decreto 1807 de 2014"
                 </p>
                </div>
 
                <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                <img src="assets/img/simposio/ponentes/expertos/german-poveda.jpg" alt="Foto de Prof. Germán Poveda" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                <img src="assets/img/simposio/expertos/carolina-garcia.jpg" alt="Foto de Dra. Carolina García" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                 <h3 class="text-xl font-semibold text-center text-emerald-600">Dra. Carolina García</h3>
-                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Ingeniera geóloga con amplia experiencia en la gestión del riesgo de desastres, especialmente en contextos urbanos y comunitarios. Su trabajo se ha enfocado en el diseño, implementación y evaluación de sistemas de alerta temprana, con énfasis en enfoques centrados en las personas y procesos participativos. </p>
                 <p class="text-center text-sm text-gray-700 mt-1">
                     "Sistemas de alerta temprana"
                 </p>
                </div>
 
                <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                <img src="assets/img/simposio/ponentes/expertos/german-poveda.jpg" alt="Foto de Prof. Germán Poveda" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                <img src="assets/img/simposio/expertos/gloria-lopez.jpg" alt="Foto de Dra. Gloria López" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                 <h3 class="text-xl font-semibold text-center text-emerald-600">Dra. Gloria López</h3>
-                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Geóloga e investigadora de la Universidad EAFIT, con amplia experiencia en geología ambiental, geomorfología y análisis de amenazas naturales. Su trabajo se ha centrado en la comprensión de la evolución de procesos geológicos a partir del estudio de materiales y depósitos, con énfasis en la datación de eventos geológicos relevantes para la evaluación de amenazas.</p>
                 <p class="text-center text-sm text-gray-700 mt-1">
                     "Dataciones en estudios de amenaza"
                 </p>
@@ -149,31 +389,40 @@
 
         <section id="proyectos-estudios" class="mb-16">
             <h2 class="text-3xl font-bold text-center mb-10 text-emerald-700">Proyectos y Estudios</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                    <img src="assets/img/simposio/ponentes/profesionales/edwin-garcia.jpg" alt="Foto de Prof. Edwin García" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                    <img src="assets/img/simposio/profesionales/alejandro-ospina.jpg" alt="Foto de Ing. Alejandro Ospina" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                     <h3 class="text-xl font-semibold text-center text-emerald-600">Ing. Alejandro Ospina</h3>
-                    <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                    <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Geólogo y miembro del equipo técnico del SIATA (Sistema de Alerta Temprana de Medellín y el Valle de Aburrá). Su trabajo se enfoca en el uso de sensores remotos para el monitoreo de amenazas geológicas, con énfasis en la aplicación de técnicas DInSAR para la detección y seguimiento de movimientos en masa.</p>
                      <p class="text-center text-sm text-gray-700 mt-1">
                         "Uso de DInSAR en el Valle de Aburrá"
                     </p>
                 </div>
 
                 <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                  <img src="assets/img/simposio/ponentes/profesionales/edwin-garcia.jpg" alt="Foto de Prof. Edwin García" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                  <img src="assets/img/simposio/profesionales/david-zapata.jpg" alt="Foto de Ing. David Zapata" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                   <h3 class="text-xl font-semibold text-center text-emerald-600">Ing. David Zapata</h3>
-                  <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                  <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Ingeniero geólogo vinculado a ISA (Interconexión Eléctrica S.A. E.S.P.), con amplia experiencia en la evaluación de amenazas geológicas y geotécnicas aplicadas a la infraestructura energética. Su trabajo se ha centrado en el análisis de riesgos por movimientos en masa y procesos de remoción en laderas, así como en la implementación de estrategias de monitoreo, prevención y mitigación en corredores eléctricos estratégicos. </p>
                   <p class="text-center text-sm text-gray-700 mt-1">
                       "Sistema de información para la gestión del riesgo por movimientos en masa en ISA"
                   </p>
                 </div>
 
                 <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
-                  <img src="assets/img/simposio/ponentes/profesionales/edwin-garcia.jpg" alt="Foto de Prof. Edwin García" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error';">
+                  <img src="assets/img/simposio/profesionales/daniel-correa.jpg" alt="Foto de Ing. Daniel Correa" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
                   <h3 class="text-xl font-semibold text-center text-emerald-600">Ing. Daniel Correa</h3>
-                  <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Breve descripción de la hoja de vida o área de especialización del ponente principal.</p>
+                  <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Ingeniero geólogo e ingeniero electrónico, con experiencia en el desarrollo de herramientas tecnológicas para la evaluación de amenazas geológicas. En su trabajo de maestría integró conocimientos en geociencias e inteligencia artificial para diseñar una aplicación web dinámica que permite estimar amenazas por movimientos en masa utilizando bases de datos actualizables y modelos de machine learning. </p>
                   <p class="text-center text-sm text-gray-700 mt-1">
                       "Aplicación web para evaluar la susceptibilidad por movimientos en masa"
+                  </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg transition-transform duration-300 card-hover">
+                  <img src="assets/img/simposio/profesionales/elisa-betancourt.jpg" alt="Foto de Ing. Elisa Betancourt" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-emerald-500" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EEEEEE/AAAAAA?text=Error+Foto'; this.alt='Error cargando imagen';">
+                  <h3 class="text-xl font-semibold text-center text-emerald-600">Ing. Elisa Betancourt</h3>
+                  <p class="text-xs italic text-gray-500 mt-1 mb-2 text-center">Ingeniera geóloga con experiencia en evaluación de amenazas geológicas, cartografía geomorfológica y análisis de movimientos en masa. Su trabajo se ha enfocado en el estudio detallado del terreno y en la generación de insumos técnicos para la planificación territorial y la gestión del riesgo en zonas de ladera.</p>
+                  <p class="text-center text-sm text-gray-700 mt-1">
+                      "Evaluación de la amenaza, vulnerabilidad y riesgo por movimientos en masa en el departamento de Antioquia"
                   </p>
                 </div>
 
@@ -231,38 +480,107 @@
             </div>
         </section>
 
-        <section id="organizadores" class="mb-12">
-            <h2 class="text-3xl font-bold text-center mb-10 text-emerald-700">Organiza y Apoya</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-2xl font-semibold text-emerald-600 mb-4 text-center">Organiza</h3>
-                    <div class="flex flex-col items-center space-y-3">
-                        <img src="assets/img/Logo.png" alt="Logo Universidad Nacional de Colombia" class="h-24 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/150x80/EEEEEE/AAAAAA?text=Error';">
-                        <p class="font-medium">Universidad Nacional de Colombia</p>
-                        <p>Facultad de Minas, Sede Medellín</p>
-                        <p class="font-medium">Semillero de Investigación GEOHAZARDS</p>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-2xl font-semibold text-emerald-600 mb-4 text-center">Apoyan</h3>
-                    <div class="flex flex-wrap justify-center items-center gap-6">
-                        <img src="assets/img/simposio/footer/dagran.png" alt="Logo DAGRAN" class="h-20 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/120x70/EEEEEE/AAAAAA?text=Error';">
-                        <img src="assets/img/simposio/footer/dagrd.png" alt="Logo DAGRD" class="h-20 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/120x70/EEEEEE/AAAAAA?text=Error';">
-                    </div>
+         <section class="ubicacion-section" id="ubicacion">
+          <div class="ubicacion-container">
+              <div class="section-header">
+                  <p class="section-subtitle">¿Dónde nos encontramos?</p>
+                  <h2 class="section-title">Ubicación del Evento</h2>
+                  <div class="section-divider"></div>
+              </div>
+              
+              <div class="ubicacion-content">
+                  <div class="ubicacion-info">
+                      <div class="ubicacion-card ubicacion-card-auditorio-bg">                          <div class="ubicacion-icon">
+                              <i class="fas fa-map-marker-alt"></i>
+                          </div>
+                          <h3>Auditorio Alejandro López M3</h3>
+                          <p>Facultad de Minas, Universidad Nacional de Colombia<br>
+                          Sede Medellín<br>
+                          Carrera 80 No. 65-223<br>
+                          Medellín, Antioquia, Colombia</p>
+                      </div>
+                      
+                      <div class="como-llegar">
+                          <h4>¿Cómo llegar?</h4>
+                          
+                          <div class="transporte-opciones">
+                              <div class="transporte-item">
+                                  <i class="fas fa-subway"></i>
+                                  <h5>Metro</h5>
+                                  <p>Estación Floresta (Línea B) y luego bus integrado o taxi.<br>Estación Caribe (Línea A) y luego Metroplús (Línea O) hasta estación Facultad de Minas.</p>
+                              </div>
+                              
+                              <div class="transporte-item">
+                                  <i class="fas fa-bus"></i>
+                                  <h5>Bus</h5>
+                                  <p>Rutas: 300, 301 (Circular Coonatra), entre otras.<br>Parada: Cerca de la Facultad de Minas.</p>
+                              </div>
+                              
+                              <div class="transporte-item">
+                                  <i class="fas fa-car"></i>
+                                  <h5>Carro particular</h5>
+                                  <p>Parqueadero disponible en la universidad (cupos limitados).<br>Entrada por la Carrera 80.</p>
+                              </div>
+                              
+                              <div class="transporte-item">
+                                  <i class="fas fa-taxi"></i>
+                                  <h5>Taxi/Plataformas</h5>
+                                  <p>Punto de referencia:<br>Facultad de Minas, U. Nacional.</p>
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                  
+                  <div class="ubicacion-mapa">
+                      <iframe 
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.987071008994!2d-75.59009198523086!3d6.255936095463785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e442971f0f0f7f9%3A0x7a7a7a7a7a7a7a7a!2sFacultad%20de%20Minas%20-%20Universidad%20Nacional%20de%20Colombia%20Sede%20Medell%C3%ADn!5e0!3m2!1ses!2sco!4v1622600000000!5m2!1ses!2sco"
+                          width="100%" 
+                          height="100%" 
+                          style="border:0;" 
+                          allowfullscreen="" 
+                          loading="lazy" 
+                          referrerpolicy="no-referrer-when-downgrade">
+                      </iframe>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+  
+      <section id="organizadores" class="mb-12">
+        <h2 class="text-3xl font-bold text-center mb-10 text-emerald-700">Organiza y Apoya</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center justify-center"> <h3 class="text-2xl font-semibold text-emerald-600 mb-4 text-center">Organiza</h3>
+                <div class="flex flex-col items-center space-y-3">
+                    <img src="assets/img/Logo.png" alt="Logo Semillero GEOHAZARDS y UNAL" class="h-32 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/200x100/EEEEEE/AAAAAA?text=Logo+Organiza'; this.alt='Error cargando logo';">
                 </div>
             </div>
-        </section>
+            <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center justify-center"> <h3 class="text-2xl font-semibold text-emerald-600 mb-4 text-center">Apoyan</h3>
+                <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4"> <img src="assets/img/simposio/footer/dagran.png" alt="Logo DAGRAN" class="h-24 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/120x70/EEEEEE/AAAAAA?text=Logo+DAGRAN'; this.alt='Error cargando logo';">
+                    <img src="assets/img/simposio/footer/dagrd.png" alt="Logo DAGRD" class="h-24 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/120x70/EEEEEE/AAAAAA?text=Logo+DAGRD'; this.alt='Error cargando logo';">
+                </div>
+            </div>
+        </div>
+    </section>
 
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 text-center">
-        <p>&copy; 2025 IV Simposio Geoamenazas. Todos los derechos reservados.</p>
-        <p class="text-sm">Facultad de Minas, Sede Medellín, Universidad Nacional de Colombia</p>
-        </footer>
-
+    <footer class="footer">
+      <div class="footer-container">
+          <div class="footer-bottom">
+              <p>© 2025 IV Simposio Geoamenazas - Universidad Nacional de Colombia. Todos los derechos reservados.</p>
+              <p>Desarrollado con <i class="fas fa-heart"></i> por el Semillero GEOHAZARDS</p>
+          </div>
+      </div>
+  </footer>
+  <script>
+    // Script para actualizar el año en el footer, si se desea dinámico
+    // const currentYear = new Date().getFullYear();
+    // const footerYearElements = document.querySelectorAll('.footer-year');
+    // footerYearElements.forEach(el => el.textContent = currentYear);
+  </script>
 </body>
 </html>
-
 
 
 
