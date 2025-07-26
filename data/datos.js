@@ -87,6 +87,149 @@ var datos = {
           "modal_info": "",
         }]
       },
+      {
+        "img": "./assets/img/slider_img/luigi.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+            {
+        "img": "./assets/img/slider_img/ashok.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+            {
+        "img": "./assets/img/slider_img/humberto.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+            {
+        "img": "./assets/img/slider_img/poveda.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+            {
+        "img": "./assets/img/slider_img/gloria.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+            {
+        "img": "./assets/img/slider_img/edwin.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+            {
+        "img": "./assets/img/slider_img/francoise.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+            {
+        "img": "./assets/img/slider_img/mario.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+            {
+        "img": "./assets/img/slider_img/maco.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+            {
+        "img": "./assets/img/slider_img/silvana.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+            {
+        "img": "./assets/img/slider_img/caro.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Próximo miércoles 6 de agosto de 2025",
+        "texto": '',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
       ],
     "modals": {
       "WorkshopBerlin": {
