@@ -83,50 +83,25 @@ var datos = {
         "btn": []
       },
       {
-        "img": "./assets/img/slider_img/libro_guia_cartografia_geotecnica.png",
-        "img_alt": "Libro guía - Cartografía Geotécnica",
-        "titulo": "Libro guía - Cartografía Geotécnica",
-        "fecha": "Publicado el 2 de septiembre de 2022",
-        "texto": "El Semillero de Investigación Geohazards comparte el libro guía del curso Cartografía Geotécnica de la Universidad Nacional de Colombia - sede Medellín, desarrollado por el profesor Edier Aristizábal.",
-        "btn": [{
-          "link": "https://edieraristizabal.github.io/Libro_cartoGeotecnia/intro.html",
-          "texto": "Consultar",
-          "modal": false,
-          "modal_info": "",
-        }]
+        "img": "./assets/img/slider_img/simposio.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Publicado el 6 de agosto de 2025",
+        "texto": 'IV Simposio Geohazards',
+        "btn": [//{
+          //"link": "https://www.youtube.com/live/KNDUx7UIDuY?si=qk0q1NfCOhGK0cQ1",
+          //"texto": "YouTube",
+          //"modal": false,
+          //"modal_info": "",
+        //}, {
+        //  "link": "https://edieraristizabal.github.io/Presentaciones/UNGRD2024.html",
+        //  "texto": "Presentación",
+        //  "modal": false,
+        //  "modal_info": "",
+        //}
+      ]
       },
-      {
-        "img": "./assets/img/slider_img/UNGR2024.jpg",
-        "img_alt": "El Planeta pide la palabra",
-        "titulo": "El Planeta pide la palabra",
-        "fecha": "Publicado el 11 de abril de 2024",
-        "texto": 'Reviva el evento organizado por la Unidad Nacional para la Gestión del Riesgo de Desastres donde participó nuestro semillero "Del deslizamiento a la avenida torrencial"',
-        "btn": [{
-          "link": "https://www.youtube.com/live/KNDUx7UIDuY?si=qk0q1NfCOhGK0cQ1",
-          "texto": "YouTube",
-          "modal": false,
-          "modal_info": "",
-        }, {
-          "link": "https://edieraristizabal.github.io/Presentaciones/UNGRD2024.html",
-          "texto": "Presentación",
-          "modal": false,
-          "modal_info": "",
-        }]
-      },
-      {
-        "img": "./assets/img/slider_img/SAES.gif",
-        "img_alt": "South America Earth Science Journal",
-        "titulo": "Nueva publicación",
-        "fecha": "Publicado el 23 de mayo de 2023",
-        "texto": 'Landslides forecasting using satellite rainfall estimations and machine learning in the Colombian Andean region.',
-        "btn": [{
-          "link": "https://www.sciencedirect.com/science/article/abs/pii/S0895981123001049?via%3Dihub",
-          "texto": "Artículo",
-          "modal": false,
-          "modal_info": "",
-        }]
-      },
-    ],
+      ],
     "modals": {
       "WorkshopBerlin": {
         "titulo": "Workshop on Current and Future Challenges in Landslide Research and Disaster Risk",
