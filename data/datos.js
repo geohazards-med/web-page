@@ -75,31 +75,25 @@ var datos = {
   },
   "carrusel": {
     "items": [{
+        "img": "./assets/img/slider_img/simposio.png",
+        "img_alt": "IV Simposio Geohazards",
+        "titulo": "IV Simposio Geohazards",
+        "fecha": "Publicado el 6 de agosto de 2025",
+        "texto": 'IV Simposio Geohazards',
+        "btn": [{
+          "link": "https://geohazards.com.co/simposio-geoamenazas.html",
+          "texto": "Página Web",
+          "modal": false,
+          "modal_info": "",
+        }]
+      },
+      {
         "img": "./assets/img/slider_img/grupoCompleto.jpg",
         "img_alt": "Grupo Geohazards",
         "titulo": "¡Haz parte del semillero!",
         "fecha": "Publicado el 19 de julio del 2023",
         "texto": "Es un semillero interdisciplinario compuesto por profesores, investigadores y estudiantes de las áreas de la ingeniería. El Semillero está orientado al conocimiento y desarrollo de modelos geociencias, gestión del riesgo de desastres, análisis geoespacial, sensores remotos, geotecnia y geomorfología.",
         "btn": []
-      },
-      {
-        "img": "./assets/img/slider_img/simposio.png",
-        "img_alt": "IV Simposio Geohazards",
-        "titulo": "IV Simposio Geohazards",
-        "fecha": "Publicado el 6 de agosto de 2025",
-        "texto": 'IV Simposio Geohazards',
-        "btn": [//{
-          //"link": "https://www.youtube.com/live/KNDUx7UIDuY?si=qk0q1NfCOhGK0cQ1",
-          //"texto": "YouTube",
-          //"modal": false,
-          //"modal_info": "",
-        //}, {
-        //  "link": "https://edieraristizabal.github.io/Presentaciones/UNGRD2024.html",
-        //  "texto": "Presentación",
-        //  "modal": false,
-        //  "modal_info": "",
-        //}
-      ]
       },
       ],
     "modals": {
