@@ -192,7 +192,7 @@ var datos = {
         }]
       },
             {
-        "img": "./assets/img/slider_img/maco.png",
+        "img": "./assets/img/slider_img/marco.png",
         "img_alt": "IV Simposio Geohazards",
         "titulo": "IV Simposio Geohazards",
         "fecha": "Próximo miércoles 6 de agosto de 2025",
