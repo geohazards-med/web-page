@@ -75,7 +75,7 @@ var datos = {
   },
   "carrusel": {
     "items": [{
-        "img": "./assets/img/slider_img/simposio.png",
+        "img": "./assets/img/slider_img/Simposio.png",
         "img_alt": "IV Simposio Geohazards",
         "titulo": "IV Simposio Geohazards",
         "fecha": "Publicado el 6 de agosto de 2025",
@@ -86,14 +86,6 @@ var datos = {
           "modal": false,
           "modal_info": "",
         }]
-      },
-      {
-        "img": "./assets/img/slider_img/grupoCompleto.jpg",
-        "img_alt": "Grupo Geohazards",
-        "titulo": "¡Haz parte del semillero!",
-        "fecha": "Publicado el 19 de julio del 2023",
-        "texto": "Es un semillero interdisciplinario compuesto por profesores, investigadores y estudiantes de las áreas de la ingeniería. El Semillero está orientado al conocimiento y desarrollo de modelos geociencias, gestión del riesgo de desastres, análisis geoespacial, sensores remotos, geotecnia y geomorfología.",
-        "btn": []
       },
       ],
     "modals": {
