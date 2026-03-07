@@ -2662,3 +2662,13 @@ window.data_page = {
     ],
   },
 };
+
+// Intercept clicks to external links to bypass React Router interception
+document.addEventListener('click', function (e) {
+  const link = e.target.closest('a');
+  if (link && link.href && link.href.includes('simposio.html')) {
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.assign('https://geohazards.com.co/simposio.html');
+  }
+}, true);
