@@ -1067,9 +1067,9 @@ window.data_page = {
     nombre: "GEOHAZARDS",
     nombre_sub: "Semillero de Investigación",
     links: [
+      { name: "✨ SIMPOSIO 2026 ✨", url: "/simposio.html" },
       { name: "Quiénes Somos", url: "/aboutus" },
       { name: "Proyectos", url: `${parentRoutes.PROJECTS}` },
-      { name: "Simposio", url: "/simposio.html" },
       { name: "Publicaciones", url: `${parentRoutes.PUBLICATIONS}` },
     ],
     btn: {
