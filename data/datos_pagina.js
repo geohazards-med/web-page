@@ -1071,6 +1071,7 @@ window.data_page = {
       { name: "Quiénes Somos", url: "/aboutus" },
       { name: "Proyectos", url: `${parentRoutes.PROJECTS}` },
       { name: "Publicaciones", url: `${parentRoutes.PUBLICATIONS}` },
+      { name: "Comunidad", url: "https://geohazards.com.co/comunidad.html" },
     ],
     btn: {
       name: "Inventarios",
@@ -1091,6 +1092,7 @@ window.data_page = {
       },
       { name: "Proyectos", url: `${parentRoutes.PROJECTS}` },
       { name: "Publicaciones", url: `${parentRoutes.PUBLICATIONS}` },
+      { name: "Comunidad", url: "https://geohazards.com.co/comunidad.html" },
     ],
     dir: "Medellín, Carrera 80 No 65-22, M2-211",
     tel: "(57)(4) 425 51 97",
@@ -2666,9 +2668,15 @@ window.data_page = {
 // Intercept clicks to external links to bypass React Router interception
 document.addEventListener('click', function (e) {
   const link = e.target.closest('a');
-  if (link && link.href && link.href.includes('simposio.html')) {
-    e.preventDefault();
-    e.stopPropagation();
-    window.location.assign('https://geohazards.com.co/simposio.html');
+  if (link && link.href) {
+    if (link.href.includes('simposio.html')) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.location.assign('https://geohazards.com.co/simposio.html');
+    } else if (link.href.includes('comunidad.html')) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.location.assign('https://geohazards.com.co/comunidad.html');
+    }
   }
 }, true);
