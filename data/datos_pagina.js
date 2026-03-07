@@ -177,7 +177,7 @@ export const layers_ladera_ne = {
         property: "Identificador de muestra",
       },
     ],
-    styles:{
+    styles: {
       color: "#2dbdb5"
     },
     data: perfoLacruz,
@@ -195,7 +195,7 @@ export const layers_ladera_ne = {
     downloable: true,
     filterable: true,
     filters: [],
-    styles:{
+    styles: {
       color: "#d76c3b"
     },
     data: [],
@@ -244,7 +244,7 @@ export const layers_ladera_ne = {
         property: "formato",
       },
     ],
-    styles:{
+    styles: {
       color: "#2d8cff"
     },
     data: [],
@@ -1069,6 +1069,7 @@ window.data_page = {
     links: [
       { name: "Quiénes Somos", url: "/aboutus" },
       { name: "Proyectos", url: `${parentRoutes.PROJECTS}` },
+      { name: "Simposio", url: "/simposio.html" },
       { name: "Publicaciones", url: `${parentRoutes.PUBLICATIONS}` },
     ],
     btn: {
