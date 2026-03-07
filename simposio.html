@@ -1,0 +1,1259 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>V Simposio Geoamenazas 2026 | Geohazards UNAL</title>
+    <meta name="description"
+        content="V Simposio Geoamenazas – Viernes 10 de julio de 2026, Universidad Nacional de Colombia, Sede Medellín. Investigación en movimientos en masa, avenidas torrenciales y gestión del riesgo." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* ── Variables ─────────────────────────────────────── */
+        :root {
+            --green: #38a169;
+            --green-dark: #276749;
+            --green-light: #c6f6d5;
+            --brown: #7b4c2a;
+            --brown-light: #c4985e;
+            --cream: #fdf8f3;
+            --text-dark: #1a202c;
+            --text-mid: #4a5568;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --shadow: 0 4px 24px rgba(0, 0, 0, .10);
+            --radius: 12px;
+        }
+
+        /* ── Reset ─────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ── NAV ────────────────────────────────────────────── */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            height: 68px;
+            background: #fff;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, .08);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .navbar-brand img {
+            height: 42px;
+            width: auto;
+        }
+
+        .navbar-brand-text {
+            line-height: 1.15;
+        }
+
+        .navbar-brand-text .title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--green-dark);
+            letter-spacing: .04em;
+        }
+
+        .navbar-brand-text .sub {
+            font-size: .68rem;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .navbar-links a {
+            font-size: .875rem;
+            font-weight: 500;
+            color: var(--text-mid);
+            transition: color .2s;
+        }
+
+        .navbar-links a:hover {
+            color: var(--green);
+        }
+
+        .navbar-links .btn-inv {
+            background: var(--green);
+            color: #fff;
+            padding: .45rem 1.1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: .85rem;
+            display: flex;
+            align-items: center;
+            gap: .35rem;
+            transition: background .2s;
+        }
+
+        .navbar-links .btn-inv:hover {
+            background: var(--green-dark);
+        }
+
+        .navbar-links .active {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* ── HERO ───────────────────────────────────────────── */
+        .hero {
+            position: relative;
+            min-height: 82vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f2027 0%, #1a3a1a 50%, #2c5f2e 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                url('bg/bg1.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: .25;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 3rem 1.5rem;
+            max-width: 860px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(56, 161, 105, .25);
+            border: 1px solid rgba(56, 161, 105, .55);
+            color: #9ae6b4;
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: .35rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-logo {
+            max-width: 420px;
+            margin: 0 auto 2rem;
+            filter: drop-shadow(0 8px 32px rgba(0, 0, 0, .5));
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .92);
+            padding: 1.2rem 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            color: #fff;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title span {
+            color: #68d391;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #cbd5e0;
+            max-width: 580px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .2);
+            color: #e2e8f0;
+            padding: .55rem 1.2rem;
+            border-radius: 50px;
+            font-size: .9rem;
+            font-weight: 500;
+        }
+
+        .hero-meta-item i {
+            color: #68d391;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--green);
+            color: #fff;
+            padding: .85rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background .2s, transform .2s;
+            box-shadow: 0 4px 16px rgba(56, 161, 105, .45);
+        }
+
+        .hero-cta:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ── COUNTDOWN ──────────────────────────────────────── */
+        .countdown-section {
+            background: var(--green-dark);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .countdown-label {
+            color: #9ae6b4;
+            font-size: .8rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-unit {
+            text-align: center;
+            min-width: 70px;
+        }
+
+        .countdown-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            display: block;
+        }
+
+        .countdown-name {
+            font-size: .72rem;
+            color: #9ae6b4;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-top: .2rem;
+        }
+
+        .countdown-sep {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, .3);
+            display: flex;
+            align-items: flex-start;
+            padding-top: .1rem;
+            font-weight: 700;
+        }
+
+        /* ── SECTIONS ───────────────────────────────────────── */
+        .section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-alt {
+            background: var(--cream);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-badge {
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: .5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-mid);
+            font-size: 1rem;
+            max-width: 640px;
+        }
+
+        .divider {
+            width: 56px;
+            height: 4px;
+            background: var(--green);
+            border-radius: 2px;
+            margin: 1rem 0 2.5rem;
+        }
+
+        /* ── ABOUT ──────────────────────────────────────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p+p {
+            margin-top: 1rem;
+        }
+
+        .about-text p {
+            color: var(--text-mid);
+            font-size: .975rem;
+        }
+
+        .about-img {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        /* ── TOPICS ─────────────────────────────────────────── */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .topic-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+            transition: box-shadow .2s, transform .2s;
+        }
+
+        .topic-card:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-3px);
+        }
+
+        .topic-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--green-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--green-dark);
+        }
+
+        .topic-title {
+            font-weight: 700;
+            font-size: .975rem;
+            color: var(--text-dark);
+        }
+
+        .topic-desc {
+            font-size: .875rem;
+            color: var(--text-mid);
+        }
+
+        /* ── KEYNOTE / SPEAKERS ──────────────────────────────── */
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .speaker-card {
+            text-align: center;
+            background: #fff;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 2rem 1.25rem 1.5rem;
+            transition: box-shadow .2s;
+        }
+
+        .speaker-card:hover {
+            box-shadow: var(--shadow);
+        }
+
+        .speaker-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-light), var(--green));
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: var(--green-dark);
+        }
+
+        .speaker-name {
+            font-weight: 700;
+            font-size: .975rem;
+            color: var(--text-dark);
+        }
+
+        .speaker-affil {
+            font-size: .82rem;
+            color: var(--text-light);
+            margin-top: .2rem;
+        }
+
+        .speaker-topic {
+            margin-top: .75rem;
+            font-size: .8rem;
+            color: var(--green-dark);
+            background: var(--green-light);
+            padding: .3rem .8rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .tba-note {
+            text-align: center;
+            color: var(--text-light);
+            font-size: .9rem;
+            padding: 2rem;
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            margin-top: 1.5rem;
+        }
+
+        .tba-note i {
+            margin-right: .4rem;
+            color: var(--green);
+        }
+
+        /* ── SCHEDULE ───────────────────────────────────────── */
+        .schedule-list {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .schedule-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 1.2rem 1.5rem;
+            background: #fff;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .schedule-time {
+            min-width: 90px;
+            font-weight: 700;
+            font-size: .875rem;
+            color: var(--green-dark);
+            padding-top: .1rem;
+        }
+
+        .schedule-body {}
+
+        .schedule-title {
+            font-weight: 600;
+            font-size: .975rem;
+            color: var(--text-dark);
+        }
+
+        .schedule-speaker {
+            font-size: .83rem;
+            color: var(--text-light);
+            margin-top: .15rem;
+        }
+
+        .schedule-type {
+            display: inline-block;
+            margin-top: .4rem;
+            font-size: .75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            padding: .18rem .7rem;
+            border-radius: 50px;
+        }
+
+        .type-opening {
+            background: #bee3f8;
+            color: #2b6cb0;
+        }
+
+        .type-keynote {
+            background: #fefcbf;
+            color: #975a16;
+        }
+
+        .type-session {
+            background: var(--green-light);
+            color: var(--green-dark);
+        }
+
+        .type-break {
+            background: #fed7d7;
+            color: #c53030;
+        }
+
+        .type-panel {
+            background: #e9d8fd;
+            color: #553c9a;
+        }
+
+        .type-closing {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        /* ── VENUE ──────────────────────────────────────────── */
+        .venue-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+            margin-top: 2rem;
+        }
+
+        .venue-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .venue-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            background: #fff;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .venue-detail i {
+            font-size: 1.1rem;
+            color: var(--green);
+            margin-top: .15rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .venue-detail-content .label {
+            font-size: .75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--text-light);
+            margin-bottom: .2rem;
+        }
+
+        .venue-detail-content .value {
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--text-dark);
+        }
+
+        .venue-detail-content .sub-value {
+            font-size: .85rem;
+            color: var(--text-mid);
+        }
+
+        .venue-map {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 320px;
+        }
+
+        .venue-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ── REGISTER BANNER ────────────────────────────────── */
+        .register-banner {
+            background: linear-gradient(135deg, var(--green-dark) 0%, #1a4731 100%);
+            padding: 4.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .register-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .register-banner p {
+            color: #9ae6b4;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+            font-size: 1rem;
+        }
+
+        .btn-register {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: #fff;
+            color: var(--green-dark);
+            padding: .9rem 2.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background .2s, transform .2s;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
+        }
+
+        .btn-register:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
+        }
+
+        /* ── FOOTER ─────────────────────────────────────────── */
+        .footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 3rem 1.5rem;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #1e293b;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand img {
+            height: 40px;
+            width: auto;
+            margin-bottom: .75rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-brand .name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .footer-brand .sub {
+            font-size: .8rem;
+            color: var(--green);
+        }
+
+        .footer-brand p {
+            margin-top: .5rem;
+            font-size: .85rem;
+            line-height: 1.6;
+        }
+
+        .footer-col h4 {
+            color: #e2e8f0;
+            font-size: .9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: .85rem;
+            color: #94a3b8;
+            margin-bottom: .5rem;
+            transition: color .2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--green);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: .8rem;
+        }
+
+        .footer-bottom a {
+            color: var(--green);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: .75rem;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            background: #1e293b;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: .9rem;
+            transition: background .2s, color .2s;
+        }
+
+        .footer-social a:hover {
+            background: var(--green);
+            color: #fff;
+        }
+
+        /* ── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 768px) {
+
+            .about-grid,
+            .venue-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-links {
+                gap: .8rem;
+            }
+
+            .navbar-brand-text {
+                display: none;
+            }
+
+            .countdown {
+                gap: .75rem;
+            }
+
+            .countdown-sep {
+                display: none;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .navbar-links .hide-sm {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ══ NAVBAR ══════════════════════════════════════════ -->
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">
+            <img src="logo/LogoGeoHazards.svg" alt="Geohazards Logo" />
+            <div class="navbar-brand-text">
+                <div class="title">GEOHAZARDS</div>
+                <div class="sub">Semillero de Investigación</div>
+            </div>
+        </a>
+        <ul class="navbar-links">
+            <li class="hide-sm"><a href="/aboutus">Quiénes Somos</a></li>
+            <li class="hide-sm"><a href="/projects">Proyectos</a></li>
+            <li><a href="/simposio.html" class="active">Simposio</a></li>
+            <li class="hide-sm"><a href="/publications">Publicaciones</a></li>
+            <li>
+                <a href="/geovisor/inventarios-geohazards" class="btn-inv">
+                    <i class="fa-solid fa-location-dot"></i> Inventarios
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ══ HERO ════════════════════════════════════════════ -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">&#127968; Universidad Nacional de Colombia · Medellín</div>
+            <div class="hero-logo">
+                <img src="assets/img/simposio/header/Logo-Simposio-V.png" alt="V Simposio Geoamenazas 2026" />
+            </div>
+            <p class="hero-sub">
+                Un espacio académico para compartir el estado del arte en amenazas geológicas,
+                gestión del riesgo y ciencias de la tierra en el contexto colombiano y latinoamericano.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <i class="fa-regular fa-calendar"></i>
+                    Viernes 10 de julio de 2026
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fa-solid fa-map-marker-alt"></i>
+                    Medellín, Colombia
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fa-solid fa-university"></i>
+                    Universidad Nacional sede Medellín
+                </div>
+            </div>
+            <a href="#registro" class="hero-cta">
+                <i class="fa-solid fa-pen-to-square"></i> Próxima inscripción
+            </a>
+        </div>
+    </section>
+
+    <!-- ══ COUNTDOWN ═══════════════════════════════════════ -->
+    <div class="countdown-section">
+        <div class="countdown-label">&#8987; Faltan para el evento</div>
+        <div class="countdown" id="countdown">
+            <div class="countdown-unit"><span class="countdown-number" id="cd-days">--</span><span
+                    class="countdown-name">días</span></div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-unit"><span class="countdown-number" id="cd-hours">--</span><span
+                    class="countdown-name">horas</span></div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-unit"><span class="countdown-number" id="cd-mins">--</span><span
+                    class="countdown-name">minutos</span></div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-unit"><span class="countdown-number" id="cd-secs">--</span><span
+                    class="countdown-name">segundos</span></div>
+        </div>
+    </div>
+
+    <!-- ══ ABOUT ═══════════════════════════════════════════ -->
+    <section class="section" id="sobre">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="section-badge">Sobre el evento</p>
+                    <h2 class="section-title">V Simposio Geoamenazas 2026</h2>
+                    <div class="divider"></div>
+                    <p>
+                        El <strong>V Simposio Geoamenazas</strong> es un evento organizado por el Semillero de
+                        Investigación
+                        GEOHAZARDS de la Universidad Nacional de Colombia – Sede Medellín. Se celebrará el
+                        <strong>viernes 10 de julio de 2026</strong> y reunirá investigadores, estudiantes y
+                        profesionales
+                        del área de las amenazas geológicas y la gestión del riesgo de desastres.
+                    </p>
+                    <p>
+                        Este simposio representará la quinta edición de un evento que ha consolidado un espacio de
+                        diálogo
+                        entre la academia, el sector público y la comunidad científica para avanzar en el conocimiento y
+                        manejo de fenómenos naturales como los movimientos en masa, las avenidas torrenciales e
+                        inundaciones
+                        en el contexto tropical andino colombiano.
+                    </p>
+                    <p>
+                        En 2025, el <strong>IV Simposio Geoamenazas</strong> se celebró el 6 de agosto en la misma sede,
+                        consolidando la tradición anual de este espacio académico.
+                    </p>
+                </div>
+                <div class="about-img">
+                    <img src="bg/bg4.jpg" alt="Universidad Nacional de Colombia – Sede Medellín" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ TOPICS ══════════════════════════════════════════ -->
+    <section class="section section-alt" id="temas">
+        <div class="container">
+            <p class="section-badge">Ejes temáticos</p>
+            <h2 class="section-title">Temas de interés</h2>
+            <div class="divider"></div>
+            <p class="section-desc">
+                El simposio recibirá contribuciones en las siguientes áreas del conocimiento relacionadas con
+                las amenazas de origen geológico e hidrometeorológico.
+            </p>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-icon">🌄</div>
+                    <div class="topic-title">Movimientos en Masa</div>
+                    <div class="topic-desc">Inventarios, susceptibilidad, amenaza, riesgo y modelos físicos de
+                        deslizamientos y flujos de detritos.</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">🌊</div>
+                    <div class="topic-title">Avenidas Torrenciales</div>
+                    <div class="topic-desc">Caracterización, modelación de propagación, alertas tempranas y gestión de
+                        riesgo por flujos torrenciales.</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">🌧️</div>
+                    <div class="topic-title">Umbrales de Lluvia</div>
+                    <div class="topic-desc">Definición y calibración de umbrales empíricos y de base física para el
+                        detonamiento de movimientos en masa.</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">🛰️</div>
+                    <div class="topic-title">Sensores Remotos & SIG</div>
+                    <div class="topic-desc">Aplicaciones de teledetección, imágenes satelitales e inteligencia
+                        artificial en el análisis geoespacial.</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">🏙️</div>
+                    <div class="topic-title">Riesgo Urbano</div>
+                    <div class="topic-desc">Vulnerabilidad, exposición y gestión del riesgo en asentamientos informales
+                        y zonas de ladera.</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">🔬</div>
+                    <div class="topic-title">Modelos & IA</div>
+                    <div class="topic-desc">Machine learning, redes neuronales y modelos probabilísticos aplicados a la
+                        predicción de geohazards.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ SPEAKERS ════════════════════════════════════════ -->
+    <section class="section" id="ponentes">
+        <div class="container">
+            <p class="section-badge">Ponentes</p>
+            <h2 class="section-title">Conferencistas Invitados</h2>
+            <div class="divider"></div>
+            <div class="tba-note">
+                <i class="fa-solid fa-hourglass-half"></i>
+                Los conferencistas invitados serán confirmados próximamente.
+                Sigue las redes sociales de <strong>Geohazards UNAL</strong> para estar al tanto de las novedades.
+            </div>
+            <div class="speakers-grid" style="margin-top:2rem;">
+                <div class="speaker-card">
+                    <div class="speaker-avatar">🎓</div>
+                    <div class="speaker-name">Por confirmar</div>
+                    <div class="speaker-affil">Conferencista magistral</div>
+                    <span class="speaker-topic">Keynote</span>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-avatar">🔬</div>
+                    <div class="speaker-name">Por confirmar</div>
+                    <div class="speaker-affil">Conferencista temático</div>
+                    <span class="speaker-topic">Sesión técnica</span>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-avatar">🌍</div>
+                    <div class="speaker-name">Por confirmar</div>
+                    <div class="speaker-affil">Conferencista invitado</div>
+                    <span class="speaker-topic">Internacional</span>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-avatar">🏛️</div>
+                    <div class="speaker-name">Por confirmar</div>
+                    <div class="speaker-affil">Panelista</div>
+                    <span class="speaker-topic">Panel</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ SCHEDULE ════════════════════════════════════════ -->
+    <section class="section section-alt" id="programa">
+        <div class="container">
+            <p class="section-badge">Programa</p>
+            <h2 class="section-title">Agenda Tentativa</h2>
+            <div class="divider"></div>
+            <p class="section-desc" style="margin-bottom:0">
+                El programa definitivo será publicado con anticipación al evento. A continuación se presenta una agenda
+                preliminar.
+            </p>
+            <div class="schedule-list">
+                <div class="schedule-item">
+                    <div class="schedule-time">8:00 – 8:30</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Registro y Bienvenida</div>
+                        <div class="schedule-speaker">Comité Organizador · Geohazards UNAL</div>
+                        <span class="schedule-type type-opening">Apertura</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">8:30 – 9:30</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Conferencia Magistral</div>
+                        <div class="schedule-speaker">Conferencista invitado (por confirmar)</div>
+                        <span class="schedule-type type-keynote">Keynote</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">9:30 – 11:00</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Sesión Técnica I – Movimientos en Masa y Avenidas Torrenciales</div>
+                        <div class="schedule-speaker">Ponentes seleccionados (call for abstracts)</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">11:00 – 11:20</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Pausa / Refrigerio</div>
+                        <span class="schedule-type type-break">Descanso</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">11:20 – 12:30</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Sesión Técnica II – Sensores Remotos, IA y Gestión del Riesgo</div>
+                        <div class="schedule-speaker">Ponentes seleccionados (call for abstracts)</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">12:30 – 14:00</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Almuerzo</div>
+                        <span class="schedule-type type-break">Descanso</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">14:00 – 15:30</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Sesión de Pósters – Investigaciones en Geohazards</div>
+                        <div class="schedule-speaker">Estudiantes e investigadores</div>
+                        <span class="schedule-type type-session">Pósters</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">15:30 – 16:30</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Panel de Discusión: Retos y Perspectivas en Geohazards</div>
+                        <div class="schedule-speaker">Panelistas invitados · Moderador TBD</div>
+                        <span class="schedule-type type-panel">Panel</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">16:30 – 17:00</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Clausura y Reconocimientos</div>
+                        <div class="schedule-speaker">Comité Organizador</div>
+                        <span class="schedule-type type-closing">Cierre</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ VENUE ═══════════════════════════════════════════ -->
+    <section class="section" id="lugar">
+        <div class="container">
+            <p class="section-badge">Lugar</p>
+            <h2 class="section-title">¿Dónde se realizará?</h2>
+            <div class="divider"></div>
+            <div class="venue-grid">
+                <div class="venue-info">
+                    <div class="venue-detail">
+                        <i class="fa-solid fa-university"></i>
+                        <div class="venue-detail-content">
+                            <div class="label">Institución</div>
+                            <div class="value">Universidad Nacional de Colombia</div>
+                            <div class="sub-value">Sede Medellín · Facultad de Minas</div>
+                        </div>
+                    </div>
+                    <div class="venue-detail">
+                        <i class="fa-solid fa-map-marker-alt"></i>
+                        <div class="venue-detail-content">
+                            <div class="label">Dirección</div>
+                            <div class="value">Carrera 80 N.° 65-223</div>
+                            <div class="sub-value">Robledo, Medellín, Antioquia – Colombia</div>
+                        </div>
+                    </div>
+                    <div class="venue-detail">
+                        <i class="fa-regular fa-calendar-check"></i>
+                        <div class="venue-detail-content">
+                            <div class="label">Fecha y hora</div>
+                            <div class="value">Viernes 10 de julio de 2026</div>
+                            <div class="sub-value">8:00 a.m. – 5:00 p.m. (Hora Colombia, UTC-5)</div>
+                        </div>
+                    </div>
+                    <div class="venue-detail">
+                        <i class="fa-solid fa-door-open"></i>
+                        <div class="venue-detail-content">
+                            <div class="label">Sala / Auditorio</div>
+                            <div class="value">Por confirmar</div>
+                            <div class="sub-value">El recinto exacto se comunicará próximamente</div>
+                        </div>
+                    </div>
+                    <div class="venue-detail">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <div class="venue-detail-content">
+                            <div class="label">Cómo llegar</div>
+                            <div class="value">Metro UNAL + Bus Circular 301/302</div>
+                            <div class="sub-value">Entrada principal por Carrera 80</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="venue-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.053823748847!2d-75.58063!3d6.26378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428ae9bcf8cef%3A0x1e4e5c8b0e4a2e0e!2sUniversidad%20Nacional%20de%20Colombia%20Sede%20Medell%C3%ADn!5e0!3m2!1ses!2sco!4v1699999999999"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Mapa Universidad Nacional de Colombia Medellín">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ REGISTER ════════════════════════════════════════ -->
+    <section class="register-banner" id="registro">
+        <h2>¡Participa en el V Simposio Geoamenazas!</h2>
+        <p>
+            La convocatoria de ponencias y el formato de inscripción estarán disponibles próximamente.
+            Mantente al tanto siguiendo nuestras redes sociales.
+        </p>
+        <a href="mailto:geohazards_med@unal.edu.co" class="btn-register">
+            <i class="fa-solid fa-envelope"></i> Contáctanos para más información
+        </a>
+    </section>
+
+    <!-- ══ FOOTER ══════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="logo/LogoGeoHazards.svg" alt="Geohazards Logo" />
+                <div class="name">GEOHAZARDS</div>
+                <div class="sub">Semillero de Investigación</div>
+                <p>Facultad de Minas · Universidad Nacional de Colombia · Sede Medellín</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <a href="/">Inicio</a>
+                <a href="/aboutus">Quiénes Somos</a>
+                <a href="/projects">Proyectos</a>
+                <a href="/publications">Publicaciones</a>
+                <a href="/geovisor/inventarios-geohazards">Inventarios Geohazards</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <a href="mailto:geohazards_med@unal.edu.co"><i class="fa-regular fa-envelope"></i>
+                    geohazards_med@unal.edu.co</a>
+                <a href="tel:+574254997"><i class="fa-solid fa-phone"></i> (57)(4) 425 51 97</a>
+                <a href="https://www.facebook.com/GeohazardsUnal/" target="_blank"><i class="fa-brands fa-facebook"></i>
+                    GeohazardsUnal</a>
+                <a href="https://www.instagram.com/geohazards_unalmed/" target="_blank"><i
+                        class="fa-brands fa-instagram"></i> geohazards_unalmed</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Geohazards – Facultad de Minas · Universidad Nacional de Colombia · Sede Medellín</span>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/GeohazardsUnal/" target="_blank" title="Facebook"><i
+                        class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/geohazards_unalmed/" target="_blank" title="Instagram"><i
+                        class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══ COUNTDOWN SCRIPT ════════════════════════════════ -->
+    <script>
+        (function () {
+            const target = new Date('2026-07-10T08:00:00-05:00').getTime();
+            function update() {
+                const now = Date.now();
+                const diff = target - now;
+                if (diff <= 0) {
+                    document.getElementById('countdown').innerHTML =
+                        '<span style="color:#9ae6b4;font-size:1.5rem;font-weight:700">¡El evento ha comenzado!</span>';
+                    return;
+                }
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+                document.getElementById('cd-days').textContent = String(d).padStart(3, '0');
+                document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+                document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+                document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+            }
+            update();
+            setInterval(update, 1000);
+        })();
+    </script>
+</body>
+
+</html>
