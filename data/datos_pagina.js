@@ -284,7 +284,7 @@ export const layers_dunita ={
     styles:{
       color: "#2d8cff"
     },
-    data: [aforosLaderaNE],
+    data: aforosLaderaNE,
   },
 }
 
