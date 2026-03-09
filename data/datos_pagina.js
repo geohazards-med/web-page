@@ -5,6 +5,7 @@ import { estaciones_sgc } from "./geodata/estaciones_sgc.js";
 import { estaciones_valparaiso } from "./geodata/estaciones_valparaiso.js";
 import { perfoLacruz } from "./geodata/perfo_lacruz.js";
 import { grilla_sensores_fredonia } from "./geodata/grilla_sensores_fredonia.js";
+import { aforosLaderaNE } from "./geodata/aforos_ladera_ne.js";
 
 export const layers_ladera_ne = {
   barrios_veredas: {
@@ -251,15 +252,66 @@ export const layers_ladera_ne = {
   },
 };
 
-export const layers_la_cruz = {
-  componentes_gmf: {
-    id: "componentes-cruz",
-    name: "Geomorfología - La Cruz",
-    url: "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Info_Secundaria_1/FeatureServer/3",
+export const layers_dunita ={
+  area_influencia_dunita: {
+    id: "area-influencia-dunita",
+    name: "Área de Influencia Dunita de Medellín",
+    url: "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Zona_Estudio_Dunita/FeatureServer/0",
     layer: "",
     type: "FeatureLayer",
     geometry: "polygons",
-    category: "Cartografía Temática",
+    category: "Mapas Base",
+    show: true,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  aforos_dunita: {
+    id: "aforos-dunita",
+    name: "Puntos de Aforo",
+    url: "https://kf.kobotoolbox.org/api/v2/assets/aPrWvjiCfgDeByvAvootEs/data.json",
+    layer: "",
+    type: "kobo_aforos",
+    geometry: "points",
+    category: "Puntos de Aforo",
+    show: false,
+    showPopup: true,
+    downloable: true,
+    filterable: true,
+    filters: [],
+    styles:{
+      color: "#2d8cff"
+    },
+    data: [aforosLaderaNE],
+  },
+}
+
+export const layers_la_cruz = {
+  unidades_gemorfo_gmf: {
+    id: "unidades-geomorfo-cruz",
+    name: "Unidades Geomorfológicas - La Cruz",
+    url: "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Unidades_Geomorfologicas_La_Cruz/FeatureServer/0",
+    layer: "",
+    type: "FeatureLayer",
+    geometry: "polygons",
+    category: "Geomorfología",
+    show: false,
+    showPopup: true,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  subunidades_gemorfo_gmf: {
+    id: "subunidades-geomorfo-cruz",
+    name: "Subunidades Geomorfológicas - La Cruz",
+    url: "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Subunidades_Geomorfologicas_La_Cruz/FeatureServer/0",
+    layer: "",
+    type: "FeatureLayer",
+    geometry: "polygons",
+    category: "Geomorfología",
     show: false,
     showPopup: true,
     downloable: false,
@@ -276,7 +328,24 @@ export const layers_la_cruz = {
     type: "FeatureLayer",
     // type: "vectorTiles",
     geometry: "polygons",
-    category: "Cartografía Temática",
+    category: "Geología",
+    show: false,
+    showPopup: true,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  geologia_cruz: {
+    id: "geologia-cruz",
+    name: "Geologia Detallada - La Cruz",
+    url: "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Geologia_Local_La_Cruz/FeatureServer/0",
+    // url: "https://vectortileservices7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Geologia_Detallada_Ladera_NE/VectorTileServer",
+    layer: "",
+    type: "FeatureLayer",
+    // type: "vectorTiles",
+    geometry: "polygons",
+    category: "Geología",
     show: false,
     showPopup: true,
     downloable: false,
@@ -2620,6 +2689,11 @@ window.data_page = {
           ...Object.values(cartografia_med),
           recursos_3d.edificios_3d,
         ].flat(),
+        btn_external_link: {
+          text: "Componente social",
+          link: "https://geohazards.com.co/comunidad",
+          icon: "diversity_3"
+        },
       },
       {
         id: "estudio-dunita-medellin",
@@ -2633,6 +2707,7 @@ window.data_page = {
         layer_list: [
           layers_ladera_ne.perforaciones_info_sec,
           ...Object.values(layers_ortofotos),
+          ...Object.values(layers_dunita),
           ...Object.values(cartografia_med),
           recursos_3d.edificios_3d,
         ].flat(),
