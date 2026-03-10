@@ -584,6 +584,21 @@ export const cartografia_med = {
     filters: [],
     data: [],
   },
+  geologia_vdea: {
+    id: "geologia-vdea",
+    name: "Geologia Detallada del Valle de Aburrá",
+    url: "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Geologia_Detallada_Valle_Aburr%C3%A1/FeatureServer/0",
+    layer: "",
+    type: "FeatureLayer",
+    geometry: "polygons",
+    category: "Geología",
+    show: false,
+    showPopup: true,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
 };
 
 export const recursos_3d = {
