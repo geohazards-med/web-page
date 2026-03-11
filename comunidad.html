@@ -6,6 +6,363 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Borde Nororiental - Gestión del Riesgo</title>
     <link rel="stylesheet" href="assets/css/comunidad.css">
+    <style>
+        /* ===== SUPPLEMENTAL STYLES ===== */
+        :root {
+            --blue: #1e6fb5;
+            --blue-light: #e8f1fb;
+            --blue-dark: #14508a;
+            --green: #2e8b57;
+            --orange: #e07b2a;
+            --red: #c0392b;
+            --gray-light: #f4f6fa;
+            --gray: #6b7a8d;
+            --text: #1a2332;
+            --card-shadow: 0 4px 24px rgba(30,111,181,0.10);
+        }
+
+        /* ---- STATS DASHBOARD ---- */
+        .stats-section {
+            background: var(--blue-dark);
+            color: white;
+            padding: 3rem 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: background 0.2s;
+        }
+        .stat-card:hover { background: rgba(255,255,255,0.18); }
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1;
+            color: #fff;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.75);
+            margin-top: 0.4rem;
+            display: block;
+            line-height: 1.3;
+        }
+        .stats-title {
+            text-align: center;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ---- BARRIOS TABLE ---- */
+        .barrios-section {
+            background: var(--gray-light);
+            padding: 4rem 0;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .section-title-alt {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle-alt {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        .barrios-table-wrap { overflow-x: auto; border-radius: 12px; box-shadow: var(--card-shadow); }
+        .barrios-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.9rem;
+        }
+        .barrios-table th {
+            background: var(--blue);
+            color: white;
+            padding: 0.85rem 1rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.3px;
+        }
+        .barrios-table td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid #e8ecf2;
+            color: var(--text);
+        }
+        .barrios-table tr:hover td { background: var(--blue-light); }
+        .commune-badge {
+            display: inline-block;
+            background: var(--blue-light);
+            color: var(--blue-dark);
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        /* ---- SOCIALIZATIONS ---- */
+        .social-section { background: white; padding: 4rem 0; }
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+        .social-card {
+            border: 1.5px solid #dce6f5;
+            border-radius: 14px;
+            padding: 1.4rem;
+            background: var(--gray-light);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .social-card:hover { box-shadow: var(--card-shadow); transform: translateY(-3px); }
+        .social-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+        .social-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--blue);
+            flex-shrink: 0;
+        }
+        .social-barrio { font-weight: 700; font-size: 0.92rem; color: var(--text); }
+        .social-sector { font-size: 0.78rem; color: var(--gray); margin-bottom: 0.6rem; }
+        .social-stats { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+        .social-chip {
+            background: white;
+            border: 1px solid #dce6f5;
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 0.75rem;
+            color: var(--blue-dark);
+            font-weight: 600;
+        }
+
+        /* ---- NORMATIVIDAD ---- */
+        .norma-section { background: var(--gray-light); padding: 4rem 0; }
+        .norma-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+        .norma-card {
+            background: white;
+            border-left: 4px solid var(--blue);
+            border-radius: 10px;
+            padding: 1.2rem 1.4rem;
+            box-shadow: 0 2px 10px rgba(30,111,181,0.07);
+        }
+        .norma-title { font-weight: 700; color: var(--blue-dark); font-size: 0.95rem; margin-bottom: 0.4rem; }
+        .norma-desc { font-size: 0.86rem; color: var(--gray); line-height: 1.5; }
+
+        /* ---- HISTORICAL EVENTS ---- */
+        .eventos-section { background: white; padding: 4rem 0; }
+        .eventos-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+        .evento-item {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr 1fr;
+            gap: 1rem;
+            align-items: start;
+            background: var(--gray-light);
+            border-radius: 10px;
+            padding: 1rem 1.4rem;
+            border-left: 4px solid var(--orange);
+            font-size: 0.88rem;
+        }
+        .evento-item.riesgo-alto { border-left-color: var(--red); }
+        .evento-fecha { font-weight: 700; color: var(--blue-dark); }
+        .evento-lugar { color: var(--text); font-weight: 600; }
+        .evento-proceso { color: var(--gray); }
+        .evento-consecuencia { color: var(--red); font-weight: 600; }
+        .eventos-table-header {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr 1fr;
+            gap: 1rem;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        @media (max-width: 650px) {
+            .evento-item, .eventos-table-header {
+                grid-template-columns: 1fr 1fr;
+            }
+            .social-grid, .norma-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ---- CRONOGRAMA DETALLADO ---- */
+        .crono-detail {
+            margin-top: 2rem;
+            overflow-x: auto;
+        }
+        .crono-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        .crono-table th {
+            background: var(--blue);
+            color: white;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 700;
+        }
+        .crono-table td {
+            padding: 0.65rem 1rem;
+            border-bottom: 1px solid #e8ecf2;
+            vertical-align: top;
+        }
+        .crono-table tr:last-child td { border-bottom: none; }
+        .crono-periodo {
+            font-weight: 800;
+            color: var(--blue-dark);
+            white-space: nowrap;
+        }
+        .crono-cat {
+            font-weight: 700;
+            color: var(--text);
+        }
+        .crono-act { color: var(--gray); font-size: 0.84rem; }
+        .cat-tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .cat-campo { background: #e8f5e9; color: #2e7d32; }
+        .cat-social { background: #e3f2fd; color: #1565c0; }
+        .cat-modelo { background: #fff3e0; color: #e65100; }
+        .cat-vulnerab { background: #fce4ec; color: #c62828; }
+        .cat-riesgo { background: #f3e5f5; color: #6a1b9a; }
+        .cat-obras { background: #e0f2f1; color: #00695c; }
+        .cat-inicio { background: #f9fbe7; color: #558b2f; }
+        .cat-cierre { background: #efebe9; color: #4e342e; }
+
+        /* ---- PERFORACIONES ---- */
+        .perfor-section { background: var(--blue-dark); color: white; padding: 3.5rem 0; }
+        .perfor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 2rem auto 0;
+            padding: 0 2rem;
+        }
+        .perfor-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+        }
+        .perfor-num { font-size: 3rem; font-weight: 800; display: block; }
+        .perfor-type { font-size: 0.85rem; color: rgba(255,255,255,0.75); margin-top: 0.4rem; }
+        @media (max-width: 600px) { .perfor-grid { grid-template-columns: 1fr; } }
+
+        /* ---- PROCESS STEPS (new) ---- */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+        .process-step {
+            background: white;
+            border-radius: 14px;
+            padding: 1.4rem;
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--blue);
+            position: relative;
+        }
+        .step-num {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--blue-light);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .step-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.95rem; }
+        .step-desc { font-size: 0.85rem; color: var(--gray); line-height: 1.5; }
+
+        /* ---- SECTION PADDING ---- */
+        .section-padding { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+        /* ---- FOTOINTERPRETACION ---- */
+        .foto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .foto-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.1rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+        .foto-barrio { font-weight: 700; color: var(--blue-dark); font-size: 0.88rem; margin-bottom: 0.5rem; }
+        .foto-items { list-style: none; padding: 0; margin: 0; }
+        .foto-items li { font-size: 0.82rem; color: var(--gray); display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px solid #f0f0f0; }
+        .foto-items li:last-child { border-bottom: none; }
+        .foto-count { font-weight: 700; color: var(--text); }
+
+        /* ---- PARTICIPATION ---- */
+        .participa-section { background: var(--blue-light); padding: 3rem 2rem; text-align: center; }
+        .participa-grid { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
+        .participa-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            width: 220px;
+            box-shadow: var(--card-shadow);
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        .participa-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .participa-card strong { display: block; margin-bottom: 0.3rem; color: var(--blue-dark); font-size: 1rem; }
+
+        /* ---- METODOLOGIAS ---- */
+        .metod-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+        .metod-chip {
+            background: var(--blue-light);
+            color: var(--blue-dark);
+            border: 1px solid #c0d8f5;
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 0.84rem;
+            font-weight: 600;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,9 +384,10 @@
 
             <!-- Desktop Nav -->
             <div class="nav-links">
-                <a href="#" class="nav-link">Inicio</a>
+                <a href="#inicio" class="nav-link">Inicio</a>
                 <a href="#proceso" class="nav-link">Proceso</a>
                 <a href="#tecnico" class="nav-link">Técnico</a>
+                <a href="#territorio" class="nav-link">Territorio</a>
                 <a href="#faq" class="nav-link">Preguntas</a>
                 <button class="btn-download">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -61,9 +419,10 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu">
-            <a href="#" class="nav-link">Inicio</a>
+            <a href="#inicio" class="nav-link">Inicio</a>
             <a href="#proceso" class="nav-link">Proceso</a>
             <a href="#tecnico" class="nav-link">Técnico</a>
+            <a href="#territorio" class="nav-link">Territorio</a>
             <a href="#faq" class="nav-link">Preguntas</a>
             <button class="btn-download">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -90,18 +449,18 @@
                 <div>
                     <div class="hero-badge">
                         <span class="hero-dot"></span>
-                        Gestión del Riesgo - Trabajo con Comunidades
+                        Gestión del Riesgo · Avances y actividades en tu territorio
                     </div>
 
                     <h1 class="hero-title">
-                        <span class="hero-title-prefix">Estudios de Detalle</span>
+                        <span class="hero-title-prefix">Estudios de Detalle de Amenaza, Vulnerabilidad y Riesgo</span>
                         <span class="text-blue">Borde Nororiental</span> de Medellín
                     </h1>
 
                     <p class="hero-desc">
-                        "En articulación con la Universidad Nacional de Sede Medellín y el semillero de investigación
-                        GeoHazards, trabajamos con la Alcaldía de Medellín para generar información técnica de alta
-                        precisión."
+                        Estudios técnicos de alta precisión para la toma de decisiones de alto impacto social.
+                        En articulación con la Universidad Nacional de Colombia, Sede Medellín, el semillero GeoHazards
+                        y la Alcaldía de Medellín, trabajamos con y para las comunidades del Borde Nororiental.
                     </p>
 
                     <div class="hero-actions">
@@ -114,11 +473,9 @@
                                 <polyline points="12 5 19 12 12 19" />
                             </svg>
                         </a>
-                        <div class="hero-leader">
-                            <div class="leader-icon">
-
-                            </div>
-                        </div>
+                        <a href="#territorio" class="btn-hero" style="text-decoration:none; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);">
+                            Ver Territorios
+                        </a>
                     </div>
                 </div>
 
@@ -136,17 +493,64 @@
             </div>
         </section>
 
+        <!-- ===== STATS DASHBOARD ===== -->
+        <section class="stats-section">
+            <p class="stats-title">Tablero de Indicadores · Actualización noviembre 2025</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Barrios / veredas estudiados</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Comunas + 1 corregimiento</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">94</span>
+                    <span class="stat-label">Asistentes a socializaciones iniciales</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">29</span>
+                    <span class="stat-label">Acompañamientos comunitarios</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">49</span>
+                    <span class="stat-label">Perforaciones y apiques (La Cruz)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Meses de duración del proyecto</span>
+                </div>
+            </div>
+        </section>
+
         <!-- Definition Section -->
         <section class="section-padding" id="definicion">
             <div class="about-card glass-card">
-                <h2 class="section-title">¿Qué son los Estudios de Detalle?</h2>
+                <h2 class="section-title">¿Qué son los Estudios de Riesgo de Detalle?</h2>
                 <div class="about-text">
-                    <p>Son estudios técnicos que permiten determinar con alta precisión las áreas con mayor probabilidad
-                        de ocurrencia de eventos como movimientos en masa. Su escala de detalle (1:2.000) permite
-                        diseñar
-                        soluciones de mitigación ajustadas a la realidad de cada barrio.</p>
+                    <p>Es un estudio técnico especializado que analiza, con alta precisión (escala 1:2.000), la
+                        amenaza, la vulnerabilidad y el riesgo en zonas específicas del territorio donde existe
+                        posibilidad de deslizamientos, inestabilidades del terreno u otros fenómenos peligrosos
+                        como avenidas torrenciales. Esto permite identificar condiciones del suelo, comportamiento
+                        de laderas y efectos sobre viviendas, vías y equipamientos.</p>
+                    <p style="margin-top:0.8rem;">El estudio se realiza en el <strong>Macroproyecto Borde Urbano Rural Nororiental</strong>,
+                        conformado por la parte alta de las comunas 1 (Popular), 3 (Manrique) y 8 (Villa Hermosa),
+                        así como por la zona rural de Piedras Blancas, Santa Elena.</p>
                 </div>
-                <div class="about-features">
+
+                <div class="metod-chips">
+                    <span class="metod-chip">Levantamientos topográficos</span>
+                    <span class="metod-chip">Perforaciones geotécnicas</span>
+                    <span class="metod-chip">Apiques</span>
+                    <span class="metod-chip">Análisis de laboratorio</span>
+                    <span class="metod-chip">Modelación geotécnica</span>
+                    <span class="metod-chip">Análisis de vulnerabilidad</span>
+                    <span class="metod-chip">Microzonificación</span>
+                    <span class="metod-chip">Escala 1:2.000</span>
+                </div>
+
+                <div class="about-features" style="margin-top:2rem;">
                     <div class="feature-item">
                         <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -163,7 +567,7 @@
                                 <circle cx="12" cy="12" r="10" />
                                 <path d="m9 12 2 2 4-4" />
                             </svg></div>
-                        <span class="feature-text">Evaluación de amenazas y vulnerabilidades específicas.</span>
+                        <span class="feature-text">Evaluación de amenazas, vulnerabilidades físicas y sociales.</span>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -172,7 +576,42 @@
                                 <circle cx="12" cy="12" r="10" />
                                 <path d="m9 12 2 2 4-4" />
                             </svg></div>
-                        <span class="feature-text">Propuestas de obras de mitigación y gestión social.</span>
+                        <span class="feature-text">Propuestas de obras de mitigación y gestión social participativa.</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="m9 12 2 2 4-4" />
+                            </svg></div>
+                        <span class="feature-text">Marco legal: Ley 388/1997, Ley 1523/2012, Decreto 1077/2015 y Acuerdo 48/2014 (POT Medellín).</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NORMATIVIDAD ===== -->
+        <section class="norma-section" id="normatividad">
+            <div class="container">
+                <h2 class="section-title-alt">Marco Normativo</h2>
+                <p class="section-subtitle-alt">Legislación que respalda y orienta los estudios de riesgo de detalle.</p>
+                <div class="norma-grid">
+                    <div class="norma-card">
+                        <div class="norma-title">Ley 388 de 1997</div>
+                        <div class="norma-desc">Ley de Desarrollo Territorial. Armoniza la planificación económica y social con el uso físico del suelo para mejorar la calidad de vida de los ciudadanos.</div>
+                    </div>
+                    <div class="norma-card">
+                        <div class="norma-title">Ley 1523 de 2012</div>
+                        <div class="norma-desc">Adopta la Política Nacional de Gestión del Riesgo de Desastres y crea el Sistema Nacional de Gestión del Riesgo de Desastres (SNGRD) en Colombia.</div>
+                    </div>
+                    <div class="norma-card">
+                        <div class="norma-title">Decreto 1077 de 2015</div>
+                        <div class="norma-desc">Decreto Único Reglamentario del Sector Vivienda, Ciudad y Territorio. Incluye el Decreto 1807 de 2014 sobre estudios de amenaza y riesgo.</div>
+                    </div>
+                    <div class="norma-card">
+                        <div class="norma-title">Acuerdo 48 de 2014</div>
+                        <div class="norma-desc">Adopta la revisión del Plan de Ordenamiento Territorial (POT) del Municipio de Medellín con disposiciones complementarias sobre gestión del riesgo.</div>
                     </div>
                 </div>
             </div>
@@ -181,23 +620,97 @@
         <!-- Process Phases -->
         <section class="section-padding process-section" id="proceso">
             <div class="process-header">
-                <h2 class="section-title">Fases del Proceso</h2>
+                <h2 class="section-title">Fases del Proceso de Gestión Territorial</h2>
                 <p class="process-subtitle">Desde el reconocimiento inicial hasta la entrega a la comunidad.</p>
             </div>
-            <div class="process-grid">
-                <div class="process-card">
-                    <img src="https://picsum.photos/seed/technical-walk/600/400" alt="Recorridos"
-                        referrerPolicy="no-referrer" />
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-num">01</div>
+                    <div class="step-title">Pre-campo</div>
+                    <div class="step-desc">Las Juntas de Acción Comunal y organizaciones del territorio son nuestro mejor aliado para ingresar al territorio. El pre-campo es el acercamiento necesario para tejer lazos de confianza.</div>
                 </div>
-                <div class="tech-img-content">
-                    <h4 class="tech-img-title">Recorridos Técnicos</h4>
-                    <p class="tech-img-desc">Geólogos e ingenieros visitando cada sector para identificar
-                        grietas, afloramientos de agua y movimientos de masa.</p>
+                <div class="process-step">
+                    <div class="step-num">02</div>
+                    <div class="step-title">Socialización Inicial</div>
+                    <div class="step-desc">Facilitamos la comprensión y apropiación de los estudios mediante una socialización pedagógica, clara y respetuosa. Compromisos: informar avances y garantizar acceso a la información generada.</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">03</div>
+                    <div class="step-title">Recorridos de Intercambio</div>
+                    <div class="step-desc">Entre mayo y junio de 2026 realizaremos recorridos por cada comuna con académicos internacionales, líderes y lideresas, para promover el diálogo de saberes entre distintas lecturas del territorio.</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">04</div>
+                    <div class="step-title">Socialización Final</div>
+                    <div class="step-desc">Garantizamos la comprensión, apropiación y uso social e institucional de los resultados mediante procesos participativos, comunicación del riesgo y fortalecimiento de capacidades locales.</div>
                 </div>
             </div>
+
+            <!-- Socializaciones por barrio -->
+            <h3 style="margin-top:3rem; margin-bottom:0.5rem; font-size:1.2rem; color:var(--text);">Encuentros de Socialización Inicial por Sector</h3>
+            <p style="color:var(--gray); font-size:0.9rem; margin-bottom:1rem;">Datos de asistentes y acompañamientos comunitarios por barrio.</p>
+            <div class="social-grid">
+                <div class="social-card">
+                    <div class="social-card-header"><div class="social-dot"></div><span class="social-barrio">La Cruz</span></div>
+                    <div class="social-sector">Manrique · La Cruz</div>
+                    <div class="social-stats">
+                        <span class="social-chip">7 acompañamientos</span>
+                        <span class="social-chip">Soc. inicial</span>
+                    </div>
+                </div>
+                <div class="social-card">
+                    <div class="social-card-header"><div class="social-dot"></div><span class="social-barrio">Versalles No. 2</span></div>
+                    <div class="social-sector">Manrique · La Honda y Versalles</div>
+                    <div class="social-stats">
+                        <span class="social-chip">31 asistentes</span>
+                        <span class="social-chip">6 acompañamientos</span>
+                    </div>
+                </div>
+                <div class="social-card">
+                    <div class="social-card-header"><div class="social-dot"></div><span class="social-barrio">Bello Oriente</span></div>
+                    <div class="social-sector">Manrique · Oriente</div>
+                    <div class="social-stats">
+                        <span class="social-chip">8 asistentes</span>
+                        <span class="social-chip">3 acompañamientos</span>
+                    </div>
+                </div>
+                <div class="social-card">
+                    <div class="social-card-header"><div class="social-dot"></div><span class="social-barrio">Llanaditas – Golondrinas</span></div>
+                    <div class="social-sector">Villa Hermosa</div>
+                    <div class="social-stats">
+                        <span class="social-chip">10 asistentes</span>
+                        <span class="social-chip">4 acompañamientos</span>
+                    </div>
+                </div>
+                <div class="social-card">
+                    <div class="social-card-header"><div class="social-dot"></div><span class="social-barrio">Llanaditas – El Faro</span></div>
+                    <div class="social-sector">Villa Hermosa</div>
+                    <div class="social-stats">
+                        <span class="social-chip">12 asistentes</span>
+                        <span class="social-chip">4 acompañamientos</span>
+                    </div>
+                </div>
+                <div class="social-card">
+                    <div class="social-card-header"><div class="social-dot"></div><span class="social-barrio">Llanaditas – Altos de la Torre</span></div>
+                    <div class="social-sector">Villa Hermosa</div>
+                    <div class="social-stats">
+                        <span class="social-chip">19 asistentes</span>
+                        <span class="social-chip">4 acompañamientos</span>
+                    </div>
+                </div>
+                <div class="social-card">
+                    <div class="social-card-header"><div class="social-dot"></div><span class="social-barrio">Trece de Noviembre</span></div>
+                    <div class="social-sector">Villa Hermosa · El Pacífico</div>
+                    <div class="social-stats">
+                        <span class="social-chip">14 asistentes</span>
+                        <span class="social-chip">1 acompañamiento</span>
+                    </div>
+                </div>
             </div>
-            </div>
-            <div class="timeline-card">
+
+            <!-- Cronograma Detallado -->
+            <div class="timeline-card" style="margin-top:3rem;">
                 <div class="timeline-header">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -207,24 +720,336 @@
                         <line x1="8" y1="2" x2="8" y2="6" />
                         <line x1="3" y1="10" x2="21" y2="10" />
                     </svg>
-                    <h3 class="timeline-title">Cronograma General (Meses 1-12)</h3>
+                    <h3 class="timeline-title">Cronograma General del Proyecto (Nov 2025 – Nov 2026)</h3>
                 </div>
                 <div class="timeline-grid">
                     <div class="timeline-item">
-                        <div class="timeline-months">1-3</div>
-                        <p class="timeline-label">Alistamiento y Campo Inicial</p>
+                        <div class="timeline-months">1-2</div>
+                        <p class="timeline-label">Inicio, Pre-campo & Socialización Inicial (Bello Oriente, La Cruz, Versalles 2)</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-months">4-8</div>
-                        <p class="timeline-label">Perforaciones y Ensayos Lab</p>
+                        <div class="timeline-months">2-4</div>
+                        <p class="timeline-label">Campo: recorridos técnicos, perforaciones, apiques. Socialización Llanaditas y 13 de Noviembre</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-months">9-11</div>
-                        <p class="timeline-label">Modelación y Análisis</p>
+                        <div class="timeline-months">4-6</div>
+                        <p class="timeline-label">Modelamiento, vulnerabilidad, página web e intercambio de conocimientos</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-months">12</div>
-                        <p class="timeline-label">Entrega Final y Avales</p>
+                        <div class="timeline-months">7-9</div>
+                        <p class="timeline-label">Escenarios de riesgo cuantitativo y cualitativo</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-months">9-10</div>
+                        <p class="timeline-label">Diseño de obras de mitigación</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-months">11-12</div>
+                        <p class="timeline-label">Resultados, socialización final y entrega al distrito</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cronograma Detallado Tabla -->
+            <div class="crono-detail">
+                <table class="crono-table">
+                    <thead>
+                        <tr>
+                            <th>Período</th>
+                            <th>Categoría</th>
+                            <th>Actividades Principales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="crono-periodo">Mes 1-2</td>
+                            <td><span class="cat-tag cat-inicio">Inicio del proyecto</span></td>
+                            <td class="crono-act">Planificación · Recolección de información secundaria · Inventario de eventos · Cartografía base · Identificación de actores · Reuniones de acercamiento · Socialización inicial: Bello Oriente, La Cruz, Versalles 2</td>
+                        </tr>
+                        <tr>
+                            <td class="crono-periodo">Mes 2-4</td>
+                            <td><span class="cat-tag cat-campo">Campo</span></td>
+                            <td class="crono-act">Recorridos de campo técnicos por barrio · Perforaciones, apiques y análisis de muestras en laboratorio · Socialización inicial: Llanaditas (Golondrinas, El Faro, Altos de la Torre, El Pacífico), Trece de Noviembre</td>
+                        </tr>
+                        <tr>
+                            <td class="crono-periodo">Mes 4-5</td>
+                            <td><span class="cat-tag cat-modelo">Modelamiento</span></td>
+                            <td class="crono-act">Modelos geotécnicos por UMI · Construcción página web e Storytelling · Boletín informativo 1: recorridos técnicos y perforaciones</td>
+                        </tr>
+                        <tr>
+                            <td class="crono-periodo">Mes 4-6</td>
+                            <td><span class="cat-tag cat-vulnerab">Vulnerabilidad</span></td>
+                            <td class="crono-act">Análisis de vulnerabilidad física y social · Testeo social de narrativa audiovisual · Boletines 2 y 3 · Recorrido de intercambio de conocimientos</td>
+                        </tr>
+                        <tr>
+                            <td class="crono-periodo">Mes 7-9</td>
+                            <td><span class="cat-tag cat-riesgo">Escenarios de Riesgo</span></td>
+                            <td class="crono-act">Riesgo cuantitativo · Riesgo cualitativo · Boletín 4: reflexiones del intercambio de conocimientos</td>
+                        </tr>
+                        <tr>
+                            <td class="crono-periodo">Mes 9-10</td>
+                            <td><span class="cat-tag cat-obras">Diseño de Obras</span></td>
+                            <td class="crono-act">Diseño detallado de obras de mitigación · Boletín 5: ¿Qué es un escenario de riesgo?</td>
+                        </tr>
+                        <tr>
+                            <td class="crono-periodo">Mes 11-12</td>
+                            <td><span class="cat-tag cat-cierre">Resultados y Cierre</span></td>
+                            <td class="crono-act">Socialización de resultados · Boletines 6 y 7: ¿Qué es una obra de diseño detallada? ¿Cuándo llegan los resultados?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== TRABAJO TÉCNICO ===== -->
+        <section class="section-padding" id="tecnico">
+            <h2 class="section-title">Fases del Trabajo Técnico</h2>
+
+            <div class="process-grid">
+                <div class="process-card">
+                    <img src="https://picsum.photos/seed/technical-walk/600/400" alt="Recorridos"
+                        referrerPolicy="no-referrer" />
+                </div>
+                <div class="tech-img-content">
+                    <h4 class="tech-img-title">Recorridos Técnicos</h4>
+                    <p class="tech-img-desc">Conocer el lugar es fundamental para entender la dinámica del riesgo.
+                        Los recorridos permiten reconocer preliminarmente las condiciones del terreno: tipos de suelo,
+                        rocas, pendientes, drenajes y posibles evidencias de inestabilidad. En ocasiones encontramos
+                        perfiles de suelo expuestos que funcionan como "ventanas" del subsuelo y orientan las siguientes
+                        fases del estudio.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perforaciones -->
+        <section class="perfor-section" id="perforaciones">
+            <p class="stats-title">Perforaciones Geotécnicas · Barrio La Cruz</p>
+            <div class="perfor-grid">
+                <div class="perfor-card">
+                    <span class="perfor-num">2</span>
+                    <div class="perfor-type">Perforaciones por<br>rotación</div>
+                </div>
+                <div class="perfor-card">
+                    <span class="perfor-num">41</span>
+                    <div class="perfor-type">Perforaciones por<br>percusión</div>
+                </div>
+                <div class="perfor-card">
+                    <span class="perfor-num">6</span>
+                    <div class="perfor-type">Apiques<br>(excavaciones manuales)</div>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:1.5rem; color:rgba(255,255,255,0.65); font-size:0.88rem; max-width:700px; margin-left:auto; margin-right:auto; padding:0 2rem;">
+                Las perforaciones responden preguntas clave: qué materiales hay, a qué profundidad cambian, qué tan firmes o blandos son, si hay agua subterránea y cómo se comportan ante cargas o lluvias.
+            </p>
+        </section>
+
+        <!-- ===== FOTOINTERPRETACIÓN ===== -->
+        <section style="background: var(--gray-light); padding: 3rem 0;">
+            <div class="container">
+                <h2 class="section-title-alt">Procesos Identificados por Fotointerpretación</h2>
+                <p class="section-subtitle-alt">Cantidad de procesos geomorfológicos identificados en imágenes aéreas por barrio.</p>
+                <div class="foto-grid">
+                    <div class="foto-card">
+                        <div class="foto-barrio">Versalles No. 2</div>
+                        <ul class="foto-items">
+                            <li><span>Deslizamiento</span><span class="foto-count">11</span></li>
+                            <li><span>Caída de rocas</span><span class="foto-count">2</span></li>
+                            <li><span>Surcos</span><span class="foto-count">4</span></li>
+                            <li><span>Sobrepastoreo</span><span class="foto-count">1</span></li>
+                        </ul>
+                    </div>
+                    <div class="foto-card">
+                        <div class="foto-barrio">La Cruz</div>
+                        <ul class="foto-items">
+                            <li><span>Deslizamiento</span><span class="foto-count">32</span></li>
+                            <li><span>Flujos</span><span class="foto-count">17</span></li>
+                            <li><span>Sobrepastoreo</span><span class="foto-count">25</span></li>
+                            <li><span>Surcos</span><span class="foto-count">4</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TERRITORIO ===== -->
+        <section class="barrios-section" id="territorio">
+            <div class="container">
+                <h2 class="section-title-alt">Características Territoriales</h2>
+                <p class="section-subtitle-alt">Barrios y veredas del Borde Nororiental donde se realizan los estudios de riesgo de detalle.</p>
+                <div class="barrios-table-wrap">
+                    <table class="barrios-table">
+                        <thead>
+                            <tr>
+                                <th>Comuna</th>
+                                <th>Barrio / Vereda</th>
+                                <th>Área (Ha)</th>
+                                <th>Población (2026)</th>
+                                <th>Cod. Barrio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="commune-badge">01 · Popular</span></td>
+                                <td>Santo Domingo Savio No. 2</td>
+                                <td>26.48</td>
+                                <td>~10,050</td>
+                                <td>0102</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">03 · Manrique</span></td>
+                                <td>Versalles No. 2</td>
+                                <td>24.80</td>
+                                <td>~5,607</td>
+                                <td>0310</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">03 · Manrique</span></td>
+                                <td>La Cruz</td>
+                                <td>60.05</td>
+                                <td>~10,592</td>
+                                <td>0311</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">03 · Manrique</span></td>
+                                <td>Oriente (Bello Oriente)</td>
+                                <td>41.23</td>
+                                <td>~4,891</td>
+                                <td>0312</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">08 · Villa Hermosa</span></td>
+                                <td>Llanaditas</td>
+                                <td>32.06</td>
+                                <td>~11,483</td>
+                                <td>0806</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">08 · Villa Hermosa</span></td>
+                                <td>Trece de Noviembre</td>
+                                <td>17.39</td>
+                                <td>~10,342</td>
+                                <td>0811</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">08 · Villa Hermosa</span></td>
+                                <td>La Libertad</td>
+                                <td>31.24</td>
+                                <td>~12,097</td>
+                                <td>0812</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">08 · Villa Hermosa</span></td>
+                                <td>San Antonio</td>
+                                <td>15.21</td>
+                                <td>~5,149</td>
+                                <td>0814</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">08 · Villa Hermosa</span></td>
+                                <td>Villa Turbay</td>
+                                <td>24.78</td>
+                                <td>~4,637</td>
+                                <td>0816</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">08 · Villa Hermosa</span></td>
+                                <td>La Sierra</td>
+                                <td>21.23</td>
+                                <td>~3,014</td>
+                                <td>0817</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">08 · Villa Hermosa</span></td>
+                                <td>Villa Lilliam</td>
+                                <td>15.52</td>
+                                <td>~6,030</td>
+                                <td>0819</td>
+                            </tr>
+                            <tr>
+                                <td><span class="commune-badge">90 · Santa Elena</span></td>
+                                <td>Piedras Blancas (rural)</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="font-size:0.78rem; color:var(--gray); margin-top:0.8rem;">* Fuente: Datos proyectados DANE – GeoHazards 2025. Población estimada 2026.</p>
+            </div>
+        </section>
+
+        <!-- ===== HISTORICO DE EVENTOS ===== -->
+        <section class="eventos-section" id="eventos">
+            <div class="container">
+                <h2 class="section-title-alt">Histórico de Eventos en el Territorio</h2>
+                <p class="section-subtitle-alt">Eventos geológicos registrados que justifican la realización de los estudios de detalle.</p>
+                <div class="eventos-table-header">
+                    <span>Fecha</span>
+                    <span>Barrio / Sector</span>
+                    <span>Proceso</span>
+                    <span>Consecuencias</span>
+                </div>
+                <div class="eventos-list">
+                    <div class="evento-item">
+                        <span class="evento-fecha">Sep 1992</span>
+                        <span class="evento-lugar">Versalles No. 2</span>
+                        <span class="evento-proceso">Deslizamiento</span>
+                        <span class="evento-consecuencia">3 familias evacuadas</span>
+                    </div>
+                    <div class="evento-item riesgo-alto">
+                        <span class="evento-fecha">Abr 1996</span>
+                        <span class="evento-lugar">Versalles No. 2</span>
+                        <span class="evento-proceso">Avenida torrencial</span>
+                        <span class="evento-consecuencia">52 casas afectadas · 260 damnificados</span>
+                    </div>
+                    <div class="evento-item">
+                        <span class="evento-fecha">Dic 2017 – Ene 2018</span>
+                        <span class="evento-lugar">Versalles No. 2</span>
+                        <span class="evento-proceso">Deslizamiento y caída de rocas</span>
+                        <span class="evento-consecuencia">13 casas afectadas</span>
+                    </div>
+                    <div class="evento-item">
+                        <span class="evento-fecha">Sep – Oct 1994</span>
+                        <span class="evento-lugar">La Cruz · La Capilla</span>
+                        <span class="evento-proceso">Deslizamiento</span>
+                        <span class="evento-consecuencia">6 viviendas afectadas · 1 fallecido</span>
+                    </div>
+                    <div class="evento-item riesgo-alto">
+                        <span class="evento-fecha">May 2004</span>
+                        <span class="evento-lugar">La Cruz · Altos de La Cruz</span>
+                        <span class="evento-proceso">Deslizamiento</span>
+                        <span class="evento-consecuencia">8 fallecidos · inestabilidad recurrente</span>
+                    </div>
+                    <div class="evento-item">
+                        <span class="evento-fecha">May 2006</span>
+                        <span class="evento-lugar">La Cruz · La Capilla</span>
+                        <span class="evento-proceso">Flujo de lodos y detritos</span>
+                        <span class="evento-consecuencia">1 fallecido</span>
+                    </div>
+                    <div class="evento-item">
+                        <span class="evento-fecha">2009</span>
+                        <span class="evento-lugar">La Cruz</span>
+                        <span class="evento-proceso">Colapso de viviendas</span>
+                        <span class="evento-consecuencia">5 viviendas afectadas</span>
+                    </div>
+                    <div class="evento-item">
+                        <span class="evento-fecha">Sep 1999</span>
+                        <span class="evento-lugar">Bello Oriente</span>
+                        <span class="evento-proceso">Deslizamiento</span>
+                        <span class="evento-consecuencia">1 fallecido</span>
+                    </div>
+                    <div class="evento-item">
+                        <span class="evento-fecha">Jun 2017</span>
+                        <span class="evento-lugar">Bello Oriente</span>
+                        <span class="evento-proceso">Deslizamiento</span>
+                        <span class="evento-consecuencia">6 viviendas afectadas</span>
+                    </div>
+                    <div class="evento-item">
+                        <span class="evento-fecha">Dic 2014</span>
+                        <span class="evento-lugar">Bello Oriente</span>
+                        <span class="evento-proceso">Deslizamiento</span>
+                        <span class="evento-consecuencia">Evacuación preventiva de 11 familias</span>
                     </div>
                 </div>
             </div>
@@ -242,53 +1067,127 @@
                 </div>
             </div>
             <div class="container faq-container">
+
                 <div class="faq-item">
                     <button class="faq-toggle">
                         <span class="faq-question">¿Van a reubicar mi vivienda con estos estudios?</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="faq-icon">
-                            <polyline points="6 9 12 15 18 9" />
-                        </svg>
+                            class="faq-icon"><polyline points="6 9 12 15 18 9" /></svg>
                     </button>
                     <div class="faq-content">
-                        "El estudio por sí mismo no ordena reubicaciones. Su función es identificar el nivel de riesgo.
+                        El estudio por sí mismo no ordena reubicaciones. Su función es identificar el nivel de riesgo.
                         Con esta información, la Alcaldía y el DAGRD pueden definir si se requieren obras de mitigación
-                        o si efectivamente hay un riesgo que no se puede controlar y requiere otras medidas."
+                        o si efectivamente hay un riesgo no controlable que requiere otras medidas. Si el riesgo es
+                        mitigable, se formulan obras y condicionantes urbanísticos. Si es no mitigable, se debe identificar
+                        en detalle las viviendas objeto de reasentamiento, orientado por la Política Pública de Protección
+                        a Moradores del distrito.
                     </div>
                 </div>
+
+                <div class="faq-item">
+                    <button class="faq-toggle">
+                        <span class="faq-question">¿Las perforaciones afectan las viviendas?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="faq-icon"><polyline points="6 9 12 15 18 9" /></svg>
+                    </button>
+                    <div class="faq-content">
+                        Las perforaciones y los apiques son actividades técnicas que se hacen para conocer cómo es el suelo
+                        y así evaluar el riesgo (por ejemplo, de deslizamientos) y proponer medidas de prevención. En condiciones
+                        normales y con buenas prácticas, no deberían dañar las viviendas, pero sí pueden generar molestias
+                        temporales como ruido o vibración.
+                    </div>
+                </div>
+
                 <div class="faq-item">
                     <button class="faq-toggle">
                         <span class="faq-question">¿Cuánto tiempo duran los trabajos en el barrio?</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="faq-icon">
-                            <polyline points="6 9 12 15 18 9" />
-                        </svg>
+                            class="faq-icon"><polyline points="6 9 12 15 18 9" /></svg>
                     </button>
                     <div class="faq-content">
-                        "El proceso completo dura 12 meses, pero las visitas técnicas y perforaciones suelen ocurrir en
-                        etapas de 2 a 3 semanas por sector. Siempre verás a nuestro equipo identificado con chalecos de
-                        la Universidad Nacional."
+                        La Universidad Nacional de Colombia debe ejecutar el proyecto en máximo un año a partir de noviembre de 2025.
+                        Las visitas técnicas y perforaciones suelen ocurrir en etapas de 2 a 3 semanas por sector. Siempre podrás
+                        identificar a nuestro equipo con chalecos de la Universidad Nacional.
                     </div>
                 </div>
+
+                <div class="faq-item">
+                    <button class="faq-toggle">
+                        <span class="faq-question">¿Qué ocurre si se identifica alto riesgo?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="faq-icon"><polyline points="6 9 12 15 18 9" /></svg>
+                    </button>
+                    <div class="faq-content">
+                        Un "alto riesgo" resulta de una evaluación técnica que relaciona amenaza + vulnerabilidad. Para zonas
+                        en riesgo alto, la norma exige definir si ese riesgo es mitigable o no mitigable:<br><br>
+                        <strong>Si es mitigable:</strong> Se formulan medidas de intervención (obras estructurales y no estructurales)
+                        y el territorio queda condicionado a una forma de desarrollo urbanístico. El municipio debe incorporar
+                        estas decisiones en el POT y el Plan de Desarrollo.<br><br>
+                        <strong>Si no es mitigable:</strong> El estudio identifica las viviendas objeto de reasentamiento y el
+                        alcalde, como responsable del Sistema Nacional de Gestión del Riesgo, puede adoptar medidas urgentes
+                        de protección como evacuación preventiva.
+                    </div>
+                </div>
+
                 <div class="faq-item">
                     <button class="faq-toggle">
                         <span class="faq-question">¿Qué acciones comunitarias aumentan el riesgo?</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="faq-icon">
-                            <polyline points="6 9 12 15 18 9" />
-                        </svg>
+                            class="faq-icon"><polyline points="6 9 12 15 18 9" /></svg>
                     </button>
                     <div class="faq-content">
-                        "Principalmente el vertimiento de aguas negras o lluvias directamente a las laderas, las
-                        excavaciones en la base de las montañas y la disposición de basuras en las quebradas. ¡Entre
-                        todos podemos cuidar el terreno!"
+                        Principalmente el vertimiento de aguas negras o lluvias directamente a las laderas, las
+                        excavaciones en la base de las montañas y la disposición de basuras en las quebradas.
+                        ¡Entre todos podemos cuidar el terreno!
                     </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-toggle">
+                        <span class="faq-question">¿Cómo puedo participar en el proceso?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="faq-icon"><polyline points="6 9 12 15 18 9" /></svg>
+                    </button>
+                    <div class="faq-content">
+                        Puedes participar de tres formas: asistiendo a las socializaciones de tu barrio; participando
+                        en los recorridos de intercambio de conocimientos junto a académicos y líderes comunitarios;
+                        y accediendo a esta página web para conocer los avances del proyecto. ¡Tu conocimiento del
+                        territorio es valioso para nosotros!
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== PARTICIPACIÓN ===== -->
+        <section class="participa-section">
+            <h2 style="font-size:1.6rem; font-weight:800; color:var(--blue-dark); margin-bottom:0.5rem;">¿Cómo participar?</h2>
+            <p style="color:var(--gray); max-width:600px; margin:0 auto;">Tu participación es fundamental para el éxito de los estudios. Aquí te mostramos las formas de involucrarte.</p>
+            <div class="participa-grid">
+                <div class="participa-card">
+                    <div class="participa-icon">🗣️</div>
+                    <strong>Asiste a las socializaciones</strong>
+                    Participa en los encuentros de tu barrio. Pregunta, comenta y contribuye con tu conocimiento del territorio.
+                </div>
+                <div class="participa-card">
+                    <div class="participa-icon">🚶</div>
+                    <strong>Recorridos de intercambio</strong>
+                    Únete a los recorridos con expertos y líderes comunitarios para construir puentes entre saberes.
+                </div>
+                <div class="participa-card">
+                    <div class="participa-icon">💻</div>
+                    <strong>Sigue los avances en línea</strong>
+                    Visita esta página web para conocer el progreso del proyecto y acceder a materiales educativos.
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- Footer -->
@@ -298,7 +1197,7 @@
                 <div>
                     <h2 class="footer-brand-title">BORDE NORORIENTAL</h2>
                     <p class="footer-brand-desc">Proyecto de estudios de detalle para la gestión del riesgo y el
-                        desarrollo territorial sostenible.</p>
+                        desarrollo territorial sostenible. Noviembre 2025 – Noviembre 2026.</p>
                     <div class="footer-socials">
                         <button class="social-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
@@ -324,10 +1223,11 @@
                 <div>
                     <h3 class="footer-col-title">Enlaces Rápidos</h3>
                     <ul class="footer-list">
-                        <li><a href="#" class="footer-link">Inicio de estudios</a></li>
-                        <li><a href="#" class="footer-link">Visor de Mapas</a></li>
-                        <li><a href="#" class="footer-link">Boletines Comunitarios</a></li>
-                        <li><a href="#" class="footer-link">Equipo Técnico</a></li>
+                        <li><a href="#inicio" class="footer-link">Inicio de estudios</a></li>
+                        <li><a href="#proceso" class="footer-link">Proceso territorial</a></li>
+                        <li><a href="#territorio" class="footer-link">Barrios y territorios</a></li>
+                        <li><a href="#eventos" class="footer-link">Histórico de eventos</a></li>
+                        <li><a href="#faq" class="footer-link">Preguntas frecuentes</a></li>
                     </ul>
                 </div>
                 <div>
@@ -340,6 +1240,10 @@
                         <li class="footer-download-item">
                             <span class="pdf-badge">PDF</span>
                             <a href="#" class="footer-link">Cartilla Comunitaria</a>
+                        </li>
+                        <li class="footer-download-item">
+                            <span class="pdf-badge">PDF</span>
+                            <a href="#" class="footer-link">Boletín Informativo 1</a>
                         </li>
                         <li class="footer-download-item">
                             <span class="pdf-badge">PDF</span>
@@ -357,7 +1261,7 @@
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                                 <circle cx="12" cy="10" r="3" />
                             </svg>
-                            <span>Universidad Nacional de Colombia, Sede Medellín - Facultad de Minas.</span>
+                            <span>Universidad Nacional de Colombia, Sede Medellín – Facultad de Minas.</span>
                         </li>
                         <li class="footer-contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
@@ -366,7 +1270,15 @@
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                                 <polyline points="22,6 12,13 2,6" />
                             </svg>
-                            <span>estudiosnororiental@unal.edu.co</span>
+                            <span>geohazards@unal.edu.co</span>
+                        </li>
+                        <li class="footer-contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="contact-icon">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <span>Canal PQRS disponible en esta página</span>
                         </li>
                     </ul>
                 </div>
@@ -379,7 +1291,7 @@
                         class="partner-logo">
                     <img src="assets/comunidad/img/logo.png" alt="GeoHazards International" class="partner-logo">
                 </div>
-                <p class="footer-copy">© 2024 ESTUDIOS DE DETALLE. TODOS LOS DERECHOS RESERVADOS.</p>
+                <p class="footer-copy">© 2025 ESTUDIOS DE DETALLE · BORDE NORORIENTAL · TODOS LOS DERECHOS RESERVADOS.</p>
             </div>
         </div>
     </footer>
@@ -388,11 +1300,7 @@
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
         });
 
         // Mobile menu toggle
@@ -403,36 +1311,52 @@
 
         mobileToggle.addEventListener('click', () => {
             const isOpen = mobileMenu.classList.contains('active');
-            if (isOpen) {
-                mobileMenu.classList.remove('active');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-            } else {
-                mobileMenu.classList.add('active');
-                menuIcon.classList.add('hidden');
-                closeIcon.classList.remove('hidden');
-            }
+            mobileMenu.classList.toggle('active', !isOpen);
+            menuIcon.classList.toggle('hidden', !isOpen);
+            closeIcon.classList.toggle('hidden', isOpen);
         });
 
         // FAQ Accordion
-        const faqToggles = document.querySelectorAll('.faq-toggle');
-        faqToggles.forEach(toggle => {
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
             toggle.addEventListener('click', () => {
                 const content = toggle.nextElementSibling;
                 const icon = toggle.querySelector('.faq-icon');
                 const isOpen = content.classList.contains('active');
 
-                // Close all others
                 document.querySelectorAll('.faq-content').forEach(c => c.classList.remove('active'));
-                document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-180'));
+                document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotated'));
 
                 if (!isOpen) {
                     content.classList.add('active');
-                    icon.classList.add('rotate-180');
+                    icon.classList.add('rotated');
                 }
             });
         });
+
+        // Counter animation for stats
+        function animateCounter(el, target) {
+            let count = 0;
+            const step = Math.ceil(target / 40);
+            const timer = setInterval(() => {
+                count = Math.min(count + step, target);
+                el.textContent = count.toLocaleString('es-CO');
+                if (count >= target) clearInterval(timer);
+            }, 30);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.stat-number, .perfor-num').forEach(el => {
+                        const val = parseInt(el.textContent);
+                        if (!isNaN(val)) animateCounter(el, val);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.stats-section, .perfor-section').forEach(s => observer.observe(s));
     </script>
 </body>
-
 </html>
