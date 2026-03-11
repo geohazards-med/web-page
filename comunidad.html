@@ -116,7 +116,7 @@
             font-weight: 700;
         }
 
-        /* ---- SOCIALIZATIONS ---- */
+                /* ---- SOCIALIZATIONS ---- */
         .social-section { background: white; padding: 4rem 0; }
         .social-grid {
             display: grid;
@@ -350,6 +350,7 @@
         }
         .participa-icon { font-size: 2rem; margin-bottom: 0.5rem; }
         .participa-card strong { display: block; margin-bottom: 0.3rem; color: var(--blue-dark); font-size: 1rem; }
+
 
         /* ---- METODOLOGIAS ---- */
         .metod-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
@@ -769,13 +770,16 @@
         </section>
 
         <!-- ===== TRABAJO TÉCNICO ===== -->
+        </section>
+
+        <!-- ===== TRABAJO TÉCNICO ===== -->
         <section class="section-padding" id="tecnico">
             <h2 class="section-title">Fases del Trabajo Técnico</h2>
 
-            <div class="process-grid">
-                <div class="process-card">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center; margin-top:1.5rem;">
+                <div>
                     <img src="assets/comunidad/img/campo.png" alt="Recorridos"
-                        referrerPolicy="no-referrer" />
+                        referrerPolicy="no-referrer" style="width:100%; height:auto; border-radius:12px; display:block;" />
                 </div>
                 <div class="tech-img-content">
                     <h4 class="tech-img-title">Recorridos Técnicos</h4>
@@ -787,7 +791,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Perforaciones -->
         <section class="perfor-section" id="perforaciones">
             <p class="stats-title">Perforaciones Geotécnicas · Barrio La Cruz</p>
@@ -1239,12 +1242,12 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <div class="footer-partners">
+                <div class="footer-partners" style="opacity:1;">
                     <img src="https://e7.pngegg.com/pngimages/652/14/png-clipart-national-university-of-colombia-at-medellin-national-university-of-colombia-at-manizales-icesi-university-national-university-of-colombia-at-palmira-crome-text-logo.png" alt="Universidad Nacional de Colombia"
-                        class="partner-logo">
+                        class="partner-logo" style="opacity:1; background:white; filter: none; padding:6px 10px; border-radius:6px;">
                     <img src="assets/comunidad/img/Logo-Distrito-Medellin.png" alt="Alcaldía de Medellín"
-                        class="partner-logo">
-                    <img src="assets/comunidad/img/logo.png" alt="GeoHazards" class="partner-logo">
+                        class="partner-logo" style="filter:none; opacity:1; background:white; padding:6px 10px; border-radius:6px;">
+                    <img src="assets/comunidad/img/logo.png" alt="GeoHazards" class="partner-logo" style="opacity:1; filter: none;background:white; filter: none; padding:6px 10px; border-radius:6px;">
                 </div>
                 <p class="footer-copy">© 2026 ESTUDIOS DE DETALLE · BUR NE · TODOS LOS DERECHOS RESERVADOS.</p>
             </div>
