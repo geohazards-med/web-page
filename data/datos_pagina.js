@@ -6,6 +6,7 @@ import { estaciones_valparaiso } from "./geodata/estaciones_valparaiso.js";
 import { perfoLacruz } from "./geodata/perfo_lacruz.js";
 import { grilla_sensores_fredonia } from "./geodata/grilla_sensores_fredonia.js";
 import { aforosLaderaNE } from "./geodata/aforos_ladera_ne.js";
+import { estaciones_alerta_temprana } from "./geodata/estaciones_alerta_temprana.js";
 
 export const layers_ladera_ne = {
   barrios_veredas: {
