@@ -721,6 +721,56 @@ export const inventarios_geohazards = {
   },
 };
 
+export const proyecto_minciencias_sat = {
+  estaciones_alerta_temprana: {
+    id: "estaciones-alerta-temprana",
+    name: "Estaciones de Monitoreo",
+    url: "",
+    layer: "",
+    type: "firebase_estaciones_monitoreo",
+    geometry: "points",
+    category: "Estaciones de Monitoreo",
+    show: false,
+    showPopup: true,
+    downloable: true,
+    filterable: true,
+    filters: [],
+    data: estaciones_alerta_temprana,
+  },
+
+  modelo_susceptiblidad_lluvias: {
+    id: "modelo-susceptibilidad-lluvias",
+    name: "Susceptibilidad por MenM - Modelo de Lluvias",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Modelo_Susceptibilidad_lluvias/MapServer",
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "Modelos de Susceptibilidad",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  modelo_susceptiblidad_eventos: {
+    id: "modelo-susceptibilidad-eventos",
+    name: "Susceptibilidad por MenM - Modelo de Eventos",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Modelo_Susceptibilidad_Eventos/MapServer",
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "Modelos de Susceptibilidad",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+
+}
+
 export const proyecto_acacias = {
   estaciones: {
     id: "estaciones-acacias",
@@ -2726,6 +2776,25 @@ window.data_page = {
           ...Object.values(layers_dunita),
           ...Object.values(cartografia_med),
           recursos_3d.edificios_3d,
+        ].flat(),
+      },
+      {
+        id: "alerta-temprana",
+        featured: true,
+        title: "Sistema de Alerta Temprana por Fenómenos Hidrometeorológicos Extremos",
+        short_desc:
+          `Diseño e Implementación de un Sistema de Alerta Temprana por Fenómenos Hidrometeorológicos extremos utilizando
+Métodos de Inteligencia Artificial y Aprendizaje Automático para la Gestión del Riesgo y Ordenación Sostenible del territorio
+Colombiano en los Andes y la Guajira.`,
+        date: "2023 - Actualidad",
+        type: "Investigación",
+        center: [-75.52, 6.252],
+        zoom: 5,
+        layer_list: [
+          inventarios_geohazards.inventario_antioquia,
+          inventarios_geohazards.inventario_colombia,
+          inventarios_geohazards.inventario_sensores_remotos,
+          ...Object.values(proyecto_minciencias_sat)
         ].flat(),
       },
       {
