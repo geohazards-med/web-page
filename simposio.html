@@ -799,6 +799,58 @@
             color: #fff;
         }
 
+        /* ── SPONSORS ───────────────────────────────────────── */
+        .sponsors-section {
+            background: #fff;
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .sponsors-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            margin-top: 1.5rem;
+        }
+
+        .sponsor-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .sponsor-title {
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            border-bottom: 2px solid var(--green-light);
+            padding-bottom: .5rem;
+        }
+
+        .sponsor-logos {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sponsor-logos img {
+            max-height: 90px;
+            width: auto;
+            object-fit: contain;
+            transition: transform .3s ease;
+        }
+
+        .sponsor-logos img:hover {
+            transform: scale(1.05);
+        }
+
         /* ── RESPONSIVE ─────────────────────────────────────── */
         @media (max-width: 768px) {
 
@@ -837,7 +889,7 @@
     <!-- ══ NAVBAR ══════════════════════════════════════════ -->
     <nav class="navbar">
         <a href="https://geohazards.com.co/" class="navbar-brand">
-            <img src="logo/LogoGeoHazards.svg" alt="Geohazards Logo" />
+            <img src="logo/GEOHAZARDS.png" alt="Geohazards Logo" />
             <div class="navbar-brand-text">
                 <div class="title">GEOHAZARDS</div>
                 <div class="sub">Semillero de Investigación</div>
@@ -860,9 +912,9 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <div class="hero-badge">&#127968; Universidad Nacional de Colombia · Medellín</div>
+            <div class="hero-badge">Universidad Nacional de Colombia · Medellín</div>
             <div class="hero-logo">
-                <img src="assets/simposio/img/header/Logo-Simposio-V.png" alt="V Simposio Geoamenazas 2026" />
+                <img src="logo/LOGO_VSIMPOSIO - 1.png" alt="V Simposio Geoamenazas 2026" />
             </div>
             <p class="hero-sub">
                 Un espacio académico para compartir el estado del arte en amenazas geológicas,
@@ -999,35 +1051,73 @@
             <p class="section-badge">Ponentes</p>
             <h2 class="section-title">Conferencistas Invitados</h2>
             <div class="divider"></div>
-            <div class="tba-note">
-                <i class="fa-solid fa-hourglass-half"></i>
-                Los conferencistas invitados serán confirmados próximamente.
-                Sigue las redes sociales de <strong>Geohazards UNAL</strong> para estar al tanto de las novedades.
-            </div>
-            <div class="speakers-grid" style="margin-top:2rem;">
+            <style>
+                .speaker-img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin: 0 auto 1rem;
+                    display: block;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                }
+            </style>
+            <div class="speakers-grid" style="margin-top:1rem;">
                 <div class="speaker-card">
-                    <div class="speaker-avatar">🎓</div>
-                    <div class="speaker-name">Por confirmar</div>
-                    <div class="speaker-affil">Conferencista magistral</div>
-                    <span class="speaker-topic">Keynote</span>
+                    <img src="fotos/luigi.jpg" alt="Luigi Lombardo" class="speaker-img" />
+                    <div class="speaker-name">Luigi Lombardo</div>
+                    <div class="speaker-affil">Universidad de Twente</div>
+                    <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Experto en modelos basados en datos para la evaluación de susceptibilidad por movimientos en masa.</p>
+                    <span class="speaker-topic" style="background: #fefcbf; color: #975a16; margin-top: 0.75rem;">Magistral</span>
                 </div>
                 <div class="speaker-card">
-                    <div class="speaker-avatar">🔬</div>
-                    <div class="speaker-name">Por confirmar</div>
-                    <div class="speaker-affil">Conferencista temático</div>
-                    <span class="speaker-topic">Sesión técnica</span>
+                    <img src="fotos/luz.png" alt="Luz Jeannette Mejía" class="speaker-img" />
+                    <div class="speaker-name">Luz Jeannette Mejía</div>
+                    <div class="speaker-affil">Geóloga · Valle de Aburrá</div>
+                    <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Geóloga experta en gestión del riesgo de desastres en el Valle de Aburrá.</p>
+                    <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
                 </div>
                 <div class="speaker-card">
-                    <div class="speaker-avatar">🌍</div>
-                    <div class="speaker-name">Por confirmar</div>
-                    <div class="speaker-affil">Conferencista invitado</div>
-                    <span class="speaker-topic">Internacional</span>
+                    <img src="fotos/ElizabethArboleda.jpg" alt="Elizabeth Arboleda" class="speaker-img" />
+                    <div class="speaker-name">Elizabeth Arboleda</div>
+                    <div class="speaker-affil">Universidad Nacional</div>
+                    <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesora experta en vulnerabilidad y gestión del riesgo de desastres.</p>
+                    <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
                 </div>
                 <div class="speaker-card">
-                    <div class="speaker-avatar">🏛️</div>
-                    <div class="speaker-name">Por confirmar</div>
-                    <div class="speaker-affil">Panelista</div>
-                    <span class="speaker-topic">Panel</span>
+                    <img src="fotos/daniel_ruiz.jpg" alt="Daniel Felipe Ruiz" class="speaker-img" />
+                    <div class="speaker-name">Daniel Felipe Ruiz</div>
+                    <div class="speaker-affil">Universidad EAFIT</div>
+                    <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor e ingeniero civil experto en instrumentación geotécnica.</p>
+                    <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
+                </div>
+                <div class="speaker-card">
+                    <img src="fotos/Foto_Diego_Rendon_2.jpg" alt="Diego Armando Rendón" class="speaker-img" />
+                    <div class="speaker-name">Diego Armando Rendón</div>
+                    <div class="speaker-affil">Universidad Nacional</div>
+                    <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor e ingeniero geólogo experto en geotecnia.</p>
+                    <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
+                </div>
+                <div class="speaker-card">
+                    <img src="fotos/Johnny_vega.jpg" alt="Johnny Vega" class="speaker-img" />
+                    <div class="speaker-name">Johnny Vega</div>
+                    <div class="speaker-affil">Universidad de Medellín</div>
+                    <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor experto en el uso de sensores remotos para evaluación de amenaza por movimientos en masa.</p>
+                    <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
+                </div>
+                <div class="speaker-card">
+                    <img src="fotos/edier_aristizabal.jpg" alt="Edier Aristizábal" class="speaker-img" />
+                    <div class="speaker-name">Edier Aristizábal</div>
+                    <div class="speaker-affil">Universidad Nacional</div>
+                    <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor experto en evaluación de susceptibilidad por movimientos en masa y avenidas torrenciales.</p>
+                    <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
+                </div>
+                <div class="speaker-card">
+                    <img src="fotos/jhonjairo_sanchez.jpg" alt="John Jairo Sánchez" class="speaker-img" />
+                    <div class="speaker-name">John Jairo Sánchez</div>
+                    <div class="speaker-affil">Universidad Nacional</div>
+                    <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor experto en amenazas de origen volcánico.</p>
+                    <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
                 </div>
             </div>
         </div>
@@ -1047,70 +1137,168 @@
                 <div class="schedule-item">
                     <div class="schedule-time">8:00 – 8:30</div>
                     <div class="schedule-body">
-                        <div class="schedule-title">Registro y Bienvenida</div>
-                        <div class="schedule-speaker">Comité Organizador · Geohazards UNAL</div>
+                        <div class="schedule-title">Registro y Café de Bienvenida</div>
+                        <div class="schedule-speaker">Anfitrión/a + moderador/a</div>
                         <span class="schedule-type type-opening">Apertura</span>
                     </div>
                 </div>
                 <div class="schedule-item">
-                    <div class="schedule-time">8:30 – 9:30</div>
+                    <div class="schedule-time">8:30 – 9:15</div>
                     <div class="schedule-body">
-                        <div class="schedule-title">Conferencia Magistral</div>
-                        <div class="schedule-speaker">Conferencista invitado (por confirmar)</div>
-                        <span class="schedule-type type-keynote">Keynote</span>
+                        <div class="schedule-title">Análisis espacio-temporal de la ocurrencia de movimientos en masa</div>
+                        <div class="schedule-speaker">Luigi Lombardo</div>
+                        <span class="schedule-type type-keynote">Ponencia Magistral</span>
                     </div>
                 </div>
                 <div class="schedule-item">
-                    <div class="schedule-time">9:30 – 11:00</div>
+                    <div class="schedule-time">9:15 – 9:30</div>
                     <div class="schedule-body">
-                        <div class="schedule-title">Sesión Técnica I – Movimientos en Masa y Avenidas Torrenciales</div>
-                        <div class="schedule-speaker">Ponentes seleccionados (call for abstracts)</div>
+                        <div class="schedule-title">Caracterización espacial y temporal de la lluvia como factor detonante de movimientos en masa en el Valle de Aburrá</div>
+                        <div class="schedule-speaker">Oscar Sánchez</div>
                         <span class="schedule-type type-session">Sesión Oral</span>
                     </div>
                 </div>
                 <div class="schedule-item">
-                    <div class="schedule-time">11:00 – 11:20</div>
+                    <div class="schedule-time">9:30 – 9:45</div>
                     <div class="schedule-body">
-                        <div class="schedule-title">Pausa / Refrigerio</div>
-                        <span class="schedule-type type-break">Descanso</span>
-                    </div>
-                </div>
-                <div class="schedule-item">
-                    <div class="schedule-time">11:20 – 12:30</div>
-                    <div class="schedule-body">
-                        <div class="schedule-title">Sesión Técnica II – Sensores Remotos, IA y Gestión del Riesgo</div>
-                        <div class="schedule-speaker">Ponentes seleccionados (call for abstracts)</div>
+                        <div class="schedule-title">Gestión del riesgo de desastres en el Valle de Aburrá</div>
+                        <div class="schedule-speaker">Luz Jeannette Mejía Chavarriaga</div>
                         <span class="schedule-type type-session">Sesión Oral</span>
                     </div>
                 </div>
                 <div class="schedule-item">
-                    <div class="schedule-time">12:30 – 14:00</div>
+                    <div class="schedule-time">9:45 – 10:00</div>
                     <div class="schedule-body">
-                        <div class="schedule-title">Almuerzo</div>
+                        <div class="schedule-title">La vulnerabilidad y el riesgo de desastres</div>
+                        <div class="schedule-speaker">Elizabeth Arboleda</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">10:00 – 10:30</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Pausa café / Networking</div>
+                        <div class="schedule-speaker">Zona de café</div>
                         <span class="schedule-type type-break">Descanso</span>
                     </div>
                 </div>
                 <div class="schedule-item">
-                    <div class="schedule-time">14:00 – 15:30</div>
+                    <div class="schedule-time">10:30 – 11:00</div>
                     <div class="schedule-body">
-                        <div class="schedule-title">Sesión de Pósters – Investigaciones en Geohazards</div>
-                        <div class="schedule-speaker">Estudiantes e investigadores</div>
-                        <span class="schedule-type type-session">Pósters</span>
+                        <div class="schedule-title">Sistema de alertas tempranas en los Andes colombianos y la Guajira</div>
+                        <div class="schedule-speaker">UDEA - Derly</div>
+                        <span class="schedule-type type-session">Proyecto Minciencias</span>
                     </div>
                 </div>
                 <div class="schedule-item">
-                    <div class="schedule-time">15:30 – 16:30</div>
+                    <div class="schedule-time">11:00 – 11:15</div>
                     <div class="schedule-body">
-                        <div class="schedule-title">Panel de Discusión: Retos y Perspectivas en Geohazards</div>
-                        <div class="schedule-speaker">Panelistas invitados · Moderador TBD</div>
-                        <span class="schedule-type type-panel">Panel</span>
+                        <div class="schedule-title">Aplicativo para el sistema de alertas tempranas para los Andes colombianos y la Guajira</div>
+                        <div class="schedule-speaker">Luis Gabriel Hernandez Ojeda</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
                     </div>
                 </div>
                 <div class="schedule-item">
-                    <div class="schedule-time">16:30 – 17:00</div>
+                    <div class="schedule-time">11:15 – 11:30</div>
                     <div class="schedule-body">
-                        <div class="schedule-title">Clausura y Reconocimientos</div>
-                        <div class="schedule-speaker">Comité Organizador</div>
+                        <div class="schedule-title">Movimientos en masa en los Andes colombianos</div>
+                        <div class="schedule-speaker">Alejandro Álvarez</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">11:30 – 12:00</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Instrumentación de laderas</div>
+                        <div class="schedule-speaker">Daniel Felipe Ruiz</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">12:00 – 13:00</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Receso / Almuerzo</div>
+                        <div class="schedule-speaker">Zona de café</div>
+                        <span class="schedule-type type-break">Descanso</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">13:00 – 13:45</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">La Dunita y la influencia en la ocurrencia de movimientos en masa en el Valle de Aburrá</div>
+                        <div class="schedule-speaker">Diego Armando Rendón</div>
+                        <span class="schedule-type type-session">Proyecto Dunita</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">13:45 – 14:00</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Uso de sensores remotos para evaluación de amenaza por movimientos en masa</div>
+                        <div class="schedule-speaker">Johnny Vega</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">14:00 – 14:15</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Borde Urbano Rural como unidad de planificación basada en la gestión del riesgo</div>
+                        <div class="schedule-speaker">Wilmar Castro</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">14:15 – 14:30</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Modelación de Avenidas Torrenciales</div>
+                        <div class="schedule-speaker">Elisa Betancourt</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">14:30 – 15:00</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Amenaza volcánica en los Andes colombianos</div>
+                        <div class="schedule-speaker">Jhon Jairo Sanchez</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">15:00 – 15:30</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Pausa café / Networking</div>
+                        <div class="schedule-speaker">Zona de café</div>
+                        <span class="schedule-type type-break">Descanso</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">15:30 – 15:45</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Sistema de Información para la Gestión del Riesgo de Desastres de Medellín</div>
+                        <div class="schedule-speaker">Natalia Pino</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">15:45 – 16:30</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Semillero UIS (Por confirmar temática)</div>
+                        <div class="schedule-speaker">Joaquín Andrés Valencia (Coordinador) / Carolina Ortiz</div>
+                        <span class="schedule-type type-session">Sesión Oral</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">16:30 – 16:45</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Estudios de detalle en el Borde Urbano Rural Nororiental</div>
+                        <div class="schedule-speaker">Edier Aristizábal</div>
+                        <span class="schedule-type type-session">Estudios de Detalle</span>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">16:45 – 17:00</div>
+                    <div class="schedule-body">
+                        <div class="schedule-title">Cierre y próximos pasos</div>
+                        <div class="schedule-speaker">Moderador/a + comité organizador</div>
                         <span class="schedule-type type-closing">Cierre</span>
                     </div>
                 </div>
@@ -1173,6 +1361,32 @@
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                         title="Mapa Universidad Nacional de Colombia Medellín">
                     </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ SPONSORS ════════════════════════════════════════ -->
+    <section class="sponsors-section" id="patrocinadores">
+        <div class="container">
+            <p class="section-badge">Organización</p>
+            <h2 class="section-title">Organizadores y Apoyos</h2>
+            <div class="divider" style="margin-left:auto; margin-right:auto;"></div>
+            <div class="sponsors-grid">
+                <div class="sponsor-group">
+                    <div class="sponsor-title">Organiza</div>
+                    <div class="sponsor-logos">
+                        <img src="logo/UNAL.png" alt="Universidad Nacional de Colombia" />
+                        <img src="logo/LogoGeoHazards.svg" alt="Semillero Geohazards" style="max-height: 70px;" />
+                    </div>
+                </div>
+                <div class="sponsor-group">
+                    <div class="sponsor-title">Apoyan</div>
+                    <div class="sponsor-logos">
+                        <img src="logo/MINCIENCIAS.png" alt="Minciencias" />
+                        <img src="logo/LOGO-ALCALDIA-DE-MEDELLIN-DISTRITO_Mesa-de-trabajo-1-scaled-Photoroom.png"
+                            alt="Alcaldía de Medellín" />
+                    </div>
                 </div>
             </div>
         </div>
