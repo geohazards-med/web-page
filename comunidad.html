@@ -65,45 +65,35 @@
           <strong>¡Hola! Bienvenidos a nuestra plataforma comunitaria.</strong><br><br>
           Esta página reúne los avances, actividades, mapas, boletines y explicaciones de los Estudios de Riesgo de Detalle que se realizan en barrios y sectores del Borde Urbano Rural Nororiental de Medellín. Aquí podrás conocer qué se está haciendo, en qué barrios, cómo participar y qué significan los resultados cuando estén disponibles.
         </p>
-        <button class="hero-cta" data-scroll="#estado">Ver avances ↓</button>
+        <div class="hero-cta-group">
+          <button class="hero-cta" data-scroll="#estado">Ver avances ↓</button>
+          <a class="hero-cta hero-cta-whatsapp"
+             href="https://chat.whatsapp.com/DkXszVMtE9E6Xj1qByBfQP"
+             target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        </div>
       </div>
-      <div class="hero-image">
-        <img src="assets/comunidad/img/reportera3.png" alt="Doña Reportera - Comunidad Medellín" />
-        <p class="hero-image-caption">
-          <strong>Doña Reportera</strong> trae los datos técnicos duros del territorio.<br>
-          <strong>Geoloro</strong> traduce los tecnicismos y responde tus dudas.
-        </p>
-      </div>
-    </div>
-  </section>
 
-  <!-- STATS DASHBOARD -->
-  <section class="stats-section">
-    <div class="stats-title">Tablero de Indicadores · Actualización abril 2026</div>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <span class="stat-number" data-target="13">13</span>
-        <span class="stat-label">Encuentros de socialización</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-number" data-target="3">3</span>
-        <span class="stat-label">Comunas + 1 corregimiento</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-number" data-target="287">287</span>
-        <span class="stat-label">Asistentes a socializaciones</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-number" data-target="130">130</span>
-        <span class="stat-label">Acompañamientos comunitarios</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-number" data-target="49">49</span>
-        <span class="stat-label">Perforaciones y apiques</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-number" data-target="12">12</span>
-        <span class="stat-label">Meses de duración del proyecto</span>
+      <!-- PERSONAJES ANIMADOS: Geoloro y Doña Reportera -->
+      <div class="hero-image hero-characters">
+
+        <!-- Personaje 1: Geoloro (visible por defecto) -->
+        <div class="character-wrap active" id="char-geoloro">
+          <div class="speech-bubble">
+            <span class="bubble-text" id="text-geoloro"></span>
+          </div>
+          <img src="assets/comunidad/img/geoloro.png"
+               alt="Geoloro – el lorito guía del territorio" />
+        </div>
+
+        <!-- Personaje 2: Doña Reportera + Geoloro juntos -->
+        <div class="character-wrap" id="char-reportera">
+          <div class="speech-bubble">
+            <span class="bubble-text" id="text-reportera"></span>
+          </div>
+          <img src="assets/comunidad/img/reportera3.png"
+               alt="Doña Reportera y Geoloro" />
+        </div>
+
       </div>
     </div>
   </section>
@@ -112,6 +102,41 @@
   <section id="estado" class="estado-section">
     <div class="container">
       <h2 class="section-title-gsap">Estado Actual del Proyecto</h2>
+
+      <!-- RESUMEN VISUAL DE AVANCE POR ZONA -->
+      <div class="zona-progreso-grid">
+        <div class="zona-card">
+          <div class="zona-header">
+            <span class="zona-nombre">🏘️ Comunas 1 y 3</span>
+            <span class="zona-pct zona-pct-done">85%</span>
+          </div>
+          <div class="zona-bar-wrap">
+            <div class="zona-bar-fill zbf-done barrio-progress-fill" data-width="85"></div>
+          </div>
+          <span class="zona-tag zt-done">✅ Campo completado</span>
+        </div>
+        <div class="zona-card">
+          <div class="zona-header">
+            <span class="zona-nombre">🏘️ Comuna 8</span>
+            <span class="zona-pct zona-pct-process">50%</span>
+          </div>
+          <div class="zona-bar-wrap">
+            <div class="zona-bar-fill zbf-process barrio-progress-fill" data-width="50"></div>
+          </div>
+          <span class="zona-tag zt-process">⚙️ En proceso</span>
+        </div>
+        <div class="zona-card">
+          <div class="zona-header">
+            <span class="zona-nombre">🌿 Santa Elena</span>
+            <span class="zona-pct zona-pct-start">10%</span>
+          </div>
+          <div class="zona-bar-wrap">
+            <div class="zona-bar-fill zbf-start barrio-progress-fill" data-width="10"></div>
+          </div>
+          <span class="zona-tag zt-start">🚀 Iniciando</span>
+        </div>
+      </div>
+
       <div class="estado-card">
         <div class="estado-row">
           <div class="estado-label">📅 Última actualización</div>
@@ -138,17 +163,18 @@
     <div class="container">
       <h2 class="section-title-gsap">¿Qué son los Estudios de Riesgo de Detalle?</h2>
       <div class="about-card">
-        <h3>Investigación Participativa para la Seguridad Territorial</h3>
+        <h3>Investigación participativa para la seguridad territorial</h3>
         <p>
-          Es un estudio técnico especializado que analiza, con alta precisión (escala 1:2.000), la amenaza, la vulnerabilidad y el riesgo en zonas específicas del territorio donde existe posibilidad de deslizamientos, inestabilidades del terreno u otros fenómenos peligrosos como avenidas torrenciales. Esto permite identificar condiciones del suelo, comportamiento de laderas y efectos sobre viviendas, vías y equipamientos.
+          Los estudios de riesgo de detalle permiten entender con mayor precisión qué zonas pueden presentar deslizamientos, avenidas torrenciales u otras inestabilidades del terreno, cómo puede verse afectada la población y qué medidas deben tomarse para proteger vidas, viviendas e infraestructura.
         </p>
         <p>
-          <strong>¿Dónde se está haciendo?</strong> Los estudios se enmarcan en barrios y sectores del Borde Urbano Rural Nororiental — BURNOR, específicamente:
+          <strong>¿Dónde se está haciendo?</strong> Los estudios se enmarcan en barrios y sectores del Borde Urbano Rural Nororiental-BURNOR, específicamente:
         </p>
         <ul style="color: var(--color-text-muted); line-height: 2; padding-left: 1.5rem; margin-bottom: 1.5rem;">
-          <li><strong>Comuna 1:</strong> Santo Domingo Savio I y II.</li>
+          <li><strong>Comuna 1:</strong> San domingo Savio I y II.</li>
           <li><strong>Comuna 3:</strong> Bello Oriente (Oriente), La Cruz, Versalles 2 y sector La Honda.</li>
-          <li><strong>Comuna 8:</strong> Golondrinas, El Faro, Altos de la Torre (Llanaditas), El Pacífico, 13 de Noviembre, Pinares de Oriente, La Libertad 2, Villatina, San Antonio, Villa Lilliam, Villa Turbay, Las Estancias y La Sierra.</li>
+          <li><strong>Comuna 8:</strong> Golondrinas, El Faro, Altos de la Torre (Llanaditas), El Pacífico, Trece de Noviembre, Pinares de Oriente, La libertad 2, Villatina, San Antonio, Villa Liliam, Villa Turbay, Las Estancias y La Sierra.</li>
+          <li><strong>Santa Elena:</strong> Sector Las Flores.</li>
         </ul>
 
         <div>
@@ -214,6 +240,9 @@
                 <li style="display: flex; gap: 1rem; align-items: flex-start; color: var(--color-text); font-size: 1.05rem; line-height: 1.5;">
                   <span style="color: var(--color-accent-green); font-weight: 900; font-size: 1.2rem;">✓</span> Son la base para la toma de decisiones de planificación
                 </li>
+                <li style="display: flex; gap: 1rem; align-items: flex-start; color: var(--color-text); font-size: 1.05rem; line-height: 1.5;">
+                  <span style="color: var(--color-accent-green); font-weight: 900; font-size: 1.2rem;">✓</span> Mejoran el conocimiento del territorio
+                </li>
               </ul>
             </div>
 
@@ -224,22 +253,22 @@
               </h5>
               <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.2rem;">
                 <li style="display: flex; gap: 1rem; align-items: flex-start; color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.5;">
-                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Ejecutar obras de mitigación
+                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Ejecutan obras de mitigación
                 </li>
                 <li style="display: flex; gap: 1rem; align-items: flex-start; color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.5;">
-                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Entregar subsidios
+                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Entregan subsidios
                 </li>
                 <li style="display: flex; gap: 1rem; align-items: flex-start; color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.5;">
-                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Ordenar desalojos por sí mismos
+                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Ordenan desalojos por sí mismos
                 </li>
                 <li style="display: flex; gap: 1rem; align-items: flex-start; color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.5;">
-                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Reemplazar las decisiones de la Alcaldía
+                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Reemplazan las decisiones de la Alcaldía
                 </li>
                 <li style="display: flex; gap: 1rem; align-items: flex-start; color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.5;">
-                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Resolver trámites individuales de vivienda
+                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Resuelven trámites individuales de vivienda
                 </li>
                 <li style="display: flex; gap: 1rem; align-items: flex-start; color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.5;">
-                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Generar los procesos de legalización y regularización urbanística
+                  <span style="color: var(--color-accent-red); font-weight: 900; font-size: 1.2rem;">✗</span> Generan los procesos de legalización y regularización urbanística
                 </li>
               </ul>
             </div>
@@ -372,52 +401,128 @@
             <div class="social-dot" style="background: var(--color-accent-amber);"></div>
             <div class="social-barrio">Santa Elena</div>
           </div>
-          <div class="social-sector" style="margin-bottom: 1rem; color: var(--color-primary-dark); font-weight: 600;">Sector Las Flores</div>
-          <div style="font-size: 0.9rem; color: var(--color-text); line-height: 1.5;">
-            <p><strong>Actividades realizadas:</strong> Socialización inicial con 10 asistentes. 1 acompañamiento (apoyo en recorridos de campo).</p>
-            <p><strong>Avance:</strong> En fase de recolección de información secundaria.</p>
+          <div class="social-sector">Sector Las Flores</div>
+          <div class="barrio-progress-wrap">
+            <div class="barrio-progress-header">
+              <span class="barrio-progress-label">Avance del estudio</span>
+              <span class="barrio-progress-pct">10%</span>
+            </div>
+            <div class="barrio-progress-bar">
+              <div class="barrio-progress-fill bp-amber" data-width="10"></div>
+            </div>
+            <span class="barrio-status-badge bs-iniciando">⏳ Iniciando</span>
+          </div>
+          <div class="social-details">
+            <p><strong>Actividades realizadas:</strong> Socialización inicial con 10 asistentes. 1 acompañamiento en recorridos de campo.</p>
             <p><strong>Próxima actividad:</strong> Recorrido de vulnerabilidad estructural.</p>
           </div>
         </div>
+
         <!-- Comuna 8 -->
         <div class="social-card">
           <div class="social-card-header">
             <div class="social-dot" style="background: var(--color-accent-green);"></div>
             <div class="social-barrio">Comuna 8</div>
           </div>
-          <div class="social-sector" style="margin-bottom: 1rem; color: var(--color-primary-dark); font-weight: 600;">Golondrinas, El Faro, Altos de la Torre, El Pacífico, Trece de Noviembre, Pinares de Oriente, La libertad 2, Villatina, San Antonio, Villa Liliam, Villa Turbay, Las Estancias, La Sierra</div>
-          <div style="font-size: 0.9rem; color: var(--color-text); line-height: 1.5;">
-            <p><strong>Actividades realizadas:</strong> Socialización inicial con 171 asistentes. 25 acompañamientos (apoyo en recorridos de campo).</p>
-            <p><strong>Avance:</strong> 50% de avance en recorridos de geología. Iniciamos perforaciones.</p>
+          <div class="social-sector">Golondrinas, El Faro, Altos de la Torre, El Pacífico, Trece de Nov., Pinares de Oriente, La Libertad 2, Villatina, San Antonio, Villa Liliam, Villa Turbay, Las Estancias, La Sierra</div>
+          <div class="barrio-progress-wrap">
+            <div class="barrio-progress-header">
+              <span class="barrio-progress-label">Avance del estudio</span>
+              <span class="barrio-progress-pct">50%</span>
+            </div>
+            <div class="barrio-progress-bar">
+              <div class="barrio-progress-fill bp-green" data-width="50"></div>
+            </div>
+            <span class="barrio-status-badge bs-proceso">🔄 En proceso</span>
+          </div>
+          <div class="social-details">
+            <p><strong>Actividades realizadas:</strong> Socialización inicial con 171 asistentes. 25 acompañamientos en recorridos de campo.</p>
             <p><strong>Próxima actividad:</strong> Recorrido de vulnerabilidad estructural.</p>
           </div>
         </div>
+
         <!-- Comuna 3 -->
         <div class="social-card">
           <div class="social-card-header">
             <div class="social-dot" style="background: var(--color-primary);"></div>
             <div class="social-barrio">Comuna 3</div>
           </div>
-          <div class="social-sector" style="margin-bottom: 1rem; color: var(--color-primary-dark); font-weight: 600;">La Cruz, Versalles No. 2, Bello Oriente, sector La Honda</div>
-          <div style="font-size: 0.9rem; color: var(--color-text); line-height: 1.5;">
-            <p><strong>Actividades realizadas:</strong> Socialización inicial con 65 asistentes. 16 acompañamientos (apoyo en recorridos de campo).</p>
-            <p><strong>Avance:</strong> Recorridos de geología base finalizado. Finalizamos perforaciones.</p>
+          <div class="social-sector">La Cruz, Versalles No. 2, Bello Oriente, sector La Honda</div>
+          <div class="barrio-progress-wrap">
+            <div class="barrio-progress-header">
+              <span class="barrio-progress-label">Avance del estudio</span>
+              <span class="barrio-progress-pct">85%</span>
+            </div>
+            <div class="barrio-progress-bar">
+              <div class="barrio-progress-fill bp-primary" data-width="85"></div>
+            </div>
+            <span class="barrio-status-badge bs-avanzado">⚙️ Avanzado</span>
+          </div>
+          <div class="social-details">
+            <p><strong>Actividades realizadas:</strong> Socialización inicial con 65 asistentes. 16 acompañamientos. Perforaciones finalizadas.</p>
             <p><strong>Próxima actividad:</strong> Recorrido de vulnerabilidad estructural.</p>
           </div>
         </div>
+
         <!-- Comuna 1 -->
         <div class="social-card">
           <div class="social-card-header">
             <div class="social-dot" style="background: var(--color-accent-orange);"></div>
             <div class="social-barrio">Comuna 1</div>
           </div>
-          <div class="social-sector" style="margin-bottom: 1rem; color: var(--color-primary-dark); font-weight: 600;">Santo Domingo Savio I y II</div>
-          <div style="font-size: 0.9rem; color: var(--color-text); line-height: 1.5;">
-            <p><strong>Actividades realizadas:</strong> Socialización inicial con 56 asistentes. 3 acompañamientos (apoyo en recorridos de campo).</p>
-            <p><strong>Avance:</strong> En fase de recolección de información secundaria.</p>
+          <div class="social-sector">Santo Domingo Savio I y II</div>
+          <div class="barrio-progress-wrap">
+            <div class="barrio-progress-header">
+              <span class="barrio-progress-label">Avance del estudio</span>
+              <span class="barrio-progress-pct">10%</span>
+            </div>
+            <div class="barrio-progress-bar">
+              <div class="barrio-progress-fill bp-orange" data-width="10"></div>
+            </div>
+            <span class="barrio-status-badge bs-iniciando">⏳ Iniciando</span>
+          </div>
+          <div class="social-details">
+            <p><strong>Actividades realizadas:</strong> Socialización inicial con 56 asistentes. 3 acompañamientos en recorridos de campo.</p>
             <p><strong>Próxima actividad:</strong> Recorrido de vulnerabilidad estructural.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS DASHBOARD -->
+  <section class="stats-section">
+    <div class="stats-title">Tablero de Indicadores · Actualización abril 2026</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🗣️</div>
+        <span class="stat-number" data-target="13">13</span>
+        <span class="stat-label">Encuentros de socialización</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏙️</div>
+        <span class="stat-number" data-target="3">3</span>
+        <span class="stat-label">Comunas + 1 corregimiento</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <span class="stat-number" data-target="287">287</span>
+        <span class="stat-label">Vecinos en socializaciones</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🤝</div>
+        <span class="stat-number" data-target="130">130</span>
+        <span class="stat-label">Acompañamientos comunitarios</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⛏️</div>
+        <span class="stat-number" data-target="49">49</span>
+        <span class="stat-label">Perforaciones y apiques</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <span class="stat-number" data-target="12">12</span>
+        <span class="stat-label">Meses de duración del proyecto</span>
       </div>
     </div>
   </section>
@@ -447,7 +552,7 @@
   <section class="perforations-section">
     <div class="container">
       <h2 class="section-title-gsap">Exploración Geotécnica · Perforaciones y Apiques</h2>
-      <p class="section-subtitle-gsap">¿Qué materiales hay? ¿A qué profundidad cambian? ¿Qué tan firmes son? ¿Hay agua subterránea?</p>
+      <p class="section-subtitle-gsap" style="color: var(--color-white);">¿Qué materiales hay? ¿A qué profundidad cambian? ¿Qué tan firmes son? ¿Hay agua subterránea?</p>
       <div class="perforations-grid">
         <div class="perforations-card">
           <span class="perfor-num" data-target="2">2</span>
@@ -513,54 +618,92 @@
   <section class="estado-section">
     <div class="container">
       <h2 class="section-title-gsap">Cronograma General del Proyecto (Nov 2025 – Nov 2026)</h2>
-      <div style="overflow-x: auto; margin-top: 2rem;">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Período</th>
-              <th>Categoría</th>
-              <th>Actividades Principales</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="font-weight: 700; white-space: nowrap;">Mes 1-2</td>
-              <td><span style="background:#f9fbe7; color:#558b2f; padding:2px 10px; border-radius:20px; font-size:0.8rem; font-weight:600;">Inicio</span></td>
-              <td style="font-size: 0.88rem;">Planificación · Recolección de información secundaria · Inventario de eventos · Cartografía base · Identificación de actores · Reuniones de acercamiento · Socialización inicial en comuna 3</td>
-            </tr>
-            <tr>
-              <td style="font-weight: 700;">Mes 2-4</td>
-              <td><span style="background:#e8f5e9; color:#2e7d32; padding:2px 10px; border-radius:20px; font-size:0.8rem; font-weight:600;">Campo</span></td>
-              <td style="font-size: 0.88rem;">Recorridos de campo técnicos por barrio · Perforaciones, apiques y análisis de muestras en laboratorio · Socialización inicial en comuna 1 y 8</td>
-            </tr>
-            <tr>
-              <td style="font-weight: 700;">Mes 4-5</td>
-              <td><span style="background:#fff3e0; color:#e65100; padding:2px 10px; border-radius:20px; font-size:0.8rem; font-weight:600;">Modelamiento</span></td>
-              <td style="font-size: 0.88rem;">Modelos geotécnicos por UMI · Construcción página web e Storytelling · Boletín informativo 1: primeros resultados parciales</td>
-            </tr>
-            <tr>
-              <td style="font-weight: 700;">Mes 4-6</td>
-              <td><span style="background:#fce4ec; color:#c62828; padding:2px 10px; border-radius:20px; font-size:0.8rem; font-weight:600;">Vulnerabilidad</span></td>
-              <td style="font-size: 0.88rem;">Análisis de la vulnerabilidad física y social · Testeo social de la narrativa audiovisual · Boletines 2 y 3 · Recorrido de intercambio de conocimientos</td>
-            </tr>
-            <tr>
-              <td style="font-weight: 700;">Mes 7-9</td>
-              <td><span style="background:#f3e5f5; color:#6a1b9a; padding:2px 10px; border-radius:20px; font-size:0.8rem; font-weight:600;">Escenarios de Riesgo</span></td>
-              <td style="font-size: 0.88rem;">Riesgo cuantitativo · Riesgo cualitativo · Boletín 4: reflexiones del intercambio de conocimientos</td>
-            </tr>
-            <tr>
-              <td style="font-weight: 700;">Mes 9-10</td>
-              <td><span style="background:#e0f2f1; color:#00695c; padding:2px 10px; border-radius:20px; font-size:0.8rem; font-weight:600;">Diseño de Obras</span></td>
-              <td style="font-size: 0.88rem;">Diseño obras de mitigación · Boletín 5: ¿Qué es un escenario de riesgo?</td>
-            </tr>
-            <tr>
-              <td style="font-weight: 700;">Mes 11-12</td>
-              <td><span style="background:#efebe9; color:#4e342e; padding:2px 10px; border-radius:20px; font-size:0.8rem; font-weight:600;">Resultados y Cierre</span></td>
-              <td style="font-size: 0.88rem;">Socialización de resultados · Boletín 6: ¿Qué es una obra de diseño detallada? · Boletín 7: ¿Y los resultados para cuándo?</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <p class="section-subtitle-gsap">Estamos en <strong>Abril 2026</strong> — fases activas resaltadas en naranja.</p>
+
+      <!-- STEPPER HORIZONTAL -->
+      <div class="crono-stepper-wrap">
+        <div class="crono-stepper">
+
+          <!-- 1: Inicio — COMPLETADO -->
+          <div class="crono-step crono-done">
+            <div class="crono-circle">✓</div>
+            <div class="crono-info">
+              <span class="crono-cat" style="background:#e8f5e9;color:#2e7d32;">Inicio</span>
+              <div class="crono-mes">Mes 1–2</div>
+              <div class="crono-fecha">Nov – Dic 2025</div>
+            </div>
+            <p class="crono-detail">Planificación · Información secundaria · Cartografía base · Socialización C3</p>
+          </div>
+
+          <!-- 2: Campo — COMPLETADO -->
+          <div class="crono-step crono-done">
+            <div class="crono-circle">✓</div>
+            <div class="crono-info">
+              <span class="crono-cat" style="background:#e8f5e9;color:#2e7d32;">Campo</span>
+              <div class="crono-mes">Mes 2–4</div>
+              <div class="crono-fecha">Dic 2025 – Feb 2026</div>
+            </div>
+            <p class="crono-detail">Recorridos técnicos · Perforaciones y apiques · Socialización C1 y C8</p>
+          </div>
+
+          <!-- 3: Modelamiento — ACTIVO -->
+          <div class="crono-step crono-active">
+            <div class="crono-circle"><span class="crono-pulse"></span></div>
+            <div class="crono-info">
+              <span class="crono-cat" style="background:#fff3e0;color:#e65100;">Modelamiento</span>
+              <div class="crono-mes">Mes 4–5</div>
+              <div class="crono-fecha">Feb – Mar 2026</div>
+            </div>
+            <p class="crono-detail">Modelos geotécnicos · Página web · Boletín 1</p>
+          </div>
+
+          <!-- 4: Vulnerabilidad — ACTIVO -->
+          <div class="crono-step crono-active">
+            <div class="crono-circle"><span class="crono-pulse"></span></div>
+            <div class="crono-info">
+              <span class="crono-cat" style="background:#fce4ec;color:#c62828;">Vulnerabilidad</span>
+              <div class="crono-mes">Mes 4–6</div>
+              <div class="crono-fecha">Mar – Abr 2026</div>
+            </div>
+            <p class="crono-detail">Vulnerabilidad física y social · Boletines 2 y 3</p>
+          </div>
+
+          <!-- 5: Escenarios — PENDIENTE -->
+          <div class="crono-step crono-pending">
+            <div class="crono-circle">5</div>
+            <div class="crono-info">
+              <span class="crono-cat" style="background:#f3e5f5;color:#6a1b9a;">Escenarios</span>
+              <div class="crono-mes">Mes 7–9</div>
+              <div class="crono-fecha">May – Jul 2026</div>
+            </div>
+            <p class="crono-detail">Riesgo cuantitativo y cualitativo · Boletín 4</p>
+          </div>
+
+          <!-- 6: Diseño de Obras — PENDIENTE -->
+          <div class="crono-step crono-pending">
+            <div class="crono-circle">6</div>
+            <div class="crono-info">
+              <span class="crono-cat" style="background:#e0f2f1;color:#00695c;">Diseño de Obras</span>
+              <div class="crono-mes">Mes 9–10</div>
+              <div class="crono-fecha">Jul – Ago 2026</div>
+            </div>
+            <p class="crono-detail">Diseño de obras de mitigación · Boletín 5</p>
+          </div>
+
+          <!-- 7: Resultados — PENDIENTE -->
+          <div class="crono-step crono-pending crono-last">
+            <div class="crono-circle">7</div>
+            <div class="crono-info">
+              <span class="crono-cat" style="background:#efebe9;color:#4e342e;">Resultados</span>
+              <div class="crono-mes">Mes 11–12</div>
+              <div class="crono-fecha">Sep – Nov 2026</div>
+            </div>
+            <p class="crono-detail">Socialización de resultados · Boletines 6 y 7</p>
+          </div>
+
+        </div><!-- /crono-stepper -->
+      </div><!-- /crono-stepper-wrap -->
+
     </div>
   </section>
 
@@ -569,6 +712,17 @@
     <div class="container">
       <h2 class="section-title-gsap">Características Territoriales</h2>
       <p class="section-subtitle-gsap">Barrios y veredas del Borde Nororiental donde se realizan los estudios de riesgo de detalle.</p>
+
+      <!-- Buscador de barrio -->
+      <div class="search-wrap">
+        <div class="search-input-group">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="barrio-search" class="search-input"
+                 placeholder="Escribe el nombre de tu barrio…" autocomplete="off" />
+        </div>
+        <span class="search-count" id="barrio-count">12 barrios disponibles</span>
+      </div>
+
       <div class="barrios-table-wrap">
         <table class="data-table">
           <thead>
@@ -677,113 +831,239 @@
   <!-- EVENTOS HISTÓRICOS -->
   <section id="eventos" class="eventos-section">
     <div class="container">
-      <h2 class="section-title-gsap">Histórico de Eventos en el Territorio</h2>
-      <p class="section-subtitle-gsap">Eventos geológicos registrados que justifican la realización de los estudios de detalle.</p>
+      <h2 class="section-title-gsap">Histórico de eventos en el territorio</h2>
+      <p class="section-subtitle-gsap">Eventos geológicos y situaciones de riesgo que han marcado el territorio y que hoy permiten comprender la importancia de realizar los estudios de detalle.</p>
 
-      <div class="evento-item">
-        <div class="evento-fecha">Sep 1992</div>
-        <div class="evento-content">
-          <h4>Deslizamiento — Versalles No. 2</h4>
-          <div class="evento-lugar">C3, Manrique</div>
-          <div class="evento-consecuencia">3 familias evacuadas · Detonante: error antrópico por extracción de material</div>
-        </div>
+      <!-- Filtros de la timeline -->
+      <div class="timeline-filters">
+        <button class="tl-filter active" data-filter="all">Todos · 17 eventos</button>
+        <button class="tl-filter" data-filter="critico">🔴 Solo críticos</button>
+        <button class="tl-filter" data-filter="siglo20">Siglo XX</button>
+        <button class="tl-filter" data-filter="siglo21">Siglo XXI</button>
       </div>
 
-      <div class="evento-item">
-        <div class="evento-fecha">Sep–Oct 1994</div>
-        <div class="evento-content">
-          <h4>Deslizamiento — La Cruz, La Capilla</h4>
-          <div class="evento-lugar">C3, Manrique</div>
-          <div class="evento-consecuencia">
-            <span class="fallecidos-badge">● 1 fallecido</span>
-            Afectación de 6 viviendas · Detonante: lluvias y saturación
+      <!-- ===== TIMELINE VERTICAL ===== -->
+      <div class="timeline">
+
+        <div class="tl-event riesgo-alto" data-era="siglo20">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">1954</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Jul 1954</span>
+              <span class="tl-badge tl-critico">🔴 Crítico</span>
+              <span class="tl-tipo">Movimiento en masa</span>
+            </div>
+            <div class="tl-lugar">📍 Media Luna</div>
+            <div class="tl-victimas"><span class="fallecidos-badge">● +60 fallecidos</span></div>
+            <p class="tl-resumen">Movimiento en masa de grandes proporciones que sepultó un par de viviendas y dejó 5 personas sepultadas; en el proceso de rescate perecieron más de 60 personas.</p>
           </div>
         </div>
-      </div>
 
-      <div class="evento-item riesgo-alto">
-        <div class="evento-fecha">Abr 1996</div>
-        <div class="evento-content">
-          <h4>Avenida torrencial — Versalles No. 2</h4>
-          <div class="evento-lugar">C3, Manrique</div>
-          <div class="evento-consecuencia">
-            <span class="fallecidos-badge">● Crítico</span>
-            52 casas afectadas · 260 damnificados · Detonante: lluvias + obstrucción del cauce
+        <div class="tl-event riesgo-alto" data-era="siglo20">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">1974</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Sep 1974</span>
+              <span class="tl-badge tl-critico">🔴 Crítico</span>
+              <span class="tl-tipo">Movimiento en masa</span>
+            </div>
+            <div class="tl-lugar">📍 C1 · Santo Domingo Savio</div>
+            <div class="tl-victimas"><span class="fallecidos-badge">● &gt;80 fallecidos</span></div>
+            <p class="tl-resumen">Detonado por lluvias intensas y la falta de un sistema de alcantarillado en el sector.</p>
           </div>
         </div>
-      </div>
 
-      <div class="evento-item">
-        <div class="evento-fecha">Sep 1999</div>
-        <div class="evento-content">
-          <h4>Deslizamiento — Bello Oriente</h4>
-          <div class="evento-lugar">C3, Manrique</div>
-          <div class="evento-consecuencia">
-            <span class="fallecidos-badge">● 1 fallecido</span>
-            Detonante: lluvias intensas
+        <div class="tl-event riesgo-alto" data-era="siglo20">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">1987</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Sep 1987</span>
+              <span class="tl-badge tl-critico">🔴 Crítico</span>
+              <span class="tl-tipo">Deslizamiento</span>
+            </div>
+            <div class="tl-lugar">📍 C8 · Villatina</div>
+            <div class="tl-victimas"><span class="fallecidos-badge">● +500 fallecidos</span></div>
+            <p class="tl-resumen">Catalogado como uno de los desastres urbanos más grandes del siglo XX. Se destruyeron cerca de 100 viviendas y hubo unos 2.400 damnificados.</p>
           </div>
         </div>
-      </div>
 
-      <div class="evento-item riesgo-alto">
-        <div class="evento-fecha">May 2004</div>
-        <div class="evento-content">
-          <h4>Deslizamiento — La Cruz, Altos de la Cruz</h4>
-          <div class="evento-lugar">C3, Manrique</div>
-          <div class="evento-consecuencia">
-            <span class="fallecidos-badge">● 8 fallecidos</span>
-            Inestabilidad recurrente · Detonante: acumulación de agua + drenaje (tubo madre EPM)
+        <div class="tl-event" data-era="siglo20">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">1992</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Sep 1992</span>
+              <span class="tl-tipo">Deslizamiento</span>
+            </div>
+            <div class="tl-lugar">📍 C3 · Versalles No. 2 — Manrique</div>
+            <p class="tl-resumen">3 familias evacuadas. Detonante: error antrópico por extracción de material.</p>
           </div>
         </div>
-      </div>
 
-      <div class="evento-item">
-        <div class="evento-fecha">May 2006</div>
-        <div class="evento-content">
-          <h4>Flujo de lodos y detritos — La Cruz, La Capilla</h4>
-          <div class="evento-lugar">C3, Manrique</div>
-          <div class="evento-consecuencia">
-            <span class="fallecidos-badge">● 1 fallecido</span>
-            Detonante: lluvia intensa + aporte de material de calle en afirmado
+        <div class="tl-event" data-era="siglo20">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">1994</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Sep – Oct 1994</span>
+              <span class="tl-tipo">Deslizamiento</span>
+            </div>
+            <div class="tl-lugar">📍 C3 · La Cruz, La Capilla — Manrique</div>
+            <div class="tl-victimas"><span class="fallecidos-badge">● 1 fallecido</span></div>
+            <p class="tl-resumen">Afectación de 6 viviendas. Detonante: lluvias y saturación del terreno.</p>
           </div>
         </div>
-      </div>
 
-      <div class="evento-item">
-        <div class="evento-fecha">2009</div>
-        <div class="evento-content">
-          <h4>Colapso de viviendas — La Cruz</h4>
-          <div class="evento-lugar">C3, cerca a I.E. La Cruz</div>
-          <div class="evento-consecuencia">5 viviendas afectadas · Detonante: saturación + fallas de cimentación</div>
+        <div class="tl-event riesgo-alto" data-era="siglo20">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">1996</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Abr 1996</span>
+              <span class="tl-badge tl-critico">🔴 Crítico</span>
+              <span class="tl-tipo">Avenida torrencial</span>
+            </div>
+            <div class="tl-lugar">📍 C3 · Versalles No. 2 — Manrique</div>
+            <p class="tl-resumen">52 casas afectadas · 260 damnificados. Detonante: lluvias intensas + obstrucción del cauce.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="evento-item">
-        <div class="evento-fecha">Dic 2014</div>
-        <div class="evento-content">
-          <h4>Deslizamiento — Bello Oriente</h4>
-          <div class="evento-lugar">C3, Manrique</div>
-          <div class="evento-consecuencia">Evacuación preventiva de 11 familias · Detonante: exceso de lluvias</div>
+        <div class="tl-event" data-era="siglo20">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">1999</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Sep 1999</span>
+              <span class="tl-tipo">Deslizamiento</span>
+            </div>
+            <div class="tl-lugar">📍 C3 · Bello Oriente — Manrique</div>
+            <div class="tl-victimas"><span class="fallecidos-badge">● 1 fallecido</span></div>
+            <p class="tl-resumen">Detonante: lluvias intensas.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="evento-item">
-        <div class="evento-fecha">Jun 2017</div>
-        <div class="evento-content">
-          <h4>Deslizamiento — Bello Oriente</h4>
-          <div class="evento-lugar">C3, Manrique</div>
-          <div class="evento-consecuencia">6 viviendas afectadas · Detonante: lluvias e inestabilidad</div>
+        <div class="tl-event riesgo-alto" data-era="siglo21">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">2004</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">May 2004</span>
+              <span class="tl-badge tl-critico">🔴 Crítico</span>
+              <span class="tl-tipo">Deslizamiento</span>
+            </div>
+            <div class="tl-lugar">📍 C3 · La Cruz, Altos de la Cruz — Manrique</div>
+            <div class="tl-victimas"><span class="fallecidos-badge">● 8 fallecidos</span></div>
+            <p class="tl-resumen">Inestabilidad recurrente. Detonante: acumulación de agua + drenaje por tubo madre EPM.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="evento-item">
-        <div class="evento-fecha">Dic 2017 – Ene 2018</div>
-        <div class="evento-content">
-          <h4>Deslizamiento y caída de rocas — Versalles No. 2</h4>
-          <div class="evento-lugar">C3, Manrique</div>
-          <div class="evento-consecuencia">13 casas afectadas</div>
+        <div class="tl-event" data-era="siglo21">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">2006</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">May 2006</span>
+              <span class="tl-tipo">Flujo de lodos y detritos</span>
+            </div>
+            <div class="tl-lugar">📍 C3 · La Cruz, La Capilla — Manrique</div>
+            <div class="tl-victimas"><span class="fallecidos-badge">● 1 fallecido</span></div>
+            <p class="tl-resumen">Detonante: lluvia intensa + aporte de material de calle en afirmado.</p>
+          </div>
         </div>
-      </div>
+
+        <div class="tl-event" data-era="siglo21">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">2009</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">2009</span>
+              <span class="tl-tipo">Colapso de viviendas</span>
+            </div>
+            <div class="tl-lugar">📍 C3 · La Cruz (cerca I.E. La Cruz)</div>
+            <p class="tl-resumen">5 viviendas afectadas. Detonante: saturación del suelo + fallas de cimentación.</p>
+          </div>
+        </div>
+
+        <div class="tl-event" data-era="siglo21">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">2014</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Dic 2014</span>
+              <span class="tl-tipo">Deslizamiento</span>
+            </div>
+            <div class="tl-lugar">📍 C3 · Bello Oriente — Manrique</div>
+            <p class="tl-resumen">Evacuación preventiva de 11 familias. Detonante: exceso de lluvias.</p>
+          </div>
+        </div>
+
+        <div class="tl-event" data-era="siglo21">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">2017</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Jun 2017</span>
+              <span class="tl-tipo">Deslizamiento</span>
+            </div>
+            <div class="tl-lugar">📍 C3 · Bello Oriente — Manrique</div>
+            <p class="tl-resumen">6 viviendas afectadas. Detonante: lluvias e inestabilidad del terreno.</p>
+          </div>
+        </div>
+
+        <div class="tl-event" data-era="siglo21">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">2017</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Dic 2017 – Ene 2018</span>
+              <span class="tl-tipo">Deslizamiento y caída de rocas</span>
+            </div>
+            <div class="tl-lugar">📍 C3 · Versalles No. 2 — Manrique</div>
+            <p class="tl-resumen">13 casas afectadas por deslizamiento combinado con caída de bloques de roca.</p>
+          </div>
+        </div>
+
+        <div class="tl-event" data-era="siglo21">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">2021</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Nov 2021</span>
+              <span class="tl-tipo">Inundaciones</span>
+            </div>
+            <div class="tl-lugar">📍 C1 · Santo Domingo Savio</div>
+            <p class="tl-resumen">Más de 50 estructuras afectadas. Detonante: carga de aguas lluvias y represamiento por escombros en Cañada Seca y Cañada Negra.</p>
+          </div>
+        </div>
+
+        <div class="tl-event" data-era="siglo21">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">2022</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Jun 2022</span>
+              <span class="tl-tipo">Movimiento en masa</span>
+            </div>
+            <div class="tl-lugar">📍 C8 · Llanaditas, El Faro</div>
+            <p class="tl-resumen">Afectó 9 viviendas (5 de ellas en pérdida total).</p>
+          </div>
+        </div>
+
+        <div class="tl-event" data-era="siglo21">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">2025</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">May 2025</span>
+              <span class="tl-tipo">Movimiento en masa</span>
+            </div>
+            <div class="tl-lugar">📍 C8 · Villatina, La Libertad</div>
+            <p class="tl-resumen">Afectó 53 viviendas (3 colapsadas) y cerca de 50 familias evacuadas.</p>
+          </div>
+        </div>
+
+        <div class="tl-event riesgo-alto" data-era="siglo21">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-year">2025</div></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <span class="tl-date">Jun 2025</span>
+              <span class="tl-badge tl-critico">🔴 Crítico</span>
+              <span class="tl-tipo">Movimiento en masa</span>
+            </div>
+            <div class="tl-lugar">📍 Límites Medellín–Bello · Granizal</div>
+            <div class="tl-victimas"><span class="fallecidos-badge">● 25 fallecidos</span></div>
+            <p class="tl-resumen">Arrastró ~70.000 m³ de tierra. Afectó a 1.984 personas (487 familias), decenas de viviendas destruidas y más de 15 heridos.</p>
+          </div>
+        </div>
+
+      </div><!-- /timeline -->
     </div>
   </section>
 
@@ -792,7 +1072,23 @@
     <div class="container">
       <h2 class="section-title-gsap">Glosario Ciudadano</h2>
       <p class="section-subtitle-gsap">Términos clave para entender mejor los estudios técnicos y el proceso territorial.</p>
+
+      <!-- Buscador del glosario -->
+      <div class="search-wrap">
+        <div class="search-input-group">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="glosario-search" class="search-input"
+                 placeholder="Busca un término… ej: riesgo, deslizamiento, apique…" autocomplete="off" />
+        </div>
+        <span class="search-count" id="glosario-count">19 términos</span>
+      </div>
+
       <div class="glosario-grid">
+                <div class="glosario-card">
+          <div class="glosario-letter">A</div>
+          <div class="glosario-title">Amenaza</div>
+          <div class="glosario-desc">Es un fenómeno que puede causar daño, como un deslizamiento, una inundación o una avenida torrencial. Peligro latente.</div>
+        </div>
         <div class="glosario-card">
           <div class="glosario-letter">A</div>
           <div class="glosario-title">Apique</div>
@@ -800,13 +1096,28 @@
         </div>
         <div class="glosario-card">
           <div class="glosario-letter">A</div>
-          <div class="glosario-title">Amenaza</div>
-          <div class="glosario-desc">Es un fenómeno que puede causar daño, como un deslizamiento, una inundación o una avenida torrencial. Peligro latente.</div>
+          <div class="glosario-title">Avenida torrencial</div>
+          <div class="glosario-desc">Crecida súbita y violenta de una quebrada o cauce que arrastra agua, lodo, piedras y árboles.</div>
         </div>
         <div class="glosario-card">
           <div class="glosario-letter">B</div>
           <div class="glosario-title">Borde Urbano Rural</div>
           <div class="glosario-desc">Es el lugar o franja de transición donde la ciudad se encuentra con el campo. Este tipo de zonas se deben planificar pensando en barrios más seguros, con mejores espacios públicos y veredas productivas acorde con la vida rural, sin ir en contravía de la protección de ecosistemas y las áreas donde puede haber riesgo.</div>
+        </div>
+        <div class="glosario-card">
+          <div class="glosario-letter">E</div>
+          <div class="glosario-title">Erosión</div>
+          <div class="glosario-desc">Desgaste del suelo por acción del agua, viento o actividades humanas. La falta de coberturas vegetales hace que la erosión sea mayor porque expone el suelo a estos elementos.</div>
+        </div>
+        <div class="glosario-card">
+          <div class="glosario-letter">E</div>
+          <div class="glosario-title">Escorrentía superficial</div>
+          <div class="glosario-desc">Agua lluvia que corre por la superficie del terreno cuando no logra infiltrarse.</div>
+        </div>
+        <div class="glosario-card">
+          <div class="glosario-letter">L</div>
+          <div class="glosario-title">Ladera</div>
+          <div class="glosario-desc">Terreno inclinado o pendiente de una montaña o cerro. Medellín se encuentra entre la ladera oriental y ladera occidental que hace parte de la formación natural del Valle del Aburrá.</div>
         </div>
         <div class="glosario-card">
           <div class="glosario-letter">M</div>
@@ -817,6 +1128,16 @@
           <div class="glosario-letter">P</div>
           <div class="glosario-title">Perforación geotécnica</div>
           <div class="glosario-desc">Exploración del terreno con equipos especializados que permite tomar muestras y analizar distintas capas de suelo presentes en el lugar de la perforación.</div>
+        </div>
+        <div class="glosario-card">
+          <div class="glosario-letter">P</div>
+          <div class="glosario-title">Plan de Ordenamiento Territorial - POT</div>
+          <div class="glosario-desc">Instrumento que orienta cómo debe crecer y organizarse la ciudad. Este instrumento junto al Plan de Desarrollo y los instrumentos de gestión del riesgo y adaptación al cambio climático se consideran la triada del desarrollo sostenible de una ciudad.</div>
+        </div>
+        <div class="glosario-card">
+          <div class="glosario-letter">P</div>
+          <div class="glosario-title">Presión urbanística</div>
+          <div class="glosario-desc">Expansión o crecimiento urbano acelerado sobre zonas rurales o áreas protegidas.</div>
         </div>
         <div class="glosario-card">
           <div class="glosario-letter">R</div>
@@ -835,8 +1156,18 @@
         </div>
         <div class="glosario-card">
           <div class="glosario-letter">S</div>
+          <div class="glosario-title">Saturación del suelo</div>
+          <div class="glosario-desc">Acumulación excesiva de agua dentro del terreno, reduciendo su estabilidad.</div>
+        </div>
+        <div class="glosario-card">
+          <div class="glosario-letter">S</div>
           <div class="glosario-title">Storytelling</div>
           <div class="glosario-desc">Es una manera de narrar lo que ocurre en el territorio, sus experiencias y sus cambios, usando relatos que ayuden a comprender mejor la información técnica.</div>
+        </div>
+        <div class="glosario-card">
+          <div class="glosario-letter">T</div>
+          <div class="glosario-title">Tratamiento urbanístico</div>
+          <div class="glosario-desc">Tipo de manejo que se define para una zona: consolidación, mejoramiento, protección, renovación, entre otros.</div>
         </div>
         <div class="glosario-card">
           <div class="glosario-letter">V</div>
@@ -852,78 +1183,168 @@
       <h2 class="section-title-gsap">Centro de Documentación y Boletines</h2>
       <p class="section-subtitle-gsap">Accede a los informes técnicos, boletines informativos y materiales didácticos generados durante el proyecto.</p>
       
-      <div class="descargas-grid">
-        <!-- Boletín 1 -->
+      <div class="descargas-grid" id="descargables">
+
+        <!-- Boletín 1 — 75% -->
         <div class="doc-card">
-          <div class="doc-status status-offline">○ Próximamente</div>
-          <div class="doc-icon">🔒</div>
+          <div class="doc-status-row">
+            <span class="doc-status status-almost">🟡 Casi listo</span>
+            <span class="doc-eta">May 2026</span>
+          </div>
+          <div class="doc-icon">📰</div>
           <div class="doc-title">Boletín Informativo #1</div>
           <div class="doc-desc">Primeros resultados parciales del estudio y actividades iniciales en el territorio.</div>
-          <a href="#" class="doc-btn disabled">En proceso</a>
+          <div class="doc-progress-wrap">
+            <div class="doc-progress-header">
+              <span>Avance de redacción</span><span>75%</span>
+            </div>
+            <div class="doc-progress-bar">
+              <div class="doc-progress-fill dpf-almost" data-width="75"></div>
+            </div>
+          </div>
+          <a href="#" class="doc-btn disabled">Próximamente</a>
         </div>
 
-        <!-- Boletín 2 -->
+        <!-- Boletín 2 — 55% -->
         <div class="doc-card">
-          <div class="doc-status status-offline">○ Próximamente</div>
-          <div class="doc-icon">🔒</div>
+          <div class="doc-status-row">
+            <span class="doc-status status-writing">🔵 En redacción</span>
+            <span class="doc-eta">Jun 2026</span>
+          </div>
+          <div class="doc-icon">📰</div>
           <div class="doc-title">Boletín Informativo #2</div>
           <div class="doc-desc">Avances en Storytelling: Construyendo la narrativa del riesgo desde la voz de la comunidad.</div>
-          <a href="#" class="doc-btn disabled">En proceso</a>
+          <div class="doc-progress-wrap">
+            <div class="doc-progress-header">
+              <span>Avance de redacción</span><span>55%</span>
+            </div>
+            <div class="doc-progress-bar">
+              <div class="doc-progress-fill dpf-writing" data-width="55"></div>
+            </div>
+          </div>
+          <a href="#" class="doc-btn disabled">Próximamente</a>
         </div>
 
-        <!-- Boletín 3 -->
+        <!-- Boletín 3 — 30% -->
         <div class="doc-card">
-          <div class="doc-status status-offline">○ Próximamente</div>
-          <div class="doc-icon">🔒</div>
+          <div class="doc-status-row">
+            <span class="doc-status status-offline">⚪ Próximamente</span>
+            <span class="doc-eta">Ago 2026</span>
+          </div>
+          <div class="doc-icon">📰</div>
           <div class="doc-title">Boletín Informativo #3</div>
           <div class="doc-desc">Resumen del Recorrido de Intercambio de Conocimientos con expertos internacionales.</div>
-          <a href="#" class="doc-btn disabled">En proceso</a>
+          <div class="doc-progress-wrap">
+            <div class="doc-progress-header">
+              <span>Avance de redacción</span><span>30%</span>
+            </div>
+            <div class="doc-progress-bar">
+              <div class="doc-progress-fill dpf-pending" data-width="30"></div>
+            </div>
+          </div>
+          <a href="#" class="doc-btn disabled">Próximamente</a>
         </div>
 
-        <!-- Boletín 4 -->
+        <!-- Boletín 4 — 15% -->
         <div class="doc-card">
-          <div class="doc-status status-offline">○ Próximamente</div>
-          <div class="doc-icon">🔒</div>
+          <div class="doc-status-row">
+            <span class="doc-status status-offline">⚪ Próximamente</span>
+            <span class="doc-eta">Sep 2026</span>
+          </div>
+          <div class="doc-icon">📰</div>
           <div class="doc-title">Boletín Informativo #4</div>
           <div class="doc-desc">Reflexiones y aprendizajes del intercambio de conocimientos en el Borde Nororiental.</div>
-          <a href="#" class="doc-btn disabled">En proceso</a>
+          <div class="doc-progress-wrap">
+            <div class="doc-progress-header">
+              <span>Avance de redacción</span><span>15%</span>
+            </div>
+            <div class="doc-progress-bar">
+              <div class="doc-progress-fill dpf-pending" data-width="15"></div>
+            </div>
+          </div>
+          <a href="#" class="doc-btn disabled">Próximamente</a>
         </div>
 
-        <!-- Boletín 5 -->
+        <!-- Boletín 5 — 5% -->
         <div class="doc-card">
-          <div class="doc-status status-offline">○ Próximamente</div>
-          <div class="doc-icon">🔒</div>
+          <div class="doc-status-row">
+            <span class="doc-status status-offline">⚪ Próximamente</span>
+            <span class="doc-eta">Oct 2026</span>
+          </div>
+          <div class="doc-icon">📰</div>
           <div class="doc-title">Boletín Informativo #5</div>
           <div class="doc-desc">¿Qué es un escenario de riesgo? Explicación detallada de los modelos técnicos.</div>
-          <a href="#" class="doc-btn disabled">En proceso</a>
+          <div class="doc-progress-wrap">
+            <div class="doc-progress-header">
+              <span>Avance de redacción</span><span>5%</span>
+            </div>
+            <div class="doc-progress-bar">
+              <div class="doc-progress-fill dpf-pending" data-width="5"></div>
+            </div>
+          </div>
+          <a href="#" class="doc-btn disabled">Próximamente</a>
         </div>
 
-        <!-- Presentación General -->
+        <!-- Presentación General — 80% -->
         <div class="doc-card">
-          <div class="doc-status status-offline">○ Próximamente</div>
-          <div class="doc-icon">🔒</div>
+          <div class="doc-status-row">
+            <span class="doc-status status-almost">🟡 Casi listo</span>
+            <span class="doc-eta">May 2026</span>
+          </div>
+          <div class="doc-icon">📊</div>
           <div class="doc-title">Presentación del Proyecto</div>
           <div class="doc-desc">Guía visual explicativa sobre los alcances y metodología de los Estudios de Riesgo de Detalle.</div>
-          <a href="#" class="doc-btn disabled">En proceso</a>
+          <div class="doc-progress-wrap">
+            <div class="doc-progress-header">
+              <span>Avance de redacción</span><span>80%</span>
+            </div>
+            <div class="doc-progress-bar">
+              <div class="doc-progress-fill dpf-almost" data-width="80"></div>
+            </div>
+          </div>
+          <a href="#" class="doc-btn disabled">Próximamente</a>
         </div>
 
-        <!-- Glosario PDF -->
+        <!-- Glosario PDF — 60% -->
         <div class="doc-card">
-          <div class="doc-status status-offline">○ Próximamente</div>
-          <div class="doc-icon">🔒</div>
+          <div class="doc-status-row">
+            <span class="doc-status status-writing">🔵 En redacción</span>
+            <span class="doc-eta">Jul 2026</span>
+          </div>
+          <div class="doc-icon">📚</div>
           <div class="doc-title">Cartilla: Glosario Ciudadano</div>
           <div class="doc-desc">Diccionario pedagógico con términos clave para la gestión del riesgo territorial.</div>
-          <a href="#" class="doc-btn disabled">En proceso</a>
+          <div class="doc-progress-wrap">
+            <div class="doc-progress-header">
+              <span>Avance de redacción</span><span>60%</span>
+            </div>
+            <div class="doc-progress-bar">
+              <div class="doc-progress-fill dpf-writing" data-width="60"></div>
+            </div>
+          </div>
+          <a href="#" class="doc-btn disabled">Próximamente</a>
         </div>
 
-        <!-- Base de Datos -->
+        <!-- Base de Datos — 40% -->
         <div class="doc-card">
-          <div class="doc-status status-offline">○ Próximamente</div>
-          <div class="doc-icon">🔒</div>
+          <div class="doc-status-row">
+            <span class="doc-status status-writing">🔵 En redacción</span>
+            <span class="doc-eta">Sep 2026</span>
+          </div>
+          <div class="doc-icon">🗃️</div>
           <div class="doc-title">Base de Datos Territoriales</div>
           <div class="doc-desc">Información consolidada de población, predios y características físico-sociales.</div>
-          <a href="#" class="doc-btn disabled">En proceso</a>
+          <div class="doc-progress-wrap">
+            <div class="doc-progress-header">
+              <span>Avance de redacción</span><span>40%</span>
+            </div>
+            <div class="doc-progress-bar">
+              <div class="doc-progress-fill dpf-writing" data-width="40"></div>
+            </div>
+          </div>
+          <a href="#" class="doc-btn disabled">Próximamente</a>
         </div>
+
       </div>
     </div>
   </section>
@@ -937,11 +1358,33 @@
           Resolvemos tus dudas sobre el proceso técnico, social y legal del proyecto de gestión del riesgo.
         </p>
       </div>
-      <div class="faq-container">
+      <!-- FAQ BÚSQUEDA + FILTROS POR CATEGORÍA -->
+      <div class="faq-search-section">
+        <div class="search-wrap" style="max-width:900px;margin:0 auto 1.25rem;">
+          <div class="search-input-group">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="faq-search" class="search-input"
+                   placeholder="Busca tu pregunta… (ej: riesgo, perforaciones, reubicación)"
+                   autocomplete="off" />
+          </div>
+          <span class="search-count" id="faq-count">10 preguntas</span>
+        </div>
+        <div class="faq-filter-bar">
+          <button class="faq-filter active" data-cat="all">Todas · 10</button>
+          <button class="faq-filter" data-cat="tecnico">🔬 Técnico</button>
+          <button class="faq-filter" data-cat="proceso">📋 Proceso</button>
+          <button class="faq-filter" data-cat="derechos">⚖️ Derechos</button>
+          <button class="faq-filter" data-cat="participacion">🤝 Participación</button>
+        </div>
+      </div>
 
-        <div class="faq-item">
+      <div class="faq-container" id="faq-list">
+        <p class="faq-no-results" id="faq-no-results" style="display:none;">😕 No encontramos preguntas con ese término. Intenta con otras palabras.</p>
+
+        <div class="faq-item" data-cat="tecnico">
           <div class="faq-header">
             <span class="faq-question">¿Qué son estos estudios y para qué sirven?</span>
+            <span class="faq-cat-badge faqb-tecnico">🔬 Técnico</span>
             <span class="faq-chevron">▼</span>
           </div>
           <div class="faq-content">
@@ -951,9 +1394,10 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-cat="proceso">
           <div class="faq-header">
             <span class="faq-question">¿Dónde se está haciendo?</span>
+            <span class="faq-cat-badge faqb-proceso">📋 Proceso</span>
             <span class="faq-chevron">▼</span>
           </div>
           <div class="faq-content">
@@ -969,25 +1413,30 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-cat="proceso">
           <div class="faq-header">
             <span class="faq-question">¿En qué fase o actividad vamos hoy?</span>
+            <span class="faq-cat-badge faqb-proceso">📋 Proceso</span>
             <span class="faq-chevron">▼</span>
           </div>
           <div class="faq-content">
             <div class="faq-answer">
-              <ul style="padding-left: 1.5rem; line-height: 1.6;">
+              <ul style="padding-left: 1.5rem; line-height: 1.6; margin-bottom: 1rem;">
                 <li>Estamos en la fase de generación de la geología detallada de cada barrio.</li>
                 <li>Estamos en los recorridos de vulnerabilidad estructural.</li>
                 <li>Conformamos el equipo que realizará los escenarios de riesgo.</li>
               </ul>
+              <p>
+                <strong>Avance en el territorio:</strong> Finalizamos los recorridos de campo y las perforaciones en los barrios y sectores de comuna 3. Vamos en un 50% de avance en los recorridos en comuna 8. Iniciamos las perforaciones en comuna 8.
+              </p>
             </div>
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-cat="proceso">
           <div class="faq-header">
             <span class="faq-question">¿Qué viene ahora?</span>
+            <span class="faq-cat-badge faqb-proceso">📋 Proceso</span>
             <span class="faq-chevron">▼</span>
           </div>
           <div class="faq-content">
@@ -1001,9 +1450,10 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-cat="derechos">
           <div class="faq-header">
             <span class="faq-question">¿Van a reubicar mi vivienda con estos estudios?</span>
+            <span class="faq-cat-badge faqb-derechos">⚖️ Derechos</span>
             <span class="faq-chevron">▼</span>
           </div>
           <div class="faq-content">
@@ -1013,9 +1463,10 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-cat="tecnico">
           <div class="faq-header">
             <span class="faq-question">¿Las perforaciones afectan las viviendas?</span>
+            <span class="faq-cat-badge faqb-tecnico">🔬 Técnico</span>
             <span class="faq-chevron">▼</span>
           </div>
           <div class="faq-content">
@@ -1025,9 +1476,10 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-cat="proceso">
           <div class="faq-header">
             <span class="faq-question">¿Cuánto tiempo duran los trabajos en el barrio?</span>
+            <span class="faq-cat-badge faqb-proceso">📋 Proceso</span>
             <span class="faq-chevron">▼</span>
           </div>
           <div class="faq-content">
@@ -1037,9 +1489,10 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-cat="derechos">
           <div class="faq-header">
             <span class="faq-question">¿Qué ocurre si se identifica alto riesgo?</span>
+            <span class="faq-cat-badge faqb-derechos">⚖️ Derechos</span>
             <span class="faq-chevron">▼</span>
           </div>
           <div class="faq-content">
@@ -1051,9 +1504,10 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-cat="participacion">
           <div class="faq-header">
             <span class="faq-question">¿Qué acciones comunitarias aumentan el riesgo?</span>
+            <span class="faq-cat-badge faqb-participacion">🤝 Participación</span>
             <span class="faq-chevron">▼</span>
           </div>
           <div class="faq-content">
@@ -1063,9 +1517,10 @@
           </div>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-cat="participacion">
           <div class="faq-header">
             <span class="faq-question">¿Cómo puedo participar en el proceso?</span>
+            <span class="faq-cat-badge faqb-participacion">🤝 Participación</span>
             <span class="faq-chevron">▼</span>
           </div>
           <div class="faq-content">
@@ -1231,7 +1686,158 @@
     });
 
 
+    // ===== TIMELINE FILTERS =====
+    document.querySelectorAll('.tl-filter').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.tl-filter').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.dataset.filter;
+        var visible = 0;
+        document.querySelectorAll('.tl-event').forEach(function(ev) {
+          var show = filter === 'all'
+            || (filter === 'critico'  && ev.classList.contains('riesgo-alto'))
+            || (filter === 'siglo20'  && ev.dataset.era === 'siglo20')
+            || (filter === 'siglo21'  && ev.dataset.era === 'siglo21');
+          ev.classList.toggle('tl-hidden', !show);
+          if (show) visible++;
+        });
+        btn.textContent = btn.textContent.replace(/\s*·.*$/, '') +
+          (filter === 'all' ? ' · 17 eventos' : ' · ' + visible + ' evento' + (visible !== 1 ? 's' : ''));
+      });
+    });
+
+    // ===== BUSCADOR DE BARRIOS =====
+    (function() {
+      var input = document.getElementById('barrio-search');
+      var counter = document.getElementById('barrio-count');
+      if (!input) return;
+      var rows = document.querySelectorAll('.data-table tbody tr');
+      input.addEventListener('input', function() {
+        var q = input.value.trim().toLowerCase();
+        var visible = 0;
+        rows.forEach(function(row) {
+          var barrio = (row.cells[1] ? row.cells[1].textContent : '').toLowerCase();
+          var comuna = (row.cells[0] ? row.cells[0].textContent : '').toLowerCase();
+          var match = !q || barrio.includes(q) || comuna.includes(q);
+          row.classList.toggle('tbl-hidden', !match);
+          if (match) visible++;
+        });
+        counter.textContent = q
+          ? (visible + ' barrio' + (visible !== 1 ? 's' : '') + ' encontrado' + (visible !== 1 ? 's' : ''))
+          : '12 barrios disponibles';
+      });
+    }());
+
+    // ===== BUSCADOR DE GLOSARIO =====
+    (function() {
+      var input = document.getElementById('glosario-search');
+      var counter = document.getElementById('glosario-count');
+      if (!input) return;
+      var cards = document.querySelectorAll('.glosario-card');
+      input.addEventListener('input', function() {
+        var q = input.value.trim().toLowerCase();
+        var visible = 0;
+        cards.forEach(function(card) {
+          var title = (card.querySelector('.glosario-title') || {}).textContent || '';
+          var desc  = (card.querySelector('.glosario-desc')  || {}).textContent || '';
+          var match = !q || title.toLowerCase().includes(q) || desc.toLowerCase().includes(q);
+          card.classList.toggle('gl-hidden', !match);
+          if (match) visible++;
+        });
+        counter.textContent = q
+          ? (visible + ' término' + (visible !== 1 ? 's' : '') + ' encontrado' + (visible !== 1 ? 's' : ''))
+          : '19 términos';
+      });
+    }());
+
     // Counter animation handled by animations.js (GSAP)
+
+    // ===== FAQ: BÚSQUEDA + FILTROS POR CATEGORÍA =====
+    (function() {
+      var searchInput = document.getElementById('faq-search');
+      var countEl     = document.getElementById('faq-count');
+      var noResults   = document.getElementById('faq-no-results');
+      if (!searchInput) return;
+
+      var items = Array.from(document.querySelectorAll('#faq-list .faq-item'));
+      var activeCat = 'all';
+
+      function applyFilters() {
+        var q = searchInput.value.trim().toLowerCase();
+        var visible = 0;
+        var toReveal = [];
+
+        items.forEach(function(item) {
+          var itemCat   = item.dataset.cat || 'all';
+          var catMatch  = activeCat === 'all' || itemCat === activeCat;
+          var question  = (item.querySelector('.faq-question')  || {}).textContent || '';
+          var answer    = (item.querySelector('.faq-answer')    || {}).textContent || '';
+          var textMatch = !q || question.toLowerCase().includes(q) || answer.toLowerCase().includes(q);
+          var show = catMatch && textMatch;
+          item.classList.toggle('faq-hidden', !show);
+          if (show) {
+            visible++;
+            toReveal.push(item);
+          }
+        });
+
+        // Force-reveal items that GSAP hasn't animated yet (opacity < 1)
+        if (typeof gsap !== 'undefined') {
+          toReveal.forEach(function(item) {
+            var op = parseFloat(window.getComputedStyle(item).opacity);
+            if (op < 0.99) {
+              gsap.killTweensOf(item);
+              gsap.to(item, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
+            }
+          });
+          if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+          }
+        }
+
+        // update counter
+        if (!q && activeCat === 'all') {
+          countEl.textContent = '10 preguntas';
+        } else {
+          countEl.textContent = visible + ' pregunta' + (visible !== 1 ? 's' : '') + ' encontrada' + (visible !== 1 ? 's' : '');
+        }
+
+        // no-results message
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+      }
+
+      // Search input listener
+      searchInput.addEventListener('input', applyFilters);
+
+      // Category filter buttons
+      document.querySelectorAll('.faq-filter').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.faq-filter').forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          activeCat = btn.dataset.cat;
+          applyFilters();
+          // update the "Todas" button label with count
+          var allBtn = document.querySelector('.faq-filter[data-cat="all"]');
+          if (allBtn && activeCat === 'all') allBtn.textContent = 'Todas · 10';
+        });
+      });
+    }());
+
+    // ===== BARRAS DE PROGRESO ANIMADAS (barrios + documentos) =====
+    (function() {
+      var fills = document.querySelectorAll('.barrio-progress-fill, .doc-progress-fill');
+      if (!fills.length) return;
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var el = entry.target;
+            el.style.width = (el.dataset.width || '0') + '%';
+            obs.unobserve(el);
+          }
+        });
+      }, { threshold: 0.4 });
+      fills.forEach(function(el) { obs.observe(el); });
+    }());
 
     // ===== ANIMATE PERCENT BARS ON SCROLL =====
     document.querySelectorAll('.percent-bar-fill, .recursos-progress-fill').forEach(bar => {
@@ -1248,6 +1854,86 @@
       const container = bar.closest('.percent-bar, .recursos-progress');
       if (container) observer.observe(container);
     });
+  </script>
+
+  <!-- Personajes animados: Geoloro & Doña Reportera -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── Mensajes por personaje ── */
+    var MESSAGES = {
+      geoloro: [
+        '¡Hola vecinos! Aquí les traduzco los tecnicismos 🔬',
+        'Descubre en qué barrios estamos trabajando 📍',
+        '¿Sabías que ya llevamos 49 perforaciones? ⛏️'
+      ],
+      reportera: [
+        '¡Les traigo los datos frescos del territorio! 📊',
+        'Mira los mapas y avances del proyecto 🗺️',
+        '¡Participa en las socializaciones! 🤝'
+      ]
+    };
+
+    var CHAR_INTERVAL = 8000; /* ms entre cambios de personaje */
+    var TYPING_SPEED  = 40;   /* ms por carácter               */
+
+    /* ── Elementos del DOM ── */
+    var charGeoloro   = document.getElementById('char-geoloro');
+    var charReportera = document.getElementById('char-reportera');
+    var txtGeoloro    = document.getElementById('text-geoloro');
+    var txtReportera  = document.getElementById('text-reportera');
+
+    if (!charGeoloro || !charReportera) return; /* seguridad */
+
+    /* ── Estado ── */
+    var currentChar = 'geoloro';
+    var msgIndex    = { geoloro: 0, reportera: -1 };
+    /* reportera arranca en -1 para que el primer increment dé índice 0 */
+
+    /* Contador único por personaje para cancelar typing obsoleto */
+    var typingId = { geoloro: 0, reportera: 0 };
+
+    /* ── Efecto de escritura ── */
+    function typeText(el, text, key) {
+      var myId = ++typingId[key];
+      el.textContent = '';
+      var i = 0;
+      function step() {
+        if (typingId[key] !== myId) return; /* cancelado */
+        if (i < text.length) {
+          el.textContent += text[i++];
+          setTimeout(step, TYPING_SPEED);
+        }
+      }
+      step();
+    }
+
+    /* ── Cambio de personaje ── */
+    function switchCharacter() {
+      if (currentChar === 'geoloro') {
+        charGeoloro.classList.remove('active');
+        charReportera.classList.add('active');
+        currentChar = 'reportera';
+      } else {
+        charReportera.classList.remove('active');
+        charGeoloro.classList.add('active');
+        currentChar = 'geoloro';
+      }
+      /* Avanza al siguiente mensaje del personaje que acaba de aparecer */
+      var msgs = MESSAGES[currentChar];
+      msgIndex[currentChar] = (msgIndex[currentChar] + 1 + msgs.length) % msgs.length;
+      var el = currentChar === 'geoloro' ? txtGeoloro : txtReportera;
+      typeText(el, msgs[msgIndex[currentChar]], currentChar);
+    }
+
+    /* ── Inicio: escribe el primer mensaje de Geoloro ── */
+    typeText(txtGeoloro, MESSAGES.geoloro[0], 'geoloro');
+
+    /* ── Ciclo automático cada 8 s ── */
+    setInterval(switchCharacter, CHAR_INTERVAL);
+
+  }());
   </script>
 
   <!-- GSAP Animations -->
