@@ -882,10 +882,418 @@
                 display: none;
             }
         }
+
+        /* ══════════════════════════════════════════════════════
+           MEJORAS UX v2
+        ══════════════════════════════════════════════════════ */
+
+        /* ── Scroll Progress Bar ──────────────────────────── */
+        #scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green), #68d391);
+            z-index: 9999;
+            transition: width .1s linear;
+            pointer-events: none;
+        }
+
+        /* ── Back to Top ──────────────────────────────────── */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            width: 44px; height: 44px;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .3s, transform .3s, background .2s;
+            z-index: 998;
+            box-shadow: 0 4px 16px rgba(56,161,105,.4);
+        }
+        #back-to-top.visible { opacity: 1; transform: translateY(0); }
+        #back-to-top:hover { background: var(--green-dark); }
+
+        /* ── Hamburger ────────────────────────────────────── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: .4rem;
+            z-index: 200;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: var(--text-dark);
+            border-radius: 2px;
+            transition: transform .3s, opacity .3s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 68px 0 0 0;
+            background: #fff;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            gap: 0;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform .35s cubic-bezier(.4,0,.2,1);
+            box-shadow: -4px 0 24px rgba(0,0,0,.08);
+        }
+        .mobile-menu.open { transform: translateX(0); }
+        .mobile-menu a {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            padding: .9rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            transition: color .2s;
+        }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:hover, .mobile-menu a.nav-active { color: var(--green); }
+        .mobile-menu .mob-cta {
+            margin-top: 1rem;
+            background: var(--green);
+            color: #fff !important;
+            border-radius: 50px;
+            justify-content: center;
+            padding: .9rem 1.5rem;
+            border-bottom: none !important;
+        }
+        .mobile-menu .mob-cta:hover { background: var(--green-dark); color: #fff !important; }
+
+        /* ── Scroll-reveal ────────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+        .reveal.slide-left  { transform: translateX(-40px); }
+        .reveal.slide-right { transform: translateX(40px); }
+        .reveal.revealed { opacity: 1 !important; transform: translate(0,0) !important; }
+
+        /* ── Hero Entrance ────────────────────────────────── */
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heroBadgePop {
+            from { opacity: 0; transform: scale(.8); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        .hero-badge { animation: heroBadgePop .6s ease both .1s; }
+        .hero-logo  { animation: heroFadeUp .75s ease both .3s; }
+        .hero-sub   { animation: heroFadeUp .75s ease both .55s; }
+        .hero-meta  { animation: heroFadeUp .75s ease both .75s; }
+
+        /* ── Hero Bounce Arrow ────────────────────────────── */
+        @keyframes bounceY {
+            0%,100% { transform: translateX(-50%) translateY(0); }
+            50%      { transform: translateX(-50%) translateY(10px); }
+        }
+        .hero-arrow {
+            position: absolute;
+            bottom: 2rem; left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            color: rgba(255,255,255,.55);
+            font-size: 1.6rem;
+            animation: bounceY 2s ease-in-out infinite 1.8s;
+            cursor: pointer;
+            transition: color .2s;
+            background: none;
+            border: none;
+        }
+        .hero-arrow:hover { color: #68d391; }
+
+        /* ── CTA Pulse ────────────────────────────────────── */
+        @keyframes ctaPulse {
+            0%,100% { box-shadow: 0 4px 16px rgba(56,161,105,.45); }
+            50%      { box-shadow: 0 4px 32px rgba(56,161,105,.8), 0 0 0 8px rgba(56,161,105,.15); }
+        }
+        .hero-cta {
+            animation: heroFadeUp .75s ease both .95s, ctaPulse 3s ease-in-out infinite 2.5s;
+        }
+
+        /* ── Stats Strip ──────────────────────────────────── */
+        .stats-strip {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem;
+        }
+        .stats-strip-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            text-align: center;
+        }
+        .strip-stat { display: flex; flex-direction: column; align-items: center; gap: .2rem; }
+        .strip-stat .ss-icon { font-size: 1.5rem; }
+        .strip-stat .ss-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--green-dark);
+            line-height: 1;
+        }
+        .strip-stat .ss-lbl {
+            font-size: .74rem;
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+        }
+        @media (max-width: 540px) {
+            .stats-strip-inner { grid-template-columns: repeat(2,1fr); }
+        }
+
+        /* ── Agenda Filter Buttons ────────────────────────── */
+        .agenda-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin: 1.5rem 0 .75rem;
+        }
+        .agenda-filter-btn {
+            background: #fff;
+            border: 1.5px solid var(--border);
+            color: var(--text-mid);
+            border-radius: 50px;
+            padding: .38rem 1rem;
+            font-size: .82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s, color .2s, border-color .2s, transform .15s;
+        }
+        .agenda-filter-btn:hover { border-color: var(--green); color: var(--green); }
+        .agenda-filter-btn.active { background: var(--green); color: #fff; border-color: var(--green); }
+        .agenda-filter-btn:active { transform: scale(.96); }
+        .schedule-item.hidden { display: none !important; }
+
+        /* ── Schedule Left Border by Type ─────────────────── */
+        .schedule-item { border-left: 4px solid transparent; }
+        .schedule-item:has(.type-keynote)  { border-left-color: #975a16; }
+        .schedule-item:has(.type-session)  { border-left-color: var(--green); }
+        .schedule-item:has(.type-break)    { border-left-color: #c53030; }
+        .schedule-item:has(.type-opening)  { border-left-color: #2b6cb0; }
+        .schedule-item:has(.type-closing)  { border-left-color: #4a5568; }
+        .schedule-item:has(.type-panel)    { border-left-color: #553c9a; }
+
+        /* ── Topic Card Hover Colors ──────────────────────── */
+        .topic-card { border-left: 4px solid transparent; transition: box-shadow .2s, transform .2s, border-left-color .2s; }
+        .topic-card:nth-child(1):hover { border-left-color: #38a169; }
+        .topic-card:nth-child(2):hover { border-left-color: #3182ce; }
+        .topic-card:nth-child(3):hover { border-left-color: #805ad5; }
+        .topic-card:nth-child(4):hover { border-left-color: #d97706; }
+        .topic-card:nth-child(5):hover { border-left-color: #e53e3e; }
+        .topic-card:nth-child(6):hover { border-left-color: #0987a0; }
+
+        /* ── Speaker Card Enhanced Hover ──────────────────── */
+        .speaker-card { transition: box-shadow .25s, transform .25s; }
+        .speaker-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,.14); }
+        .speaker-img { transition: box-shadow .25s !important; }
+        .speaker-card:hover .speaker-img {
+            box-shadow: 0 0 0 4px var(--green), 0 4px 16px rgba(56,161,105,.3) !important;
+        }
+
+        /* ── Navbar active tracking ───────────────────────── */
+        .navbar-links a.nav-active { color: var(--green); font-weight: 700; }
+
+        /* ── Mobile responsive ────────────────────────────── */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .navbar-links { display: none; }
+        }
+
+        /* ── Registration Form Section ────────────────────── */
+        .register-section {
+            background: linear-gradient(135deg, var(--green-dark) 0%, #1a4731 100%);
+            padding: 5rem 1.5rem;
+        }
+        .register-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .register-info { color: #fff; }
+        .register-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+        .register-info p {
+            color: #9ae6b4;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        .register-perks { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+        .register-perks li {
+            display: flex; align-items: flex-start; gap: .75rem;
+            color: #cbd5e0; font-size: .92rem;
+        }
+        .register-perks li i { color: #68d391; margin-top: .15rem; flex-shrink: 0; }
+
+        /* Form card */
+        .reg-form-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2.25rem 2rem;
+            box-shadow: 0 16px 48px rgba(0,0,0,.25);
+        }
+        .reg-form-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: .75rem;
+            border-bottom: 2px solid var(--green-light);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label {
+            display: block;
+            font-size: .8rem;
+            font-weight: 700;
+            color: var(--text-mid);
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            margin-bottom: .35rem;
+        }
+        .form-group label .req { color: var(--green); }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: .65rem .9rem;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: .9rem;
+            color: var(--text-dark);
+            background: #fff;
+            transition: border-color .2s, box-shadow .2s;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(56,161,105,.15);
+        }
+        .form-group textarea { resize: vertical; min-height: 90px; }
+        .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2.2rem; }
+
+        /* Participation type radio pills */
+        .tipo-grid { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .35rem; }
+        .tipo-pill { position: relative; }
+        .tipo-pill input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+        .tipo-pill label {
+            display: flex; align-items: center; gap: .4rem;
+            border: 1.5px solid var(--border);
+            border-radius: 50px;
+            padding: .4rem .9rem;
+            font-size: .82rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-mid);
+            transition: all .2s;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .tipo-pill input:checked + label {
+            background: var(--green);
+            color: #fff;
+            border-color: var(--green);
+        }
+
+        /* Ponencia fields (shown only for ponentes) */
+        #ponencia-fields { display: none; }
+        #ponencia-fields.visible { display: block; }
+
+        /* Submit button */
+        .btn-submit {
+            width: 100%;
+            padding: .85rem;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background .2s, transform .2s;
+            display: flex; align-items: center; justify-content: center; gap: .5rem;
+            margin-top: .5rem;
+        }
+        .btn-submit:hover { background: var(--green-dark); transform: translateY(-1px); }
+        .btn-submit:active { transform: scale(.98); }
+        .form-note {
+            font-size: .75rem; color: var(--text-light);
+            text-align: center; margin-top: .75rem; line-height: 1.5;
+        }
+        .form-note a { color: var(--green); }
+
+        /* Success message */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        .form-success .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .form-success h4 { font-size: 1.1rem; color: var(--green-dark); margin-bottom: .5rem; }
+        .form-success p { font-size: .9rem; color: var(--text-mid); }
+
+        @media (max-width: 768px) {
+            .register-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .form-row { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Scroll progress -->
+    <div id="scroll-progress"></div>
+    <!-- Back to top -->
+    <button id="back-to-top" aria-label="Volver arriba"><i class="fa-solid fa-chevron-up"></i></button>
+    <!-- Mobile menu -->
+    <nav class="mobile-menu" id="mobile-menu">
+        <a href="#sobre"><i class="fa-solid fa-circle-info"></i> Sobre el evento</a>
+        <a href="#temas"><i class="fa-solid fa-list"></i> Temas</a>
+        <a href="#ponentes"><i class="fa-solid fa-users"></i> Ponentes</a>
+        <a href="#programa"><i class="fa-regular fa-calendar"></i> Programa</a>
+        <a href="#lugar"><i class="fa-solid fa-map-marker-alt"></i> Lugar</a>
+        <a href="#patrocinadores"><i class="fa-solid fa-handshake"></i> Organizadores</a>
+        <a href="#registro" class="mob-cta"><i class="fa-solid fa-pen-to-square"></i> Inscripción</a>
+    </nav>
+
     <!-- ══ NAVBAR ══════════════════════════════════════════ -->
     <nav class="navbar">
         <a href="https://geohazards.com.co/" class="navbar-brand">
@@ -906,6 +1314,9 @@
                 </a>
             </li>
         </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
 
     <!-- ══ HERO ════════════════════════════════════════════ -->
@@ -938,6 +1349,9 @@
                 <i class="fa-solid fa-pen-to-square"></i> Próxima inscripción
             </a>
         </div>
+        <button class="hero-arrow" id="hero-arrow" aria-label="Desplazar hacia abajo">
+            <i class="fa-solid fa-chevron-down"></i>
+        </button>
     </section>
 
     <!-- ══ COUNTDOWN ═══════════════════════════════════════ -->
@@ -958,11 +1372,37 @@
         </div>
     </div>
 
+    <!-- ══ STATS STRIP ═══════════════════════════════════════ -->
+    <div class="stats-strip">
+        <div class="stats-strip-inner">
+            <div class="strip-stat reveal">
+                <span class="ss-icon">🎤</span>
+                <span class="ss-num">8</span>
+                <span class="ss-lbl">Ponentes</span>
+            </div>
+            <div class="strip-stat reveal">
+                <span class="ss-icon">📄</span>
+                <span class="ss-num">20+</span>
+                <span class="ss-lbl">Presentaciones</span>
+            </div>
+            <div class="strip-stat reveal">
+                <span class="ss-icon">📅</span>
+                <span class="ss-num">1</span>
+                <span class="ss-lbl">Día intensivo</span>
+            </div>
+            <div class="strip-stat reveal">
+                <span class="ss-icon">🏛️</span>
+                <span class="ss-num">100%</span>
+                <span class="ss-lbl">Presencial</span>
+            </div>
+        </div>
+    </div>
+
     <!-- ══ ABOUT ═══════════════════════════════════════════ -->
     <section class="section" id="sobre">
         <div class="container">
             <div class="about-grid">
-                <div class="about-text">
+                <div class="about-text reveal slide-left">
                     <p class="section-badge">Sobre el evento</p>
                     <h2 class="section-title">V Simposio Geoamenazas 2026</h2>
                     <div class="divider"></div>
@@ -987,7 +1427,7 @@
                         consolidando la tradición anual de este espacio académico.
                     </p>
                 </div>
-                <div class="about-img">
+                <div class="about-img reveal slide-right">
                     <img src="bg/bg4.jpg" alt="Universidad Nacional de Colombia – Sede Medellín" />
                 </div>
             </div>
@@ -1005,37 +1445,37 @@
                 las amenazas de origen geológico e hidrometeorológico.
             </p>
             <div class="topics-grid">
-                <div class="topic-card">
+                <div class="topic-card reveal">
                     <div class="topic-icon">🌄</div>
                     <div class="topic-title">Movimientos en Masa</div>
                     <div class="topic-desc">Inventarios, susceptibilidad, amenaza, riesgo y modelos físicos de
                         deslizamientos y flujos de detritos.</div>
                 </div>
-                <div class="topic-card">
+                <div class="topic-card reveal">
                     <div class="topic-icon">🌊</div>
                     <div class="topic-title">Avenidas Torrenciales</div>
                     <div class="topic-desc">Caracterización, modelación de propagación, alertas tempranas y gestión de
                         riesgo por flujos torrenciales.</div>
                 </div>
-                <div class="topic-card">
+                <div class="topic-card reveal">
                     <div class="topic-icon">🌧️</div>
                     <div class="topic-title">Umbrales de Lluvia</div>
                     <div class="topic-desc">Definición y calibración de umbrales empíricos y de base física para el
                         detonamiento de movimientos en masa.</div>
                 </div>
-                <div class="topic-card">
+                <div class="topic-card reveal">
                     <div class="topic-icon">🛰️</div>
                     <div class="topic-title">Sensores Remotos & SIG</div>
                     <div class="topic-desc">Aplicaciones de teledetección, imágenes satelitales e inteligencia
                         artificial en el análisis geoespacial.</div>
                 </div>
-                <div class="topic-card">
+                <div class="topic-card reveal">
                     <div class="topic-icon">🏙️</div>
                     <div class="topic-title">Riesgo Urbano</div>
                     <div class="topic-desc">Vulnerabilidad, exposición y gestión del riesgo en asentamientos informales
                         y zonas de ladera.</div>
                 </div>
-                <div class="topic-card">
+                <div class="topic-card reveal">
                     <div class="topic-icon">🔬</div>
                     <div class="topic-title">Modelos & IA</div>
                     <div class="topic-desc">Machine learning, redes neuronales y modelos probabilísticos aplicados a la
@@ -1063,56 +1503,56 @@
                 }
             </style>
             <div class="speakers-grid" style="margin-top:1rem;">
-                <div class="speaker-card">
+                <div class="speaker-card reveal">
                     <img src="fotos/luigi.jpg" alt="Luigi Lombardo" class="speaker-img" />
                     <div class="speaker-name">Luigi Lombardo</div>
                     <div class="speaker-affil">Universidad de Twente</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Experto en modelos basados en datos para la evaluación de susceptibilidad por movimientos en masa.</p>
                     <span class="speaker-topic" style="background: #fefcbf; color: #975a16; margin-top: 0.75rem;">Magistral</span>
                 </div>
-                <div class="speaker-card">
+                <div class="speaker-card reveal">
                     <img src="fotos/luz.png" alt="Luz Jeannette Mejía" class="speaker-img" />
                     <div class="speaker-name">Luz Jeannette Mejía</div>
                     <div class="speaker-affil">Geóloga · Valle de Aburrá</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Geóloga experta en gestión del riesgo de desastres en el Valle de Aburrá.</p>
                     <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
                 </div>
-                <div class="speaker-card">
+                <div class="speaker-card reveal">
                     <img src="fotos/ElizabethArboleda.jpg" alt="Elizabeth Arboleda" class="speaker-img" />
                     <div class="speaker-name">Elizabeth Arboleda</div>
                     <div class="speaker-affil">Universidad Nacional</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesora experta en vulnerabilidad y gestión del riesgo de desastres.</p>
                     <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
                 </div>
-                <div class="speaker-card">
+                <div class="speaker-card reveal">
                     <img src="fotos/daniel_ruiz.jpg" alt="Daniel Felipe Ruiz" class="speaker-img" />
                     <div class="speaker-name">Daniel Felipe Ruiz</div>
                     <div class="speaker-affil">Universidad EAFIT</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor e ingeniero civil experto en instrumentación geotécnica.</p>
                     <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
                 </div>
-                <div class="speaker-card">
+                <div class="speaker-card reveal">
                     <img src="fotos/Foto_Diego_Rendon_2.jpg" alt="Diego Armando Rendón" class="speaker-img" />
                     <div class="speaker-name">Diego Armando Rendón</div>
                     <div class="speaker-affil">Universidad Nacional</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor e ingeniero geólogo experto en geotecnia.</p>
                     <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
                 </div>
-                <div class="speaker-card">
+                <div class="speaker-card reveal">
                     <img src="fotos/Johnny_vega.jpg" alt="Johnny Vega" class="speaker-img" />
                     <div class="speaker-name">Johnny Vega</div>
                     <div class="speaker-affil">Universidad de Medellín</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor experto en el uso de sensores remotos para evaluación de amenaza por movimientos en masa.</p>
                     <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
                 </div>
-                <div class="speaker-card">
+                <div class="speaker-card reveal">
                     <img src="fotos/edier_aristizabal.jpg" alt="Edier Aristizábal" class="speaker-img" />
                     <div class="speaker-name">Edier Aristizábal</div>
                     <div class="speaker-affil">Universidad Nacional</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor experto en evaluación de susceptibilidad por movimientos en masa y avenidas torrenciales.</p>
                     <span class="speaker-topic" style="margin-top: 0.75rem;">Temática</span>
                 </div>
-                <div class="speaker-card">
+                <div class="speaker-card reveal">
                     <img src="fotos/jhonjairo_sanchez.jpg" alt="John Jairo Sánchez" class="speaker-img" />
                     <div class="speaker-name">John Jairo Sánchez</div>
                     <div class="speaker-affil">Universidad Nacional</div>
@@ -1133,7 +1573,14 @@
                 El programa definitivo será publicado con anticipación al evento. A continuación se presenta una agenda
                 preliminar.
             </p>
-            <div class="schedule-list">
+            <div class="agenda-filters" id="agenda-filters">
+                <button class="agenda-filter-btn active" data-filter="all">🗓️ Todos</button>
+                <button class="agenda-filter-btn" data-filter="keynote">🌟 Magistral</button>
+                <button class="agenda-filter-btn" data-filter="session">📄 Sesión Oral</button>
+                <button class="agenda-filter-btn" data-filter="break">☕ Descanso</button>
+                <button class="agenda-filter-btn" data-filter="opening">🎤 Apertura / Cierre</button>
+            </div>
+            <div class="schedule-list" id="schedule-list">
                 <div class="schedule-item">
                     <div class="schedule-time">8:00 – 8:30</div>
                     <div class="schedule-body">
@@ -1314,7 +1761,7 @@
             <div class="divider"></div>
             <div class="venue-grid">
                 <div class="venue-info">
-                    <div class="venue-detail">
+                    <div class="venue-detail reveal">
                         <i class="fa-solid fa-university"></i>
                         <div class="venue-detail-content">
                             <div class="label">Institución</div>
@@ -1322,7 +1769,7 @@
                             <div class="sub-value">Sede Medellín · Facultad de Minas</div>
                         </div>
                     </div>
-                    <div class="venue-detail">
+                    <div class="venue-detail reveal">
                         <i class="fa-solid fa-map-marker-alt"></i>
                         <div class="venue-detail-content">
                             <div class="label">Dirección</div>
@@ -1330,7 +1777,7 @@
                             <div class="sub-value">Robledo, Medellín, Antioquia – Colombia</div>
                         </div>
                     </div>
-                    <div class="venue-detail">
+                    <div class="venue-detail reveal">
                         <i class="fa-regular fa-calendar-check"></i>
                         <div class="venue-detail-content">
                             <div class="label">Fecha y hora</div>
@@ -1338,7 +1785,7 @@
                             <div class="sub-value">8:00 a.m. – 5:00 p.m. (Hora Colombia, UTC-5)</div>
                         </div>
                     </div>
-                    <div class="venue-detail">
+                    <div class="venue-detail reveal">
                         <i class="fa-solid fa-door-open"></i>
                         <div class="venue-detail-content">
                             <div class="label">Sala / Auditorio</div>
@@ -1346,7 +1793,7 @@
                             <div class="sub-value">El recinto exacto se comunicará próximamente</div>
                         </div>
                     </div>
-                    <div class="venue-detail">
+                    <div class="venue-detail reveal">
                         <i class="fa-solid fa-truck-fast"></i>
                         <div class="venue-detail-content">
                             <div class="label">Cómo llegar</div>
@@ -1357,7 +1804,7 @@
                 </div>
                 <div class="venue-map">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.053823748847!2d-75.58063!3d6.26378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428ae9bcf8cef%3A0x1e4e5c8b0e4a2e0e!2sUniversidad%20Nacional%20de%20Colombia%20Sede%20Medell%C3%ADn!5e0!3m2!1ses!2sco!4v1699999999999"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4637.236600455469!2d-75.59276009999999!3d6.2740227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2sco!4v1779678928465!5m2!1ses!2sco"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                         title="Mapa Universidad Nacional de Colombia Medellín">
                     </iframe>
@@ -1392,16 +1839,130 @@
         </div>
     </section>
 
-    <!-- ══ REGISTER ════════════════════════════════════════ -->
-    <section class="register-banner" id="registro">
-        <h2>¡Participa en el V Simposio Geoamenazas!</h2>
-        <p>
-            La convocatoria de ponencias y el formato de inscripción estarán disponibles próximamente.
-            Mantente al tanto siguiendo nuestras redes sociales.
-        </p>
-        <a href="mailto:geohazards_med@unal.edu.co" class="btn-register">
-            <i class="fa-solid fa-envelope"></i> Contáctanos para más información
-        </a>
+    <!-- ══ REGISTRO ══════════════════════════════════════════ -->
+    <section class="register-section" id="registro">
+        <div class="register-grid">
+            <!-- Left: info -->
+            <div class="register-info reveal slide-left">
+                <p style="font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#68d391;margin-bottom:.5rem">Inscripción</p>
+                <h2>¡Participa en el<br>V Simposio Geoamenazas!</h2>
+                <p>
+                    Completa el formulario para registrar tu participación como asistente o ponente.
+                    Recibirás confirmación a tu correo electrónico.
+                </p>
+                <ul class="register-perks">
+                    <li><i class="fa-solid fa-check-circle"></i> Acceso completo a todas las sesiones del día</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Certificado de participación digital</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Coffee breaks y networking</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Memorias digitales del simposio</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Sin costo de inscripción</li>
+                </ul>
+                <p style="margin-top:2rem;font-size:.85rem;color:#718096">
+                    ¿Preguntas?
+                    <a href="mailto:geohazards_med@unal.edu.co" style="color:#68d391;font-weight:600">
+                        geohazards_med@unal.edu.co
+                    </a>
+                </p>
+            </div>
+
+            <!-- Right: form -->
+            <div class="reg-form-card reveal slide-right">
+                <h3><i class="fa-solid fa-pen-to-square" style="color:var(--green);margin-right:.4rem"></i>Formulario de Inscripción</h3>
+
+                <!-- FormSubmit.co (endpoint AJAX) — envía a geohazards_med@unal.edu.co -->
+                <!-- NOTA: el primer envío llegará un correo de activación de FormSubmit, haz clic en "Activate Form" -->
+                <form id="reg-form"
+                      action="https://formsubmit.co/ajax/geohazards_med@unal.edu.co"
+                      method="POST">
+
+                    <!-- FormSubmit config -->
+                    <input type="hidden" name="_subject" value="📋 Nueva inscripción — V Simposio Geoamenazas 2026">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <!-- _next no se usa con el endpoint AJAX -->
+                    <input type="text" name="_honey" style="display:none">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre completo <span class="req">*</span></label>
+                            <input type="text" name="Nombre" placeholder="Juan García" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Correo electrónico <span class="req">*</span></label>
+                            <input type="email" name="Correo" placeholder="correo@institución.edu.co" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Institución / Universidad <span class="req">*</span></label>
+                            <input type="text" name="Institución" placeholder="Universidad Nacional" required>
+                        </div>
+                        <div class="form-group">
+                            <label>País</label>
+                            <input type="text" name="País" placeholder="Colombia">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo de participación <span class="req">*</span></label>
+                        <div class="tipo-grid">
+                            <div class="tipo-pill">
+                                <input type="radio" name="Participación" id="tipo-asistente" value="Asistente" checked>
+                                <label for="tipo-asistente">🎧 Asistente</label>
+                            </div>
+                            <div class="tipo-pill">
+                                <input type="radio" name="Participación" id="tipo-oral" value="Ponente Oral">
+                                <label for="tipo-oral">🎤 Ponente Oral</label>
+                            </div>
+                            <div class="tipo-pill">
+                                <input type="radio" name="Participación" id="tipo-poster" value="Ponente Póster">
+                                <label for="tipo-poster">📊 Ponente Póster</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="ponencia-fields">
+                        <div class="form-group">
+                            <label>Título de la ponencia</label>
+                            <input type="text" name="Título_ponencia" placeholder="Título de su presentación">
+                        </div>
+                        <div class="form-group">
+                            <label>Área temática</label>
+                            <select name="Área_temática">
+                                <option value="">— Seleccione un área —</option>
+                                <option>Movimientos en Masa</option>
+                                <option>Avenidas Torrenciales</option>
+                                <option>Umbrales de Lluvia</option>
+                                <option>Sensores Remotos &amp; SIG</option>
+                                <option>Riesgo Urbano</option>
+                                <option>Modelos &amp; IA</option>
+                                <option>Otra</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Comentarios adicionales</label>
+                        <textarea name="Comentarios" placeholder="Preguntas, necesidades especiales, etc."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fa-solid fa-paper-plane"></i> Enviar inscripción
+                    </button>
+                    <p class="form-note">
+                        Al enviar aceptas que tu información será usada únicamente para la organización del simposio.<br>
+                        <i class="fa-solid fa-lock" style="color:var(--green)"></i> Formulario seguro vía <a href="https://formsubmit.co" target="_blank">FormSubmit</a>
+                    </p>
+                </form>
+
+                <div class="form-success" id="form-success">
+                    <div class="success-icon">✅</div>
+                    <h4>¡Inscripción enviada!</h4>
+                    <p>Gracias por registrarte. Recibirás una confirmación en tu correo electrónico pronto.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- ══ FOOTER ══════════════════════════════════════════ -->
@@ -1444,30 +2005,213 @@
         </div>
     </footer>
 
-    <!-- ══ COUNTDOWN SCRIPT ════════════════════════════════ -->
+    <!-- ══ SCRIPTS ═══════════════════════════════════════════ -->
     <script>
-        (function () {
-            const target = new Date('2026-07-10T08:00:00-05:00').getTime();
-            function update() {
-                const now = Date.now();
-                const diff = target - now;
-                if (diff <= 0) {
-                    document.getElementById('countdown').innerHTML =
-                        '<span style="color:#9ae6b4;font-size:1.5rem;font-weight:700">¡El evento ha comenzado!</span>';
-                    return;
-                }
-                const d = Math.floor(diff / 86400000);
-                const h = Math.floor((diff % 86400000) / 3600000);
-                const m = Math.floor((diff % 3600000) / 60000);
-                const s = Math.floor((diff % 60000) / 1000);
-                document.getElementById('cd-days').textContent = String(d).padStart(3, '0');
-                document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
-                document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
-                document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+    /* ── Countdown ─────────────────────────────────────────── */
+    (function () {
+        const eventDate = new Date('2026-07-10T08:00:00-05:00').getTime();
+        const els = {
+            days:  document.getElementById('cd-days'),
+            hours: document.getElementById('cd-hours'),
+            mins:  document.getElementById('cd-mins'),
+            secs:  document.getElementById('cd-secs')
+        };
+        // Flip animation helper
+        function flip(el, newVal) {
+            const cur = el.textContent;
+            if (cur === newVal) return;
+            el.style.transition = 'transform .25s ease, opacity .25s ease';
+            el.style.transform = 'rotateX(-90deg)';
+            el.style.opacity = '0';
+            setTimeout(() => {
+                el.textContent = newVal;
+                el.style.transform = 'rotateX(0deg)';
+                el.style.opacity = '1';
+            }, 260);
+        }
+        function update() {
+            const diff = eventDate - Date.now();
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML =
+                    '<span style="color:#9ae6b4;font-size:1.5rem;font-weight:700">¡El evento ha comenzado!</span>';
+                return;
             }
-            update();
-            setInterval(update, 1000);
-        })();
+            flip(els.days,  String(Math.floor(diff / 86400000)).padStart(3,'0'));
+            flip(els.hours, String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0'));
+            flip(els.mins,  String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0'));
+            flip(els.secs,  String(Math.floor((diff % 60000) / 1000)).padStart(2,'0'));
+        }
+        update();
+        setInterval(update, 1000);
+    })();
+
+    /* ── Scroll Progress Bar ───────────────────────────────── */
+    (function () {
+        const bar = document.getElementById('scroll-progress');
+        function onScroll() {
+            const h = document.documentElement;
+            const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            bar.style.width = pct + '%';
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    /* ── Back to Top ───────────────────────────────────────── */
+    (function () {
+        const btn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            btn.classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    })();
+
+    /* ── Hamburger Menu ────────────────────────────────────── */
+    (function () {
+        const ham  = document.getElementById('hamburger');
+        const menu = document.getElementById('mobile-menu');
+        ham.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('open');
+            ham.classList.toggle('open', isOpen);
+            ham.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+        menu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                menu.classList.remove('open');
+                ham.classList.remove('open');
+                ham.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+    })();
+
+    /* ── Scroll Reveal (IntersectionObserver) ──────────────── */
+    (function () {
+        const items = document.querySelectorAll('.reveal');
+        if (!items.length) return;
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('revealed');
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        // Stagger siblings that appear together
+        items.forEach((el, i) => {
+            const siblings = el.parentElement.querySelectorAll('.reveal');
+            if (siblings.length > 1) {
+                const idx = Array.from(siblings).indexOf(el);
+                el.style.transitionDelay = (idx * 0.1) + 's';
+            }
+            obs.observe(el);
+        });
+    })();
+
+    /* ── Navbar Active Section ─────────────────────────────── */
+    (function () {
+        const navLinks = document.querySelectorAll('.navbar-links a[href^="#"], .mobile-menu a[href^="#"]');
+        const sections = Array.from(document.querySelectorAll('section[id], div[id="patrocinadores"]'));
+        function updateActive() {
+            let current = '';
+            sections.forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+            });
+            navLinks.forEach(a => {
+                const match = a.getAttribute('href') === '#' + current;
+                a.classList.toggle('nav-active', match);
+            });
+        }
+        window.addEventListener('scroll', updateActive, { passive: true });
+        updateActive();
+    })();
+
+    /* ── Hero Arrow Click ──────────────────────────────────── */
+    (function () {
+        const arrow = document.getElementById('hero-arrow');
+        if (arrow) {
+            arrow.addEventListener('click', () => {
+                document.getElementById('sobre').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+    })();
+
+    /* ── Registration Form ─────────────────────────────────── */
+    (function () {
+        // Show/hide ponencia fields based on participation type
+        const tipoRadios = document.querySelectorAll('input[name="Participación"]');
+        const ponenciaFields = document.getElementById('ponencia-fields');
+        tipoRadios.forEach(r => {
+            r.addEventListener('change', () => {
+                const isPonente = r.value.startsWith('Ponente');
+                ponenciaFields.classList.toggle('visible', isPonente);
+            });
+        });
+
+        // Handle form submission with success message
+        const form = document.getElementById('reg-form');
+        const successDiv = document.getElementById('form-success');
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = form.querySelector('.btn-submit');
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando…';
+                btn.disabled = true;
+                try {
+                    const data = new FormData(form);
+                    const res = await fetch(form.action, {
+                        method: 'POST',
+                        body: data,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    const json = await res.json();
+                    if (json.success === 'true' || json.success === true) {
+                        form.style.display = 'none';
+                        successDiv.style.display = 'block';
+                        successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        throw new Error(json.message || 'Error');
+                    }
+                } catch (err) {
+                    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar inscripción';
+                    btn.disabled = false;
+                    alert('Hubo un problema al enviar el formulario. Por favor escríbenos directamente a geohazards_med@unal.edu.co');
+                    console.error('FormSubmit error:', err);
+                }
+            });
+        }
+
+        // (endpoint AJAX no necesita _next)
+    })();
+
+    /* ── Agenda Filters ────────────────────────────────────── */
+    (function () {
+        const filters  = document.querySelectorAll('.agenda-filter-btn');
+        const items    = document.querySelectorAll('.schedule-item');
+        const typeMap  = { keynote: 'type-keynote', session: 'type-session', break: 'type-break', opening: 'type-opening type-closing' };
+
+        filters.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filters.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                items.forEach(item => {
+                    if (filter === 'all') {
+                        item.classList.remove('hidden');
+                        return;
+                    }
+                    if (filter === 'opening') {
+                        const has = item.querySelector('.type-opening, .type-closing');
+                        item.classList.toggle('hidden', !has);
+                        return;
+                    }
+                    const cls = typeMap[filter] || ('type-' + filter);
+                    const has = item.querySelector('.' + cls);
+                    item.classList.toggle('hidden', !has);
+                });
+            });
+        });
+    })();
     </script>
 </body>
 
