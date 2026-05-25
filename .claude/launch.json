@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "comunidad",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "5500", "."],
+      "port": 5500
+    },
+    {
+      "name": "simposio",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "5501", "--no-clipboard", "."],
+      "port": 5501
+    }
+  ]
+}
