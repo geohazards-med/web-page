@@ -1869,17 +1869,28 @@
             <div class="reg-form-card reveal slide-right">
                 <h3><i class="fa-solid fa-pen-to-square" style="color:var(--green);margin-right:.4rem"></i>Formulario de Inscripción</h3>
 
+<<<<<<< HEAD
                 <!-- FormSubmit.co (endpoint AJAX) — envía a geohazards_med@unal.edu.co -->
                 <!-- NOTA: el primer envío llegará un correo de activación de FormSubmit, haz clic en "Activate Form" -->
                 <form id="reg-form"
                       action="https://formsubmit.co/ajax/geohazards_med@unal.edu.co"
+=======
+                <!-- FormSubmit.co — envía a geohazards_med@unal.edu.co -->
+                <!-- NOTA: el primer envío llegará un correo de activación de FormSubmit, haz clic en "Activate Form" -->
+                <form id="reg-form"
+                      action="https://formsubmit.co/geohazards_med@unal.edu.co"
+>>>>>>> cc62f79c8f5e1ee31dddd6caec9fe9cf024758b2
                       method="POST">
 
                     <!-- FormSubmit config -->
                     <input type="hidden" name="_subject" value="📋 Nueva inscripción — V Simposio Geoamenazas 2026">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
+<<<<<<< HEAD
                     <!-- _next no se usa con el endpoint AJAX -->
+=======
+                    <input type="hidden" name="_next" value="">
+>>>>>>> cc62f79c8f5e1ee31dddd6caec9fe9cf024758b2
                     <input type="text" name="_honey" style="display:none">
 
                     <div class="form-row">
@@ -2159,6 +2170,7 @@
                 btn.disabled = true;
                 try {
                     const data = new FormData(form);
+<<<<<<< HEAD
                     const res = await fetch(form.action, {
                         method: 'POST',
                         body: data,
@@ -2177,11 +2189,30 @@
                     btn.disabled = false;
                     alert('Hubo un problema al enviar el formulario. Por favor escríbenos directamente a geohazards_med@unal.edu.co');
                     console.error('FormSubmit error:', err);
+=======
+                    const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+                    if (res.ok || res.status === 200 || res.redirected) {
+                        form.style.display = 'none';
+                        successDiv.style.display = 'block';
+                    } else {
+                        throw new Error('Error');
+                    }
+                } catch {
+                    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar inscripción';
+                    btn.disabled = false;
+                    alert('Hubo un problema al enviar el formulario. Por favor escríbenos directamente a geohazards_med@unal.edu.co');
+>>>>>>> cc62f79c8f5e1ee31dddd6caec9fe9cf024758b2
                 }
             });
         }
 
+<<<<<<< HEAD
         // (endpoint AJAX no necesita _next)
+=======
+        // Pre-fill the _next hidden field with current URL (thank-you stays on same page)
+        const nextField = form ? form.querySelector('input[name="_next"]') : null;
+        if (nextField) nextField.value = window.location.href;
+>>>>>>> cc62f79c8f5e1ee31dddd6caec9fe9cf024758b2
     })();
 
     /* ── Agenda Filters ────────────────────────────────────── */
