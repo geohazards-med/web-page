@@ -168,6 +168,11 @@
             background-size: cover;
             background-position: center;
             opacity: .25;
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+        @keyframes heroZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
         }
 
         .hero-content {
@@ -1428,7 +1433,7 @@
                     </p>
                 </div>
                 <div class="about-img reveal slide-right">
-                    <img src="bg/bg4.jpg" alt="Universidad Nacional de Colombia – Sede Medellín" />
+                    <img src="bg/bg4.jpg" alt="Universidad Nacional de Colombia – Sede Medellín" loading="lazy" />
                 </div>
             </div>
         </div>
@@ -1493,6 +1498,67 @@
             <div class="divider"></div>
             <style>
                 .speaker-img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    display: block;
+                }
+                .speaker-img-link {
+                    display: block;
+                    width: 100px;
+                    height: 100px;
+                    margin: 0 auto 1rem;
+                    perspective: 800px;
+                    border-radius: 50%;
+                }
+                .speaker-img-link .flip-inner {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                    transform-style: preserve-3d;
+                    border-radius: 50%;
+                }
+                .speaker-img-link:hover .flip-inner {
+                    transform: rotateY(180deg);
+                }
+                .speaker-img-link .flip-front,
+                .speaker-img-link .flip-back {
+                    position: absolute;
+                    inset: 0;
+                    backface-visibility: hidden;
+                    -webkit-backface-visibility: hidden;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .speaker-img-link .flip-front {
+                    z-index: 2;
+                }
+                .speaker-img-link .flip-front .speaker-img {
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                }
+                .speaker-img-link .flip-back {
+                    transform: rotateY(180deg);
+                    background: #0a66c2;
+                    color: #fff;
+                    flex-direction: column;
+                    gap: 0.2rem;
+                    box-shadow: 0 4px 14px rgba(10,102,194,0.35);
+                }
+                .speaker-img-link .flip-back i {
+                    font-size: 1.8rem;
+                }
+                .speaker-img-link .flip-back span {
+                    font-size: 0.6rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                    opacity: 0.9;
+                }
+                .speaker-card:not(:has(.speaker-img-link)) .speaker-img {
                     width: 100px;
                     height: 100px;
                     border-radius: 50%;
@@ -1504,56 +1570,81 @@
             </style>
             <div class="speakers-grid" style="margin-top:1rem;">
                 <div class="speaker-card reveal">
-                    <img src="fotos/luigi.jpg" alt="Luigi Lombardo" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/luigi-lombardo-7a595036/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/luigi.jpg" alt="Luigi Lombardo" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Luigi Lombardo</div>
                     <div class="speaker-affil">Universidad de Twente</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Experto en modelos basados en datos para la evaluación de susceptibilidad por movimientos en masa.</p>
                     <span class="speaker-topic" style="background: #fefcbf; color: #975a16;">Magistral</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/oscar_sanchez.jpeg" alt="Oscar Sánchez" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/oisanchezp/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/oscar_sanchez.jpeg" alt="Oscar Sánchez" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Oscar Sánchez</div>
                     <div class="speaker-affil">Universidad Nacional de Colombia</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Experto en caracterización de la lluvia como factor detonante de movimientos en masa.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/luz.png" alt="Luz Jeannette Mejía Chavarriaga" class="speaker-img" />
+                    <img loading="lazy" src="fotos/luz.png" alt="Luz Jeannette Mejía Chavarriaga" class="speaker-img" />
                     <div class="speaker-name">Luz Jeannette Mejía Chavarriaga</div>
                     <div class="speaker-affil">Área Metropolitana del Valle de Aburrá</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Geóloga experta en gestión del riesgo de desastres en el Valle de Aburrá.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/ElizabethArboleda.jpg" alt="Elizabeth Arboleda" class="speaker-img" />
+                    <img loading="lazy" src="fotos/ElizabethArboleda.jpg" alt="Elizabeth Arboleda" class="speaker-img" />
                     <div class="speaker-name">Elizabeth Arboleda</div>
                     <div class="speaker-affil">Universidad Nacional de Colombia</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesora experta en vulnerabilidad y gestión del riesgo de desastres.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/luis_gabriel_hernandez.jpeg" alt="Luis Gabriel Hernández Ojeda" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/luis-gabriel-hernandez-ojeda/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/luis_gabriel_hernandez.jpeg" alt="Luis Gabriel Hernández Ojeda" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Luis Gabriel Hernández Ojeda</div>
                     <div class="speaker-affil">Universidad de Antioquia</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Experto en desarrollo de aplicativos para el sistema de alertas tempranas.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/Foto_Diego_Rendon_2.jpg" alt="Diego Armando Rendón" class="speaker-img" />
+                    <img loading="lazy" src="fotos/Foto_Diego_Rendon_2.jpg" alt="Diego Armando Rendón" class="speaker-img" />
                     <div class="speaker-name">Diego Armando Rendón</div>
                     <div class="speaker-affil">Universidad Nacional de Colombia</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor e ingeniero geólogo experto en geotecnia y en la dunita del Valle de Aburrá.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/alejandro_alvarez.jpeg" alt="Alejandro Álvarez" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/alejandro-alvarez-e/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/alejandro_alvarez.jpeg" alt="Alejandro Álvarez" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Alejandro Álvarez</div>
                     <div class="speaker-affil">Universidad Nacional de Colombia</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Ingeniero experto en la evaluación de movimientos en masa en los Andes colombianos.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/daniel_ruiz.jpg" alt="Daniel Felipe Ruiz" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/daniel-f-ruiz-b8458285/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/daniel_ruiz.jpg" alt="Daniel Felipe Ruiz" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Daniel Felipe Ruiz</div>
                     <div class="speaker-affil">Universidad EAFIT</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor e ingeniero civil experto en instrumentación geotécnica.</p>
@@ -1561,49 +1652,79 @@
                 </div>
 
                 <div class="speaker-card reveal">
-                    <img src="fotos/Gaspar_Monsalve.jpeg" alt="Gaspar Monsalve Mejía" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/gaspar-monsalve-1089991/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/Gaspar_Monsalve.jpeg" alt="Gaspar Monsalve Mejía" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Gaspar Monsalve Mejía</div>
                     <div class="speaker-affil">Universidad Nacional de Colombia</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor experto en geofísica y modelamiento geológico de la dunita.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/Johnny_vega.jpg" alt="Johnny Vega" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/johnny-alexander-vega-guti%C3%A9rrez-19610845/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/Johnny_vega.jpg" alt="Johnny Vega" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Johnny Vega</div>
                     <div class="speaker-affil">Universidad de Medellín</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor experto en el uso de sensores remotos para la evaluación de amenazas.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/elisa_betancourt.jpeg" alt="Elisa Betancourt" class="speaker-img" />
+                    <img loading="lazy" src="fotos/elisa_betancourt.jpeg" alt="Elisa Betancourt" class="speaker-img" />
                     <div class="speaker-name">Elisa Betancourt</div>
                     <div class="speaker-affil">Universidad Nacional de Colombia</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Investigadora experta en modelación de avenidas torrenciales.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/jhonjairo_sanchez.jpg" alt="Jhon Jairo Sánchez" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/john-j-s%C3%A1nchez-aguilar-5aa4aa8b/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/jhonjairo_sanchez.jpg" alt="Jhon Jairo Sánchez" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Jhon Jairo Sánchez</div>
                     <div class="speaker-affil">Universidad Nacional de Colombia</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor experto en amenazas de origen volcánico.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/natalia_pino.jpeg" alt="Natalia Pino" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/nataliapino02/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/natalia_pino.jpeg" alt="Natalia Pino" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Natalia Pino</div>
                     <div class="speaker-affil">Universidad Nacional · SIRMED</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Experta en sistemas de información para la gestión del riesgo de desastres.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/wilmar_castro.jpeg" alt="Wilmar Castro" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/wilmar-castro-mera-7048b72b/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/wilmar_castro.jpeg" alt="Wilmar Castro" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Wilmar Castro</div>
                     <div class="speaker-affil">Universidad Nacional de Colombia</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Administrador Ambiental especialista de gestión del riesgo de desastres y adaptación al cambio climático.</p>
                     <span class="speaker-topic">Temática</span>
                 </div>
                 <div class="speaker-card reveal">
-                    <img src="fotos/edier_aristizabal.jpg" alt="Edier Aristizábal" class="speaker-img" />
+                    <a href="https://www.linkedin.com/in/edier-aristizabal-3118411a/" target="_blank" rel="noopener noreferrer" class="speaker-img-link">
+                        <div class="flip-inner">
+                            <div class="flip-front"><img loading="lazy" src="fotos/edier_aristizabal.jpg" alt="Edier Aristizábal" class="speaker-img" /></div>
+                            <div class="flip-back"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></div>
+                        </div>
+                    </a>
                     <div class="speaker-name">Edier Aristizábal</div>
                     <div class="speaker-affil">Universidad Nacional de Colombia</div>
                     <p style="font-size: 0.85rem; color: var(--text-mid); margin-top: 0.75rem; line-height: 1.4;">Profesor experto en susceptibilidad por movimientos en masa y avenidas torrenciales.</p>
@@ -1865,15 +1986,15 @@
                 <div class="sponsor-group">
                     <div class="sponsor-title">Organiza</div>
                     <div class="sponsor-logos">
-                        <img src="logo/UNAL.png" alt="Universidad Nacional de Colombia" />
-                        <img src="logo/LogoGeoHazards.svg" alt="Semillero Geohazards" style="max-height: 70px;" />
+                        <img loading="lazy" src="logo/UNAL.png" alt="Universidad Nacional de Colombia" />
+                        <img loading="lazy" src="logo/LogoGeoHazards.svg" alt="Semillero Geohazards" style="max-height: 70px;" />
                     </div>
                 </div>
                 <div class="sponsor-group">
                     <div class="sponsor-title">Apoyan</div>
                     <div class="sponsor-logos">
-                        <img src="logo/MINCIENCIAS.png" alt="Minciencias" />
-                        <img src="logo/LOGO-ALCALDIA-DE-MEDELLIN-DISTRITO_Mesa-de-trabajo-1-scaled-Photoroom.png"
+                        <img loading="lazy" src="logo/MINCIENCIAS.png" alt="Minciencias" />
+                        <img loading="lazy" src="logo/LOGO-ALCALDIA-DE-MEDELLIN-DISTRITO_Mesa-de-trabajo-1-scaled-Photoroom.png"
                             alt="Alcaldía de Medellín" />
                     </div>
                 </div>
@@ -2009,10 +2130,11 @@
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-brand">
-                <img src="logo/LogoGeoHazards.svg" alt="Geohazards Logo" />
-                <div class="name">GEOHAZARDS</div>
-                <div class="sub">Semillero de Investigación</div>
-                <p>Facultad de Minas · Universidad Nacional de Colombia · Sede Medellín</p>
+                <img loading="lazy" src="logo/LogoGeoHazards.svg" alt="Geohazards Logo" />
+            </div>
+            <div class="name">GEOHAZARDS</div>
+            <div class="sub">Semillero de Investigación</div>
+            <p>Facultad de Minas · Universidad Nacional de Colombia · Sede Medellín</p>
             </div>
             <div class="footer-col">
                 <h4>Navegación</h4>
@@ -2222,6 +2344,30 @@
         }
 
         // (endpoint AJAX no necesita _next)
+    })();
+
+    /* ── Stats Counter Animation ─────────────────────────── */
+    (function () {
+        const statNums = document.querySelectorAll('.strip-stat .ss-num');
+        if (!statNums.length) return;
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                const el = e.target;
+                const text = el.textContent;
+                const target = parseInt(text.replace(/[^0-9]/g, ''), 10);
+                if (isNaN(target)) return;
+                let current = 0;
+                const step = Math.ceil(target / 40);
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) { current = target; clearInterval(timer); }
+                    el.textContent = text.includes('+') ? current + '+' : current;
+                }, 30);
+                obs.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        statNums.forEach(el => obs.observe(el));
     })();
 
     /* ── Agenda Filters ────────────────────────────────────── */
