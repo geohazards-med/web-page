@@ -182,6 +182,7 @@
         }
         .hero-slide.active {
             opacity: .25;
+<<<<<<< HEAD
             transform: rotateY(0deg) scale(1) translateX(0);
             filter: blur(0);
         }
@@ -189,6 +190,13 @@
             opacity: 0;
             transform: rotateY(-15deg) scale(1.08) translateX(-80px);
             filter: blur(6px);
+=======
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+        @keyframes heroZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+>>>>>>> 72291fba2c5d075df91a9b259d29ad629fbd9819
         }
 
         .hero-content {
@@ -1469,7 +1477,13 @@
                         consolidando la tradición anual de este espacio académico.
                     </p>
                 </div>
+<<<<<<< HEAD
                 <div class="about-img reveal slide-right" id="about-slideshow"></div>
+=======
+                <div class="about-img reveal slide-right">
+                    <img src="bg/bg4.jpg" alt="Universidad Nacional de Colombia – Sede Medellín" loading="lazy" />
+                </div>
+>>>>>>> 72291fba2c5d075df91a9b259d29ad629fbd9819
             </div>
         </div>
     </section>
