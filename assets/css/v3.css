@@ -2516,6 +2516,7 @@ mark.hl {
 /* Nuevos estados */
 .status-almost  { color: #a0720a; font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; }
 .status-writing { color: #1a5fa8; font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; }
+.status-ready   { color: #2e7d32; font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; }
 
 /* Barra de progreso del doc */
 .doc-progress-wrap {
@@ -2549,4 +2550,5 @@ mark.hl {
 .dpf-almost  { background: #D99A2B; }   /* ámbar — casi listo   */
 .dpf-writing { background: #3b82f6; }   /* azul  — en redacción */
 .dpf-pending { background: #cbd5e1; }   /* gris  — próximamente */
+.dpf-ready   { background: #4caf50; }   /* verde — disponible   */
 
