@@ -350,8 +350,9 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1440px;
             margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
         .section-badge {
@@ -701,6 +702,172 @@
             border: 0;
         }
 
+        /* ── Course Section ────────────────────────────────── */
+        .course-section {
+            background: linear-gradient(135deg, #0f2027 0%, #1a3a1a 50%, #2c5f2e 100%);
+            padding: 5rem 1.5rem;
+            color: #fff;
+        }
+        .course-grid {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .course-poster {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0,0,0,.4);
+            transition: transform .3s ease;
+        }
+        .course-poster:hover { transform: scale(1.02); }
+        .course-poster img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .course-badge {
+            display: inline-block;
+            background: rgba(56, 161, 105, .25);
+            border: 1px solid rgba(56, 161, 105, .55);
+            color: #9ae6b4;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: .3rem .9rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+        .course-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: .75rem;
+            color: #fff;
+        }
+        .course-title span { color: #68d391; }
+        .course-instructor {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            margin-bottom: 1.5rem;
+            padding: .75rem 1rem;
+            background: rgba(255,255,255,.08);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,.12);
+        }
+        .course-instructor i {
+            font-size: 1.4rem;
+            color: #68d391;
+            width: 36px;
+            text-align: center;
+        }
+        .course-instructor .ci-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fff;
+        }
+        .course-instructor .ci-affil {
+            font-size: .82rem;
+            color: #9ae6b4;
+        }
+        .course-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .6rem;
+            margin-bottom: 1.5rem;
+        }
+        .course-meta-item {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .6rem .8rem;
+            background: rgba(255,255,255,.06);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,.1);
+            font-size: .85rem;
+            color: #e2e8f0;
+        }
+        .course-meta-item i {
+            color: #68d391;
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .course-desc {
+            color: #cbd5e0;
+            font-size: .92rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .course-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin: 1rem 0 1.5rem;
+        }
+        .course-topic-pill {
+            background: rgba(56, 161, 105, .18);
+            border: 1px solid rgba(56, 161, 105, .3);
+            color: #9ae6b4;
+            font-size: .72rem;
+            font-weight: 600;
+            padding: .25rem .7rem;
+            border-radius: 50px;
+        }
+        .course-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--green);
+            color: #fff;
+            padding: .75rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: .95rem;
+            transition: background .2s, transform .2s;
+            box-shadow: 0 4px 16px rgba(56, 161, 105, .4);
+        }
+        .course-cta:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+        }
+        .course-audience {
+            margin-top: 1rem;
+            padding: .8rem 1rem;
+            background: rgba(255,255,255,.06);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,.1);
+        }
+        .course-audience .aud-label {
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: #9ae6b4;
+            margin-bottom: .4rem;
+        }
+        .course-audience .aud-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+        }
+        .course-audience .aud-tag {
+            font-size: .75rem;
+            color: #e2e8f0;
+            background: rgba(255,255,255,.08);
+            padding: .2rem .6rem;
+            border-radius: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .course-grid { grid-template-columns: 1fr; }
+            .course-meta { grid-template-columns: 1fr; }
+        }
         /* ── REGISTER BANNER ────────────────────────────────── */
         .register-banner {
             background: linear-gradient(135deg, var(--green-dark) 0%, #1a4731 100%);
@@ -749,7 +916,7 @@
         }
 
         .footer-grid {
-            max-width: 1100px;
+            max-width: 1440px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -804,7 +971,7 @@
         }
 
         .footer-bottom {
-            max-width: 1100px;
+            max-width: 1440px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -1174,7 +1341,7 @@
             padding: 5rem 1.5rem;
         }
         .register-grid {
-            max-width: 1100px;
+            max-width: 1440px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1.2fr;
@@ -1328,6 +1495,7 @@
     <!-- Mobile menu -->
     <nav class="mobile-menu" id="mobile-menu">
         <a href="#sobre"><i class="fa-solid fa-circle-info"></i> Sobre el evento</a>
+        <a href="#curso"><i class="fa-solid fa-graduation-cap"></i> Curso</a>
         <a href="#temas"><i class="fa-solid fa-list"></i> Temas</a>
         <a href="#ponentes"><i class="fa-solid fa-users"></i> Ponentes</a>
         <a href="#programa"><i class="fa-regular fa-calendar"></i> Programa</a>
@@ -1470,6 +1638,60 @@
                     </p>
                 </div>
                 <div class="about-img reveal slide-right" id="about-slideshow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ COURSE ════════════════════════════════════════════ -->
+    <section class="course-section" id="curso">
+        <div class="course-grid">
+            <div class="reveal slide-left">
+                <div class="course-poster">
+                    <img loading="lazy" src="fotos/Curso_Luigi.jpeg" alt="Curso Corto Internacional - Luigi Lombardo" />
+                </div>
+            </div>
+            <div class="reveal slide-right">
+                <div class="course-badge">Curso Corto Internacional</div>
+                <h2 class="course-title">Landslide Predictive Modeling<br><span>from Slope to National Scales and from Hourly to Decadal Scales</span></h2>
+                <div class="course-instructor">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <div>
+                        <div class="ci-name">Prof. Luigi Lombardo</div>
+                        <div class="ci-affil">Universidad de Twente · Países Bajos</div>
+                    </div>
+                </div>
+                <div class="course-meta">
+                    <div class="course-meta-item"><i class="fa-regular fa-calendar"></i> Lunes 6 julio 2026</div>
+                    <div class="course-meta-item"><i class="fa-regular fa-clock"></i> 8:00 a.m. – 12:00 m</div>
+                    <div class="course-meta-item"><i class="fa-solid fa-location-dot"></i> Facultad de Minas · M7-502B</div>
+                    <div class="course-meta-item"><i class="fa-solid fa-language"></i> Inglés</div>
+                </div>
+                <p class="course-desc">
+                    Como parte de las actividades académicas del <strong>V Simposio de Geoamenazas</strong>, se ofrecerá un curso corto internacional impartido por el <strong>Prof. Luigi Lombardo</strong>, reconocido investigador en modelación espacio-temporal de amenazas naturales.
+                </p>
+                <p class="course-desc">
+                    El curso presentará una visión integral de los métodos modernos para la <strong>predicción de deslizamientos</strong>, abordando la modelación desde escalas locales de ladera hasta aplicaciones nacionales, así como diferentes escalas temporales que van desde pronósticos horarios hasta análisis de tendencias de largo plazo.
+                </p>
+                <div class="course-topics">
+                    <span class="course-topic-pill">Modelación predictiva</span>
+                    <span class="course-topic-pill">Machine Learning</span>
+                    <span class="course-topic-pill">Escalas espacio-temporales</span>
+                    <span class="course-topic-pill">Validación e incertidumbre</span>
+                    <span class="course-topic-pill">Casos de estudio</span>
+                </div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSetE7FSt_Q-WqNo6j2I3v0c2wiNMsSaFTszrFpBW-adiJRM5g/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="course-cta"><i class="fa-solid fa-pen-to-square"></i> Inscribirme al curso</a>
+                <div class="course-audience">
+                    <div class="aud-label">Dirigido a</div>
+                    <div class="aud-tags">
+                        <span class="aud-tag">Investigadores</span>
+                        <span class="aud-tag">Profesionales</span>
+                        <span class="aud-tag">Estudiantes</span>
+                        <span class="aud-tag">Ingenieros</span>
+                        <span class="aud-tag">Geólogos</span>
+                        <span class="aud-tag">Gestión del riesgo</span>
+                        <span class="aud-tag">SIG &amp; Sensores Remotos</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
