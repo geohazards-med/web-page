@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curso: Conocimientos del Territorio | GeoHazards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a3a1a;
+      --primary-light: #2c5f2e;
+      --accent: #38a169;
+      --accent-dark: #276749;
+      --accent-light: #c6f6d5;
+      --bg: #f8fafc;
+      --bg-dark: #0f172a;
+      --text: #1a202c;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --sidebar-w: 320px;
+      --header-h: 64px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: #fff;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      transition: transform .3s ease;
+    }
+    .sidebar-header {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .sidebar-header .logo {
+      width: 36px; height: 36px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 900;
+      font-size: 1rem;
+    }
+    .sidebar-header .title { font-weight: 700; font-size: .9rem; color: var(--text); line-height: 1.2; }
+    .sidebar-header .sub { font-size: .7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; }
+    .sidebar-body { flex: 1; overflow-y: auto; padding: 1rem 0; }
+    .sidebar-body::-webkit-scrollbar { width: 4px; }
+    .sidebar-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+    .module-group { margin-bottom: .25rem; }
+    .module-header {
+      padding: .6rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background .15s;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .module-header:hover { background: #f1f5f9; }
+    .module-header .chevron {
+      font-size: .7rem;
+      color: var(--text-muted);
+      transition: transform .2s;
+    }
+    .module-header .chevron.open { transform: rotate(90deg); }
+    .module-header .mod-progress {
+      font-size: .7rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .module-lessons { display: none; }
+    .module-lessons.open { display: block; }
+    .lesson-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .5rem 1.25rem .5rem 2rem;
+      cursor: pointer;
+      font-size: .8rem;
+      color: var(--text-muted);
+      transition: all .15s;
+      border-left: 3px solid transparent;
+    }
+    .lesson-item:hover { background: #f8fafc; color: var(--text); }
+    .lesson-item.active {
+      background: #f0fdf4;
+      color: var(--accent-dark);
+      border-left-color: var(--accent);
+      font-weight: 600;
+    }
+    .lesson-item .icon {
+      width: 20px; text-align: center;
+      font-size: .75rem;
+      flex-shrink: 0;
+    }
+    .lesson-item .status {
+      margin-left: auto;
+      font-size: .65rem;
+      color: var(--accent);
+    }
+
+    .sidebar-footer {
+      padding: .75rem 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: .75rem;
+      color: var(--text-light);
+    }
+    .progress-bar-wrap {
+      height: 4px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: .4rem;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 99px;
+      transition: width .5s ease;
+    }
+
+    /* ── Main ── */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .main-header {
+      height: var(--header-h);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      background: #fff;
+      position: sticky;
+      top: 0; z-index: 50;
+    }
+    .main-header .bread {
+      font-size: .8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .main-header .bread .sep { color: var(--border); }
+    .main-header .bread .current { color: var(--text); font-weight: 600; }
+    .hamburger {
+      display: none;
+      background: none; border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--text);
+      margin-right: 1rem;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* ── Content area ── */
+    .lesson-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+      color: var(--text);
+    }
+    .lesson-desc {
+      color: var(--text-muted);
+      font-size: .95rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .player-section {
+      background: #000;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .player-section video,
+    .player-section iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .audio-player {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .audio-player .audio-title {
+      font-weight: 600;
+      font-size: .9rem;
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .audio-player audio { width: 100%; }
+
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .image-gallery .img-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .image-gallery .img-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    }
+    .image-gallery .img-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .image-gallery .img-card .img-label {
+      padding: .6rem .8rem;
+      font-size: .78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .pdf-list {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      margin-bottom: 2rem;
+    }
+    .pdf-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .9rem 1.2rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .pdf-item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(56,161,105,.12);
+    }
+    .pdf-item .pdf-icon {
+      width: 40px; height: 40px;
+      background: #fee2e2;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #dc2626;
+      font-weight: 900;
+      font-size: .85rem;
+      flex-shrink: 0;
+    }
+    .pdf-item .pdf-info { flex: 1; }
+    .pdf-item .pdf-info .pdf-title {
+      font-weight: 600;
+      font-size: .88rem;
+      color: var(--text);
+    }
+    .pdf-item .pdf-info .pdf-size {
+      font-size: .75rem;
+      color: var(--text-muted);
+    }
+    .pdf-item a {
+      padding: .4rem .9rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      font-size: .78rem;
+      font-weight: 600;
+      transition: background .2s;
+    }
+    .pdf-item a:hover { background: var(--accent-dark); }
+
+    .text-content {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      color: var(--text);
+      font-size: .95rem;
+    }
+    .text-content h3 { margin-bottom: .8rem; color: var(--primary); }
+    .text-content p { margin-bottom: 1rem; }
+    .text-content ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .text-content li { margin-bottom: .4rem; }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .nav-btn {
+      padding: .65rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: .88rem;
+      cursor: pointer;
+      transition: all .2s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .nav-btn:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+    .nav-btn.prev {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+    .nav-btn.prev:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+    .nav-btn.next {
+      background: var(--accent);
+      color: #fff;
+    }
+    .nav-btn.next:hover:not(:disabled) { background: var(--accent-dark); }
+
+    /* ── Modal for images ── */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .modal.open { display: flex; }
+    .modal img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+    .modal .close-modal {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: none; border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      opacity: .7;
+      transition: opacity .2s;
+    }
+    .modal .close-modal:hover { opacity: 1; }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .hamburger { display: block; }
+      .main { margin-left: 0; }
+      .main-content { padding: 1.25rem; }
+      .nav-buttons { flex-direction: column; }
+      .nav-btn { width: 100%; justify-content: center; }
+    }
+
+    /* ── Overlay for mobile sidebar ── */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.3);
+      z-index: 99;
+    }
+    .sidebar-overlay.open { display: block; }
+    @media (min-width: 769px) { .sidebar-overlay { display: none !important; } }
+  </style>
+</head>
+<body>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ══ SIDEBAR ══ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">G</div>
+    <div>
+      <div class="title">Conocimientos del Territorio</div>
+      <div class="sub">Curso · GeoHazards</div>
+    </div>
+  </div>
+  <div class="sidebar-body" id="sidebarBody"></div>
+  <div class="sidebar-footer">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="globalProgress" style="width:0%"></div>
+    </div>
+    <div id="progressText">0 / 0 completado</div>
+  </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<div class="main">
+  <header class="main-header">
+    <button class="hamburger" id="menuToggle">☰</button>
+    <div class="bread">
+      <span>Curso</span>
+      <span class="sep">›</span>
+      <span class="current" id="breadCurrent">Inicio</span>
+    </div>
+  </header>
+
+  <main class="main-content" id="mainContent">
+    <!-- Renders by JS -->
+  </main>
+</div>
+
+<!-- ══ IMAGE MODAL ══ -->
+<div class="modal" id="imageModal">
+  <button class="close-modal" id="closeModal">✕</button>
+  <img id="modalImage" src="" alt="" />
+</div>
+
+<script>
+  // ── Course Data ──────────────────────────────────────
+  const COURSE = {
+    title: 'Conocimientos del Territorio',
+    subtitle: 'Herramientas conceptuales para la gestión del riesgo y el ordenamiento territorial',
+    lessons: [
+      // Module 0: Introduction
+      {
+        id: 'intro',
+        module: 0,
+        moduleTitle: 'Inicio',
+        title: 'Presentación del Curso',
+        desc: 'Bienvenido al curso "Conocimientos del Territorio". Este espacio te brindará las bases conceptuales para comprender la relación entre el territorio, el riesgo y las herramientas de planificación.',
+        type: 'text',
+        content: `
+          <h3>Bienvenido</h3>
+          <p>Este curso ha sido diseñado para fortalecer las capacidades de líderes comunitarios, funcionarios públicos y ciudadanos interesados en la gestión del riesgo y el ordenamiento territorial en el Borde Urbano Rural Nororiental de Medellín.</p>
+          <p>A lo largo de <strong>4 módulos</strong> exploraremos:</p>
+          <ul>
+            <li><strong>Módulo 1:</strong> Plan de Ordenamiento Territorial (POT) — conceptos clave y modelo de ocupación.</li>
+            <li><strong>Módulo 2:</strong> Territorio y Riesgo — BURNOR, tensiones territoriales y EEP.</li>
+            <li><strong>Módulo 3:</strong> Construcción del Riesgo — capacidades, cambio climático y vulnerabilidad.</li>
+            <li><strong>Módulo 4:</strong> Comunidad y Herramientas — geoportal, monitoreo y storytelling.</li>
+          </ul>
+          <p>Cada módulo incluye videos, audios explicativos, materiales descargables en PDF e imágenes de apoyo.</p>
+        `
+      },
+      // ── Module 1: POT ──
+      {
+        id: 'm1-intro',
+        module: 1,
+        moduleTitle: 'Plan de Ordenamiento Territorial',
+        title: 'Introducción al Módulo 1',
+        desc: 'Conoce los fundamentos del Plan de Ordenamiento Territorial y su importancia para la planificación del desarrollo urbano y rural.',
+        type: 'audio',
+        audio: 'audios/Intro_Módulo_1.mp3',
+        audioLabel: 'Introducción al Módulo 1'
+      },
+      {
+        id: 'm1-pot',
+        module: 1,
+        moduleTitle: 'Plan de Ordenamiento Territorial',
+        title: '¿Qué es el POT?',
+        desc: 'Video explicativo sobre el Plan de Ordenamiento Territorial, su marco legal y su aplicación en Medellín.',
+        type: 'video',
+        video: 'videos/M1_POT.mp4',
+        videoSubtitled: 'videos/Subtitulado-M1_POT.mp4',
+        pdf: 'pdfs/M1_ABECE_POT_V3.pdf',
+        pdfLabel: 'A-B-C-E del POT'
+      },
+      {
+        id: 'm1-modelo',
+        module: 1,
+        moduleTitle: 'Plan de Ordenamiento Territorial',
+        title: 'Modelo de Ocupación',
+        desc: 'Video que explica el modelo de ocupación territorial propuesto en el POT de Medellín.',
+        type: 'video',
+        video: 'videos/M1_modeloOcupacion.mp4',
+        videoSubtitled: 'videos/Subtitulado-M1_ModeloOcupacion_.mp4',
+        pdf: 'pdfs/M1_Modelo de Ocupación.pdf',
+        pdfLabel: 'Modelo de Ocupación PDF'
+      },
+      {
+        id: 'm1-sistema',
+        module: 1,
+        moduleTitle: 'Plan de Ordenamiento Territorial',
+        title: 'Sistema del POT',
+        desc: 'Conoce la estructura general del sistema del POT: componentes, instrumentos y escalas de planificación.',
+        type: 'video',
+        video: 'videos/M1_SistemaPOT.mp4',
+        videoSubtitled: 'videos/Subtitulado-M1_SistemaPOT_.mp4',
+        pdf: 'pdfs/M1_ABECE_POT_V3.pdf',
+        pdfLabel: 'Descargar A-B-C-E del POT'
+      },
+      // ── Module 2: Territorio y Riesgo ──
+      {
+        id: 'm2-intro',
+        module: 2,
+        moduleTitle: 'Territorio y Riesgo',
+        title: 'Introducción al Módulo 2',
+        desc: 'Explora las dinámicas territoriales del Borde Urbano Rural Nororiental y los factores que configuran el riesgo.',
+        type: 'audio',
+        audio: 'audios/Intro_Modulo_2.mp3',
+        audioLabel: 'Introducción al Módulo 2'
+      },
+      {
+        id: 'm2-burnor',
+        module: 2,
+        moduleTitle: 'Territorio y Riesgo',
+        title: 'BURNOR — Borde Urbano Rural Nororiental',
+        desc: 'Audio que describe las características del Borde Urbano Rural Nororiental como territorio de estudio.',
+        type: 'audio',
+        audio: 'audios/M2_BURNOR.mp3',
+        audioLabel: 'BURNOR'
+      },
+      {
+        id: 'm2-eep',
+        module: 2,
+        moduleTitle: 'Territorio y Riesgo',
+        title: 'Estructura Ecológica Principal',
+        desc: 'Audio sobre la Estructura Ecológica Principal y su rol en la planificación territorial.',
+        type: 'audio',
+        audio: 'audios/M2_EEP.mp3',
+        audioLabel: 'Estructura Ecológica Principal'
+      },
+      {
+        id: 'm2-riesgo',
+        module: 2,
+        moduleTitle: 'Territorio y Riesgo',
+        title: 'Riesgo y Territorio',
+        desc: 'Reflexión sobre cómo el riesgo se configura en relación con el territorio y sus dinámicas.',
+        type: 'audio',
+        audio: 'audios/M2_Riesgo y territorio.mp3',
+        audioLabel: 'Riesgo y Territorio'
+      },
+      {
+        id: 'm2-tensiones',
+        module: 2,
+        moduleTitle: 'Territorio y Riesgo',
+        title: 'Tensiones Territoriales',
+        desc: 'Análisis de las principales tensiones que enfrenta el territorio en términos de ocupación y uso del suelo.',
+        type: 'audio',
+        audio: 'audios/M2_Tensiones.mp3',
+        audioLabel: 'Tensiones Territoriales'
+      },
+      // ── Module 3: Construcción del Riesgo ──
+      {
+        id: 'm3-intro',
+        module: 3,
+        moduleTitle: 'Construcción del Riesgo',
+        title: 'Introducción al Módulo 3',
+        desc: 'Comprende cómo se construye el riesgo y qué factores lo determinan en contextos urbanos y rurales.',
+        type: 'audio',
+        audio: 'audios/Intro_Modulo_3.mp3',
+        audioLabel: 'Introducción al Módulo 3'
+      },
+      {
+        id: 'm3-capacidades',
+        module: 3,
+        moduleTitle: 'Construcción del Riesgo',
+        title: 'Capacidades Comunitarias',
+        desc: 'Video sobre las capacidades comunitarias como factor clave en la reducción del riesgo de desastres.',
+        type: 'video',
+        video: 'videos/M3_Capacidades.mp4',
+        videoSubtitled: 'videos/Subtitulado - M3_Capacidades.mp4',
+        images: [
+          { src: 'img/M3_CapacidadesR.png', label: 'Capacidades — Infografía' }
+        ]
+      },
+      {
+        id: 'm3-construccion',
+        module: 3,
+        moduleTitle: 'Construcción del Riesgo',
+        title: 'Construcción Social del Riesgo',
+        desc: 'Video que explica cómo las decisiones sociales, económicas y políticas construyen el riesgo en el territorio.',
+        type: 'video',
+        video: 'videos/M3_Construcción del riesgo.mp4',
+        images: [
+          { src: 'img/M3_Vulnerabilidad.png', label: 'Vulnerabilidad — Esquema' },
+          { src: 'img/M3_AVECR.png', label: 'AVECR — Diagrama' }
+        ]
+      },
+      {
+        id: 'm3-riesgo-territorio',
+        module: 3,
+        moduleTitle: 'Construcción del Riesgo',
+        title: 'Riesgo y Territorio',
+        desc: 'Video que profundiza en la relación entre el ordenamiento territorial y la gestión del riesgo.',
+        type: 'video',
+        video: 'videos/M3_Riesgo_y_Territorio.mp4',
+        videoSubtitled: 'videos/Subtitulado-M3_Riesgo_y_Territorio.mp4'
+      },
+      {
+        id: 'm3-clima',
+        module: 3,
+        moduleTitle: 'Construcción del Riesgo',
+        title: 'Cambio Climático y Riesgo',
+        desc: 'Audio que aborda la relación entre el cambio climático y la configuración del riesgo en el territorio.',
+        type: 'audio',
+        audio: 'audios/M3_CambioClimatico.mp3',
+        audioLabel: 'Cambio Climático'
+      },
+      // ── Module 4: Comunidad y Herramientas ──
+      {
+        id: 'm4-intro',
+        module: 4,
+        moduleTitle: 'Comunidad y Herramientas',
+        title: 'Introducción al Módulo 4',
+        desc: 'Descubre las herramientas tecnológicas y comunitarias disponibles para la gestión del territorio.',
+        type: 'audio',
+        audio: 'audios/Intro_Módulo 4.mp3',
+        audioLabel: 'Introducción al Módulo 4'
+      },
+      {
+        id: 'm4-comunidad',
+        module: 4,
+        moduleTitle: 'Comunidad y Herramientas',
+        title: 'Comunidad y Gestión del Riesgo',
+        desc: 'Infografía sobre el rol de la comunidad en la gestión del riesgo y la planificación del territorio.',
+        type: 'images',
+        images: [
+          { src: 'img/M4_Comunidad.png', label: 'Comunidad y Gestión del Riesgo' },
+          { src: 'img/M4_Storymaps.png', label: 'StoryMaps — Narrativas del territorio' }
+        ]
+      },
+      {
+        id: 'm4-geoportal',
+        module: 4,
+        moduleTitle: 'Comunidad y Herramientas',
+        title: 'Geoportal y Herramientas SIG',
+        desc: 'Manual de uso del Geoportal como herramienta para la consulta de información territorial.',
+        type: 'pdf',
+        pdf: 'pdfs/M4_Geoportal.pdf',
+        pdfLabel: 'Manual Geoportal'
+      },
+      {
+        id: 'm4-monitoreo',
+        module: 4,
+        moduleTitle: 'Comunidad y Herramientas',
+        title: 'Monitoreo de Señales',
+        desc: 'Guía para el monitoreo de señales tempranas de riesgo en el territorio.',
+        type: 'pdf',
+        pdf: 'pdfs/M4_Monitoreo_senales.pdf',
+        pdfLabel: 'Guía de Monitoreo'
+      }
+    ]
+  };
+
+  // ── State ────────────────────────────────────────────
+  let currentLesson = 0;
+  let completed = {};
+
+  // Load progress from localStorage
+  try {
+    const saved = localStorage.getItem('curso_progress');
+    if (saved) completed = JSON.parse(saved);
+  } catch(e) {}
+
+  // ── DOM refs ─────────────────────────────────────────
+  const sidebarBody = document.getElementById('sidebarBody');
+  const mainContent = document.getElementById('mainContent');
+  const breadCurrent = document.getElementById('breadCurrent');
+  const globalProgress = document.getElementById('globalProgress');
+  const progressText = document.getElementById('progressText');
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const imageModal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  const closeModal = document.getElementById('closeModal');
+
+  // ── Helpers ─────────────────────────────────────────
+  function getModules() {
+    const mods = [];
+    COURSE.lessons.forEach(l => {
+      if (!mods.find(m => m.idx === l.module)) {
+        mods.push({ idx: l.module, title: l.moduleTitle });
+      }
+    });
+    return mods;
+  }
+
+  function getTotal() { return COURSE.lessons.length; }
+  function getCompleted() { return Object.keys(completed).length; }
+  function updateProgress() {
+    const total = getTotal();
+    const done = getCompleted();
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    globalProgress.style.width = pct + '%';
+    progressText.textContent = `${done} / ${total} completado`;
+  }
+
+  function markComplete(id) {
+    completed[id] = true;
+    try { localStorage.setItem('curso_progress', JSON.stringify(completed)); } catch(e) {}
+    renderSidebar();
+    updateProgress();
+  }
+
+  function isComplete(id) { return !!completed[id]; }
+
+  // ── Render Sidebar ──────────────────────────────────
+  function renderSidebar() {
+    const modules = getModules();
+    let html = '';
+    modules.forEach(mod => {
+      const lessons = COURSE.lessons.filter(l => l.module === mod.idx);
+      const done = lessons.filter(l => isComplete(l.id)).length;
+      const total = lessons.length;
+      const pct = total ? Math.round((done/total)*100) : 0;
+      const open = lessons.some(l => COURSE.lessons.indexOf(l) === currentLesson);
+      html += `<div class="module-group">
+        <div class="module-header" onclick="toggleModule(this)">
+          <span>${mod.title}</span>
+          <span class="mod-progress">${done}/${total}</span>
+          <span class="chevron ${open?'open':''}">›</span>
+        </div>
+        <div class="module-lessons ${open?'open':''}">
+          ${lessons.map(l => {
+            const idx = COURSE.lessons.indexOf(l);
+            const active = idx === currentLesson;
+            const done = isComplete(l.id);
+            const iconMap = { video: '▶', audio: '♪', images: '🖼', pdf: '📄', text: '📖' };
+            const icon = iconMap[l.type] || '📄';
+            return `<div class="lesson-item ${active?'active':''}" onclick="goTo(${idx})">
+              <span class="icon">${icon}</span>
+              <span>${l.title}</span>
+              <span class="status">${done?'✓':''}</span>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+    });
+    sidebarBody.innerHTML = html;
+  }
+
+  window.toggleModule = function(el) {
+    const content = el.nextElementSibling;
+    const chevron = el.querySelector('.chevron');
+    content.classList.toggle('open');
+    chevron.classList.toggle('open');
+  };
+
+  // ── Lesson renderers ────────────────────────────────
+  function renderLesson(idx) {
+    currentLesson = idx;
+    const l = COURSE.lessons[idx];
+    breadCurrent.textContent = l.title;
+    renderSidebar();
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const next = COURSE.lessons[idx + 1];
+    const prev = COURSE.lessons[idx - 1];
+
+    let content = `
+      <h1 class="lesson-title">${l.title}</h1>
+      <p class="lesson-desc">${l.desc}</p>
+    `;
+
+    // Check if lesson has module intro text
+    if (l.module > 0 && l.id.endsWith('-intro')) {
+      const modLessons = COURSE.lessons.filter(ll => ll.module === l.module);
+      content += `<div class="text-content">
+        <p>Este módulo contiene <strong>${modLessons.length} lecciones</strong> con los siguientes recursos:</p>
+        <ul>
+          ${modLessons.slice(1).map(ll => {
+            const typeMap = { video: '🎥 Video', audio: '🎧 Audio', images: '🖼️ Imágenes', pdf: '📄 PDF', text: '📖 Lectura' };
+            return `<li>${typeMap[ll.type] || '📄'}: ${ll.title}</li>`;
+          }).join('')}
+        </ul>
+      </div>`;
+    }
+
+    // Video
+    if (l.type === 'video') {
+      const src = l.videoSubtitled || l.video;
+      content += `<div class="player-section">
+        <video controls preload="metadata" playsinline>
+          <source src="${src}" type="video/mp4">
+        </video>
+      </div>`;
+      if (l.pdf) {
+        content += `<div class="pdf-list">
+          <div class="pdf-item">
+            <div class="pdf-icon">PDF</div>
+            <div class="pdf-info">
+              <div class="pdf-title">${l.pdfLabel || 'Material complementario'}</div>
+            </div>
+            <a href="${l.pdf}" target="_blank">Descargar</a>
+          </div>
+        </div>`;
+      }
+    }
+
+    // Audio
+    if (l.type === 'audio') {
+      content += `<div class="audio-player">
+        <div class="audio-title">🎧 ${l.audioLabel || 'Audio'}</div>
+        <audio controls preload="metadata">
+          <source src="${l.audio}" type="audio/mpeg">
+        </audio>
+      </div>`;
+    }
+
+    // Images gallery
+    if (l.type === 'images' && l.images) {
+      content += `<div class="image-gallery">
+        ${l.images.map(img => `
+          <div class="img-card" onclick="openImage('${img.src}')">
+            <img src="${img.src}" alt="${img.label}" loading="lazy" />
+            <div class="img-label">${img.label}</div>
+          </div>
+        `).join('')}
+      </div>`;
+    }
+
+    // Images attached to video
+    if (l.images && l.images.length) {
+      content += `<div class="image-gallery">
+        ${l.images.map(img => `
+          <div class="img-card" onclick="openImage('${img.src}')">
+            <img src="${img.src}" alt="${img.label}" loading="lazy" />
+            <div class="img-label">${img.label}</div>
+          </div>
+        `).join('')}
+      </div>`;
+    }
+
+    // PDF standalone
+    if (l.type === 'pdf') {
+      content += `<div class="pdf-list">
+        <div class="pdf-item">
+          <div class="pdf-icon">PDF</div>
+          <div class="pdf-info">
+            <div class="pdf-title">${l.pdfLabel || 'Documento'}</div>
+          </div>
+          <a href="${l.pdf}" target="_blank">Abrir PDF</a>
+        </div>
+      </div>
+      <div class="player-section" style="aspect-ratio:auto;background:#fff;height:70vh;">
+        <iframe src="${l.pdf}" style="width:100%;height:100%;border:0;" title="PDF Viewer"></iframe>
+      </div>`;
+    }
+
+    // Text
+    if (l.type === 'text' && l.content) {
+      content += `<div class="text-content">${l.content}</div>`;
+    }
+
+    // Navigation buttons
+    content += `<div class="nav-buttons">
+      <button class="nav-btn prev" onclick="goTo(${idx-1})" ${!prev?'disabled':''}>
+        ← Anterior
+      </button>
+      <button class="nav-btn" style="background:transparent;color:var(--accent);border:1.5px solid var(--accent);" onclick="markComplete('${l.id}')">
+        ✓ Marcar como completado
+      </button>
+      <button class="nav-btn next" onclick="goTo(${idx+1})" ${!next?'disabled':''}>
+        Siguiente →
+      </button>
+    </div>`;
+
+    mainContent.innerHTML = content;
+    // Mark as completed when user views
+    markComplete(l.id);
+  }
+
+  // ── Navigation ──────────────────────────────────────
+  window.goTo = function(idx) {
+    if (idx < 0 || idx >= COURSE.lessons.length) return;
+    renderLesson(idx);
+    if (window.innerWidth <= 768) {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+    }
+  };
+
+  // ── Image Modal ─────────────────────────────────────
+  window.openImage = function(src) {
+    modalImage.src = src;
+    imageModal.classList.add('open');
+  };
+  closeModal.addEventListener('click', () => imageModal.classList.remove('open'));
+  imageModal.addEventListener('click', (e) => {
+    if (e.target === imageModal) imageModal.classList.remove('open');
+  });
+
+  // ── Menu Toggle ─────────────────────────────────────
+  menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('open');
+  });
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+  });
+
+  // ── Init ────────────────────────────────────────────
+  renderLesson(currentLesson);
+</script>
+</body>
+</html>
