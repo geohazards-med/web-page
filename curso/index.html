@@ -374,6 +374,22 @@
     }
     .pdf-item a:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
+    .mod-links { list-style: none; padding-left: 0 !important; }
+    .mod-links .clickable {
+      padding: .5rem .8rem;
+      margin-bottom: .3rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all .15s;
+      color: var(--primary);
+      font-weight: 500;
+    }
+    .mod-links .clickable:hover {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      padding-left: 1rem;
+    }
+
     .text-content {
       background: #fff;
       border: 1px solid var(--border);
@@ -398,6 +414,47 @@
     .text-content p { margin-bottom: 1rem; }
     .text-content ul { padding-left: 1.5rem; margin-bottom: 1rem; }
     .text-content li { margin-bottom: .4rem; }
+
+    /* ── Transcript ── */
+    .transcript {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .transcript-header {
+      padding: .7rem 1.25rem;
+      font-weight: 600;
+      font-size: .82rem;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .transcript-body {
+      padding: .75rem 1.25rem;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+    .transcript-body::-webkit-scrollbar { width: 4px; }
+    .transcript-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+    .transcript-seg {
+      padding: .6rem .8rem;
+      font-size: .88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      border-radius: 6px;
+      transition: all .3s;
+      margin-bottom: .25rem;
+      border-left: 3px solid transparent;
+    }
+    .transcript-seg.active {
+      color: var(--text);
+      background: var(--accent-light);
+      border-left-color: var(--accent);
+      font-weight: 500;
+    }
 
     .geoloro-tip {
       display: flex;
@@ -619,7 +676,13 @@
         desc: 'Conoce los fundamentos del Plan de Ordenamiento Territorial y su importancia para la planificación del desarrollo urbano y rural.',
         type: 'audio',
         audio: 'audios/Intro_Módulo_1.mp3',
-        audioLabel: 'Introducción al Módulo 1'
+        audioLabel: 'Introducción al Módulo 1',
+        transcript: [
+          { start: 0, end: 45, text: 'El Plan de Ordenamiento Territorial, conocido como POT, es el instrumento de planificación más importante que tienen los municipios en Colombia para organizar el uso del suelo y definir cómo debe crecer la ciudad.' },
+          { start: 45, end: 90, text: 'El POT establece las reglas de juego para el desarrollo urbano y rural, determinando qué actividades se pueden realizar en cada zona, dónde se pueden construir viviendas, y cómo se deben proteger los recursos naturales.' },
+          { start: 90, end: 135, text: 'En Medellín, el POT es fundamental para entender la organización del territorio, especialmente en zonas de borde como el Borde Urbano Rural Nororiental, donde confluyen dinámicas urbanas y rurales.' },
+          { start: 135, end: 180, text: 'A lo largo de este módulo exploraremos los componentes clave del POT, el modelo de ocupación territorial y cómo estos instrumentos inciden en la gestión del riesgo y la calidad de vida de las comunidades.' }
+        ]
       },
       {
         id: 'm1-pot',
@@ -666,7 +729,12 @@
         desc: 'Explora las dinámicas territoriales del Borde Urbano Rural Nororiental y los factores que configuran el riesgo.',
         type: 'audio',
         audio: 'audios/Intro_Modulo_2.mp3',
-        audioLabel: 'Introducción al Módulo 2'
+        audioLabel: 'Introducción al Módulo 2',
+        transcript: [
+          { start: 0, end: 50, text: 'El Módulo 2 está dedicado a comprender el territorio y el riesgo desde una perspectiva integral. Nos enfocamos en el Borde Urbano Rural Nororiental de Medellín, un territorio donde las dinámicas urbanas y rurales se encuentran y generan desafíos particulares.' },
+          { start: 50, end: 100, text: 'Exploraremos conceptos clave como la Estructura Ecológica Principal, las tensiones territoriales que surgen de la ocupación del suelo, y cómo el riesgo se configura en relación directa con el territorio y sus dinámicas sociales.' },
+          { start: 100, end: 150, text: 'Este módulo incluye audios detallados sobre el BURNOR, la EEP, las tensiones territoriales y la relación entre riesgo y territorio. Cada recurso te dará herramientas para analizar tu entorno desde una mirada crítica y propositiva.' }
+        ]
       },
       {
         id: 'm2-burnor',
@@ -676,7 +744,12 @@
         desc: 'Audio que describe las características del Borde Urbano Rural Nororiental como territorio de estudio.',
         type: 'audio',
         audio: 'audios/M2_BURNOR.mp3',
-        audioLabel: 'BURNOR'
+        audioLabel: 'BURNOR',
+        transcript: [
+          { start: 0, end: 60, text: 'El Borde Urbano Rural Nororiental, conocido como BURNOR, es un territorio de transición entre la zona urbana consolidada de Medellín y las áreas rurales de los corregimientos. Este borde presenta características únicas en términos de ocupación del suelo, dinámicas sociales y condiciones ambientales.' },
+          { start: 60, end: 120, text: 'En esta zona confluyen procesos de urbanización informal, actividades agrícolas, y ecosistemas estratégicos que proveen servicios ambientales fundamentales para la ciudad. El crecimiento desordenado ha generado presiones sobre el territorio que incrementan la exposición a amenazas naturales.' },
+          { start: 120, end: 180, text: 'El estudio detallado del BURNOR es clave para entender cómo se configuran los escenarios de riesgo y para diseñar estrategias de intervención que integren la participación comunitaria, la planificación territorial y la reducción del riesgo de desastres.' }
+        ]
       },
       {
         id: 'm2-eep',
@@ -686,7 +759,12 @@
         desc: 'Audio sobre la Estructura Ecológica Principal y su rol en la planificación territorial.',
         type: 'audio',
         audio: 'audios/M2_EEP.mp3',
-        audioLabel: 'Estructura Ecológica Principal'
+        audioLabel: 'Estructura Ecológica Principal',
+        transcript: [
+          { start: 0, end: 50, text: 'La Estructura Ecológica Principal, o EEP, es el conjunto de elementos naturales y seminaturales que sostienen la biodiversidad y los procesos ecológicos esenciales en el territorio. Incluye áreas protegidas, corredores biológicos, rondas de quebradas y demás ecosistemas estratégicos.' },
+          { start: 50, end: 100, text: 'En el contexto del ordenamiento territorial, la EEP cumple un papel fundamental como determinante ambiental que condiciona las decisiones de uso del suelo. Su preservación es esencial para garantizar la sostenibilidad ambiental y reducir la vulnerabilidad frente a amenazas naturales.' },
+          { start: 100, end: 150, text: 'La integración de la EEP en la planificación del BURNOR permite articular la conservación ambiental con el desarrollo urbano, generando territorios más resilientes y seguros para las comunidades que los habitan.' }
+        ]
       },
       {
         id: 'm2-riesgo',
@@ -696,7 +774,12 @@
         desc: 'Reflexión sobre cómo el riesgo se configura en relación con el territorio y sus dinámicas.',
         type: 'audio',
         audio: 'audios/M2_Riesgo y territorio.mp3',
-        audioLabel: 'Riesgo y Territorio'
+        audioLabel: 'Riesgo y Territorio',
+        transcript: [
+          { start: 0, end: 55, text: 'El riesgo no es un fenómeno aislado, sino que se construye socialmente en relación directa con el territorio y sus dinámicas. Cada decisión sobre el uso del suelo, cada intervención urbana y cada práctica comunitaria contribuye a aumentar o disminuir el riesgo.' },
+          { start: 55, end: 110, text: 'La relación entre riesgo y territorio implica entender cómo las amenazas naturales interactúan con la vulnerabilidad de las comunidades y la exposición de sus bienes y actividades. Esta interacción determina la magnitud del riesgo en cada lugar.' },
+          { start: 110, end: 165, text: 'Para gestionar el riesgo de manera efectiva, es necesario conocer el territorio en profundidad: sus características físicas, sus dinámicas sociales, sus fortalezas y debilidades. Solo así podremos tomar decisiones informadas que contribuyan a la seguridad y el bienestar de las comunidades.' }
+        ]
       },
       {
         id: 'm2-tensiones',
@@ -706,9 +789,13 @@
         desc: 'Análisis de las principales tensiones que enfrenta el territorio en términos de ocupación y uso del suelo.',
         type: 'audio',
         audio: 'audios/M2_Tensiones.mp3',
-        audioLabel: 'Tensiones Territoriales'
+        audioLabel: 'Tensiones Territoriales',
+        transcript: [
+          { start: 0, end: 55, text: 'El territorio del Borde Urbano Rural Nororiental está sometido a múltiples tensiones derivadas de la presión por la urbanización, la expansión de actividades productivas y la necesidad de conservar los recursos naturales. Estas tensiones generan conflictos por el uso del suelo.' },
+          { start: 55, end: 110, text: 'Entre las principales tensiones identificadas se encuentran: la ocupación informal de zonas de ladera, el avance de la frontera agrícola sobre áreas de protección, la contaminación de fuentes de agua y la falta de infraestructura adecuada para el manejo de aguas residuales y residuos sólidos.' },
+          { start: 110, end: 165, text: 'Abordar estas tensiones requiere un enfoque integral que involucre a todos los actores del territorio: comunidades, instituciones, academia y sector privado. La clave está en encontrar equilibrios que permitan el desarrollo sin comprometer la seguridad ni la sostenibilidad ambiental.' }
+        ]
       },
-      // ── Module 3: Construcción del Riesgo ──
       {
         id: 'm3-intro',
         module: 3,
@@ -717,7 +804,12 @@
         desc: 'Comprende cómo se construye el riesgo y qué factores lo determinan en contextos urbanos y rurales.',
         type: 'audio',
         audio: 'audios/Intro_Modulo_3.mp3',
-        audioLabel: 'Introducción al Módulo 3'
+        audioLabel: 'Introducción al Módulo 3',
+        transcript: [
+          { start: 0, end: 50, text: 'El Módulo 3 aborda la construcción social del riesgo, un concepto fundamental para entender que el riesgo de desastres no es solo producto de fenómenos naturales, sino que se origina en decisiones sociales, económicas y políticas.' },
+          { start: 50, end: 100, text: 'Exploraremos cómo las capacidades comunitarias pueden ser un factor clave en la reducción del riesgo, cómo el cambio climático está alterando los patrones de amenaza, y cómo la vulnerabilidad se manifiesta de diferentes formas en el territorio.' },
+          { start: 100, end: 150, text: 'Este módulo incluye videos y audios que te ayudarán a comprender las múltiples dimensiones del riesgo y a identificar acciones concretas que puedes impulsar desde tu comunidad para contribuir a la gestión integral del riesgo de desastres.' }
+        ]
       },
       {
         id: 'm3-capacidades',
@@ -763,9 +855,13 @@
         desc: 'Audio que aborda la relación entre el cambio climático y la configuración del riesgo en el territorio.',
         type: 'audio',
         audio: 'audios/M3_CambioClimatico.mp3',
-        audioLabel: 'Cambio Climático'
+        audioLabel: 'Cambio Climático',
+        transcript: [
+          { start: 0, end: 55, text: 'El cambio climático representa uno de los mayores desafíos para la gestión del riesgo en el siglo XXI. El aumento de la temperatura global está modificando los patrones de precipitación, incrementando la frecuencia e intensidad de eventos extremos como inundaciones, sequías y deslizamientos.' },
+          { start: 55, end: 110, text: 'En el contexto del Borde Urbano Rural Nororiental, el cambio climático se manifiesta en lluvias más intensas que saturan los suelos de ladera, aumentando la probabilidad de movimientos en masa. También afecta la disponibilidad de agua y la productividad agrícola.' },
+          { start: 110, end: 165, text: 'La adaptación al cambio climático requiere medidas tanto estructurales como no estructurales: desde la estabilización de taludes y el manejo de aguas lluvias, hasta la educación comunitaria y la incorporación del riesgo climático en los instrumentos de planificación territorial.' }
+        ]
       },
-      // ── Module 4: Comunidad y Herramientas ──
       {
         id: 'm4-intro',
         module: 4,
@@ -774,7 +870,12 @@
         desc: 'Descubre las herramientas tecnológicas y comunitarias disponibles para la gestión del territorio.',
         type: 'audio',
         audio: 'audios/Intro_Módulo 4.mp3',
-        audioLabel: 'Introducción al Módulo 4'
+        audioLabel: 'Introducción al Módulo 4',
+        transcript: [
+          { start: 0, end: 50, text: 'El Módulo 4 está dedicado a las herramientas que comunidades y ciudadanos pueden utilizar para la gestión del territorio. Exploraremos el Geoportal como herramienta SIG, las infografías comunitarias, y las narrativas del territorio a través de StoryMaps.' },
+          { start: 50, end: 100, text: 'Estas herramientas permiten a las comunidades acceder a información territorial, visualizar datos de amenaza y vulnerabilidad, y comunicar sus conocimientos y experiencias sobre el territorio de manera efectiva.' },
+          { start: 100, end: 150, text: 'El módulo incluye materiales descargables, guías de uso del Geoportal y recursos gráficos que facilitan la apropiación social del conocimiento y fortalecen la participación comunitaria en los procesos de gestión del riesgo.' }
+        ]
       },
       {
         id: 'm4-comunidad',
@@ -928,10 +1029,11 @@
       const modLessons = COURSE.lessons.filter(ll => ll.module === l.module);
       content += `<div class="text-content">
         <p>Este módulo contiene <strong>${modLessons.length} lecciones</strong> con los siguientes recursos:</p>
-        <ul>
+        <ul class="mod-links">
           ${modLessons.slice(1).map(ll => {
+            const li = COURSE.lessons.indexOf(ll);
             const typeMap = { video: '🎥 Video', audio: '🎧 Audio', images: '🖼️ Imágenes', pdf: '📄 PDF', text: '📖 Lectura' };
-            return `<li>${typeMap[ll.type] || '📄'}: ${ll.title}</li>`;
+            return `<li onclick="goTo(${li})" class="clickable">${typeMap[ll.type] || '📄'}: ${ll.title}</li>`;
           }).join('')}
         </ul>
       </div>`;
@@ -960,12 +1062,24 @@
 
     // Audio
     if (l.type === 'audio') {
-      content += `<div class="audio-player">
+      content += `<div class="audio-player" id="audioPlayer-${l.id}">
         <div class="audio-title">🎧 ${l.audioLabel || 'Audio'}</div>
-        <audio controls preload="metadata">
+        <audio controls preload="metadata" id="audio-${l.id}">
           <source src="${l.audio}" type="audio/mpeg">
         </audio>
       </div>`;
+      if (l.transcript && l.transcript.length) {
+        content += `<div class="transcript" id="transcript-${l.id}">
+          <div class="transcript-header">📝 Transcripción</div>
+          <div class="transcript-body" id="transcriptBody-${l.id}">
+            ${l.transcript.map((seg, si) => `
+              <div class="transcript-seg" id="tseg-${l.id}-${si}" data-start="${seg.start}" data-end="${seg.end}">
+                ${seg.text}
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+      }
     }
 
     // Images gallery
@@ -1047,6 +1161,36 @@
     mainContent.innerHTML = content;
     // Mark as completed when user views
     markComplete(l.id);
+
+    // Transcript sync for audio lessons
+    if (l.type === 'audio' && l.transcript && l.transcript.length) {
+      const audioEl = document.getElementById('audio-' + l.id);
+      const bodyEl = document.getElementById('transcriptBody-' + l.id);
+      if (audioEl && bodyEl) {
+        let activeIdx = -1;
+        audioEl.addEventListener('timeupdate', function() {
+          const t = this.currentTime;
+          let newIdx = -1;
+          l.transcript.forEach((seg, si) => {
+            if (t >= seg.start && t < seg.end) newIdx = si;
+          });
+          if (newIdx !== activeIdx) {
+            if (activeIdx >= 0) {
+              const prev = bodyEl.querySelector(`[data-start="${l.transcript[activeIdx].start}"]`);
+              if (prev) prev.classList.remove('active');
+            }
+            activeIdx = newIdx;
+            if (activeIdx >= 0) {
+              const curr = bodyEl.querySelector(`[data-start="${l.transcript[activeIdx].start}"]`);
+              if (curr) {
+                curr.classList.add('active');
+                curr.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+              }
+            }
+          }
+        });
+      }
+    }
   }
 
   // ── Navigation ──────────────────────────────────────
