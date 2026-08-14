@@ -3154,25 +3154,25 @@ window.data_page = {
           recursos_3d.edificios_3d,
         ].flat(),
       },
-      {
-        id: "alerta-temprana",
-        featured: true,
-        title:
-          "Sistema de Alerta Temprana por Fenómenos Hidrometeorológicos Extremos",
-        short_desc: `Diseño e Implementación de un Sistema de Alerta Temprana por Fenómenos Hidrometeorológicos extremos utilizando
-Métodos de Inteligencia Artificial y Aprendizaje Automático para la Gestión del Riesgo y Ordenación Sostenible del territorio
-Colombiano en los Andes y la Guajira.`,
-        date: "2023 - Actualidad",
-        type: "Investigación",
-        center: [-75.52, 6.252],
-        zoom: 5,
-        layer_list: [
-          inventarios_geohazards.inventario_antioquia,
-          inventarios_geohazards.inventario_colombia,
-          inventarios_geohazards.inventario_sensores_remotos,
-          ...Object.values(proyecto_minciencias_sat),
-        ].flat(),
-      },
+//       {
+//         id: "alerta-temprana",
+//         featured: true,
+//         title:
+//           "Sistema de Alerta Temprana por Fenómenos Hidrometeorológicos Extremos",
+//         short_desc: `Diseño e Implementación de un Sistema de Alerta Temprana por Fenómenos Hidrometeorológicos extremos utilizando
+// Métodos de Inteligencia Artificial y Aprendizaje Automático para la Gestión del Riesgo y Ordenación Sostenible del territorio
+// Colombiano en los Andes y la Guajira.`,
+//         date: "2023 - Actualidad",
+//         type: "Investigación",
+//         center: [-75.52, 6.252],
+//         zoom: 5,
+//         layer_list: [
+//           inventarios_geohazards.inventario_antioquia,
+//           inventarios_geohazards.inventario_colombia,
+//           inventarios_geohazards.inventario_sensores_remotos,
+//           ...Object.values(proyecto_minciencias_sat),
+//         ].flat(),
+//       },
       {
         id: "sensores-remotos",
         featured: true,
