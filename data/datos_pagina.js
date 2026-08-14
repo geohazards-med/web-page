@@ -4,8 +4,8 @@ import { estaciones_girardota } from "./geodata/estaciones_girardota.js";
 import { estaciones_sgc } from "./geodata/estaciones_sgc.js";
 import { estaciones_valparaiso } from "./geodata/estaciones_valparaiso.js";
 import { perfoLacruz } from "./geodata/perfo_lacruz.js";
-import { grilla_sensores_fredonia } from "./geodata/grilla_sensores_fredonia.js";
 import { aforosLaderaNE } from "./geodata/aforos_ladera_ne.js";
+import { grilla_sensores_fredonia } from "./geodata/grilla_sensores_fredonia.js";
 import { estaciones_alerta_temprana } from "./geodata/estaciones_alerta_temprana.js";
 
 export const layers_ladera_ne = {
@@ -70,7 +70,6 @@ export const layers_ladera_ne = {
   //   filters: [],
   //   data: [],
   // },
-
   // enriesgo_avt: {
   //   id: "enriesgo-avt",
   //   name: "Condición de Riesgo Avenidas Torrenciales",
@@ -86,7 +85,21 @@ export const layers_ladera_ne = {
   //   filters: [],
   //   data: [],
   // },
-
+  // enriesgo_avt: {
+  //   id: "enriesgo-avt",
+  //   name: "Condición de Riesgo Avenidas Torrenciales",
+  //   url: "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Condicion_de_riesgo_AvTorrencial/FeatureServer/0",
+  //   layer: "",
+  //   type: "FeatureLayer",
+  //   geometry: "polygons",
+  //   category: "Polígonos en Condición de Riesgo",
+  //   show: false,
+  //   showPopup: false,
+  //   downloable: false,
+  //   filterable: false,
+  //   filters: [],
+  //   data: [],
+  // },
   // enriesgo_menm: {
   //   id: "enriesgo-menm",
   //   name: "Condición de Riesgo Movimientos en Masa",
@@ -102,7 +115,6 @@ export const layers_ladera_ne = {
   //   filters: [],
   //   data: [],
   // },
-  
   inv_puntos: {
     id: "inventario-puntos",
     name: "Inventario Puntos",
@@ -183,7 +195,7 @@ export const layers_ladera_ne = {
       },
     ],
     styles: {
-      color: "#2dbdb5"
+      color: "#2dbdb5",
     },
     data: perfoLacruz,
   },
@@ -201,7 +213,7 @@ export const layers_ladera_ne = {
     filterable: true,
     filters: [],
     styles: {
-      color: "#d76c3b"
+      color: "#d76c3b",
     },
     data: [],
   },
@@ -250,13 +262,13 @@ export const layers_ladera_ne = {
       },
     ],
     styles: {
-      color: "#2d8cff"
+      color: "#2d8cff",
     },
     data: [],
   },
 };
 
-export const layers_dunita ={
+export const layers_dunita = {
   area_influencia_dunita: {
     id: "area-influencia-dunita",
     name: "Área de Influencia Dunita de Medellín",
@@ -285,12 +297,12 @@ export const layers_dunita ={
     downloable: true,
     filterable: true,
     filters: [],
-    styles:{
-      color: "#2d8cff"
+    styles: {
+      color: "#2d8cff",
     },
     data: aforosLaderaNE,
   },
-}
+};
 
 export const layers_la_cruz = {
   unidades_gemorfo_gmf: {
@@ -769,8 +781,7 @@ export const proyecto_minciencias_sat = {
     filters: [],
     data: [],
   },
-
-}
+};
 
 export const proyecto_acacias = {
   estaciones: {
@@ -1153,7 +1164,6 @@ export const curso_sensores_remotos = {
     data: [],
   },
 
-
   // Mapas
   mapa_geologia_colombia: {
     id: "mapa-geologia-colombia",
@@ -1180,6 +1190,371 @@ export const curso_sensores_remotos = {
     category: "Mapas",
     show: false,
     showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+};
+
+export const escenarios_riesgo_ant = {
+  susceptibilidad_avt_ant: {
+    id: "susceptibilidad-avt-ant",
+    name: "Susceptibilidad AVT",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Susceptibilidad/MapServer",
+    leyendTiles: {
+      urlFeat:
+        "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Susceptibilidad/FeatureServer/0",
+      legend: [
+        {
+          value: "Aluvial",
+          color: "#e3ffab",
+        },
+        {
+          value: "Inundación de Escombros",
+          color: "#ffffab",
+        },
+        {
+          value: "Flujo de escombros canalizados",
+          color: "#ffb3b3",
+        },
+      ],
+    },
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "AVT",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  vulnerabilidad_avt_ant: {
+    id: "vulnerabilidad-avt-ant",
+    name: "Vulnerabilidad AVT",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Vunerabilidad/MapServer",
+    leyendTiles: {
+      urlFeat:
+        "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Vunerabilidad_at/FeatureServer/0",
+      legend: [
+        {
+          value: "Muy Alto",
+          color: "#fe9e8d",
+        },
+        {
+          value: "Alto",
+          color: "#ffd58c",
+        },
+        {
+          value: "Medio",
+          color: "#f8fe95",
+        },
+        {
+          value: "Bajo",
+          color: "#bedb8b",
+        },
+        {
+          value: "Muy Bajo",
+          color: "#8ab98c",
+        },
+        {
+          value: "No censado",
+          color: "#e5e5e5",
+        },
+      ],
+    },
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "AVT",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  amenaza_avt_ant: {
+    id: "amenaza-avt-ant",
+    name: "Amenaza AVT",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Amenaza/MapServer",
+    leyendTiles: {
+      urlFeat:
+        "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Amenaza_at/FeatureServer/0",
+      legend: [
+        {
+          value: "Muy Alto",
+          color: "#f66",
+        },
+        {
+          value: "Alto",
+          color: "#fc6",
+        },
+        {
+          value: "Moderado",
+          color: "#ff6",
+        },
+        {
+          value: "No Aplica",
+          color: "#e0e0e0",
+        },
+      ],
+    },
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "AVT",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  riesgo_avt_ant: {
+    id: "riesgo-avt-ant",
+    name: "Riesgo AVT",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Riesgo/MapServer",
+    leyendTiles: {
+      urlFeat:
+        "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Riesg_at/FeatureServer/0",
+      legend: [
+        {
+          value: "Muy Alto",
+          color: "#f66",
+        },
+        {
+          value: "Alto",
+          color: "#fc6",
+        },
+        {
+          value: "Moderado",
+          color: "#ff6",
+        },
+        {
+          value: "No Aplica",
+          color: "#e0e0e0",
+        },
+      ],
+    },
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "AVT",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+
+  susceptibilidad_menm_ant: {
+    id: "susceptibilidad-menm-ant",
+    name: "Susceptibilidad MenM",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Susceptibilidad_menm_nueva_1/MapServer",
+    leyendTiles: {
+      urlFeat:
+        "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Susceptibilidad_menm_nueva/FeatureServer/0",
+      legend: [
+        {
+          value: "Muy Bajo",
+          color: "#b0e000",
+        },
+        {
+          value: "Bajo",
+          color: "#ffff00",
+        },
+        {
+          value: "Medio",
+          color: "#ffaa00",
+        },
+        {
+          value: "Alto",
+          color: "#ff0000",
+        },
+        {
+          value: "Muy Alto",
+          color: "#a900e6",
+        },
+      ],
+    },
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "MenM",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  fragilidad_socioeconomica_menm_ant: {
+    id: "fragilidad-socioeconomica-menm-ant",
+    name: "Fragilidad Socioeconómica MenM",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Fragilidad_socioecon%C3%B3mica/MapServer",
+    leyendTiles: {
+      urlFeat:
+      "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Fragilidad_socioeconómica/FeatureServer/0",
+    legend: [
+      {
+        value: "Muy alto",
+        color: "#a80000",
+      },
+      {
+        value: "Alto",
+        color: "#ff0000",
+      },
+      {
+        value: "Medio - alto",
+        color: "#ffaa00",
+      },
+      {
+        value: "Medio",
+        color: "#ffff00",
+      },
+      {
+        value: "Bajo",
+        color: "#87c734",
+      },
+    ],
+    },
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "MenM",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  costo_daño_menm_ant: {
+    id: "costo-daño-menm-ant",
+    name: "Costo Daño MenM",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Costo_da%C3%B1o/MapServer",
+    leyendTiles: {
+      urlFeat:
+      "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Costo_daño_SHP_1/FeatureServer/0",
+    legend: [
+      {
+        value: "Medio - alto",
+        color: "#eb5b2f",
+      },
+      {
+        value: "Medio - bajo",
+        color: "#ffff00",
+      },
+      {
+        value: "Bajo",
+        color: "#87c734",
+      },
+      {
+        value: "Muy bajo",
+        color: "#1a992e",
+      },
+    ],
+    },
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "MenM",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  capacidad_institucional_menm_ant: {
+    id: "capacidad-institucional-menm-ant",
+    name: "Capacidad Institucional MenM",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Capacidad_institucional/MapServer",
+    leyendTiles: {
+      urlFeat:
+      "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Capacidad_institucional/FeatureServer/0",
+    legend: [
+      {
+        value: "Baja",
+        color: "#a80000",
+      },
+      {
+        value: "Medio",
+        color: "#ff0000",
+      },
+      {
+        value: "Medio - alto",
+        color: "#ffaa00",
+      },
+    ],
+    },
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "MenM",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+  riesgo_menm_ant: {
+    id: "riesgo-menm-ant",
+    name: "Riesgo MenM",
+    url: "https://tiles.arcgis.com/tiles/gTVMpnerZFjZtXQb/arcgis/rest/services/Riesgo_menm_nueva_2/MapServer",
+    leyendTiles: {
+      urlFeat:
+      "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/Riesgo_menm_nueva/FeatureServer/0",
+    legend: [
+      {
+        value: "Muy Alto",
+        color: "#a80000",
+      },
+      {
+        value: "Alto",
+        color: "#ff0000",
+      },
+      {
+        value: "Medio",
+        color: "#ffff00",
+      },
+      {
+        value: "Bajo",
+        color: "#87c734",
+      },
+      {
+        value: "Muy Bajo",
+        color: "#1a992e",
+      },
+    ],
+    },
+    layer: "",
+    type: "TileMap",
+    geometry: "tiles",
+    category: "MenM",
+    show: false,
+    showPopup: false,
+    downloable: false,
+    filterable: false,
+    filters: [],
+    data: [],
+  },
+
+  municipios: {
+    id: "municipios",
+    name: "Municipios de Antioquia",
+    url: "https://services7.arcgis.com/gTVMpnerZFjZtXQb/arcgis/rest/services/municipios/FeatureServer/0",
+    layer: "",
+    type: "FeatureLayer",
+    geometry: "polygons",
+    category: "Mapas Base",
+    show: true,
+    showPopup: true,
     downloable: false,
     filterable: false,
     filters: [],
@@ -2759,7 +3134,7 @@ window.data_page = {
         btn_external_link: {
           text: "Componente social",
           link: "https://geohazards.com.co/comunidad",
-          icon: "diversity_3"
+          icon: "diversity_3",
         },
       },
       {
@@ -2782,9 +3157,9 @@ window.data_page = {
       {
         id: "alerta-temprana",
         featured: true,
-        title: "Sistema de Alerta Temprana por Fenómenos Hidrometeorológicos Extremos",
-        short_desc:
-          `Diseño e Implementación de un Sistema de Alerta Temprana por Fenómenos Hidrometeorológicos extremos utilizando
+        title:
+          "Sistema de Alerta Temprana por Fenómenos Hidrometeorológicos Extremos",
+        short_desc: `Diseño e Implementación de un Sistema de Alerta Temprana por Fenómenos Hidrometeorológicos extremos utilizando
 Métodos de Inteligencia Artificial y Aprendizaje Automático para la Gestión del Riesgo y Ordenación Sostenible del territorio
 Colombiano en los Andes y la Guajira.`,
         date: "2023 - Actualidad",
@@ -2795,7 +3170,7 @@ Colombiano en los Andes y la Guajira.`,
           inventarios_geohazards.inventario_antioquia,
           inventarios_geohazards.inventario_colombia,
           inventarios_geohazards.inventario_sensores_remotos,
-          ...Object.values(proyecto_minciencias_sat)
+          ...Object.values(proyecto_minciencias_sat),
         ].flat(),
       },
       {
@@ -2818,9 +3193,9 @@ Colombiano en los Andes y la Guajira.`,
           "Proyecto de escenarios de riesgo por movimientos de masa para antioquia (DAGRAN).",
         date: "2024 - 2025",
         type: "Extensión",
-        center: [-75.52, 6.252],
-        zoom: 12,
-        layer_list: [].flat(),
+        center: [-75.5, 7.1],
+        zoom: 7,
+        layer_list: [...Object.values(escenarios_riesgo_ant)].flat(),
       },
     ],
   },
