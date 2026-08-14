@@ -439,16 +439,19 @@
     .image-gallery .img-card img { width: 100%; height: auto; }
     .image-gallery .img-card .img-label { padding: .6rem .8rem; font-size: .76rem; color: var(--text-muted); font-weight: 500; border-top: 1px solid var(--border); }
 
-    .pdf-list { display: flex; flex-direction: column; gap: .8rem; margin-bottom: 2rem; }
-    .pdf-item { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.4rem; background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius); transition: border-color .2s, box-shadow .2s, transform .2s; box-shadow: var(--shadow-sm); }
+    .pdf-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
+    .pdf-item { display: flex; align-items: center; gap: 1.25rem; padding: 1.5rem 1.75rem; background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius); transition: border-color .2s, box-shadow .2s, transform .2s; box-shadow: var(--shadow-sm); }
     .pdf-item:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-    .pdf-item .pdf-icon { width: 54px; height: 54px; background: rgba(169,68,56,0.12); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--red); font-weight: 900; font-size: .95rem; flex-shrink: 0; }
+    .pdf-item .pdf-icon { width: 84px; height: 84px; background: rgba(169,68,56,0.12); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--red); font-weight: 900; font-size: 1.1rem; flex-shrink: 0; }
     .pdf-item .pdf-info { flex: 1; }
-    .pdf-item .pdf-info .pdf-title { font-weight: 700; font-size: .98rem; color: var(--text); }
-    .pdf-item .pdf-info .pdf-sub { font-size: .78rem; color: var(--text-muted); margin-top: .15rem; }
-    .pdf-item a { padding: .55rem 1.25rem; background: var(--primary); color: #fff; border-radius: 8px; font-size: .85rem; font-weight: 700; transition: background .2s, transform .15s; text-decoration: none; white-space: nowrap; }
+    .pdf-item .pdf-info .pdf-title { font-weight: 700; font-size: 1.06rem; color: var(--text); }
+    .pdf-item .pdf-info .pdf-sub { font-size: .82rem; color: var(--text-muted); margin-top: .15rem; }
+    .pdf-item a { padding: .6rem 1.4rem; background: var(--primary); color: #fff; border-radius: 8px; font-size: .88rem; font-weight: 700; transition: background .2s, transform .15s; text-decoration: none; white-space: nowrap; }
     .pdf-item a:hover { background: var(--primary-dark); transform: translateY(-1px); }
-    .pdf-cover { border-radius: var(--radius-sm); width: 44px; height: 58px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border); }
+    .pdf-cover { border-radius: var(--radius-sm); width: 132px; height: 132px; aspect-ratio: 1 / 1; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .pdf-item-lg { padding: 1.75rem 2rem; }
+    .pdf-item-lg .pdf-cover { width: 172px; height: 172px; }
+    .pdf-item-lg .pdf-info .pdf-title { font-size: 1.15rem; }
 
     .text-content { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 2.5rem 3rem; margin: 0 auto 2.5rem; line-height: 1.9; color: var(--text); font-size: 1.05rem; box-shadow: var(--shadow-md); position: relative; max-width: 960px; }
     .text-content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: var(--radius) var(--radius) 0 0; }
@@ -477,9 +480,10 @@
 
     .transcript { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 2rem; overflow: hidden; box-shadow: var(--shadow-sm); }
     .transcript-header { padding: .7rem 1.25rem; font-weight: 600; font-size: .82rem; color: var(--primary); background: var(--primary-soft); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
-    .transcript-body { padding: .75rem 1.25rem; max-height: 320px; overflow-y: auto; }
-    .transcript-seg { padding: .6rem .8rem; font-size: .88rem; line-height: 1.7; color: var(--text-muted); border-radius: 6px; transition: background .3s, color .3s; margin-bottom: .25rem; }
-    .transcript-seg.active { color: var(--text); background: var(--accent-light); font-weight: 600; }
+    .transcript-body { padding: 1rem 1.25rem 1.25rem; max-height: 360px; overflow-y: auto; }
+    .transcript-seg { display: inline; font-size: .92rem; line-height: 1.85; color: var(--text-muted); border-radius: 3px; transition: background .3s, color .3s; padding: 0 .1rem; margin: 0; }
+    .transcript-seg::after { content: ' '; }
+    .transcript-seg.active { color: var(--text); background: var(--accent-light); font-weight: 600; box-shadow: 0 0 0 2px var(--accent-light); }
 
     .geoloro-tip {
       display: flex;
@@ -998,9 +1002,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   const COURSE = {
     title: 'Comprensión del Riesgo',
     subtitle: 'Herramientas conceptuales para la gestión del riesgo y el ordenamiento territorial',
-    lessons: [
-      // Module 0: Introduction
-      {
+    lessons: [      {
         id: 'intro',
         module: 0,
         moduleTitle: 'Inicio',
@@ -1032,12 +1034,12 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         audio: 'audios/Intro_Módulo_1.mp3',
         audioLabel: 'Introducción al Módulo 1',
         transcript: [
-            { pct: 0.1835, text: 'Módulo 1: El POT, nuestra principal hoja de ruta para la planificación del territorio. Bienvenidas y bienvenidos al primer módulo de este curso corto en comprensión del riesgo. Este módulo tiene como objetivo reconocer los elementos principales del Plan de Ordenamiento Territorial y su' },
-            { pct: 0.1560, text: 'modelo de ocupación. Esto es fundamental pues toda ciudad necesita organizarse para decidir cómo crecer, qué zonas proteger, dónde construir vivienda, cómo mejorar los barrios, dónde ubicar equipamientos, cómo cuidar las quebradas, las laderas, los' },
-            { pct: 0.1743, text: 'cerros y el suelo rural. El POT es la herramienta que orienta el desarrollo físico, ambiental, social y económico del territorio. En palabras sencillas, es como una hoja de ruta que le dice a la ciudad: aquí se puede crecer, aquí se debe mejorar, aquí se debe proteger y aquí' },
-            { pct: 0.1743, text: 'no se debe ocupar por razones ambientales o de riesgo. Dentro del POT hay una idea clave: el Modelo de Ocupación. El Modelo de Ocupación es la imagen de ciudad que se quiere construir hacia el futuro. Define cómo debe organizarse Medellín: una ciudad más compacta, conectada,' },
-            { pct: 0.1743, text: 'con varios centros, con mejores servicios cerca de los barrios y con mayor cuidado de sus laderas, quebradas, cerros, río y zonas rurales. Comprender el POT y el Modelo de Ocupación nos ayuda a entender por qué algunas decisiones sobre vivienda, riesgo, ambiente, movilidad y' },
-            { pct: 0.1376, text: 'espacio público son tan importantes para la vida cotidiana. Porque ordenar el territorio no es solo hacer mapas o normas: es decidir cómo queremos vivir y cómo podemos construir una ciudad más segura, justa y sostenible.' },
+            { pct: 0.1835, text: 'Módulo 1: El POT, nuestra principal hoja de ruta para la planificación del territorio. Bienvenidas y bienvenidos al primer módulo de este curso corto en comprensión del riesgo. Este módulo tiene como objetivo reconocer los elementos principales del Plan de Ordenamiento Territorial y su modelo de ocupación.' },
+            { pct: 0.1560, text: ' Esto es fundamental pues toda ciudad necesita organizarse para decidir cómo crecer, qué zonas proteger, dónde construir vivienda, cómo mejorar los barrios, dónde ubicar equipamientos, cómo cuidar las quebradas, las laderas, los cerros y el suelo rural.' },
+            { pct: 0.1743, text: ' El POT es la herramienta que orienta el desarrollo físico, ambiental, social y económico del territorio. En palabras sencillas, es como una hoja de ruta que le dice a la ciudad: aquí se puede crecer, aquí se debe mejorar, aquí se debe proteger y aquí' },
+            { pct: 0.1743, text: ' no se debe ocupar por razones ambientales o de riesgo. Dentro del POT hay una idea clave: el Modelo de Ocupación. El Modelo de Ocupación es la imagen de ciudad que se quiere construir hacia el futuro. Define cómo debe organizarse Medellín: una ciudad más compacta, conectada,' },
+            { pct: 0.1743, text: ' con varios centros, con mejores servicios cerca de los barrios y con mayor cuidado de sus laderas, quebradas, cerros, río y zonas rurales. Comprender el POT y el Modelo de Ocupación nos ayuda a entender por qué algunas decisiones sobre vivienda, riesgo, ambiente, movilidad y' },
+            { pct: 0.1376, text: ' espacio público son tan importantes para la vida cotidiana. Porque ordenar el territorio no es solo hacer mapas o normas: es decidir cómo queremos vivir y cómo podemos construir una ciudad más segura, justa y sostenible.' },
           ],
       },
       {
@@ -1050,6 +1052,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         video: 'videos/M1_POT.mp4',
         videoSubtitled: 'videos/Subtitulado-M1_POT.mp4',
         pdf: 'pdfs/M1_ABECE_POT_V3.pdf',
+        pdfCover: 'img/M1_ABECE_POT_V3_portada.jpg',
         pdfLabel: 'A-B-C-E del POT'
       },
       {
@@ -1062,6 +1065,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         video: 'videos/M1_modeloOcupacion.mp4',
         videoSubtitled: 'videos/Subtitulado-M1_ModeloOcupacion_.mp4',
         pdf: 'pdfs/M1_Modelo de Ocupación.pdf',
+        pdfCover: 'img/M1_ModeloOcupacion_portada.jpg',
         pdfLabel: 'Modelo de Ocupación PDF'
       },
       {
@@ -1074,6 +1078,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         video: 'videos/M1_SistemaPOT.mp4',
         videoSubtitled: 'videos/Subtitulado-M1_SistemaPOT_.mp4',
         pdf: 'pdfs/M1_ABECE_POT_V3.pdf',
+        pdfCover: 'img/M1_ABECE_POT_V3_portada.jpg',
         pdfLabel: 'Descargar A-B-C-E del POT'
       },
       // ── Module 2: Territorio y Riesgo ──
@@ -1087,18 +1092,18 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         audio: 'audios/Intro_Modulo_2.mp3',
         audioLabel: 'Introducción al Módulo 2',
         transcript: [
-            { pct: 0.0586, text: 'Módulo 2: Entender el territorio donde vivimos. Bienvenidas y bienvenidos al segundo módulo de este curso corto en comprensión del riesgo. Este módulo tiene como' },
-            { pct: 0.0903, text: 'objetivo reconocer qué es el borde urbano-rural y por qué allí se concentran decisiones clave sobre riesgo, vivienda, ambiente y calidad de vida. Cuando hablamos del borde urbano-rural nos referimos a una zona viva, en transformación que conjuga' },
-            { pct: 0.0552, text: 'dos dinámicas generales que interactúan, las ruralidades o formas rurales de habitar y la urbanización. El borde urbano rural es una zona de transición' },
-            { pct: 0.0854, text: 'entre el campo y la ciudad, por ello, es necesario una planificación y gestión diferenciada pues se combina riesgo, hábitat, formas de habitar, soporte urbano, ecosistemas estratégicos, protección del patrimonio y producción rural. En' },
-            { pct: 0.0987, text: 'esencia, es necesario planificar las formas de ocupar el suelo y las decisiones sobre cómo crece la ciudad. Por este tipo de razones se considera un Área de Intervención Estratégica. En estos territorios se concentran muchas preguntas importantes: ¿Qué tiene que ver esta' },
-            { pct: 0.0893, text: 'unidad de planificación con mi vivienda y mi hábitat? ¿Cuáles son las causas principales de las emergencias o desastres en el territorio? ¿Cuáles son los impedimentos para la baja ejecución del Mejoramiento Integral? Para comprender el riesgo, es' },
-            { pct: 0.1030, text: 'necesario conocer el territorio, pero también saber diferenciar cuatro ideas básicas. La amenaza es un fenómeno que puede causar daño, como un movimiento en masa, una avenida torrencial o una inundación. La exposición se refiere a las personas, viviendas, vías o equipamientos que' },
-            { pct: 0.0979, text: 'están ubicados en una zona donde puede ocurrir esa amenaza. La vulnerabilidad tiene que ver con qué tan frágiles o preparados estamos frente a ese posible daño. Y el riesgo aparece cuando se combinan amenaza, exposición y vulnerabilidad. Muchos de nosotros hemos convivido' },
-            { pct: 0.1002, text: 'con el riesgo como única alternativa para habitar la ciudad, pero al ser ciudadanos y ciudadanas, significa que no debemos acostumbrarnos a él ni aceptarlo como algo normal. Significa reconocerlo, hablarlo, entenderlo y participar en las decisiones que pueden reducirlo. No' },
-            { pct: 0.1036, text: 'solo necesitamos saber de estudios de riesgo, necesitamos conocer el Plan de Ordenamiento Territorial e incidir en su construcción y actualización. Hoy, además, el cambio climático y la variabilidad climática hacen que las lluvias intensas, los periodos secos y los cambios en el clima' },
-            { pct: 0.0760, text: 'se sientan con más fuerza en la vida diaria. Por eso, comprender el territorio es también comprender cómo cuidarnos mejor. Este módulo nos invita a mirar el lugar que habitamos con otros ojos: no solo como un' },
-            { pct: 0.0418, text: 'barrio o una ladera, sino como un territorio con historia, naturaleza, riesgos, capacidades y decisiones compartidas.' },
+            { pct: 0.0586, text: 'Módulo 2: Entender el territorio donde vivimos. Bienvenidas y bienvenidos al segundo módulo de este curso corto en comprensión del riesgo. Este módulo tiene como objetivo reconocer qué es el borde urbano-rural y por qué allí se concentran decisiones clave sobre riesgo, vivienda, ambiente y calidad de vida.' },
+            { pct: 0.0903, text: ' Cuando hablamos del borde urbano-rural nos referimos a una zona viva, en transformación que conjuga dos dinámicas generales que interactúan, las ruralidades o formas rurales de habitar y la urbanización. El borde urbano rural es una zona de transición entre el campo y la ciudad,' },
+            { pct: 0.0552, text: ' por ello, es necesario una planificación y gestión diferenciada pues se combina riesgo, hábitat, formas de habitar, soporte urbano, ecosistemas estratégicos, protección del patrimonio y producción rural.' },
+            { pct: 0.0854, text: ' En esencia, es necesario planificar las formas de ocupar el suelo y las decisiones sobre cómo crece la ciudad. Por este tipo de razones se considera un Área de Intervención Estratégica.' },
+            { pct: 0.0987, text: ' En estos territorios se concentran muchas preguntas importantes: ¿Qué tiene que ver esta unidad de planificación con mi vivienda y mi hábitat? ¿Cuáles son las causas principales de las emergencias o desastres en el territorio? ¿Cuáles son los impedimentos para la baja ejecución del Mejoramiento Integral?' },
+            { pct: 0.0893, text: ' Para comprender el riesgo, es necesario conocer el territorio, pero también saber diferenciar cuatro ideas básicas. La amenaza es un fenómeno que puede causar daño, como un movimiento en masa, una avenida torrencial o una inundación. La exposición se refiere a las personas, viviendas, vías o equipamientos que' },
+            { pct: 0.1030, text: ' están ubicados en una zona donde puede ocurrir esa amenaza. La vulnerabilidad tiene que ver con qué tan frágiles o preparados estamos frente a ese posible daño. Y el riesgo aparece cuando se combinan amenaza, exposición y vulnerabilidad.' },
+            { pct: 0.0979, text: ' Muchos de nosotros hemos convivido con el riesgo como única alternativa para habitar la ciudad, pero al ser ciudadanos y ciudadanas, significa que no debemos acostumbrarnos a él ni aceptarlo como algo normal. Significa reconocerlo, hablarlo, entenderlo y participar en las decisiones que pueden reducirlo.' },
+            { pct: 0.1002, text: ' No solo necesitamos saber de estudios de riesgo, necesitamos conocer el Plan de Ordenamiento Territorial e incidir en su construcción y actualización. Hoy, además, el cambio climático y la variabilidad climática hacen que las lluvias intensas, los periodos secos y los cambios en el clima' },
+            { pct: 0.1036, text: ' se sientan con más fuerza en la vida diaria. Por eso, comprender el territorio es también comprender cómo cuidarnos mejor. Este módulo nos invita a mirar el lugar que habitamos con otros ojos: no solo como un' },
+            { pct: 0.0760, text: ' barrio o una ladera, sino como un territorio con historia, naturaleza, riesgos, capacidades y decisiones compartidas.' },
+            { pct: 0.0418, text: ' ' },
           ],
       },
       {
@@ -1112,79 +1117,21 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         audioLabel: 'BURNOR',
         transcript: [
             { pct: 0.0737, text: '¿Qué es el borde urbano rural y por qué es tan importante? Cuando hablamos del borde urbano rural, muchas veces imaginamos una línea que separa la ciudad del campo, pero en realidad no es solo eso. El borde urbano rural es un territorio de transición, un espacio donde se encuentran y se mezclan distintas formas de habitar, producir,' },
-            { pct: 0.0421, text: 'moverse y relacionarse con la naturaleza. Allí habita el obrero, el campesino, la mujer cabeza de hogar, población indígena, afro, el migrante y el desplazado. En ocasiones, un mismo habitante' },
-            { pct: 0.0667, text: 'reúne varias de estas condiciones: mujer desplazada por la violencia, ama de casa afrodescendiente, lideresa campesina que ha luchado por los derechos a la vivienda y el hábitat digno. En su borde urbano de ese complejo territorio identificamos caminos, senderos, escaleras, pequeños cultivos, huertas' },
-            { pct: 0.0421, text: 'caseras y viviendas en distintas etapas de consolidación que demuestran la existencia de una comunidad que solo busca la permanencia digna. También se evidencian equipamientos e infraestructura' },
-            { pct: 0.0632, text: 'que hablan de una institucionalidad que está llegando, pero requiere mayor presencia. En su borde rural es más notorio las zonas de protección ambiental, zonas arqueológicas, algunas zonas de cultivo, viviendas campestres y campesinas, los cerros tutelares e inicia la formación de' },
-            { pct: 0.0737, text: 'pequeños cuerpos de agua que poco a poco se convierten en quebradas. En estos bordes también se evidencian tensiones muy fuertes entre crecimiento urbano, control territorial de grupos delincuenciales, conservación y la permanencia de las comunidades. Esta permanencia está asociada a las zonas de alto riesgo no mitigable y las zonas de' },
-            { pct: 0.0421, text: 'protección de ecosistemas estratégicos o retiros de quebradas. El POT de Medellín reconoce que este territorio no puede tratarse como un “vacío” disponible para seguir construyendo. Por el' },
-            { pct: 0.0632, text: 'contrario, lo ubica dentro de las áreas estratégicas de planificación y lo relaciona con varios componentes del ordenamiento territorial: la clasificación del suelo, la estructura ecológica, las áreas de amenaza y riesgo, el sistema público y colectivo y el sistema de ocupación. Eso significa' },
-            { pct: 0.0702, text: 'que el borde no se ordena únicamente con normas de construcción; también se ordena con decisiones sobre espacio público, movilidad, equipamientos, gestión del riesgo, protección ambiental en armonía con los principios y disposiciones de la Política de Protección a Moradores y Actividades Económicas y Productivas.' },
-            { pct: 0.0737, text: '¡El Borde Urbano Rural se ordena con su gente y sus ecosistemas! Ahora, para los habitantes, se vive en barrios de ladera que aún requieren mejorar distintos aspectos asociados a la vivienda y el hábitat dignos como el acceso a servicios públicos, regularización y titulación de predios y viviendas, mejor cobertura en educación y salud' },
-            { pct: 0.0526, text: 'y la configuración de espacios de encuentro denominados Espacio Público. Para la administración y planificación territorial, estas son problemáticas comunes que se pueden agrupar en un territorio mayor que también tiene unas condicionantes' },
-            { pct: 0.0632, text: 'para su desarrollo y así gestionarlo de manera integral. En los documentos de revisión de mediano plazo del POT, esta idea se vuelve todavía más precisa. Allí se plantea que el borde urbano-rural debe ordenarse como un patrimonio colectivo. Se propone estabilizar su ocupación, prevenir' },
-            { pct: 0.0702, text: 'procesos de urbanización en condiciones de riesgo o degradación ambiental, orientar el crecimiento hacia zonas con mayor capacidad de soporte y articular la estructura ecológica con sistemas productivos rurales. En otras palabras, el borde no es el lugar donde la ciudad “termina”; es uno de los lugares donde más' },
-            { pct: 0.0807, text: 'claramente se define qué tipo de ciudad quiere ser Medellín. Las palabras que más resuenan son: ciudad incluyente, diversa, adaptada al cambio climático, justa y digna para todas y todos sus habitantes. Y esto tiene una consecuencia muy importante para la ciudadanía. Hablar del borde no es solo hablar de mapas o de límites administrativos. Es hablar de calidad de vida,' },
-            { pct: 0.0421, text: 'de seguridad territorial, de permanencia digna, de acceso a servicios y espacio público, y también de la relación entre la ciudad y su entorno natural. Por eso, entender el borde urbano rural' },
-            { pct: 0.0805, text: 'es entender un territorio donde se juega buena parte del equilibrio futuro de Medellín. Prepara un café y reflexiona sobre esta frase: El borde urbano rural no es una frontera: es un territorio clave para pensar el futuro sostenible de Medellín. Quienes lo habitan tienen saberes, experiencias y propuestas indispensables que aportan en la planificación de la ciudad.' },
-          ],
-      },
-      {
-        id: 'm2-eep',
-        module: 2,
-        moduleTitle: 'Entender el territorio',
-        title: 'Estructura Ecológica Principal',
-        desc: 'Audio sobre la Estructura Ecológica Principal y su rol en la planificación territorial.',
-        type: 'audio',
-        audio: 'audios/M2_EEP.mp3',
-        audioLabel: 'Estructura Ecológica Principal',
-        transcript: [
-            { pct: 0.0546, text: 'Cuando pensamos en Medellín, muchas veces imaginamos un gran valle urbanizado con el río Aburrá que lo atraviesa o las montañas que rodean la ciudad. Pero Medellín también tiene una red natural que sostiene la vida: quebradas,' },
-            { pct: 0.0717, text: 'cerros, zonas verdes, áreas protegidas, corredores ecológicos y espacios que permiten que el agua, la vegetación, los animales y las personas puedan coexistir. A esta red se le conoce como Estructura Ecológica. La Estructura Ecológica de Medellín puede entenderse como un sistema de áreas conectadas que' },
-            { pct: 0.0683, text: 'tienen un alto valor ambiental. Su función es mantener procesos ecológicos esenciales y ofrecer beneficios para la vida cotidiana, como regulación del agua, protección del suelo, biodiversidad, aire limpio, paisaje, alimentos, espacios de encuentro y bienestar. Además, esta estructura no' },
-            { pct: 0.0614, text: 'funciona de manera aislada. Se conecta con la estructura ecológica regional y aporta al desarrollo social, económico y cultural de la población. Según el Plan de Ordenamiento Territorial, esta estructura se organiza en dos grandes categorías: la Estructura Ecológica' },
-            { pct: 0.0648, text: 'Principal y la Estructura Ecológica Complementaria. La Estructura Ecológica Principal, también llamada EEP. Esta es el nivel de mayor prioridad. Su propósito es conservar, mantener o recuperar las funciones ecológicas más importantes del territorio. Es decir, aquellas' },
-            { pct: 0.0512, text: 'funciones que permiten que la naturaleza siga prestando servicios fundamentales para la ciudad y sus habitantes. La Estructura Ecológica Principal está conformada por áreas protegidas de carácter nacional, regional,' },
-            { pct: 0.0614, text: 'metropolitano y también por áreas protegidas de la sociedad civil. También incluye áreas de interés estratégico, como el sistema hidrográfico: ríos, quebradas y sus retiros; el sistema orográfico: cerros tutelares y cadenas montañosas; y los nodos y enlaces que' },
-            { pct: 0.0580, text: 'permiten la conectividad ecológica o los caminos por donde transitan las especies. Un aspecto clave es que la Estructura Ecológica Principal hace parte del suelo de protección del distrito. Esto significa que son zonas donde la urbanización está' },
-            { pct: 0.0614, text: 'restringida, precisamente porque cumplen funciones ambientales esenciales. En palabras sencillas: son áreas que la ciudad debe cuidar porque sostienen la vida, regulan el agua, protegen el suelo y ayudan a conservar los ecosistemas. La segunda categoría es la' },
-            { pct: 0.0614, text: 'Estructura Ecológica Complementaria, o EEC. Esta tiene un segundo nivel de prioridad, pero también cumple una función muy importante: conectar, reforzar y ampliar los beneficios de la estructura principal. La Estructura Ecológica Complementaria incluye relictos' },
-            { pct: 0.0580, text: 'de vegetación, corredores verdes, áreas transformadas y espacios intervenidos que todavía pueden cumplir funciones ambientales importantes. También incorpora zonas prioritarias para la prevención del riesgo, especialmente frente a movimientos' },
-            { pct: 0.0546, text: 'en masa, inundaciones y avenidas torrenciales. Además, puede incluir áreas importantes para la captura y almacenamiento de carbono, la recarga de acuíferos, el aprovisionamiento de productos forestales y alimentos, los servicios' },
-            { pct: 0.0444, text: 'culturales y los nodos complementarios de conectividad ecológica. Dicho de otra manera, la Estructura Ecológica Complementaria ayuda a que los beneficios ambientales lleguen a más lugares de' },
-            { pct: 0.0546, text: 'la ciudad, especialmente en territorios donde la relación entre urbanización, ladera, quebradas y riesgo es muy estrecha. Entonces, podemos resumirlo así: La Estructura Ecológica Principal protege los elementos naturales base del' },
-            { pct: 0.0614, text: 'territorio, como el río Medellín, las quebradas, los cerros, las áreas protegidas y los suelos de protección. La Estructura Ecológica Complementaria, por su parte, funciona como una red de apoyo. Ayuda a conectar espacios verdes, recuperar zonas intervenidas,' },
-            { pct: 0.0444, text: 'reducir riesgos y extender los beneficios de la naturaleza hacia los barrios y comunidades. Comprender la Estructura Ecológica de Medellín es comprender que la ciudad no está separada de la' },
-            { pct: 0.0444, text: 'naturaleza. La ciudad depende del agua, de las montañas, de los suelos y su protección, de la vegetación y de los ecosistemas que la sostienen. Por eso, cuidar la estructura ecológica' },
-            { pct: 0.0240, text: 'también es cuidar la vida, la seguridad, la salud y la calidad de vida de quienes habitamos el territorio.' },
-          ],
-      },
-      {
-        id: 'm2-riesgo',
-        module: 2,
-        moduleTitle: 'Entender el territorio',
-        title: 'Territorio y gestión del riesgo',
-        desc: 'Reflexión sobre cómo el riesgo se configura en relación con el territorio y sus dinámicas.',
-        type: 'audio',
-        audio: 'audios/M2_Riesgo y territorio.mp3',
-        audioLabel: 'Riesgo y Territorio',
-        transcript: [
-            { pct: 0.0771, text: 'Territorio y gestión del riesgo. En el Plan de Ordenamiento Territorial, la relación entre la geografía natural —laderas, quebradas, tipos de suelos, pendientes y sistemas ecológicos— y la acción humana —urbanización, ocupación del suelo y formas de habitar— es central para comprender la gestión del riesgo y la sostenibilidad ambiental. Estos elementos no actúan de' },
-            { pct: 0.0755, text: 'manera aislada. Por el contrario, se condicionan mutuamente: la geografía define límites, oportunidades y restricciones para la ocupación; y las formas de ocupación pueden aumentar, reducir o transformar las condiciones de riesgo existentes. 1. La geografía como condicionante de la ocupación: La Estructura Ecológica y las áreas de amenaza y riesgo son los soportes' },
-            { pct: 0.0653, text: 'físicos naturales que orientan y condicionan todas las estrategias de intervención en el territorio. Desde esta perspectiva, el POT establece que la ocupación del suelo debe ajustarse a la capacidad de soporte del territorio, especialmente en zonas de ladera, bordes urbano-rurales, retiros de quebrada y' },
-            { pct: 0.0680, text: 'áreas con restricciones topográficas, geológicas e hidrográficas. Esto implica reconocer que no todos los lugares pueden ocuparse de la misma manera ni con la misma intensidad. Por ello, el modelo de ocupación plantea criterios como: Densidades decrecientes: en los bordes y laderas se promueven menores densidades habitacionales,' },
-            { pct: 0.0611, text: 'debido a las limitaciones físicas del terreno y a la presencia de amenazas naturales. Urbanismo ecológico: en las zonas de ladera se busca consolidar el hábitat bajo criterios de sostenibilidad ambiental, mejoramiento integral, protección ecológica y densificación moderada. Ocupación' },
-            { pct: 0.0407, text: 'condicionada: las intervenciones urbanas deben reconocer las características del suelo, las pendientes, la estabilidad de las laderas, la presencia de quebradas y las condiciones de accesibilidad,' },
-            { pct: 0.0660, text: 'servicios e infraestructura 2. Las quebradas como infraestructura natural estratégica. Las quebradas son elementos estructurantes del paisaje y de la red de conectividad ecológica. Sin embargo, cuando sus cauces, retiros o zonas de influencia son ocupados inadecuadamente, se convierten en escenarios de riesgo, especialmente' },
-            { pct: 0.0667, text: 'frente a inundaciones, crecientes súbitas y avenidas torrenciales. Por esta razón, el POT reconoce la importancia de proteger sus áreas de retiro mediante: Zonas de retiro: Se definen fajas laterales paralelas a las corrientes que tienen prohibición de edificación. Su función es permitir la dinámica natural de' },
-            { pct: 0.0606, text: 'las quebradas, reducir la exposición de la población y servir como fajas de protección frente a amenazas hídricas. Control de la ocupación: la urbanización sobre retiros de quebradas, la modificación de cauces, el taponamiento de drenajes o la ocupación de zonas inundables pueden aumentar la' },
-            { pct: 0.0576, text: 'amenaza y agravar las condiciones de riesgo. Ecoparques de quebrada: esta figura permite recuperar ambientalmente las quebradas, proteger el recurso hídrico, restaurar la vegetación, generar espacios públicos y evitar nuevas ocupaciones en zonas ambientalmente sensibles o' },
-            { pct: 0.0455, text: 'expuestas a amenaza. 3. La ladera y los movimientos en masa. Las laderas de Medellín presentan condiciones naturales de inestabilidad asociadas a la pendiente, la geología, los suelos, el agua superficial y subterránea,' },
-            { pct: 0.0788, text: 'y los procesos de transformación del territorio. Estas condiciones pueden agravarse cuando existen formas de ocupación inadecuadas, como cortes del terreno sin manejo técnico, llenos inestables, construcciones sobre escombros, ausencia de drenajes, vertimientos de aguas, deforestación o urbanización en zonas de alta pendiente. En este contexto, el POT incorpora la gestión de' },
-            { pct: 0.0697, text: 'la amenaza por movimientos en masa, entendida como la probabilidad de que ocurran deslizamientos, desprendimientos o desplazamientos de materiales ladera abajo. Para orientar las decisiones de ocupación, estas zonas pueden clasificarse según niveles de amenaza —baja, media o alta— y según sus condiciones de riesgo, con el fin de' },
-            { pct: 0.0879, text: 'definir qué tipo de intervenciones pueden permitirse, condicionarse, mitigarse o restringirse. En conclusión, El POT de Medellín busca equilibrar la ocupación humana con las condiciones naturales del territorio. En este sentido, las quebradas y laderas no deben entenderse únicamente como amenazas, sino también como componentes esenciales de la estructura ecológica, corredores ambientales, espacios públicos potenciales y' },
-            { pct: 0.0576, text: 'soportes para la sostenibilidad urbana. La gestión del riesgo, entonces, no consiste solo en responder a emergencias o identificar zonas peligrosas. También implica ordenar mejor el territorio, reconocer sus límites naturales, evitar nuevas ocupaciones en áreas expuestas y' },
-            { pct: 0.0219, text: 'reducir progresivamente las condiciones de vulnerabilidad socioeconómicas de las poblaciones más expuestas.' },
+            { pct: 0.0421, text: ' moverse y relacionarse con la naturaleza. Allí habita el obrero, el campesino, la mujer cabeza de hogar, población indígena, afro, el migrante y el desplazado. En ocasiones, un mismo habitante reúne varias de estas condiciones:' },
+            { pct: 0.0667, text: ' mujer desplazada por la violencia, ama de casa afrodescendiente, lideresa campesina que ha luchado por los derechos a la vivienda y el hábitat digno. En su borde urbano de ese complejo territorio identificamos caminos, senderos, escaleras, pequeños cultivos, huertas' },
+            { pct: 0.0421, text: ' caseras y viviendas en distintas etapas de consolidación que demuestran la existencia de una comunidad que solo busca la permanencia digna. También se evidencian equipamientos e infraestructura que hablan de una institucionalidad que está llegando, pero requiere mayor presencia.' },
+            { pct: 0.0632, text: ' En su borde rural es más notorio las zonas de protección ambiental, zonas arqueológicas, algunas zonas de cultivo, viviendas campestres y campesinas, los cerros tutelares e inicia la formación de pequeños cuerpos de agua que poco a poco se convierten en' },
+            { pct: 0.0737, text: ' quebradas. En estos bordes también se evidencian tensiones muy fuertes entre crecimiento urbano, control territorial de grupos delincuenciales, conservación y la permanencia de las comunidades. Esta permanencia está asociada a las zonas de alto riesgo no mitigable y las zonas de' },
+            { pct: 0.0421, text: ' protección de ecosistemas estratégicos o retiros de quebradas. El POT de Medellín reconoce que este territorio no puede tratarse como un “vacío” disponible para seguir construyendo.' },
+            { pct: 0.0632, text: ' Por el contrario, lo ubica dentro de las áreas estratégicas de planificación y lo relaciona con varios componentes del ordenamiento territorial: la clasificación del suelo, la estructura ecológica, las áreas de amenaza y riesgo, el sistema público y colectivo y el sistema de ocupación.' },
+            { pct: 0.0702, text: ' Eso significa que el borde no se ordena únicamente con normas de construcción; también se ordena con decisiones sobre espacio público, movilidad, equipamientos, gestión del riesgo, protección ambiental en armonía con los principios y disposiciones de la Política de Protección a Moradores y Actividades Económicas y Productivas.' },
+            { pct: 0.0737, text: ' ¡El Borde Urbano Rural se ordena con su gente y sus ecosistemas! Ahora, para los habitantes, se vive en barrios de ladera que aún requieren mejorar distintos aspectos asociados a la vivienda y el hábitat dignos como el acceso a servicios públicos, regularización y titulación de predios y viviendas, mejor cobertura en educación y salud' },
+            { pct: 0.0526, text: ' y la configuración de espacios de encuentro denominados Espacio Público. Para la administración y planificación territorial, estas son problemáticas comunes que se pueden agrupar en un territorio mayor que también tiene unas condicionantes para su desarrollo y así gestionarlo de manera integral.' },
+            { pct: 0.0632, text: ' En los documentos de revisión de mediano plazo del POT, esta idea se vuelve todavía más precisa. Allí se plantea que el borde urbano-rural debe ordenarse como un patrimonio colectivo. Se propone estabilizar su ocupación, prevenir' },
+            { pct: 0.0702, text: ' procesos de urbanización en condiciones de riesgo o degradación ambiental, orientar el crecimiento hacia zonas con mayor capacidad de soporte y articular la estructura ecológica con sistemas productivos rurales. En otras palabras, el borde no es el lugar donde la ciudad “termina”; es uno de los lugares donde más' },
+            { pct: 0.0807, text: ' claramente se define qué tipo de ciudad quiere ser Medellín. Las palabras que más resuenan son: ciudad incluyente, diversa, adaptada al cambio climático, justa y digna para todas y todos sus habitantes. Y esto tiene una consecuencia muy importante para la ciudadanía.' },
+            { pct: 0.0421, text: ' Hablar del borde no es solo hablar de mapas o de límites administrativos. Es hablar de calidad de vida, de seguridad territorial, de permanencia digna, de acceso a servicios y espacio público, y también de la relación entre la ciudad y su entorno natural.' },
+            { pct: 0.0805, text: ' Por eso, entender el borde urbano rural es entender un territorio donde se juega buena parte del equilibrio futuro de Medellín. Prepara un café y reflexiona sobre esta frase: El borde urbano rural no es una frontera: es un territorio clave para pensar el futuro sostenible de Medellín. Quienes lo habitan tienen saberes, experiencias y propuestas indispensables que aportan en la planificación de la ciudad.' },
           ],
       },
       {
@@ -1198,22 +1145,80 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         audioLabel: 'Tensiones Territoriales',
         transcript: [
             { pct: 0.0500, text: 'Tensiones territoriales en las laderas y el borde urbano-rural de Medellín. Cuando hablamos de las laderas y del borde urbano-rural de Medellín, no estamos hablando solamente de un lugar ubicado entre la ciudad y el campo.' },
-            { pct: 0.0800, text: 'Estamos hablando de territorios vivos, complejos, donde se cruzan distintas formas de habitar, los ecosistemas, el riesgo de desastres, la desigualdad, la historia de las migraciones y el conflicto armado y las formas en que diferentes actores disputan el uso y ocupación del suelo. A estas situaciones las podemos llamar tensiones territoriales. Una primera' },
-            { pct: 0.0500, text: 'tensión aparece entre la urbanización y el riesgo de desastres. En muchas laderas, las familias han construido sus viviendas cerca de quebradas, en zonas de alta pendiente o en áreas expuestas a movimientos en masa,' },
-            { pct: 0.0467, text: 'inundaciones y avenidas torrenciales. También existen viviendas levantadas sobre rellenos inestables, escombreras o terrenos modificados sin las condiciones técnicas adecuadas. Esto no significa que las comunidades' },
-            { pct: 0.0400, text: '“quieran vivir en riesgo”, muchas veces significa que la ciudad no ha ofrecido suficientes alternativas seguras, dignas y accesibles para habitar. Una segunda tensión tiene' },
-            { pct: 0.0467, text: 'que ver con el control territorial y la informalidad. En algunos sectores, actores ilegales se aprovechan de la necesidad de vivienda. Venden lotes de manera irregular, controlan el acceso a materiales de' },
-            { pct: 0.0400, text: 'construcción o intervienen en la conexión informal de servicios básicos. En otros casos, las comunidades deben pagar cobros ilegales por agua, energía, transporte, basuras o seguridad.' },
-            { pct: 0.0700, text: 'Así, el territorio no solo se ocupa: también se controla, se negocia y se disputa. Una tercera tensión está relacionada con el desplazamiento forzado y la revictimización. Las laderas de Medellín han sido, al mismo tiempo, lugares de llegada y de expulsión de población desplazada. Personas que huyen de la' },
-            { pct: 0.0533, text: 'violencia rural o intraurbana terminan ubicándose en barrios donde también existen condiciones de precariedad, control armado o amenaza de nuevos desplazamientos. Esto genera una situación profundamente injusta: quienes buscan protección pueden' },
-            { pct: 0.0633, text: 'quedar nuevamente expuestos a riesgos sociales, económicos y ambientales. Una cuarta tensión se expresa en la precariedad del hábitat y el déficit de servicios. En varios sectores de desarrollo incompleto hay dificultades de acceso a espacio público, equipamientos de salud,' },
-            { pct: 0.0600, text: 'educación, saneamiento básico, movilidad segura y servicios públicos domiciliarios. También existen problemas de tenencia de la tierra. La falta de títulos o condiciones jurídicas claras limita la inversión pública y dificulta los procesos de mejoramiento integral del' },
-            { pct: 0.0433, text: 'hábitat. Una quinta tensión está relacionada con los conflictos de uso del suelo. Por un lado, existe una necesidad real de vivienda. Por otro, hay suelos que cumplen funciones ambientales' },
-            { pct: 0.0700, text: 'fundamentales: protegen quebradas, conservan vegetación, conectan ecosistemas, regulan el agua y ayudan a reducir riesgos. Cuando la presión por ocupar el suelo avanza sobre áreas de protección, se afectan la Estructura Ecológica Principal, los retiros de quebrada, los cerros tutelares y otros espacios clave para la' },
-            { pct: 0.0900, text: 'sostenibilidad de la ciudad. Además, actividades como la minería en el caso específico de Altavista y San Cristóbal -, las quemas de vegetación, el manejo inadecuado de residuos o la ocupación de zonas de protección pueden aumentar los conflictos ambientales y el deterioro del territorio. En resumen, las laderas de Medellín concentran múltiples tensiones: riesgo físico, desigualdad social, informalidad' },
-            { pct: 0.0733, text: 'urbana, presión ambiental, déficit de servicios y disputas por el control del territorio. Por eso, comprender el riesgo no es solo mirar un mapa de amenazas. También es preguntarnos: ¿Quiénes viven allí?, ¿por qué llegaron a ese lugar?, ¿qué condiciones tienen para protegerse?, ¿qué decisiones públicas han faltado?, ¿qué' },
-            { pct: 0.0800, text: 'actores intervienen en el territorio?, y cómo se puede construir una ciudad más segura, justa y ambientalmente responsable. Hablar de tensiones territoriales es reconocer que el riesgo no se produce solamente por la lluvia, la pendiente o la quebrada. El riesgo también se construye socialmente, a partir de decisiones, desigualdades, ausencias, controles' },
-            { pct: 0.0434, text: 'y formas de ocupación del suelo. Comprender esto es el primer paso para transformar nuestro territorio. Tómate un café o una deliciosa aguapanela y responde: ¿Cómo transformamos estas tensiones?' },
+            { pct: 0.0800, text: ' Estamos hablando de territorios vivos, complejos, donde se cruzan distintas formas de habitar, los ecosistemas, el riesgo de desastres, la desigualdad, la historia de las migraciones y el conflicto armado y las formas en que diferentes actores disputan el uso y ocupación del suelo. A estas situaciones las podemos llamar tensiones territoriales.' },
+            { pct: 0.0500, text: ' Una primera tensión aparece entre la urbanización y el riesgo de desastres. En muchas laderas, las familias han construido sus viviendas cerca de quebradas, en zonas de alta pendiente o en áreas expuestas a movimientos en masa,' },
+            { pct: 0.0467, text: ' inundaciones y avenidas torrenciales. También existen viviendas levantadas sobre rellenos inestables, escombreras o terrenos modificados sin las condiciones técnicas adecuadas. Esto no significa que las comunidades' },
+            { pct: 0.0400, text: ' “quieran vivir en riesgo”, muchas veces significa que la ciudad no ha ofrecido suficientes alternativas seguras, dignas y accesibles para habitar.' },
+            { pct: 0.0467, text: ' Una segunda tensión tiene que ver con el control territorial y la informalidad. En algunos sectores, actores ilegales se aprovechan de la necesidad de vivienda. Venden lotes de manera irregular, controlan el acceso a materiales de' },
+            { pct: 0.0400, text: ' construcción o intervienen en la conexión informal de servicios básicos. En otros casos, las comunidades deben pagar cobros ilegales por agua, energía, transporte, basuras o seguridad.' },
+            { pct: 0.0700, text: ' Así, el territorio no solo se ocupa: también se controla, se negocia y se disputa. Una tercera tensión está relacionada con el desplazamiento forzado y la revictimización. Las laderas de Medellín han sido, al mismo tiempo, lugares de llegada y de expulsión de población desplazada. Personas que huyen de la' },
+            { pct: 0.0533, text: ' violencia rural o intraurbana terminan ubicándose en barrios donde también existen condiciones de precariedad, control armado o amenaza de nuevos desplazamientos. Esto genera una situación profundamente injusta: quienes buscan protección pueden' },
+            { pct: 0.0633, text: ' quedar nuevamente expuestos a riesgos sociales, económicos y ambientales. Una cuarta tensión se expresa en la precariedad del hábitat y el déficit de servicios. En varios sectores de desarrollo incompleto hay dificultades de acceso a espacio público, equipamientos de salud,' },
+            { pct: 0.0600, text: ' educación, saneamiento básico, movilidad segura y servicios públicos domiciliarios. También existen problemas de tenencia de la tierra. La falta de títulos o condiciones jurídicas claras limita la inversión pública y dificulta los procesos de mejoramiento integral del' },
+            { pct: 0.0433, text: ' hábitat. Una quinta tensión está relacionada con los conflictos de uso del suelo. Por un lado, existe una necesidad real de vivienda. Por otro, hay suelos que cumplen funciones ambientales' },
+            { pct: 0.0700, text: ' fundamentales: protegen quebradas, conservan vegetación, conectan ecosistemas, regulan el agua y ayudan a reducir riesgos. Cuando la presión por ocupar el suelo avanza sobre áreas de protección, se afectan la Estructura Ecológica Principal, los retiros de quebrada, los cerros tutelares y otros espacios clave para la' },
+            { pct: 0.0900, text: ' sostenibilidad de la ciudad. Además, actividades como la minería en el caso específico de Altavista y San Cristóbal -, las quemas de vegetación, el manejo inadecuado de residuos o la ocupación de zonas de protección pueden aumentar los conflictos ambientales y el deterioro del territorio.' },
+            { pct: 0.0733, text: ' En resumen, las laderas de Medellín concentran múltiples tensiones: riesgo físico, desigualdad social, informalidad urbana, presión ambiental, déficit de servicios y disputas por el control del territorio. Por eso, comprender el riesgo no es solo mirar un mapa de amenazas. También es preguntarnos:' },
+            { pct: 0.0800, text: ' ¿Quiénes viven allí?, ¿por qué llegaron a ese lugar?, ¿qué condiciones tienen para protegerse?, ¿qué decisiones públicas han faltado?, ¿qué actores intervienen en el territorio?, y cómo se puede construir una ciudad más segura, justa y ambientalmente responsable.' },
+            { pct: 0.0434, text: ' Hablar de tensiones territoriales es reconocer que el riesgo no se produce solamente por la lluvia, la pendiente o la quebrada. El riesgo también se construye socialmente, a partir de decisiones, desigualdades, ausencias, controles y formas de ocupación del suelo. Comprender esto es el primer paso para transformar nuestro territorio. Tómate un café o una deliciosa aguapanela y responde: ¿Cómo transformamos estas tensiones?' },
+          ],
+      },
+      {
+        id: 'm2-eep',
+        module: 2,
+        moduleTitle: 'Entender el territorio',
+        title: 'Estructura Ecológica Principal',
+        desc: 'Audio sobre la Estructura Ecológica Principal y su rol en la planificación territorial.',
+        type: 'audio',
+        audio: 'audios/M2_EEP.mp3',
+        audioLabel: 'Estructura Ecológica Principal',
+        transcript: [
+            { pct: 0.0546, text: 'Cuando pensamos en Medellín, muchas veces imaginamos un gran valle urbanizado con el río Aburrá que lo atraviesa o las montañas que rodean la ciudad. Pero Medellín también tiene una red natural que sostiene la vida: quebradas,' },
+            { pct: 0.0717, text: ' cerros, zonas verdes, áreas protegidas, corredores ecológicos y espacios que permiten que el agua, la vegetación, los animales y las personas puedan coexistir. A esta red se le conoce como Estructura Ecológica. La Estructura Ecológica de Medellín puede entenderse como un sistema de áreas conectadas que' },
+            { pct: 0.0683, text: ' tienen un alto valor ambiental. Su función es mantener procesos ecológicos esenciales y ofrecer beneficios para la vida cotidiana, como regulación del agua, protección del suelo, biodiversidad, aire limpio, paisaje, alimentos, espacios de encuentro y bienestar. Además, esta estructura no' },
+            { pct: 0.0614, text: ' funciona de manera aislada. Se conecta con la estructura ecológica regional y aporta al desarrollo social, económico y cultural de la población. Según el Plan de Ordenamiento Territorial, esta estructura se organiza en dos grandes categorías: la Estructura Ecológica' },
+            { pct: 0.0648, text: ' Principal y la Estructura Ecológica Complementaria. La Estructura Ecológica Principal, también llamada EEP. Esta es el nivel de mayor prioridad. Su propósito es conservar, mantener o recuperar las funciones ecológicas más importantes del territorio. Es decir, aquellas' },
+            { pct: 0.0512, text: ' funciones que permiten que la naturaleza siga prestando servicios fundamentales para la ciudad y sus habitantes. La Estructura Ecológica Principal está conformada por áreas protegidas de carácter nacional, regional,' },
+            { pct: 0.0614, text: ' metropolitano y también por áreas protegidas de la sociedad civil. También incluye áreas de interés estratégico, como el sistema hidrográfico: ríos, quebradas y sus retiros; el sistema orográfico: cerros tutelares y cadenas montañosas; y los nodos y enlaces que' },
+            { pct: 0.0580, text: ' permiten la conectividad ecológica o los caminos por donde transitan las especies. Un aspecto clave es que la Estructura Ecológica Principal hace parte del suelo de protección del distrito. Esto significa que son zonas donde la urbanización está' },
+            { pct: 0.0614, text: ' restringida, precisamente porque cumplen funciones ambientales esenciales. En palabras sencillas: son áreas que la ciudad debe cuidar porque sostienen la vida, regulan el agua, protegen el suelo y ayudan a conservar los ecosistemas.' },
+            { pct: 0.0614, text: ' La segunda categoría es la Estructura Ecológica Complementaria, o EEC. Esta tiene un segundo nivel de prioridad, pero también cumple una función muy importante: conectar, reforzar y ampliar los beneficios de la estructura principal. La Estructura Ecológica Complementaria incluye relictos' },
+            { pct: 0.0580, text: ' de vegetación, corredores verdes, áreas transformadas y espacios intervenidos que todavía pueden cumplir funciones ambientales importantes. También incorpora zonas prioritarias para la prevención del riesgo, especialmente frente a movimientos' },
+            { pct: 0.0546, text: ' en masa, inundaciones y avenidas torrenciales. Además, puede incluir áreas importantes para la captura y almacenamiento de carbono, la recarga de acuíferos, el aprovisionamiento de productos forestales y alimentos, los servicios' },
+            { pct: 0.0444, text: ' culturales y los nodos complementarios de conectividad ecológica. Dicho de otra manera, la Estructura Ecológica Complementaria ayuda a que los beneficios ambientales lleguen a más lugares de' },
+            { pct: 0.0546, text: ' la ciudad, especialmente en territorios donde la relación entre urbanización, ladera, quebradas y riesgo es muy estrecha. Entonces, podemos resumirlo así: La Estructura Ecológica Principal protege los elementos naturales base del' },
+            { pct: 0.0614, text: ' territorio, como el río Medellín, las quebradas, los cerros, las áreas protegidas y los suelos de protección. La Estructura Ecológica Complementaria, por su parte, funciona como una red de apoyo. Ayuda a conectar espacios verdes, recuperar zonas intervenidas,' },
+            { pct: 0.0444, text: ' reducir riesgos y extender los beneficios de la naturaleza hacia los barrios y comunidades. Comprender la Estructura Ecológica de Medellín es comprender que la ciudad no está separada de la' },
+            { pct: 0.0444, text: ' naturaleza. La ciudad depende del agua, de las montañas, de los suelos y su protección, de la vegetación y de los ecosistemas que la sostienen. Por eso, cuidar la estructura ecológica' },
+            { pct: 0.0240, text: ' también es cuidar la vida, la seguridad, la salud y la calidad de vida de quienes habitamos el territorio.' },
+          ],
+      },
+      {
+        id: 'm2-riesgo',
+        module: 2,
+        moduleTitle: 'Entender el territorio',
+        title: 'Territorio y gestión del riesgo',
+        desc: 'Reflexión sobre cómo el riesgo se configura en relación con el territorio y sus dinámicas.',
+        type: 'audio',
+        audio: 'audios/M2_Riesgo y territorio.mp3',
+        audioLabel: 'Riesgo y Territorio',
+        transcript: [
+            { pct: 0.0771, text: 'Territorio y gestión del riesgo. En el Plan de Ordenamiento Territorial, la relación entre la geografía natural —laderas, quebradas, tipos de suelos, pendientes y sistemas ecológicos— y la acción humana —urbanización, ocupación del suelo y formas de habitar— es central para comprender la gestión del riesgo y la sostenibilidad ambiental. Estos elementos no actúan de' },
+            { pct: 0.0755, text: ' manera aislada. Por el contrario, se condicionan mutuamente: la geografía define límites, oportunidades y restricciones para la ocupación; y las formas de ocupación pueden aumentar, reducir o transformar las condiciones de riesgo existentes.' },
+            { pct: 0.0653, text: ' 1. La geografía como condicionante de la ocupación: La Estructura Ecológica y las áreas de amenaza y riesgo son los soportes físicos naturales que orientan y condicionan todas las estrategias de intervención en el territorio. Desde esta perspectiva, el POT establece que la ocupación del suelo debe ajustarse a la capacidad de soporte del territorio, especialmente en zonas de ladera, bordes urbano-rurales, retiros de quebrada y' },
+            { pct: 0.0680, text: ' áreas con restricciones topográficas, geológicas e hidrográficas. Esto implica reconocer que no todos los lugares pueden ocuparse de la misma manera ni con la misma intensidad. Por ello, el modelo de ocupación plantea criterios como: Densidades decrecientes: en los bordes y laderas se promueven menores densidades habitacionales,' },
+            { pct: 0.0611, text: ' debido a las limitaciones físicas del terreno y a la presencia de amenazas naturales. Urbanismo ecológico: en las zonas de ladera se busca consolidar el hábitat bajo criterios de sostenibilidad ambiental, mejoramiento integral, protección ecológica y densificación moderada. Ocupación' },
+            { pct: 0.0407, text: ' condicionada: las intervenciones urbanas deben reconocer las características del suelo, las pendientes, la estabilidad de las laderas, la presencia de quebradas y las condiciones de accesibilidad, servicios e infraestructura.' },
+            { pct: 0.0660, text: ' 2. Las quebradas como infraestructura natural estratégica. Las quebradas son elementos estructurantes del paisaje y de la red de conectividad ecológica. Sin embargo, cuando sus cauces, retiros o zonas de influencia son ocupados inadecuadamente, se convierten en escenarios de riesgo, especialmente' },
+            { pct: 0.0667, text: ' frente a inundaciones, crecientes súbitas y avenidas torrenciales. Por esta razón, el POT reconoce la importancia de proteger sus áreas de retiro mediante: Zonas de retiro: Se definen fajas laterales paralelas a las corrientes que tienen prohibición de edificación. Su función es permitir la dinámica natural de' },
+            { pct: 0.0606, text: ' las quebradas, reducir la exposición de la población y servir como fajas de protección frente a amenazas hídricas. Control de la ocupación: la urbanización sobre retiros de quebradas, la modificación de cauces, el taponamiento de drenajes o la ocupación de zonas inundables pueden aumentar la' },
+            { pct: 0.0576, text: ' amenaza y agravar las condiciones de riesgo. Ecoparques de quebrada: esta figura permite recuperar ambientalmente las quebradas, proteger el recurso hídrico, restaurar la vegetación, generar espacios públicos y evitar nuevas ocupaciones en zonas ambientalmente sensibles o' },
+            { pct: 0.0455, text: ' expuestas a amenaza. 3. La ladera y los movimientos en masa. Las laderas de Medellín presentan condiciones naturales de inestabilidad asociadas a la pendiente, la geología, los suelos, el agua superficial y subterránea,' },
+            { pct: 0.0788, text: ' y los procesos de transformación del territorio. Estas condiciones pueden agravarse cuando existen formas de ocupación inadecuadas, como cortes del terreno sin manejo técnico, llenos inestables, construcciones sobre escombros, ausencia de drenajes, vertimientos de aguas, deforestación o urbanización en zonas de alta pendiente. En este contexto, el POT incorpora la gestión de' },
+            { pct: 0.0697, text: ' la amenaza por movimientos en masa, entendida como la probabilidad de que ocurran deslizamientos, desprendimientos o desplazamientos de materiales ladera abajo. Para orientar las decisiones de ocupación, estas zonas pueden clasificarse según niveles de amenaza —baja, media o alta— y según sus condiciones de riesgo, con el fin de' },
+            { pct: 0.0879, text: ' definir qué tipo de intervenciones pueden permitirse, condicionarse, mitigarse o restringirse. En conclusión, El POT de Medellín busca equilibrar la ocupación humana con las condiciones naturales del territorio. En este sentido, las quebradas y laderas no deben entenderse únicamente como amenazas, sino también como componentes esenciales de la estructura ecológica, corredores ambientales, espacios públicos potenciales y' },
+            { pct: 0.0576, text: ' soportes para la sostenibilidad urbana. La gestión del riesgo, entonces, no consiste solo en responder a emergencias o identificar zonas peligrosas. También implica ordenar mejor el territorio, reconocer sus límites naturales, evitar nuevas ocupaciones en áreas expuestas y' },
+            { pct: 0.0219, text: ' reducir progresivamente las condiciones de vulnerabilidad socioeconómicas de las poblaciones más expuestas.' },
           ],
       },
       {
@@ -1249,8 +1254,32 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         videoSubtitled: 'videos/Subtitulado - M3_Capacidades.mp4',
         images: [
           { src: 'img/M3_AVECR.png', label: 'AVECR — Diagrama' },
-          { src: 'img/M3_Vulnerabilidad.png', label: 'Vulnerabilidad — Esquema' },
           { src: 'img/M3_CapacidadesR.png', label: 'Capacidades — Infografía' }
+        ]
+      },
+      {
+        id: 'm3-vulnerabilidad',
+        module: 3,
+        moduleTitle: 'La construcción del riesgo',
+        title: 'Las condiciones y dimensiones de la vulnerabilidad',
+        desc: 'Comprende qué es la vulnerabilidad: una condición social y territorial que puede cambiar.',
+        type: 'images',
+        images: [
+          { src: 'img/M3_Vulnerabilidad.png', label: 'Vulnerabilidad — Condiciones y dimensiones' }
+        ]
+      },
+      {
+        id: 'm3-calidadvida',
+        module: 3,
+        moduleTitle: 'La construcción del riesgo',
+        title: 'Aspectos cotidianos del riesgo desde los indicadores de calidad de vida',
+        desc: 'Analiza los afiches sobre los indicadores de calidad de vida en las comunas 1, 3 y 8.',
+        type: 'images',
+        images: [
+          { src: 'img/M3_Afiche1.jpg', label: 'Calidad de vida — Afiche 1' },
+          { src: 'img/M3_Afiche2.jpg', label: 'Calidad de vida — Afiche 2' },
+          { src: 'img/M3_Afiche3.jpg', label: 'Calidad de vida — Afiche 3' },
+          { src: 'img/M3_Afiche4.jpg', label: 'Calidad de vida — Afiche 4' }
         ]
       },
       {
@@ -1314,6 +1343,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         desc: 'Reconoce las señales tempranas de riesgo en la vivienda, el terreno, las vías y el entorno.',
         type: 'pdf',
         pdf: 'pdfs/M4_Monitoreo_senales.pdf',
+        pdfCover: 'img/M4_Monitoreo_senales_portada.jpg',
         pdfLabel: 'Guía de Monitoreo de Señales',
         images: [
           { src: 'img/M4_Comunidad.png', label: 'Comunidad y Gestión del Riesgo' }
@@ -1327,6 +1357,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         desc: 'Manual del Geoportal GeoHazards para consultar información territorial y aportar a la toma de decisiones.',
         type: 'pdf',
         pdf: 'pdfs/M4_Geoportal.pdf',
+        pdfCover: 'img/M4_Geoportal_portada.jpg',
         pdfLabel: 'Manual del Geoportal',
         links: [
           { href: 'https://geohazards.com.co/', label: '🌐 Visitar el Geoportal GeoHazards' }
@@ -1998,7 +2029,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </div>`;
       if (l.pdf) {
         content += `<div class="pdf-list"><div class="pdf-item">
-          <div class="pdf-icon">PDF</div>
+          ${l.pdfCover ? `<img class="pdf-cover" src="${l.pdfCover}" alt="Portada de ${l.pdfLabel || 'documento'}" />` : `<div class="pdf-icon">PDF</div>`}
           <div class="pdf-info"><div class="pdf-title">${l.pdfLabel || 'Material complementario'}</div></div>
           <a href="${l.pdf}" target="_blank">Descargar</a>
         </div></div>`;
@@ -2041,8 +2072,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     }
 
     if (l.type === 'pdf') {
-      content += `<div class="pdf-list"><div class="pdf-item">
-        <div class="pdf-icon">PDF</div>
+      content += `<div class="pdf-list"><div class="pdf-item pdf-item-lg">
+        ${l.pdfCover ? `<img class="pdf-cover" src="${l.pdfCover}" alt="Portada de ${l.pdfLabel || 'documento'}" />` : `<div class="pdf-icon">PDF</div>`}
         <div class="pdf-info"><div class="pdf-title">${l.pdfLabel || 'Documento'}</div></div>
         <a href="${l.pdf}" target="_blank">Abrir PDF</a>
       </div></div>
