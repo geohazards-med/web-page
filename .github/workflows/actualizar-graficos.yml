@@ -2,7 +2,7 @@ name: Actualizar gráficos de amenaza por lluvia
 
 on:
   schedule:
-    - cron: "0 11 * * *" # 6:00 a. m. Colombia
+    - cron: "0 11 * * *"
   workflow_dispatch:
 
 permissions:
@@ -13,19 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Código fuente y scripts desde master
-      - name: Checkout master
-        uses: actions/checkout@v4
-        with:
-          ref: master
-          path: source
-
-      # Rama que contiene lo publicado por GitHub Pages
       - name: Checkout gh-pages
         uses: actions/checkout@v4
         with:
           ref: gh-pages
-          path: pages
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -33,15 +24,14 @@ jobs:
           python-version: "3.11"
 
       - name: Instalar dependencias
-        run: pip install -r source/scripts/amenaza/requirements.txt
+        run: pip install -r scripts/amenaza/requirements.txt
 
       - name: Generar gráficos
         env:
-          AMENAZA_OUTPUT_DIR: ${{ github.workspace }}/pages/graphs
-        run: python source/scripts/amenaza/Calculo_Amenaza.py
+          AMENAZA_OUTPUT_DIR: graphs
+        run: python scripts/amenaza/Calculo_Amenaza.py
 
       - name: Commit y push si hay cambios
-        working-directory: pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
