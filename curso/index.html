@@ -1865,7 +1865,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     card.classList.add(isCorrect ? 'correct' : 'wrong');
     feedback.className = 'quiz-feedback show ' + (isCorrect ? 'fb-correct' : 'fb-wrong');
     feedback.textContent = isCorrect ? '✅ ' + q.feedback : '❌ Respuesta incorrecta. La opción correcta es: ' + q.opts[q.ans] + '.';
-    if (!isCorrect) feedback.innerHTML += ' <button class="retry-btn" onclick="retryQuestion(' + modIdx + ',' + qi + ')">🔄 Reintentar pregunta</button>';
+    if (!isCorrect) feedback.innerHTML += ' <button class="retry-btn" onclick="retryQuestion(' + modIdx + ',' + qi + ')">🔄 Reintentar pregunta </button>';
     if (isCorrect) spawnConfetti();
     quizState[modIdx].answers[qi] = isCorrect;
     updateQuizDot(modIdx, qi, isCorrect);
