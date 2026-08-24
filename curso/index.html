@@ -41,28 +41,15 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #FDF6EC;
-      background-image:
-        repeating-radial-gradient(circle at 30% 40%, rgba(138,79,42,0.025) 0px, transparent 1px, transparent 22px),
-        repeating-radial-gradient(circle at 70% 60%, rgba(217,154,43,0.018) 0px, transparent 1px, transparent 28px),
-        radial-gradient(circle at 50% 50%, rgba(217,154,43,0.18) 0%, transparent 55%),
-        radial-gradient(circle at 50% 50%, rgba(138,79,42,0.13) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(96,122,75,0.10) 0%, transparent 45%);
+      background-color: #F0E6D2;
+      background-image: url('img/redesign/fondo-curso-v1.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       background-attachment: fixed;
-      background-size: auto, auto, 30% 30%, 40% 40%, 35% 35%;
-      animation: centerWave 40s ease-in-out infinite;
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
-    }
-    @keyframes centerWave {
-      0%   { background-color: #FDF6EC; background-size: auto, auto, 30% 30%, 40% 40%, 35% 35%; }
-      16%  { background-color: #F5E6D3; background-size: auto, auto, 160% 160%, 60% 60%, 50% 50%; }
-      33%  { background-color: #E8D5C0; background-size: auto, auto, 70% 70%, 170% 170%, 55% 55%; }
-      50%  { background-color: #DCE8D0; background-size: auto, auto, 55% 55%, 50% 50%, 175% 175%; }
-      66%  { background-color: #F0E0C8; background-size: auto, auto, 165% 165%, 65% 65%, 50% 50%; }
-      83%  { background-color: #F5E6D3; background-size: auto, auto, 50% 50%, 165% 165%, 60% 60%; }
-      100% { background-color: #FDF6EC; background-size: auto, auto, 30% 30%, 40% 40%, 35% 35%; }
     }
     a { color: inherit; }
     button { font-family: inherit; }
@@ -138,7 +125,8 @@
     .topbar-links { display: flex; align-items: center; gap: .3rem; flex-shrink: 0; }
     .topbar-links a { display: inline-flex; align-items: center; gap: .3rem; text-decoration: none; font-size: .68rem; font-weight: 600; color: var(--text-muted); padding: .3rem .55rem; border-radius: 8px; transition: background .2s, color .2s; white-space: nowrap; }
     .topbar-links a:hover { background: var(--primary-soft); color: var(--primary); }
-    .topbar-links a .tl-icon { font-size: .9rem; }
+    .topbar-links a .tl-icon { font-size: .9rem; display: inline-flex; }
+    .topbar-links a .tl-icon svg { width: 15px; height: 15px; display: block; }
     @media (max-width: 480px) { .topbar-links a .tl-label { display: none; } }
     @media (min-width: 560px) { .topbar-progress-track { display: block; } }
 
@@ -252,6 +240,13 @@
     .course-objective h3 { font-size: .95rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: #F0C874; margin-bottom: .5rem; }
     .course-objective p { font-size: .95rem; line-height: 1.65; color: var(--on-dark); }
 
+    .module-outcomes { display: flex; gap: 1.15rem; margin: 0 0 1.5rem; padding: 1.5rem 1.75rem; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: var(--on-dark); border-radius: var(--radius); box-shadow: var(--shadow-md); align-items: flex-start; }
+    .module-outcomes .mo-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: .15rem; }
+    .module-outcomes h3 { font-size: .95rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: #F0C874; margin-bottom: .6rem; }
+    .module-outcomes ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .module-outcomes li { font-size: .92rem; line-height: 1.55; color: var(--on-dark); padding-left: 1.3rem; position: relative; }
+    .module-outcomes li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+
     .mission-card {
       position: relative;
       border: none;
@@ -306,6 +301,10 @@
     .back-link:hover { background: rgba(255,255,255,0.24); }
     .module-banner-content h1 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: .5rem; }
     .module-banner-content p { font-size: .93rem; color: var(--on-dark-muted); max-width: 68ch; line-height: 1.6; }
+    .module-competencia { font-size: .85rem !important; color: var(--on-dark-muted) !important; max-width: 62ch; margin-top: .5rem; line-height: 1.55 !important; }
+    .module-competencia strong { color: var(--on-dark); }
+    .module-meta-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
+    .module-meta-chip { display: inline-flex; align-items: center; gap: .4rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); color: var(--on-dark); font-size: .78rem; font-weight: 600; padding: .35rem .8rem; border-radius: 99px; }
     .module-progress-row { display: flex; align-items: center; gap: .7rem; margin-top: 1.1rem; max-width: 320px; }
     .module-progress-track { flex: 1; height: 7px; background: rgba(255,255,255,0.2); border-radius: 99px; overflow: hidden; }
     .module-progress-fill { height: 100%; background: var(--accent); border-radius: 99px; transform-origin: left; transition: transform .5s ease; }
@@ -351,6 +350,9 @@
     .lesson-back .back-link:hover { background: var(--accent-light); }
     .lesson-title { font-size: 1.65rem; font-weight: 800; margin-bottom: .5rem; color: var(--primary-dark); line-height: 1.2; }
     .lesson-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+    .lesson-intro { margin: 0 0 2rem; }
+    .lesson-intro p { font-size: 1rem; line-height: 1.75; color: var(--text); margin-bottom: 1rem; }
+    .lesson-intro p:last-child { margin-bottom: 0; }
 
     .player-section {
       background: #1a1410;
@@ -459,6 +461,17 @@
     .text-content p { margin-bottom: 1.1rem; }
     .text-content ul { padding-left: 1.5rem; margin-bottom: 1.1rem; }
     .text-content li { margin-bottom: .5rem; }
+    .reflection-note {
+      margin-top: 1.2rem;
+      padding: .85rem 1.1rem;
+      background: rgba(62,95,102,0.09);
+      border: 1px solid var(--blue);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius-sm);
+      font-size: .92rem;
+      color: var(--ink);
+      line-height: 1.55;
+    }
     .complete-note {
       margin-top: 1.2rem;
       padding: .85rem 1.1rem;
@@ -755,6 +768,19 @@
     .order-check-btn:disabled { opacity: .5; cursor: default; }
     .order-feedback { text-align: center; margin-top: .8rem; font-weight: 600; }
 
+    /* Match question */
+    .match-area { display: flex; gap: .8rem; margin-bottom: .6rem; }
+    .match-col { flex: 1; display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
+    .match-item { background: white; border: 2px solid var(--border); border-radius: var(--radius-sm); padding: .6rem .8rem; cursor: pointer; font-size: .84rem; line-height: 1.35; transition: all .2s; display: flex; align-items: flex-start; gap: .55rem; user-select: none; text-align: left; font-family: inherit; width: 100%; }
+    .match-item:hover:not(.matched) { border-color: var(--accent); background: var(--accent-light); }
+    .match-item .match-num, .match-item .match-letter { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--primary-soft); color: var(--primary); font-weight: 800; font-size: .72rem; flex-shrink: 0; }
+    .match-item.selected { border-color: var(--accent); background: var(--accent-light); box-shadow: 0 0 0 2px rgba(0,0,0,0.03); }
+    .match-item.matched { opacity: .55; border-style: dashed; cursor: default; }
+    .match-item.matched .match-num, .match-item.matched .match-letter { background: var(--primary); color: white; }
+    .match-item.correct { opacity: 1; border-style: solid; border-color: var(--green); background: rgba(96,122,75,0.1); }
+    .match-item.wrong { opacity: 1; border-style: solid; border-color: var(--red); background: rgba(169,68,56,0.1); }
+    .match-tag { margin-left: auto; background: var(--primary); color: white; border-radius: 99px; width: 20px; height: 20px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 800; }
+
     /* Complete question */
     .complete-sentence { font-size: 1rem; padding: 1rem 1.2rem; background: var(--bg); border-radius: var(--radius-sm); border: 1.5px solid var(--border); line-height: 1.7; margin-bottom: 1rem; }
     .complete-sentence .blank { display: inline-block; min-width: 100px; border-bottom: 3px solid var(--accent); padding: 0 .3rem; font-weight: 800; color: var(--primary); transition: all .3s; }
@@ -803,6 +829,7 @@
     .forum-head h3 { font-size: 1rem; font-weight: 800; }
     .forum-head p { font-size: .8rem; opacity: .9; }
     .forum-body { padding: 1.4rem 1.5rem; }
+    .forum-pending { font-size: .8rem; font-weight: 700; color: var(--accent-dark); background: var(--accent-light); border: 1px solid var(--accent); border-radius: 99px; padding: .4rem .85rem; display: inline-block; margin-bottom: .9rem; }
     .forum-q { font-size: .95rem; font-weight: 600; color: var(--text); margin-bottom: 1rem; line-height: 1.55; }
     .forum-q .forum-tag { display: inline-block; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; background: rgba(96,122,75,0.12); color: var(--green); padding: .15rem .5rem; border-radius: 99px; margin-right: .4rem; }
     .forum-list { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1rem; max-height: 260px; overflow-y: auto; }
@@ -810,7 +837,17 @@
     .forum-msg .fm-meta { font-size: .72rem; font-weight: 700; color: var(--primary); margin-bottom: .25rem; display: flex; justify-content: space-between; gap: .5rem; }
     .forum-msg .fm-time { font-weight: 500; color: var(--text-light); }
     .forum-msg .fm-text { font-size: .88rem; color: var(--text); line-height: 1.5; }
+    .forum-empty { text-align: center; color: var(--text-muted); font-size: .85rem; padding: .6rem 0; }
     .forum-input { display: flex; gap: .5rem; }
+
+    .glossary-card { margin-top: 1.5rem; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: hidden; }
+    .glossary-head { padding: 1.1rem 1.5rem; background: linear-gradient(135deg, var(--primary), var(--accent-dark)); color: #fff; display: flex; align-items: center; gap: .8rem; }
+    .glossary-head .gl-icon { font-size: 1.4rem; }
+    .glossary-head h3 { font-size: 1rem; font-weight: 800; }
+    .glossary-head p { font-size: .8rem; opacity: .9; }
+    .glossary-list { padding: 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .glossary-list .gl-item dt { font-size: .92rem; font-weight: 800; color: var(--primary-dark); margin-bottom: .3rem; }
+    .glossary-list .gl-item dd { font-size: .88rem; color: var(--text-muted); line-height: 1.6; }
     .forum-input textarea { flex: 1; resize: vertical; min-height: 54px; padding: .6rem .8rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: inherit; font-size: .88rem; color: var(--text); }
     .forum-input textarea:focus { outline: none; border-color: var(--green); }
     .forum-send { background: var(--green); color: #fff; border: none; border-radius: var(--radius-sm); padding: 0 1.1rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: background .2s; }
@@ -825,6 +862,9 @@
     .cert-banner .cert-body .cert-user { font-weight: 700; color: var(--accent-dark); }
     .cert-btn { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--ink); border: none; border-radius: var(--radius-sm); padding: .8rem 1.4rem; font-weight: 800; font-size: .92rem; cursor: pointer; font-family: inherit; white-space: nowrap; transition: transform .2s, box-shadow .2s; }
     .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
+    .cert-actions { display: flex; flex-direction: column; gap: .55rem; flex-shrink: 0; }
+    .cert-btn-secondary { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
+    .cert-btn-secondary:hover { background: var(--primary); color: #fff; }
 
     /* Overlay certificado */
     .cert-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 100; display: none; align-items: center; justify-content: center; padding: 1.5rem; }
@@ -839,6 +879,32 @@
     .cert-modal .cm-meta { margin-top: 1.5rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--text-muted); font-size: .76rem; }
     .cert-modal .cm-print { margin-top: 1.6rem; background: var(--primary); color: #fff; border: none; border-radius: var(--radius-sm); padding: .75rem 1.5rem; font-weight: 700; font-family: inherit; cursor: pointer; }
     .cert-modal .cm-print:hover { background: var(--primary-dark); }
+
+    /* Course evaluation modal */
+    .eval-modal { max-width: 620px; text-align: left; max-height: 88vh; overflow-y: auto; }
+    .eval-modal .cm-badge, .eval-modal h2, .eval-modal .cm-sub { text-align: center; }
+    .eval-field { margin-top: 1.4rem; }
+    .eval-field label { display: block; font-weight: 700; font-size: .9rem; color: var(--text); margin-bottom: .5rem; }
+    .eval-field textarea { width: 100%; min-height: 80px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: .7rem .85rem; font-family: inherit; font-size: .88rem; resize: vertical; box-sizing: border-box; }
+    .eval-field textarea:focus { outline: none; border-color: var(--accent); }
+    .rating-row { display: flex; gap: .45rem; }
+    .rating-btn { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--border); background: #fff; font-weight: 800; font-size: .9rem; cursor: pointer; font-family: inherit; color: var(--text); transition: all .15s; }
+    .rating-btn:hover { border-color: var(--accent); background: var(--accent-light); }
+    .rating-btn.picked { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .eval-module-ratings { display: flex; flex-direction: column; gap: .7rem; }
+    .eval-module-ratings .emr-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .eval-module-ratings .emr-row span { font-size: .85rem; color: var(--text-muted); font-weight: 600; }
+    .eval-module-pick { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .eval-module-pick button { border: 1.5px solid var(--border); background: #fff; border-radius: 99px; padding: .45rem 1rem; font-size: .82rem; font-weight: 700; cursor: pointer; font-family: inherit; color: var(--text); transition: all .15s; }
+    .eval-module-pick button:hover { border-color: var(--accent); background: var(--accent-light); }
+    .eval-module-pick button.picked { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .eval-submit-btn { margin-top: 1.6rem; width: 100%; background: var(--primary); color: #fff; border: none; border-radius: var(--radius-sm); padding: .85rem 1.5rem; font-weight: 700; font-family: inherit; font-size: .95rem; cursor: pointer; }
+    .eval-submit-btn:hover { background: var(--primary-dark); }
+    .eval-submit-btn:disabled { opacity: .6; cursor: default; }
+    .eval-thanks { text-align: center; padding: 1.5rem 0; }
+    .eval-thanks .et-icon { font-size: 2.6rem; }
+    .eval-thanks h3 { margin-top: .6rem; color: var(--primary-dark); }
+    .eval-thanks p { margin-top: .4rem; color: var(--text-muted); font-size: .9rem; }
 
     @keyframes quizPop { 0% { transform: scale(0.85); opacity: 0; } 60% { transform: scale(1.04); } 100% { transform: scale(1); opacity: 1; } }
     .quiz-card { animation: quizPop .35s ease-out both; }
@@ -946,9 +1012,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <span class="topbar-progress-label" id="topbarProgressLabel">0/0</span>
   </div>
   <div class="topbar-links">
-    <a href="../index.html"><span class="tl-icon">🏠</span><span class="tl-label">Principal</span></a>
-    <a href="../comunidad.html"><span class="tl-icon">🌐</span><span class="tl-label">Comunidad</span></a>
-    <a href="#" id="signupLink" onclick="handleSignupLink()"><span class="tl-icon" id="signupIcon">📝</span><span class="tl-label" id="signupLabel">Inscribirse</span></a>
+    <a href="../index.html"><span class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg></span><span class="tl-label">Principal</span></a>
+    <a href="../comunidad.html"><span class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg></span><span class="tl-label">Comunidad</span></a>
+    <a href="#" id="signupLink" onclick="handleSignupLink()"><span class="tl-icon" id="signupIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-6"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg></span><span class="tl-label" id="signupLabel">Inscribirse</span></a>
   </div>
   </div>
 </header>
@@ -994,8 +1060,50 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   </div>
 </div>
 
+<div class="cert-overlay" id="evalOverlay">
+  <div class="cert-modal eval-modal" id="evalModal"></div>
+</div>
+
 <!-- ══ FAB: Jump to audio ══ -->
 <button class="fab-audio" id="fabAudio" onclick="jumpToAudio()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> Ir al audio</button>
+
+<!-- ══ Firebase: inscripciones y foro compartido ══ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA0BlphLWmD1akJY4HU1z3vbDu6IZwPgxs",
+    authDomain: "curso-comprension-riesgo.firebaseapp.com",
+    projectId: "curso-comprension-riesgo",
+    storageBucket: "curso-comprension-riesgo.firebasestorage.app",
+    messagingSenderId: "864553335455",
+    appId: "1:864553335455:web:b2d514f804f809afeb80aa"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.CursoDB = {
+    async addSignup(name, email) {
+      await addDoc(collection(db, 'signups'), { name, email, createdAt: serverTimestamp() });
+    },
+    async addForumPost(modIdx, name, text) {
+      await addDoc(collection(db, 'forum_posts'), { module: modIdx, name, text, createdAt: serverTimestamp() });
+    },
+    async addCourseEvaluation(data) {
+      await addDoc(collection(db, 'course_evaluations'), { ...data, createdAt: serverTimestamp() });
+    },
+    async getForumPosts(modIdx) {
+      const q = query(collection(db, 'forum_posts'), where('module', '==', modIdx));
+      const snap = await getDocs(q);
+      return snap.docs.map(d => {
+        const data = d.data();
+        return { name: data.name, text: data.text, date: data.createdAt ? data.createdAt.toDate().toISOString() : new Date().toISOString() };
+      });
+    }
+  };
+</script>
 
 <script>
     // ── Course Data ──────────────────────────────────────
@@ -1048,6 +1156,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'Introducción al ordenamiento territorial',
         title: '¿Qué es el POT?',
         desc: 'Video explicativo sobre el Plan de Ordenamiento Territorial, su marco legal y su aplicación en Medellín.',
+        intro: '<p>El POT es la hoja de ruta ciudadana: establece dónde construir, cómo mejorar movilidad, espacio público, servicios y cómo crecer sin destruir lo que somos. Su vigencia es de 12 años (corto, mediano y largo plazo).</p><p>El POT es un acuerdo social, un pacto que busca equilibrio entre lo urbano y lo ambiental, entre lo público y lo privado, entre el crecimiento y la sostenibilidad. Afecta lo que vivimos todos los días: el transporte, los parques, las viviendas, los servicios.</p>',
         type: 'video',
         video: 'videos/M1_POT.mp4',
         videoSubtitled: 'videos/Subtitulado-M1_POT.mp4',
@@ -1056,30 +1165,32 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         pdfLabel: 'A-B-C-E del POT'
       },
       {
-        id: 'm1-modelo',
-        module: 1,
-        moduleTitle: 'Introducción al ordenamiento territorial',
-        title: 'Modelo de Ocupación',
-        desc: 'Video que explica el modelo de ocupación territorial propuesto en el POT de Medellín.',
-        type: 'video',
-        video: 'videos/M1_modeloOcupacion.mp4',
-        videoSubtitled: 'videos/Subtitulado-M1_ModeloOcupacion_.mp4',
-        pdf: 'pdfs/M1_Modelo de Ocupación.pdf',
-        pdfCover: 'img/M1_ModeloOcupacion_portada.jpg',
-        pdfLabel: 'Modelo de Ocupación PDF'
-      },
-      {
         id: 'm1-sistema',
         module: 1,
         moduleTitle: 'Introducción al ordenamiento territorial',
         title: 'Sistema del POT',
         desc: 'Conoce la estructura general del sistema del POT: componentes, instrumentos y escalas de planificación.',
+        intro: '<p>El POT es la hoja de ruta ciudadana: establece dónde construir, cómo mejorar movilidad, espacio público, servicios y cómo crecer sin destruir lo que somos. Su vigencia es de 12 años (corto, mediano y largo plazo).</p><p>El POT es un acuerdo social, un pacto que busca equilibrio entre lo urbano y lo ambiental, entre lo público y lo privado, entre el crecimiento y la sostenibilidad. Afecta lo que vivimos todos los días: el transporte, los parques, las viviendas, los servicios.</p>',
         type: 'video',
         video: 'videos/M1_SistemaPOT.mp4',
         videoSubtitled: 'videos/Subtitulado-M1_SistemaPOT_.mp4',
         pdf: 'pdfs/M1_ABECE_POT_V3.pdf',
         pdfCover: 'img/M1_ABECE_POT_V3_portada.jpg',
         pdfLabel: 'Descargar A-B-C-E del POT'
+      },
+      {
+        id: 'm1-modelo',
+        module: 1,
+        moduleTitle: 'Introducción al ordenamiento territorial',
+        title: 'Modelo de Ocupación',
+        desc: 'Video que explica el modelo de ocupación territorial propuesto en el POT de Medellín.',
+        intro: '<p>El Modelo de Ocupación es la forma en que Medellín organiza su territorio y decide cómo quiere crecer, transformarse y protegerse en el futuro. Este modelo orienta decisiones importantes sobre dónde se puede construir, qué zonas deben protegerse, cómo se conectan los barrios, dónde se ubican los servicios, cómo se cuidan las laderas, el río, las quebradas y las áreas rurales, y cómo se busca una ciudad más equilibrada y justa para todas las personas.</p>',
+        type: 'video',
+        video: 'videos/M1_modeloOcupacion.mp4',
+        videoSubtitled: 'videos/Subtitulado-M1_ModeloOcupacion_.mp4',
+        pdf: 'pdfs/M1_Modelo de Ocupación.pdf',
+        pdfCover: 'img/M1_ModeloOcupacion_portada.jpg',
+        pdfLabel: 'Modelo de Ocupación PDF'
       },
       // ── Module 2: Territorio y Riesgo ──
       {
@@ -1112,6 +1223,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'Entender el territorio',
         title: 'BURNOR — Borde Urbano Rural Nororiental',
         desc: 'Audio que describe las características del Borde Urbano Rural Nororiental como territorio de estudio.',
+        intro: '<p><strong>Borde urbano rural:</strong> El actual Plan de Ordenamiento Territorial del Distrito de Medellín (Acuerdo 48 de 2014) establece que el Borde Urbano Rural corresponde a las áreas del borde urbano y del borde rural que deben planificarse integralmente para mejorar sistemas públicos, cualificar barrios, reordenar y mejorar unidades de planificación rural, recuperar zonas en condición de riesgo, propiciar reasentamientos, preferentemente en sitio, preservar suelos de protección y potenciar suelos para producción rural. Su finalidad explícita es orientar el crecimiento urbano hacia zonas adecuadas, bajar la presión sobre áreas de protección ambiental y/o riesgo y favorecer el mejoramiento integral.</p>',
         type: 'audio',
         audio: 'audios/M2_BURNOR.mp3',
         audioLabel: 'BURNOR',
@@ -1140,6 +1252,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'Entender el territorio',
         title: 'Tensiones Territoriales',
         desc: 'Análisis de las principales tensiones que enfrenta el territorio en términos de ocupación y uso del suelo.',
+        intro: '<p>Una tensión territorial ocurre cuando las formas de habitar, cuidar, transformar y defender un territorio entran en fricción con decisiones técnicas, normativas, económicas o institucionales sobre el uso del suelo, la gestión del riesgo, la infraestructura, la conservación ambiental o la regularización urbana.</p>',
         type: 'audio',
         audio: 'audios/M2_Tensiones.mp3',
         audioLabel: 'Tensiones Territoriales',
@@ -1169,6 +1282,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'Entender el territorio',
         title: 'Estructura Ecológica Principal',
         desc: 'Audio sobre la Estructura Ecológica Principal y su rol en la planificación territorial.',
+        intro: '<p>La Estructura Ecológica (EE) de Medellín se define como el sistema interconectado de áreas con alto valor ambiental que sustenta los procesos ecológicos esenciales y la oferta de servicios ecosistémicos. Este sistema se integra con la estructura regional para brindar soporte al desarrollo socioeconómico y cultural de la población.</p>',
         type: 'audio',
         audio: 'audios/M2_EEP.mp3',
         audioLabel: 'Estructura Ecológica Principal',
@@ -1199,6 +1313,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'Entender el territorio',
         title: 'Territorio y gestión del riesgo',
         desc: 'Reflexión sobre cómo el riesgo se configura en relación con el territorio y sus dinámicas.',
+        intro: '<p>En el Plan de Ordenamiento Territorial, la relación entre la geografía natural —laderas, quebradas, tipos de suelos, pendientes y sistemas ecológicos— y la acción humana —urbanización, ocupación del suelo y formas de habitar— es central para comprender la gestión del riesgo y la sostenibilidad ambiental.</p>',
         type: 'audio',
         audio: 'audios/M2_Riesgo y territorio.mp3',
         audioLabel: 'Riesgo y Territorio',
@@ -1249,6 +1364,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'La construcción del riesgo',
         title: 'Diferencias entre los conceptos',
         desc: 'Video e infografías para diferenciar amenaza, vulnerabilidad, exposición, capacidades y riesgo.',
+        intro: '<p>El riesgo es el resultado de la relación entre esos elementos. Existe riesgo cuando una amenaza puede afectar a personas o bienes expuestos, especialmente si tienen condiciones de vulnerabilidad y pocas capacidades para anticiparse, responder o recuperarse.</p><p>De forma sencilla: Riesgo = amenaza + exposición + vulnerabilidad, considerando las capacidades disponibles. A mayor amenaza, exposición y vulnerabilidad, mayor riesgo. A mayores capacidades, menor puede ser el riesgo.</p>',
         type: 'video',
         video: 'videos/M3_Capacidades.mp4',
         videoSubtitled: 'videos/Subtitulado - M3_Capacidades.mp4',
@@ -1263,6 +1379,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'La construcción del riesgo',
         title: 'Las condiciones y dimensiones de la vulnerabilidad',
         desc: 'Comprende qué es la vulnerabilidad: una condición social y territorial que puede cambiar.',
+        intro: '<p>La vulnerabilidad es la condición que hace que una persona, familia, vivienda o comunidad pueda sufrir mayores daños cuando ocurre una amenaza, como una lluvia fuerte, un deslizamiento, una inundación, una avenida torrencial, un incendio o una emergencia social.</p><p>No significa "debilidad" de las personas. Significa que existen condiciones físicas, sociales, económicas, institucionales u organizativas que pueden aumentar el impacto de una situación de riesgo.</p>',
         type: 'images',
         images: [
           { src: 'img/M3_Vulnerabilidad.png', label: 'Vulnerabilidad — Condiciones y dimensiones' }
@@ -1274,12 +1391,14 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'La construcción del riesgo',
         title: 'Aspectos cotidianos del riesgo desde los indicadores de calidad de vida',
         desc: 'Analiza los afiches sobre los indicadores de calidad de vida en las comunas 1, 3 y 8.',
+        intro: '<p>Todos los aspectos relacionados con el territorio son dinámicos, incluso los aspectos socio económicos y poblacionales. Analiza estos afiches:</p>',
         type: 'images',
         images: [
           { src: 'img/M3_Afiche1.jpg', label: 'Calidad de vida — Afiche 1' },
           { src: 'img/M3_Afiche2.jpg', label: 'Calidad de vida — Afiche 2' },
           { src: 'img/M3_Afiche3.jpg', label: 'Calidad de vida — Afiche 3' }
-        ]
+        ],
+        reflection: '¿Qué nos dice esta información sobre la calidad de vida en las comunas 1, 3 y 8? ¿Qué está pasando con la población?'
       },
       {
         id: 'm3-construccion',
@@ -1287,6 +1406,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'La construcción del riesgo',
         title: 'El riesgo como una construcción social',
         desc: 'Video que explica cómo las decisiones sociales, económicas y políticas construyen el riesgo en el territorio.',
+        intro: '<p>Hablar de construcción social del riesgo implica reconocer que los desastres no son simplemente "naturales". Se producen cuando las amenazas se encuentran con condiciones estructurales acumuladas, como pobreza, desigualdad, ocupación insegura del suelo, deterioro ambiental, viviendas frágiles, ausencia de infraestructura, falta de drenajes, baja capacidad institucional o limitada planificación territorial.</p><p>Esta lectura también está respaldada por el principio de sostenibilidad ambiental de la Ley 1523 de 2012, que afirma que el riesgo de desastre se deriva de procesos de uso y ocupación insostenible del territorio.</p>',
         type: 'video',
         video: 'videos/M3_Construcción del riesgo.mp4',
       },
@@ -1296,6 +1416,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'La construcción del riesgo',
         title: 'Cambio climático y variabilidad climática',
         desc: 'Audio que aborda la relación entre el cambio climático y la configuración del riesgo en el territorio.',
+        intro: '<p>En el lenguaje cotidiano, el cambio climático y la variabilidad climática suelen entenderse menos como conceptos científicos abstractos y más como cambios percibidos en la vida diaria: "hace más calor", "las lluvias ya no son como antes", "el clima está loco", "llueve cuando no debería" o "los aguaceros son más fuertes".</p>',
         type: 'audio',
         audio: 'audios/M3_CambioClimatico.mp3',
         audioLabel: 'Cambio Climático',
@@ -1340,6 +1461,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'Conocimientos y herramientas',
         title: 'Señales de alerta',
         desc: 'Reconoce las señales tempranas de riesgo en la vivienda, el terreno, las vías y el entorno.',
+        intro: '<p>El ser humano lleva en su naturaleza la curiosidad, la duda y las preguntas, aspectos esenciales para la investigación. Podemos decir que quien en su entorno siempre está observando e identificando cambios, es un investigador o investigadora. Si aplicamos esto en la gestión del riesgo, específicamente en lo que se denomina monitoreo, podemos con mucha antelación identificar señales de alerta en el territorio.</p><p>Recordemos que el monitoreo es en esencia observar y recolectar información de manera sistemática. Estos datos recolectados se pueden analizar de diferente manera e identificar patrones o cambios.</p>',
         type: 'pdf',
         pdf: 'pdfs/M4_Monitoreo_senales.pdf',
         pdfCover: 'img/M4_Monitoreo_senales_portada.jpg',
@@ -1354,6 +1476,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'Conocimientos y herramientas',
         title: 'Herramientas virtuales: el Geoportal',
         desc: 'Manual del Geoportal GeoHazards para consultar información territorial y aportar a la toma de decisiones.',
+        intro: '<p>La Universidad Nacional de Colombia, específicamente la Facultad de Minas, cuenta con un Semillero de Investigación denominado GeoHazards. Este equipo ha construido una herramienta virtual de visualización de los distintos proyectos en los que han participado. Este "geoportal" tiene el propósito de divulgar información técnica y científica para aportar a la toma de decisiones.</p>',
         type: 'pdf',
         pdf: 'pdfs/M4_Geoportal.pdf',
         pdfCover: 'img/M4_Geoportal_portada.jpg',
@@ -1391,39 +1514,116 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
   // ── Module visual metadata (image, tagline) ─────────
   const MODULE_META = {
-    1: { tagline: 'El POT y su modelo de ocupación: la hoja de ruta que decide cómo crece la ciudad.', image: 'img/redesign/mission-1-pot.webp' },
-    2: { tagline: 'El borde urbano-rural, sus tensiones, la estructura ecológica y la gestión del riesgo.', image: 'img/redesign/mission-2-riesgo.webp' },
-    3: { tagline: 'Amenaza, vulnerabilidad, capacidades y las decisiones que construyen el riesgo.', image: 'img/redesign/mission-3-construccion.webp' },
-    4: { tagline: 'Señales de alerta, geoportal, comunidad y StoryMaps para observar el territorio.', image: 'img/redesign/mission-4-comunidad.webp' },
+    1: {
+      tagline: 'El POT y su modelo de ocupación: la hoja de ruta que decide cómo crece la ciudad.',
+      image: 'img/redesign/mission-1-pot.webp',
+      competencia: 'Reconocer los elementos principales del Plan de Ordenamiento Territorial y su modelo de ocupación.',
+      tiempo: '2 horas',
+      outcomes: [
+        'El participante logra explicar con sus palabras qué es y por qué es importante el POT.',
+        'El participante comprende la importancia del modelo de ocupación.',
+      ],
+    },
+    2: {
+      tagline: 'El borde urbano-rural, sus tensiones, la estructura ecológica y la gestión del riesgo.',
+      image: 'img/redesign/mission-2-riesgo.webp',
+      competencia: 'Reconocer qué es el borde urbano-rural y por qué allí se concentran decisiones clave sobre riesgo, vivienda, ambiente y calidad de vida.',
+      tiempo: '2 horas',
+      outcomes: [
+        'El participante logra explicar con sus palabras la importancia del borde urbano rural en la gestión y planificación de toda la ciudad.',
+        'El participante logra explicar con sus palabras por qué el lugar donde vive puede presentar condiciones particulares de riesgo y oportunidades de renaturalización.',
+      ],
+    },
+    3: {
+      tagline: 'Amenaza, vulnerabilidad, capacidades y las decisiones que construyen el riesgo.',
+      image: 'img/redesign/mission-3-construccion.webp',
+      competencia: 'Reconocer que el riesgo de desastres no depende únicamente de las amenazas, sino que se construye socialmente a partir de la relación entre las condiciones físicas del territorio, la historia de ocupación, los saberes comunitarios, las formas de habitar y las dinámicas sociales, económicas y demográficas de la población.',
+      tiempo: '4 horas',
+      outcomes: [
+        'El participante logra explicar con sus palabras la diferencia entre condiciones de vulnerabilidad y amenaza.',
+        'El participante comprende que el riesgo es una construcción social, histórica y territorial.',
+        'El participante comprende qué es el cambio climático y cuál es su diferencia con la variabilidad climática.',
+      ],
+    },
+    4: {
+      tagline: 'Señales de alerta, geoportal, comunidad y StoryMaps para observar el territorio.',
+      image: 'img/redesign/mission-4-comunidad.webp',
+      tiempo: '2 horas',
+      outcomes: [
+        'La comunidad distingue entre una observación preventiva sistemática y una situación que requiere aviso inmediato.',
+        'La comunidad reconoce herramientas asociadas a la gestión del riesgo y a los estudios de riesgo de detalle para estar informadas sobre su territorio.',
+      ],
+    },
   };
   const HOME_HERO_IMAGE = 'img/redesign/hero-campo.webp';
+
+  // ── Definiciones del curso ───────────────────────────
+  const GLOSSARY = [
+    { term: 'Riesgo de desastres', def: 'Es el resultado de combinar la amenaza (fenómenos naturales como inundaciones o deslizamientos) con la vulnerabilidad de los asentamientos humanos (fragilidad social, económica o física).' },
+    { term: 'Zonas con condición de riesgo', def: 'Son áreas de amenaza alta que ya están urbanizadas. Estas requieren estudios de detalle para determinar si el riesgo es mitigable (se puede solucionar con obras) o no mitigable (requiere reasentamiento).' },
+    { term: 'Suelo de protección', def: 'Las áreas clasificadas con riesgo no mitigable o amenaza alta se consideran suelo de protección, lo que restringe totalmente la posibilidad de nuevas urbanizaciones.' },
+    { term: 'Reasentamiento y recuperación', def: 'En zonas de alto riesgo donde ya vive población, la política es el reasentamiento de familias. Una vez desocupados, estos suelos deben transformarse en espacios públicos (como ecoparques para la mitigación del riesgo) o ser reforestados para evitar que sean invadidos nuevamente.' },
+  ];
 
   const TYPE_ICON = { video: '🎬', audio: '🎧', images: '🖼️', pdf: '📄', text: '📖' };
   const TYPE_LABEL = { video: 'Video', audio: 'Audio', images: 'Galería', pdf: 'PDF', text: 'Lectura' };
 
   // ── Foros de discusión ──────────────────────────────
   const FORUM = {
-    1: 'En tus palabras, ¿por qué es importante conocer el Plan de Ordenamiento Territorial?',
+    1: 'En tus palabras ¿Por qué es importante conocer el Plan de Ordenamiento Territorial?',
     2: '¿Cuál es la importancia del borde urbano rural en el desarrollo de la ciudad?',
     3: 'Responde estas tres preguntas: ¿Cómo se construye el riesgo? ¿Cuál es la importancia de reducir las condiciones de vulnerabilidad en la gestión del riesgo? ¿Cuáles son las capacidades que has identificado en tu comunidad?',
-    4: 'Las plataformas de información y comunicación construidas son comprensibles. ¿Qué se puede mejorar?',
+    4: 'Las plataformas de información y comunicación construidas son compresibles ¿Qué se puede mejorar?',
   };
-  let forumPosts = {};
-  try { const saved = localStorage.getItem('curso_forum'); if (saved) forumPosts = JSON.parse(saved); } catch(e) {}
+  async function loadForumPosts(modIdx) {
+    const list = document.getElementById('forum-list-' + modIdx);
+    if (!list) return;
+    if (!window.CursoDB) { list.innerHTML = '<p class="forum-empty">El foro no está disponible en este momento.</p>'; return; }
+    try {
+      const posts = await window.CursoDB.getForumPosts(modIdx);
+      posts.sort((a, b) => new Date(a.date) - new Date(b.date));
+      const current = document.getElementById('forum-list-' + modIdx);
+      if (!current) return;
+      current.innerHTML = '';
+      if (!posts.length) { current.innerHTML = '<p class="forum-empty">Sé la primera persona en comentar.</p>'; return; }
+      posts.forEach(p => current.appendChild(forumMsgEl(p)));
+      current.scrollTop = current.scrollHeight;
+    } catch (e) {
+      console.error('Error cargando el foro', e);
+      const current = document.getElementById('forum-list-' + modIdx);
+      if (current) current.innerHTML = '<p class="forum-empty">No se pudieron cargar los comentarios. Intenta recargar la página.</p>';
+    }
+  }
 
-  function forumPostsOf(modIdx) { return forumPosts[modIdx] || []; }
-  function saveForumPosts() { try { localStorage.setItem('curso_forum', JSON.stringify(forumPosts)); } catch(e) {} }
-
-  window.postForum = function(modIdx) {
+  window.postForum = async function(modIdx) {
     const textarea = document.getElementById('forum-text-' + modIdx);
+    const btn = document.getElementById('forum-send-' + modIdx);
     const text = (textarea && textarea.value || '').trim();
     if (!text) return;
-    if (!forumPosts[modIdx]) forumPosts[modIdx] = [];
-    forumPosts[modIdx].push({ name: signedUp ? signedUp.name : 'Participante', text, date: new Date().toISOString() });
-    saveForumPosts();
-    const list = document.getElementById('forum-list-' + modIdx);
-    if (list) list.appendChild(forumMsgEl(forumPosts[modIdx][forumPosts[modIdx].length - 1]));
-    if (textarea) textarea.value = '';
+    const name = signedUp ? signedUp.name : 'Participante';
+    if (textarea) textarea.disabled = true;
+    if (btn) btn.disabled = true;
+    try {
+      if (window.CursoDB) await window.CursoDB.addForumPost(modIdx, name, text);
+      const list = document.getElementById('forum-list-' + modIdx);
+      if (list) {
+        const empty = list.querySelector('.forum-empty');
+        if (empty) empty.remove();
+        list.appendChild(forumMsgEl({ name, text, date: new Date().toISOString() }));
+        list.scrollTop = list.scrollHeight;
+      }
+      if (textarea) textarea.value = '';
+      forumPosted[modIdx] = true;
+      try { localStorage.setItem('curso_forum_posted', JSON.stringify(forumPosted)); } catch(e) {}
+      const fp = document.getElementById('forum-pending-' + modIdx);
+      if (fp) fp.remove();
+    } catch (e) {
+      console.error('Error publicando en el foro', e);
+      alert('No se pudo publicar tu comentario. Intenta de nuevo.');
+    } finally {
+      if (textarea) textarea.disabled = false;
+      if (btn) btn.disabled = false;
+    }
   };
 
   function forumMsgEl(msg) {
@@ -1439,28 +1639,67 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   // ── Quiz Data ───────────────────────────────────────
   const QUIZ = {
     1: [
-      { type: 'choice', q: '¿Qué significa POT?', opts: ['Plan de Ordenamiento Territorial', 'Programa de Obras Técnicas', 'Proyecto de Organización Territorial'], ans: 0, feedback: '¡Correcto! El POT es el Plan de Ordenamiento Territorial, la hoja de ruta que orienta el desarrollo de la ciudad.' },
-      { type: 'order', q: 'Ordena los pasos del ordenamiento territorial:', items: ['Proteger áreas ambientales', 'Planificar el crecimiento', 'Diagnosticar el territorio', 'Definir el modelo de ocupación'], ans: [2,3,1,0], feedback: '¡Muy bien! Primero se diagnostica, luego se define el modelo, se planifica el crecimiento y finalmente se protegen las áreas ambientales.' },
-      { type: 'complete', q: 'Completa la frase:', text: 'El _____ de ocupación define la imagen de ciudad que se quiere construir hacia el futuro.', blank: 'modelo', opts: ['modelo', 'plan', 'mapa', 'suelo'], feedback: '¡Correcto! El modelo de ocupación es la imagen de ciudad que queremos construir.' },
-      { type: 'choice', q: 'Ordenar el territorio es importante porque…', opts: ['Solo sirve para hacer mapas y normas', 'Ayuda a decidir cómo queremos vivir y construir una ciudad más segura y justa', 'Es un requisito del gobierno nacional'], ans: 1, feedback: '¡Exacto! Ordenar el territorio es decidir cómo queremos vivir y construir una ciudad más segura, justa y sostenible.' },
+      { type: 'choice', q: '¿Cuál es el propósito principal del modelo de ocupación de Medellín en el marco del POT?', opts: ['Definir únicamente las zonas donde se pueden construir nuevas viviendas.', 'Orientar la forma como se organiza, usa y transforma el territorio urbano y rural de Medellín.', 'Establecer el presupuesto anual para las comunas y corregimientos.', 'Regular exclusivamente el sistema de transporte público de la ciudad.'], ans: 1, feedback: 'El modelo de ocupación orienta la organización territorial de Medellín, articulando el uso del suelo, la estructura ecológica, los sistemas públicos y las formas de crecimiento urbano y rural previstas por el POT.' },
+      { type: 'choice', q: '¿Cuáles son algunos de los elementos principales que conforman el modelo de ocupación de Medellín?', opts: ['El presupuesto participativo, los planes barriales y las campañas ciudadanas.', 'La estructura ecológica, el sistema de movilidad, el espacio público, las centralidades y las áreas de desarrollo urbano y rural.', 'Los impuestos prediales, las licencias de construcción y los contratos de obra pública.', 'Las rutas de buses, los horarios institucionales y los programas culturales.'], ans: 1, feedback: 'El modelo de ocupación define cómo debe organizarse el territorio de Medellín, articulando elementos como la estructura ecológica, la movilidad, el espacio público, las centralidades urbanas, los usos del suelo y la relación entre lo urbano y lo rural.' },
+      { type: 'match', q: 'Relaciona cada plazo de revisión del POT con la descripción que le corresponde.', pairs: [
+        ['Corto plazo (cada periodo administrativo)', 'Se actualizan normas y ajustes técnicos puntuales, sin cambiar la estructura del plan.'],
+        ['Mediano plazo (alrededor de 8 años o 2 periodos)', 'Se revisan estrategias, políticas e instrumentos, manteniendo la visión general del POT.'],
+        ['Largo plazo (cada 12 años o 3 periodos)', 'Se reformula todo el plan y se pueden modificar sus componentes principales.'],
+      ], feedback: 'El corto plazo ajusta normas puntuales sin cambiar la estructura del plan, el mediano plazo revisa estrategias y políticas manteniendo la visión general, y el largo plazo puede reformular todo el plan.' },
+      { type: 'match', q: 'Relaciona cada instrumento de planeación con su definición.', pairs: [
+        ['Plan de Ordenamiento Territorial (POT)', 'Instrumento de planificación que regula el uso, ocupación y transformación del suelo en un municipio o distrito.'],
+        ['Plan de Desarrollo Local (PDL)', 'Instrumento de planeación que formula el alcalde de un distrito para orientar las acciones de su gobierno durante los cuatro años de su mandato.'],
+        ['Presupuesto Participativo (PP)', 'Mecanismo de participación democrático mediante el cual la ciudadanía decide de manera directa en qué proyectos y programas se invierte una parte del presupuesto público.'],
+        ['Plan de Desarrollo Distrital (PDD)', 'Instrumento de planeación que organiza las acciones en comunas y corregimientos.'],
+      ], feedback: 'El POT regula el uso del suelo, el PDL orienta la gestión del alcalde durante su periodo, el Presupuesto Participativo decide inversión pública con la ciudadanía, y el PDD organiza las acciones en comunas y corregimientos.' },
     ],
     2: [
-      { type: 'choice', q: '¿Qué es el borde urbano rural?', opts: ['Una línea que separa la ciudad del campo', 'Una zona de transición entre el campo y la ciudad', 'Un parque ecológico fuera de la ciudad'], ans: 1, feedback: '¡Muy bien! El borde urbano rural es una zona viva de transición donde se encuentran la ciudad y el campo.' },
-      { type: 'order', q: 'Ordena estos conceptos según su relación con el riesgo:', items: ['Vulnerabilidad', 'Amenaza', 'Riesgo', 'Exposición'], ans: [1,0,3,2], feedback: '¡Así es! La amenaza y la exposición combinadas con la vulnerabilidad producen el riesgo.' },
-      { type: 'complete', q: 'Completa la frase:', text: 'La estructura ecológica _____ protege los elementos naturales base del territorio.', blank: 'principal', opts: ['principal', 'complementaria', 'urbana', 'social'], feedback: '¡Correcto! La estructura ecológica principal protege ríos, quebradas, cerros y suelos de protección.' },
-      { type: 'choice', q: '¿Cuáles son los tres componentes del riesgo?', opts: ['Lluvia, viento y deslizamiento', 'Amenaza, exposición y vulnerabilidad', 'Mapas, normas y presupuesto'], ans: 1, feedback: '¡Correcto! El riesgo se compone de amenaza, exposición y vulnerabilidad.' },
+      { type: 'choice', q: 'En el POT de Medellín, ¿por qué la geografía natural condiciona la ocupación del suelo?', opts: ['Porque todas las zonas de la ciudad pueden urbanizarse con la misma intensidad.', 'Porque las laderas, quebradas, suelos y áreas de amenaza establecen límites y condiciones para ocupar el territorio de manera segura.', 'Porque las quebradas solo cumplen una función paisajística.', 'Porque el riesgo depende únicamente de la construcción de viviendas.'], ans: 1, feedback: 'Las laderas, quebradas, suelos y áreas de amenaza son los soportes físicos naturales que orientan y condicionan las estrategias de ocupación del territorio.' },
+      { type: 'choice', q: '¿Qué aspectos pueden identificar el borde urbano rural?', opts: ['Presencia de áreas naturales, zonas de cultivos o de producción forestal.', 'Zonas de amenaza alta y media y zonas de alto riesgo no mitigable.', 'Viviendas campesinas, barrios, vías, viviendas concentradas.', 'Todas las anteriores.'], ans: 3, feedback: 'El borde urbano rural reúne a la vez áreas naturales y de producción, zonas de amenaza y riesgo, y distintas formas de poblamiento como veredas, barrios y vías.' },
+      { type: 'choice', q: '¿Cuál es una función principal de las zonas de retiro de quebrada?', opts: ['Permitir la construcción de nuevas viviendas cerca del cauce.', 'Aumentar la densidad habitacional en las laderas.', 'Servir como franjas de protección frente a amenazas hídricas y permitir la dinámica natural de las corrientes.', 'Reemplazar completamente los sistemas de drenaje urbano.'], ans: 2, feedback: 'Las zonas de retiro son fajas sin edificación cuya función es permitir la dinámica natural de las quebradas, reducir la exposición de la población y proteger frente a amenazas hídricas.' },
+      { type: 'choice', q: 'En el Borde Urbano Rural Nororiental de Medellín, habitado por población de bajos ingresos y con áreas en amenaza alta por movimientos en masa, ¿qué tipos de tratamientos urbanos se han propuesto en el Plan de Ordenamiento Territorial?', opts: ['Renovación Urbana.', 'Mejoramiento Integral en suelo urbano-MI y Mejoramiento Integral en Suelo de Expansión-MIE.', 'Consolidación Nivel 3.', 'Ninguna de las anteriores.', 'Mejoramiento Integral (MI y MIE) y Consolidación Nivel 3.'], ans: 4, feedback: 'En el BURNOR el POT propone Mejoramiento Integral, en suelo urbano y en suelo de expansión, junto con Consolidación Nivel 3, para cualificar barrios y orientar la ocupación en zonas de amenaza alta.' },
+      { type: 'choice', q: 'En el POT de Medellín, ¿qué función cumple principalmente la Estructura Ecológica?', opts: ['Definir únicamente las zonas donde se pueden construir más viviendas.', 'Organizar los elementos naturales del territorio, como quebradas, laderas, cerros y áreas verdes, para orientar la ocupación del suelo y proteger los procesos ambientales.', 'Reemplazar las vías, equipamientos y servicios públicos de la ciudad.', 'Identificar solamente los barrios con mayor crecimiento poblacional.'], ans: 1, feedback: 'La Estructura Ecológica organiza quebradas, laderas, cerros y áreas verdes para orientar la ocupación del suelo y proteger los procesos ecológicos esenciales del territorio.' },
     ],
     3: [
-      { type: 'choice', q: 'El riesgo de desastres…', opts: ['Solo depende de fenómenos naturales', 'También se construye socialmente', 'Es inevitable y no se puede reducir'], ans: 1, feedback: '¡Exacto! El riesgo no solo es natural: también se construye socialmente por decisiones humanas y formas de ocupar el territorio.' },
-      { type: 'complete', q: 'Completa la frase:', text: 'La _____ es una condición social y territorial que puede cambiar y reducirse.', blank: 'vulnerabilidad', opts: ['amenaza', 'vulnerabilidad', 'exposición', 'capacidad'], feedback: '¡Muy bien! La vulnerabilidad no es una debilidad personal, es una condición que sí puede transformarse.' },
-      { type: 'order', q: 'Ordena de menor a mayor duración estos fenómenos climáticos:', items: ['Cambio climático', 'Lluvia de un día', 'Variabilidad climática', 'Temporada seca'], ans: [1,3,2,0], feedback: '¡Correcto! Una lluvia es un evento del día a día, la temporada seca es variabilidad, y el cambio climático es el fenómeno más duradero.' },
-      { type: 'choice', q: '¿Qué diferencia hay entre cambio climático y variabilidad climática?', opts: ['Son lo mismo', 'El cambio climático es una transformación más profunda y duradera', 'La variabilidad climática es más peligrosa'], ans: 1, feedback: '¡Correcto! La variabilidad son los altibajos normales del clima; el cambio climático es una transformación más profunda.' },
+      { type: 'choice', q: '¿Verdadero o falso? "El riesgo de desastres se produce únicamente por la presencia de amenazas de origen natural o socionatural, como lluvias fuertes, quebradas o laderas inestables."', opts: ['Verdadero', 'Falso'], ans: 1, feedback: 'El riesgo también depende de las condiciones de vulnerabilidad, exposición, ocupación del suelo, desigualdad, infraestructura y organización comunitaria.' },
+      { type: 'choice', q: '¿Verdadero o falso? "La construcción social del riesgo significa que las decisiones humanas, las formas de habitar y las condiciones sociales pueden aumentar o reducir el riesgo en un territorio."', opts: ['Verdadero', 'Falso'], ans: 0, feedback: 'El riesgo se configura por la relación entre las amenazas y las condiciones sociales, económicas, ambientales, institucionales y territoriales.' },
+      { type: 'choice', q: '¿Verdadero o falso? "Reducir el riesgo implica únicamente atender emergencias cuando ya ocurrió un desastre."', opts: ['Verdadero', 'Falso'], ans: 1, feedback: 'Reducir el riesgo también implica prevenir, planificar mejor el territorio, disminuir vulnerabilidades, fortalecer redes comunitarias y evitar nuevas ocupaciones en zonas expuestas.' },
+      { type: 'match', q: 'Relaciona cada pregunta sobre vulnerabilidad con la respuesta correcta.', pairs: [
+        ['¿Qué es la vulnerabilidad en la vida diaria?', 'Es la dificultad para prevenir, resistir, responder y recuperarse frente a una emergencia.'],
+        ['¿Qué describe la vulnerabilidad física de la vivienda?', 'Se refiere al estado de la casa: grietas, humedad, materiales frágiles y falta de drenaje.'],
+        ['¿Qué es la vulnerabilidad social?', 'Es la vulnerabilidad relacionada con las condiciones de vida de las personas y familias, como ingresos, cuidado, discapacidad y acceso a servicios.'],
+        ['¿Qué ocurre cuando hay vulnerabilidad organizativa?', 'Puede haber desorganización, poca comunicación y dificultades para actuar en el barrio.'],
+        ['¿Por qué son importantes las redes de apoyo?', 'Ayudan a recibir información, apoyo y coordinación antes, durante y después de una emergencia.'],
+      ], feedback: 'La vulnerabilidad tiene distintas caras: la dificultad para enfrentar una emergencia, el estado físico de la vivienda, las condiciones sociales de las familias, la organización comunitaria y el papel de las redes de apoyo.' },
     ],
     4: [
-      { type: 'choice', q: '¿Qué puede identificar una persona al observar su vivienda?', opts: ['Señales de alerta como grietas o agua donde antes no había', 'Solo problemas estéticos', 'El valor comercial de la propiedad'], ans: 0, feedback: '¡Así es! Cualquier persona puede identificar señales de alerta en su vivienda. Observar es el primer paso para prevenir.' },
-      { type: 'order', q: 'Ordena los pasos para la gestión comunitaria del riesgo:', items: ['Actuar de manera organizada', 'Observar señales en el entorno', 'Comunicar los hallazgos', 'Registrar los cambios'], ans: [1,3,2,0], feedback: '¡Muy bien! Primero se observa, se registra, se comunica y finalmente se actúa de manera organizada.' },
-      { type: 'complete', q: 'Completa la frase:', text: 'El _____ de GeoHazards permite consultar información territorial de Medellín.', blank: 'geoportal', opts: ['geoportal', 'storymap', 'informe', 'mapa'], feedback: '¡Correcto! El geoportal de GeoHazards es una herramienta virtual para consultar información sobre el territorio.' },
-      { type: 'choice', q: 'La gestión del riesgo necesita…', opts: ['Solo estudios técnicos', 'Estudios técnicos y saberes comunitarios', 'Solo la opinión de las autoridades'], ans: 1, feedback: '¡Muy bien! La gestión del riesgo combina conocimiento técnico con saberes comunitarios y memoria barrial.' },
+      { type: 'choice', q: '¿Verdadero o falso? "Si una grieta aparece después de varios días de lluvia, es importante hacer seguimiento, aunque sea pequeña."', opts: ['Verdadero', 'Falso'], ans: 0, feedback: 'Las lluvias pueden saturar el suelo y generar movimientos lentos del terreno. Una grieta pequeña no siempre significa peligro inmediato, pero sí puede ser una señal que requiere observación y seguimiento.' },
+      { type: 'choice', q: '¿Verdadero o falso? "Un árbol inclinado siempre significa que va a ocurrir un deslizamiento."', opts: ['Verdadero', 'Falso'], ans: 1, feedback: 'Un árbol puede inclinarse por diferentes razones: crecimiento natural, viento, raíces superficiales o cambios del terreno. Sin embargo, si varios árboles o postes comienzan a inclinarse al mismo tiempo, puede ser una señal importante de movimiento del suelo.' },
+      { type: 'choice', q: '¿Verdadero o falso? "Las nuevas escorrentías pueden indicar cambios en la forma como el agua circula por el territorio."', opts: ['Verdadero', 'Falso'], ans: 0, feedback: 'Cuando el agua comienza a bajar por lugares donde antes no circulaba, puede indicar cambios en drenajes, saturación del suelo o alteraciones por construcciones y pérdida de cobertura vegetal.' },
+      { type: 'choice', q: '¿Verdadero o falso? "Las lluvias intensas pueden aumentar el riesgo, aunque ya se haya hecho una buena construcción."', opts: ['Verdadero', 'Falso'], ans: 0, feedback: 'Aunque una vivienda esté bien construida, las lluvias fuertes pueden afectar el terreno, las quebradas y el entorno cercano. El riesgo no depende solo de la casa, sino también de las condiciones del territorio.' },
+      { type: 'choice', q: '¿Verdadero o falso? "Si una quebrada normalmente es tranquila, no representa riesgo durante lluvias intensas."', opts: ['Verdadero', 'Falso'], ans: 1, feedback: 'Las quebradas pueden cambiar rápidamente durante lluvias fuertes. El aumento del caudal, la velocidad del agua y el arrastre de material pueden generar crecientes súbitas o avenidas torrenciales.' },
+      { type: 'choice', q: '¿Verdadero o falso? "Solo los estudios técnicos sirven para la gestión del riesgo."', opts: ['Verdadero', 'Falso'], ans: 1, feedback: 'Los estudios técnicos aportan mediciones y análisis especializados, mientras que la comunidad aporta conocimiento cotidiano del territorio. Ambos son importantes para comprender el riesgo.' },
+      { type: 'choice', q: '¿Verdadero o falso? "La erosión puede acelerarse cuando se pierde vegetación en una ladera."', opts: ['Verdadero', 'Falso'], ans: 0, feedback: 'Las raíces ayudan a proteger el suelo y disminuir la fuerza del agua sobre la superficie. Cuando se elimina vegetación, el terreno queda más expuesto a erosión y arrastre de material.' },
+      { type: 'choice', q: '¿Verdadero o falso? "Todas las grietas tienen el mismo nivel de peligro."', opts: ['Verdadero', 'Falso'], ans: 1, feedback: 'Las grietas pueden tener diferentes causas y niveles de importancia. Algunas son superficiales, mientras otras pueden relacionarse con movimientos estructurales o del terreno.' },
+      { type: 'choice', q: '¿Verdadero o falso? "Si un muro presenta una grieta horizontal es recomendable tomar precaución; si la grieta es diagonal, no hay riesgo."', opts: ['Verdadero', 'Falso'], ans: 1, feedback: 'Algunas grietas pueden relacionarse con movimientos diferenciales del terreno o afectaciones estructurales. Cualquier grieta requiere observar si aumenta de tamaño para ayudar a identificar cambios importantes.' },
+      { type: 'choice', q: '¿Verdadero o falso? "La presencia constante de humedad en una ladera puede relacionarse con filtraciones internas del terreno."', opts: ['Verdadero', 'Falso'], ans: 0, feedback: 'La humedad permanente puede indicar circulación de agua dentro del suelo, lo que puede afectar la estabilidad del terreno dependiendo de las condiciones de la ladera.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Identificar que apareció una nueva grieta en el barrio."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 0, feedback: 'La comunidad puede notar cambios cotidianos en el territorio.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Medir la estabilidad del terreno con herramientas especializadas."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 1, feedback: 'Requiere conocimientos y equipos técnicos.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Hacer seguimiento a una grieta para ver si crece."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 2, feedback: 'La comunidad puede observar cambios y el equipo técnico puede analizar su importancia.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Reportar caída de material después de lluvias fuertes."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 0, feedback: 'El reporte temprano ayuda a prevenir situaciones de riesgo.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Elaborar un estudio geotécnico."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 1, feedback: 'Implica análisis especializados del suelo y la ladera.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Observar cambios en una quebrada durante temporadas de lluvia."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 0, feedback: 'Las comunidades suelen reconocer variaciones en el comportamiento del agua.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Analizar por qué cambió el cauce de una quebrada."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 2, feedback: 'La comunidad aporta experiencia territorial y el equipo técnico realiza análisis especializados.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Definir niveles de amenaza o riesgo."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 1, feedback: 'Se requieren metodologías y estudios específicos.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Construir mapas comunitarios de zonas donde ocurren afectaciones."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 2, feedback: 'La comunidad aporta memoria territorial y los equipos técnicos pueden complementar la información.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Compartir alertas y avisar a vecinos."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 0, feedback: 'Hace parte de la organización y comunicación barrial.' },
+      { type: 'choice', q: '¿Quién es el actor clave en esta situación? "Reconocer que una zona se inunda más que antes."', opts: ['Observación comunitaria', 'Diagnóstico técnico', 'Ambos'], ans: 2, feedback: 'La experiencia comunitaria identifica cambios y el análisis técnico ayuda a comprender sus causas.' },
+      { type: 'choice', q: '¿Cuál es el objetivo principal de la página web comunitaria?', opts: ['Presentar únicamente documentos jurídicos sobre el POT.', 'Reunir avances, actividades, mapas, boletines y explicaciones de los Estudios de Riesgo de Detalle.', 'Publicar solo fotografías de los recorridos técnicos.', 'Sustituir los espacios de socialización comunitaria.'], ans: 1, feedback: 'La página se presenta como una plataforma para consultar avances, actividades, mapas, boletines y explicaciones del estudio.' },
+      { type: 'choice', q: '¿Qué indicador aparece en el tablero de actualización de abril de 2026?', opts: ['49 perforaciones y apiques.', '100 barrios priorizados.', '5 años de duración del proyecto.', '800 asistentes a socializaciones.'], ans: 0, feedback: 'El tablero reporta 49 perforaciones y apiques, junto con otros indicadores como encuentros, asistentes y acompañamientos comunitarios.' },
+      { type: 'choice', q: 'Según la página, ¿qué son los Estudios de Riesgo de Detalle?', opts: ['Estudios generales de opinión sobre la percepción del riesgo.', 'Estudios técnicos especializados que analizan amenaza, vulnerabilidad y riesgo a escala detallada.', 'Obras de mitigación ya construidas en los barrios.', 'Trámites individuales para legalizar viviendas.'], ans: 1, feedback: 'La página los define como estudios técnicos especializados, de alta precisión, que analizan amenaza, vulnerabilidad y riesgo en zonas específicas del territorio.' },
+      { type: 'choice', q: '¿Cuál de las siguientes acciones NO hacen directamente los Estudios de Riesgo de Detalle?', opts: ['Identificar amenaza, vulnerabilidad y riesgo.', 'Producir mapas y análisis técnicos.', 'Ejecutar obras de mitigación.', 'Orientar decisiones del POT y la gestión del riesgo.'], ans: 2, feedback: 'La página aclara que los estudios no ejecutan obras directamente; su función es producir información técnica y orientar decisiones.' },
+      { type: 'choice', q: '¿Qué territorios aparecen como parte del área donde se realizan los estudios?', opts: ['Comuna 1, Comuna 3, Comuna 8 y Santa Elena.', 'Comuna 5, Comuna 6 y Altavista.', 'Laureles, Belén y El Poblado.', 'San Javier, Guayabal y Castilla.'], ans: 0, feedback: 'La página indica que los estudios se realizan en sectores del Borde Urbano Rural Nororiental, incluyendo Comuna 1, Comuna 3, Comuna 8 y Santa Elena.' },
+      { type: 'choice', q: '¿Verdadero o falso? "Si una casa tiene grietas, puertas desajustadas o pisos inclinados, la comunidad no debe reportarlo hasta que el daño sea grave."', opts: ['Verdadero', 'Falso'], ans: 1, feedback: 'La página indica que estas señales pueden ser alertas tempranas y recomienda avisar a vecinos, líderes comunitarios y reportar a la línea 123 para evaluación técnica.' },
     ],
   };
 
@@ -1470,6 +1709,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   let currentModule = 1;
   let currentLesson = 0;
   let signedUp = false;
+  let forumPosted = {};
 
   try {
     const saved = localStorage.getItem('curso_progress');
@@ -1480,6 +1720,14 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     const saved = localStorage.getItem('curso_signup');
     if (saved) signedUp = JSON.parse(saved);
   } catch(e) {}
+
+  try {
+    const saved = localStorage.getItem('curso_forum_posted');
+    if (saved) forumPosted = JSON.parse(saved);
+  } catch(e) {}
+
+  function allForumsPosted() { return getModules().every(m => forumPosted[m.idx]); }
+  function missingForums() { return getModules().filter(m => !forumPosted[m.idx]); }
 
   // ── DOM refs ─────────────────────────────────────────
   const app = document.getElementById('app');
@@ -1621,6 +1869,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   function renderHome() {
     const modules = getModules();
     const allComplete = modules.every(m => progressOf(lessonsOfModule(m.idx)).done >= progressOf(lessonsOfModule(m.idx)).total);
+    let evalDone = false;
+    try { evalDone = localStorage.getItem('curso_eval_done') === '1'; } catch(e) {}
     const cards = modules.map(mod => {
       const lessons = lessonsOfModule(mod.idx);
       const p = progressOf(lessons);
@@ -1657,14 +1907,30 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             <p>Fortalecer las capacidades de la ciudadanía y los liderazgos comunitarios para comprender cómo las condiciones territoriales, sociales y ambientales configuran el riesgo en el BURNOR, y utilizar herramientas básicas para su observación, comunicación y reducción.</p>
           </div>
         </div>
+        <div class="glossary-card">
+          <div class="glossary-head">
+            <span class="gl-icon">📖</span>
+            <div><h3>Definiciones clave del curso</h3><p>Términos que vas a encontrar a lo largo de los módulos</p></div>
+          </div>
+          <dl class="glossary-list">
+            ${GLOSSARY.map(g => `<div class="gl-item"><dt>${g.term}</dt><dd>${g.def}</dd></div>`).join('')}
+          </dl>
+        </div>
         ${allComplete ? `
         <div class="cert-banner">
           <div class="cert-icon">🎓</div>
           <div class="cert-body">
             <h3>¡Felicidades, completaste el curso!</h3>
-            <p>Has terminado los 4 módulos. Podés descargar tu certificado a nombre de <span class="cert-user">${signedUp ? signedUp.name : 'Participante'}</span>.</p>
+            ${allForumsPosted()
+              ? `<p>Has terminado los 4 módulos. Podés descargar tu certificado a nombre de <span class="cert-user">${signedUp ? signedUp.name : 'Participante'}</span>.</p>`
+              : `<p>Has terminado los 4 módulos. Para obtener tu certificado, participa en el foro de discusión de: <span class="cert-user">${missingForums().map(m => m.title).join(', ')}</span>.</p>`}
           </div>
-          <button class="cert-btn" onclick="showCertificate()">Ver mi certificado →</button>
+          <div class="cert-actions">
+            ${allForumsPosted()
+              ? `<button class="cert-btn" onclick="showCertificate()">Ver mi certificado →</button>`
+              : `<button class="cert-btn" onclick="showModule(${missingForums()[0].idx})">Ir al foro →</button>`}
+            <button class="cert-btn cert-btn-secondary" onclick="showCourseEval()">${evalDone ? '✓ Evaluación enviada' : '📝 Evaluar el curso'}</button>
+          </div>
         </div>` : ''}
       </section>`;
   }
@@ -1714,19 +1980,31 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             <button class="back-link" onclick="showHome()">← Módulos</button>
             <h1>${mod ? mod.title : ''}</h1>
             <p>${meta.tagline || ''}</p>
+            ${meta.competencia ? `<p class="module-competencia"><strong>Competencia ciudadana:</strong> ${meta.competencia}</p>` : ''}
+            <div class="module-meta-row">
+              ${meta.tiempo ? `<span class="module-meta-chip">⏱️ ${meta.tiempo}</span>` : ''}
+            </div>
             <div class="module-progress-row">
               <div class="module-progress-track"><div class="module-progress-fill" style="transform:scaleX(${p.pct/100})"></div></div>
               <span class="module-progress-label">${p.done}/${p.total} lecciones</span>
             </div>
           </div>
         </div>
+        ${meta.outcomes && meta.outcomes.length ? `
+        <div class="module-outcomes">
+          <div class="mo-icon">🎯</div>
+          <div class="mo-body">
+            <h3>Lo que vas a lograr en este módulo</h3>
+            <ul>${meta.outcomes.map(o => `<li>${o}</li>`).join('')}</ul>
+          </div>
+        </div>` : ''}
         <div class="checklist">${rows}</div>
         <div class="quiz-entry">
           <button class="quiz-entry-btn" onclick="showQuiz(${modIdx})">
             <span class="quiz-entry-icon">🧠</span>
             <span class="quiz-entry-text">
               <strong>Ponte a prueba</strong>
-              <small>${QUIZ[modIdx] ? QUIZ[modIdx].length : 0} preguntas · opción múltiple, ordenar y completar</small>
+              <small>${QUIZ[modIdx] ? QUIZ[modIdx].length : 0} preguntas · ${quizTypesLabel(modIdx)}</small>
             </span>
             <span class="quiz-entry-arrow">→</span>
           </button>
@@ -1737,15 +2015,17 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             <div><h3>Foro de discusión</h3><p>Comparte tu reflexión con la comunidad</p></div>
           </div>
           <div class="forum-body">
+            ${!forumPosted[modIdx] ? `<p class="forum-pending" id="forum-pending-${modIdx}">🎓 Participar aquí es necesario para obtener tu certificado.</p>` : ''}
             <p class="forum-q"><span class="forum-tag">Pregunta</span>${FORUM[modIdx] || '¿Qué te llevas de este módulo?'}</p>
-            <div class="forum-list" id="forum-list-${modIdx}">${forumPostsOf(modIdx).map(forumMsgEl).map(el => el.outerHTML).join('')}</div>
+            <div class="forum-list" id="forum-list-${modIdx}"><p class="forum-empty">Cargando comentarios…</p></div>
             <div class="forum-input">
               <textarea id="forum-text-${modIdx}" placeholder="Escribe tu comentario..."></textarea>
-              <button class="forum-send" onclick="postForum(${modIdx})">Enviar</button>
+              <button class="forum-send" id="forum-send-${modIdx}" onclick="postForum(${modIdx})">Enviar</button>
             </div>
           </div>
         </div>
       </section>`;
+    loadForumPosts(modIdx);
   }
 
   // ── Quiz ────────────────────────────────────────────
@@ -1770,6 +2050,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       ${q.q}
       ${q.type === 'order' ? '<div class="q-hint">💡 Toca los elementos en el orden correcto</div>' : ''}
       ${q.type === 'complete' ? '<div class="q-hint">💡 Elige la palabra correcta para completar la frase</div>' : ''}
+      ${q.type === 'match' ? '<div class="q-hint">💡 Toca un elemento de la izquierda y luego su pareja de la derecha</div>' : ''}
     </div>`;
     if (q.type === 'choice') {
       q.opts.forEach((opt, oi) => {
@@ -1787,6 +2068,19 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>
         <button class="order-check-btn" id="ocb-${modIdx}-${qi}" onclick="checkOrder(${modIdx},${qi})" disabled>Verificar orden</button>
         <div class="order-feedback" id="of-${modIdx}-${qi}"></div>`;
+    } else if (q.type === 'match') {
+      const rightShuffled = shuffleArr(q.pairs.map((_, i) => i));
+      quizState[modIdx].matchPicks[qi] = { rightShuffled, selectedLeft: null, matches: {} };
+      html += `<div class="match-area" id="ma-${modIdx}-${qi}">
+          <div class="match-col">
+            ${q.pairs.map((p, li) => `<button class="match-item" id="ml-${modIdx}-${qi}-${li}" onclick="pickMatchLeft(${modIdx},${qi},${li})"><span class="match-num">${li+1}</span>${p[0]}</button>`).join('')}
+          </div>
+          <div class="match-col">
+            ${rightShuffled.map((pi, ri) => `<button class="match-item" id="mr-${modIdx}-${qi}-${ri}" onclick="pickMatchRight(${modIdx},${qi},${ri})"><span class="match-letter">${String.fromCharCode(65+ri)}</span>${q.pairs[pi][1]}</button>`).join('')}
+          </div>
+        </div>
+        <button class="order-check-btn" id="mcb-${modIdx}-${qi}" onclick="checkMatch(${modIdx},${qi})" disabled>Verificar relación</button>
+        <div class="order-feedback" id="mf-${modIdx}-${qi}"></div>`;
     } else if (q.type === 'complete') {
       quizState[modIdx].completePicks[qi] = { picked: null };
       html += `<div class="complete-sentence" id="cs-${modIdx}-${qi}">${q.text.replace('_____', '<span class="blank" id="cb-${modIdx}-${qi}">______</span>')}</div>
@@ -1801,7 +2095,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   function renderQuizView(modIdx) {
     const questions = QUIZ[modIdx];
     if (!questions) { app.innerHTML = '<section class="view"><p style="text-align:center;padding:3rem;color:var(--text-muted)">No hay preguntas para este módulo.</p></section>'; return; }
-    quizState[modIdx] = { answers: {}, orderPicks: {}, completePicks: {} };
+    quizState[modIdx] = { answers: {}, orderPicks: {}, completePicks: {}, matchPicks: {} };
     const mod = getModules().find(m => m.idx === modIdx);
     const dots = questions.map((_, qi) => `<span class="qp-dot" id="qpd-${modIdx}-${qi}"></span>`).join('');
     let html = `<section class="view"><div class="quiz-view">
@@ -1843,7 +2137,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   };
 
   function typeLabel(type) {
-    return { choice: 'Opción múltiple', order: 'Ordenar', complete: 'Completar' }[type] || type;
+    return { choice: 'Opción múltiple', order: 'Ordenar', complete: 'Completar', match: 'Relacionar' }[type] || type;
+  }
+
+  function quizTypesLabel(modIdx) {
+    const types = [...new Set((QUIZ[modIdx] || []).map(q => typeLabel(q.type).toLowerCase()))];
+    if (types.length <= 1) return types[0] || '';
+    return types.slice(0, -1).join(', ') + ' y ' + types[types.length - 1];
   }
 
   function shuffleArr(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
@@ -1916,6 +2216,68 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     if (isCorrect) spawnConfetti();
     quizState[modIdx].answers[qi] = isCorrect;
     updateQuizDot(modIdx, qi, isCorrect);
+    updateQuizScore(modIdx);
+  };
+
+  // Match
+  window.pickMatchLeft = function(modIdx, qi, li) {
+    const st = quizState[modIdx].matchPicks[qi];
+    if (!st || st.matches[li] !== undefined) return;
+    const card = document.getElementById('ma-' + modIdx + '-' + qi);
+    if (card) card.querySelectorAll('.match-col:first-child .match-item').forEach(el => el.classList.remove('selected'));
+    st.selectedLeft = li;
+    const el = document.getElementById('ml-' + modIdx + '-' + qi + '-' + li);
+    if (el) el.classList.add('selected');
+  };
+
+  window.pickMatchRight = function(modIdx, qi, ri) {
+    const q = QUIZ[modIdx][qi];
+    const st = quizState[modIdx].matchPicks[qi];
+    if (!st || st.selectedLeft === null) return;
+    const rightEl = document.getElementById('mr-' + modIdx + '-' + qi + '-' + ri);
+    if (!rightEl || rightEl.classList.contains('matched')) return;
+    const li = st.selectedLeft;
+    st.matches[li] = ri;
+    const leftEl = document.getElementById('ml-' + modIdx + '-' + qi + '-' + li);
+    if (leftEl) leftEl.classList.remove('selected');
+    if (leftEl) leftEl.classList.add('matched');
+    rightEl.classList.add('matched');
+    const tag = document.createElement('span');
+    tag.className = 'match-tag';
+    tag.textContent = li + 1;
+    rightEl.appendChild(tag);
+    st.selectedLeft = null;
+    if (Object.keys(st.matches).length === q.pairs.length) {
+      document.getElementById('mcb-' + modIdx + '-' + qi).disabled = false;
+    }
+  };
+
+  window.checkMatch = function(modIdx, qi) {
+    const q = QUIZ[modIdx][qi];
+    const st = quizState[modIdx].matchPicks[qi];
+    if (!st || Object.keys(st.matches).length !== q.pairs.length) return;
+    let allCorrect = true;
+    Object.keys(st.matches).forEach(liStr => {
+      const li = +liStr;
+      const ri = st.matches[li];
+      const isRight = st.rightShuffled[ri] === li;
+      const leftEl = document.getElementById('ml-' + modIdx + '-' + qi + '-' + li);
+      const rightEl = document.getElementById('mr-' + modIdx + '-' + qi + '-' + ri);
+      if (leftEl) leftEl.classList.add(isRight ? 'correct' : 'wrong');
+      if (rightEl) rightEl.classList.add(isRight ? 'correct' : 'wrong');
+      if (!isRight) allCorrect = false;
+    });
+    const card = document.getElementById('qc-' + modIdx + '-' + qi);
+    card.classList.add(allCorrect ? 'correct' : 'wrong');
+    document.getElementById('mcb-' + modIdx + '-' + qi).disabled = true;
+    document.querySelectorAll('#ma-' + modIdx + '-' + qi + ' .match-item').forEach(el => el.style.pointerEvents = 'none');
+    const fbEl = document.getElementById('mf-' + modIdx + '-' + qi);
+    fbEl.className = 'order-feedback ' + (allCorrect ? 'fb-correct' : 'fb-wrong');
+    fbEl.textContent = allCorrect ? '✅ ' + q.feedback : '❌ Revisa las parejas marcadas en rojo.';
+    if (!allCorrect) fbEl.innerHTML += ' <button class="retry-btn" onclick="retryQuestion(' + modIdx + ',' + qi + ')">🔄 Reintentar pregunta</button>';
+    if (allCorrect) spawnConfetti();
+    quizState[modIdx].answers[qi] = allCorrect;
+    updateQuizDot(modIdx, qi, allCorrect);
     updateQuizScore(modIdx);
   };
 
@@ -2017,6 +2379,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <button class="back-link" onclick="${l.module > 0 ? `showModule(${l.module})` : 'showHome()'}">← ${l.module > 0 ? 'Volver al módulo' : 'Volver al inicio'}</button>
     </div>`;
     content += `<h1 class="lesson-title">${l.title}</h1><p class="lesson-desc">${l.desc}</p>`;
+    if (l.intro) content += `<div class="lesson-intro">${l.intro}</div>`;
 
     if (l.type === 'video') {
       const src = l.videoSubtitled || l.video;
@@ -2061,6 +2424,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <img src="${img.src}" alt="${img.label}" loading="lazy" />
           <div class="img-label">${img.label}</div>
         </div>`).join('')}</div>`;
+    }
+    if (l.reflection) {
+      content += `<div class="reflection-note">🎙️ <strong>Para reflexionar:</strong> ${l.reflection}</div>`;
     }
     if (l.type !== 'images' && l.images && l.images.length) {
       content += `<div class="image-gallery">${l.images.map(img => `
@@ -2241,6 +2607,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     }
     signedUp = { name: name.trim(), email: email.trim(), date: new Date().toISOString() };
     try { localStorage.setItem('curso_signup', JSON.stringify(signedUp)); } catch(e) {}
+    if (window.CursoDB) window.CursoDB.addSignup(signedUp.name, signedUp.email).catch(e => console.error('Error registrando inscripción', e));
     showHome();
   };
 
@@ -2258,11 +2625,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     const label = document.getElementById('signupLabel');
     if (!link || !icon || !label) return;
     if (signedUp) {
-      icon.textContent = '✅';
+      icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>';
       label.textContent = signedUp.name.split(' ')[0];
       link.title = 'Cerrar sesión';
     } else {
-      icon.textContent = '📝';
+      icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-6"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>';
       label.textContent = 'Inscribirse';
     }
   }
@@ -2275,6 +2642,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
   window.showCertificate = function() {
     if (!signedUp) { renderSignup(); return; }
+    if (!allForumsPosted()) { alert('Para obtener tu certificado, primero participa en el foro de discusión de todos los módulos.'); showHome(); return; }
     const certName = document.getElementById('certName');
     const certDate = document.getElementById('certDate');
     if (certName) certName.textContent = signedUp.name;
@@ -2298,6 +2666,119 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <body>${inner.replace('class="cert-overlay"', 'class="cert-overlay"')}</body></html>`);
     w.document.close();
     setTimeout(() => { w.focus(); w.print(); }, 250);
+  };
+
+  // ── Evaluación general del curso ─────────────────────
+  let evalState = { opinion: '', ratingGeneral: null, ratingModule: { 1: null, 2: null, 3: null, 4: null }, ratingPlatform: null, mostImportant: null, why: '' };
+
+  function syncEvalTextFields() {
+    const o = document.getElementById('eval-opinion'); if (o) evalState.opinion = o.value;
+    const w = document.getElementById('eval-why'); if (w) evalState.why = w.value;
+  }
+
+  function renderCourseEvalModal() {
+    const modal = document.getElementById('evalModal');
+    if (!modal) return;
+    const ratingRow = (field, modIdx) => {
+      const current = modIdx ? evalState.ratingModule[modIdx] : evalState[field];
+      return [1,2,3,4,5].map(n => `<button type="button" class="rating-btn ${current === n ? 'picked' : ''}" onclick="pickRating('${field}',${n}${modIdx ? ',' + modIdx : ''})">${n}</button>`).join('');
+    };
+    modal.innerHTML = `
+      <button class="cm-close" onclick="closeCourseEval()">✕</button>
+      <div class="cm-badge">Evaluación general del curso</div>
+      <h2>¿Cómo te fue con el curso?</h2>
+      <div class="cm-sub">Deja tu opinión sobre este curso corto que acabas de finalizar.</div>
+      <div class="eval-field">
+        <label>Tu opinión</label>
+        <textarea id="eval-opinion" placeholder="Cuéntanos qué te pareció el curso..."></textarea>
+      </div>
+      <div class="eval-field">
+        <label>¿Cómo calificas el curso en general? <span style="font-weight:400;color:var(--text-muted)">(1 = baja, 5 = alta)</span></label>
+        <div class="rating-row">${ratingRow('ratingGeneral')}</div>
+      </div>
+      <div class="eval-field">
+        <label>¿Cómo calificas cada módulo del curso?</label>
+        <div class="eval-module-ratings">
+          ${[1,2,3,4].map(m => `<div class="emr-row"><span>Módulo ${m}</span><div class="rating-row">${ratingRow('ratingModule', m)}</div></div>`).join('')}
+        </div>
+      </div>
+      <div class="eval-field">
+        <label>Califica la plataforma y su facilidad de ingreso e interacción</label>
+        <div class="rating-row">${ratingRow('ratingPlatform')}</div>
+      </div>
+      <div class="eval-field">
+        <label>¿Qué módulo es el más importante y por qué?</label>
+        <div class="eval-module-pick">
+          ${[1,2,3,4].map(m => `<button type="button" class="${evalState.mostImportant === m ? 'picked' : ''}" onclick="pickMostImportantModule(${m})">Módulo ${m}</button>`).join('')}
+        </div>
+        <textarea id="eval-why" placeholder="¿Por qué?" style="margin-top:.6rem"></textarea>
+      </div>
+      <button class="eval-submit-btn" onclick="submitCourseEval()">Enviar evaluación</button>`;
+    const opinionEl = document.getElementById('eval-opinion'); if (opinionEl) opinionEl.value = evalState.opinion || '';
+    const whyEl = document.getElementById('eval-why'); if (whyEl) whyEl.value = evalState.why || '';
+  }
+
+  window.pickRating = function(field, n, modIdx) {
+    syncEvalTextFields();
+    if (field === 'ratingModule') evalState.ratingModule[modIdx] = n; else evalState[field] = n;
+    renderCourseEvalModal();
+  };
+
+  window.pickMostImportantModule = function(m) {
+    syncEvalTextFields();
+    evalState.mostImportant = m;
+    renderCourseEvalModal();
+  };
+
+  window.showCourseEval = function() {
+    if (!signedUp) { renderSignup(); return; }
+    renderCourseEvalModal();
+    const overlay = document.getElementById('evalOverlay');
+    if (overlay) overlay.classList.add('open');
+  };
+
+  window.closeCourseEval = function() {
+    const overlay = document.getElementById('evalOverlay');
+    if (overlay) overlay.classList.remove('open');
+  };
+
+  window.submitCourseEval = async function() {
+    syncEvalTextFields();
+    const opinion = (evalState.opinion || '').trim();
+    if (!opinion || !evalState.ratingGeneral) {
+      alert('Por favor deja tu opinión y una calificación general del curso antes de enviar.');
+      return;
+    }
+    const modal = document.getElementById('evalModal');
+    const btn = modal ? modal.querySelector('.eval-submit-btn') : null;
+    if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+    const payload = {
+      name: signedUp ? signedUp.name : 'Participante',
+      opinion,
+      ratingGeneral: evalState.ratingGeneral,
+      ratingModule1: evalState.ratingModule[1] || null,
+      ratingModule2: evalState.ratingModule[2] || null,
+      ratingModule3: evalState.ratingModule[3] || null,
+      ratingModule4: evalState.ratingModule[4] || null,
+      ratingPlatform: evalState.ratingPlatform || null,
+      mostImportantModule: evalState.mostImportant || null,
+      mostImportantWhy: (evalState.why || '').trim() || null,
+    };
+    try {
+      if (window.CursoDB) await window.CursoDB.addCourseEvaluation(payload);
+      try { localStorage.setItem('curso_eval_done', '1'); } catch(e) {}
+      if (modal) modal.innerHTML = `<button class="cm-close" onclick="closeCourseEval()">✕</button>
+        <div class="eval-thanks">
+          <div class="et-icon">🙌</div>
+          <h3>¡Gracias por tu evaluación!</h3>
+          <p>Tu opinión nos ayuda a mejorar este curso para más personas.</p>
+        </div>`;
+      if (view === 'home') renderHome();
+    } catch (e) {
+      console.error('Error enviando evaluación', e);
+      if (btn) { btn.disabled = false; btn.textContent = 'Enviar evaluación'; }
+      alert('No se pudo enviar tu evaluación. Intenta de nuevo.');
+    }
   };
 
   // ── Init ────────────────────────────────────────────
