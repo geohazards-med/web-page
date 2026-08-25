@@ -357,6 +357,36 @@
     .lesson-intro p { font-size: 1rem; line-height: 1.75; color: var(--text); margin-bottom: 1rem; }
     .lesson-intro p:last-child { margin-bottom: 0; }
 
+    .concept-note { margin: 1.5rem 0 2.5rem; padding: 1.1rem 1.4rem; background: var(--primary-soft); border: 1px solid var(--primary-mid); border-left: 4px solid var(--primary); border-radius: var(--radius-sm); font-size: .92rem; color: var(--ink); line-height: 1.6; }
+    .concept-note strong { color: var(--primary-dark); }
+
+    .signal-group { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 1.5rem; }
+    .signal-group-head { display: flex; align-items: center; gap: .6rem; padding: 1rem 1.4rem; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #fff; }
+    .signal-group-head .sg-icon { font-size: 1.3rem; }
+    .signal-group-head h3 { font-size: 1rem; font-weight: 800; }
+    .signal-img-wrap { position: relative; line-height: 0; background: var(--bg-dark); }
+    .signal-img-wrap img { width: 100%; display: block; }
+    .hotspot-pin {
+      position: absolute; width: 30px; height: 30px; border-radius: 50%;
+      background: var(--accent); border: 3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      transform: translate(-50%, -50%); cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 900; font-size: .95rem; font-family: inherit; padding: 0;
+      animation: hotspotPulse 2s ease-in-out infinite;
+      transition: background .2s, transform .2s;
+    }
+    .hotspot-pin:hover { transform: translate(-50%, -50%) scale(1.12); }
+    .hotspot-pin.active { background: var(--green); animation: none; }
+    @keyframes hotspotPulse { 0%,100% { box-shadow: 0 2px 10px rgba(0,0,0,0.4), 0 0 0 0 rgba(217,154,43,0.55); } 50% { box-shadow: 0 2px 10px rgba(0,0,0,0.4), 0 0 0 9px rgba(217,154,43,0); } }
+    .signal-caption { padding: 1.1rem 1.4rem; border-top: 1px solid var(--border); min-height: 1.2rem; }
+    .signal-caption .sc-hint { color: var(--text-light); font-size: .85rem; font-style: italic; }
+    .signal-caption .sc-title { font-weight: 800; color: var(--primary-dark); font-size: .92rem; margin-bottom: .3rem; }
+    .signal-caption .sc-text { color: var(--text); font-size: .9rem; line-height: 1.6; }
+    .signal-extra { list-style: none; padding: 0 1.4rem 1.3rem; }
+    .signal-extra li { font-size: .88rem; color: var(--text-muted); line-height: 1.6; padding: .6rem 0 0 1.2rem; border-top: 1px dashed var(--border); margin-top: .6rem; position: relative; }
+    .signal-extra li:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+    .signal-extra li::before { content: '●'; position: absolute; left: 0; top: .65rem; color: var(--accent); font-size: .6rem; }
+    .signal-extra li:first-child::before { top: .05rem; }
+
     .player-section {
       background: #1a1410;
       border-radius: var(--radius);
@@ -1469,14 +1499,43 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'Conocimientos y herramientas',
         title: 'Señales de alerta',
         desc: 'Reconoce las señales tempranas de riesgo en la vivienda, el terreno, las vías y el entorno.',
-        intro: '<p>El ser humano lleva en su naturaleza la curiosidad, la duda y las preguntas, aspectos esenciales para la investigación. Podemos decir que quien en su entorno siempre está observando e identificando cambios, es un investigador o investigadora. Si aplicamos esto en la gestión del riesgo, específicamente en lo que se denomina monitoreo, podemos con mucha antelación identificar señales de alerta en el territorio.</p><p>Recordemos que el monitoreo es en esencia observar y recolectar información de manera sistemática. Estos datos recolectados se pueden analizar de diferente manera e identificar patrones o cambios.</p>',
+        intro: '<p>El ser humano lleva en su naturaleza la curiosidad, la duda y las preguntas, aspectos esenciales para la investigación. Podemos decir que quien en su entorno siempre está observando e identificando cambios, es un investigador o investigadora. Si aplicamos esto en la gestión del riesgo, específicamente en lo que se denomina monitoreo, podemos con mucha antelación identificar señales de alerta en el territorio.</p><p>Recordemos que el monitoreo es en esencia observar y recolectar información de manera sistemática. Estos datos recolectados se pueden analizar de diferente manera e identificar patrones o cambios (Castro y Caballero, 2019).</p><p>En otras palabras, si todos los días una persona sale a trabajar a las 7 am y a esa misma hora, mira un talud o una grieta en una pared y esta no presenta cambios o deformaciones, podemos decir que está monitoreando. En el momento que algo cambie, por mínimo que sea, se tendrá el suficiente tiempo para informar y tomar medidas de prevención.</p><p>La naturaleza y nuestras viviendas suelen darnos avisos antes de que ocurra una emergencia por deslizamientos. Como habitantes del territorio y conocedores de su barrio, ustedes son los primeros en notar si algo está cambiando. Preste mucha atención a estas señales, especialmente durante los días de fuertes lluvias:</p>',
+        signals: [
+          {
+            title: 'Señales en su vivienda',
+            icon: '🏠',
+            image: 'img/M4_Senales_Viviendas.png',
+            hotspots: [
+              { x: 24, y: 42, title: 'Grietas nuevas o que crecen', text: 'Vigile las fisuras en paredes, pisos o escalas. Preste especial atención si las grietas tienen forma diagonal (como una escalera) o si puede meter un dedo en ellas.' },
+              { x: 73, y: 58, title: 'Puertas y ventanas desajustadas', text: 'Si de un momento a otro las puertas o ventanas se traban, rozan contra el piso o ya no cierran bien, puede ser un síntoma de que el terreno debajo de la casa se está moviendo.' },
+            ],
+            extra: ['Pisos inclinados: si siente que el suelo de su casa está perdiendo el nivel o las cosas redondas ruedan solas hacia un lado.']
+          },
+          {
+            title: 'Señales en el terreno y las vías',
+            icon: '🛣️',
+            image: 'img/M4_Senales_Vias.png',
+            hotspots: [
+              { x: 27, y: 63, title: 'Hundimientos o grietas en el suelo', text: 'Fisuras profundas o hundimientos repentinos en los andenes, patios, canchas o calles del barrio.' },
+              { x: 75, y: 44, title: 'Muros "abombados" o inclinados', text: 'Si nota que un muro de contención se está inclinando hacia adelante o se le hace una "barriga", significa que la tierra mojada está haciendo demasiada presión y podría colapsar.' },
+            ],
+            extra: ['Agua donde antes no había: aparición repentina de nacimientos de agua, lodo o humedad en laderas y barrancos que normalmente son secos.']
+          },
+          {
+            title: 'Señales en el entorno',
+            icon: '🌳',
+            image: 'img/M4_Senales_Entorno.png',
+            hotspots: [
+              { x: 47, y: 32, title: 'Árboles y postes ladeados', text: 'Si los postes de la luz, las cercas o los árboles de la montaña empiezan a inclinarse todos hacia la misma dirección, es una clara señal de que el suelo se está deslizando lentamente hacia abajo.' },
+            ],
+            extra: []
+          },
+        ],
+        concept: '<strong>La amenaza no es lo mismo que el riesgo.</strong> La amenaza se refiere a la probabilidad de que ocurra un fenómeno peligroso (como un deslizamiento), mientras que el riesgo corresponde a las posibles consecuencias de ese fenómeno sobre las personas, viviendas o infraestructura.',
         type: 'pdf',
         pdf: 'pdfs/M4_Monitoreo_senales.pdf',
         pdfCover: 'img/M4_Monitoreo_senales_portada.jpg',
-        pdfLabel: 'Guía de Monitoreo de Señales',
-        images: [
-          { src: 'img/M4_Comunidad.png', label: 'Comunidad y Gestión del Riesgo' }
-        ]
+        pdfLabel: 'Guía de Monitoreo de Señales'
       },
       {
         id: 'm4-geoportal',
@@ -2418,6 +2477,20 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     content += `<h1 class="lesson-title">${l.title}</h1><p class="lesson-desc">${l.desc}</p>`;
     if (l.intro) content += `<div class="lesson-intro">${l.intro}</div>`;
 
+    if (l.signals && l.signals.length) {
+      content += l.signals.map((g, gi) => `
+        <div class="signal-group">
+          <div class="signal-group-head"><span class="sg-icon">${g.icon}</span><h3>${g.title}</h3></div>
+          <div class="signal-img-wrap">
+            <img src="${g.image}" alt="${g.title}" loading="lazy" />
+            ${g.hotspots.map((h, hi) => `<button type="button" class="hotspot-pin" style="left:${h.x}%;top:${h.y}%" onclick="pickHotspot('${l.id}',${gi},${hi})" id="hp-${l.id}-${gi}-${hi}" aria-label="${h.title}">${hi+1}</button>`).join('')}
+          </div>
+          <div class="signal-caption" id="sc-${l.id}-${gi}"><span class="sc-hint">👆 Toca los puntos numerados en la imagen para conocer cada señal.</span></div>
+          ${g.extra && g.extra.length ? `<ul class="signal-extra">${g.extra.map(e => `<li>${e}</li>`).join('')}</ul>` : ''}
+        </div>`).join('');
+    }
+    if (l.concept) content += `<div class="concept-note">💡 ${l.concept}</div>`;
+
     if (l.type === 'video') {
       const src = l.videoSubtitled || l.video;
       content += `<div class="player-section">
@@ -2570,6 +2643,19 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
   // ── Image Modal ─────────────────────────────────────
   window.openImage = function(src) { modalImage.src = src; imageModal.classList.add('open'); };
+
+  window.pickHotspot = function(lessonId, gi, hi) {
+    const l = COURSE.lessons.find(x => x.id === lessonId);
+    const g = l.signals[gi];
+    const h = g.hotspots[hi];
+    const pin = document.getElementById('hp-' + lessonId + '-' + gi + '-' + hi);
+    if (!pin) return;
+    const wrap = pin.closest('.signal-img-wrap');
+    wrap.querySelectorAll('.hotspot-pin').forEach(p => p.classList.remove('active'));
+    pin.classList.add('active');
+    const caption = document.getElementById('sc-' + lessonId + '-' + gi);
+    if (caption) caption.innerHTML = `<div class="sc-title">📍 ${h.title}</div><div class="sc-text">${h.text}</div>`;
+  };
   closeModal.addEventListener('click', () => imageModal.classList.remove('open'));
   imageModal.addEventListener('click', (e) => { if (e.target === imageModal) imageModal.classList.remove('open'); });
 
