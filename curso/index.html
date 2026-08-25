@@ -827,6 +827,22 @@
     .match-item.wrong { opacity: 1; border-style: solid; border-color: var(--red); background: rgba(169,68,56,0.1); }
     .match-tag { margin-left: auto; background: var(--primary); color: white; border-radius: 99px; width: 20px; height: 20px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 800; }
 
+    /* Hangman */
+    .hangman-progress { text-align: center; font-size: .78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: .6rem; }
+    .hangman-clue { text-align: center; font-size: .95rem; color: var(--text); line-height: 1.6; margin-bottom: 1rem; max-width: 44ch; margin-left: auto; margin-right: auto; }
+    .hangman-stage { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+    .hangman-figure { width: 110px; height: 128px; color: var(--red); flex-shrink: 0; }
+    .hangman-figure line, .hangman-figure circle { transition: opacity .3s; }
+    .hangman-word { display: flex; flex-wrap: wrap; gap: .35rem; justify-content: center; }
+    .hg-slot { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 32px; border-bottom: 3px solid var(--primary); font-weight: 900; font-size: 1.1rem; color: var(--primary-dark); text-transform: uppercase; }
+    .hg-space { display: inline-block; width: 16px; }
+    .hangman-keyboard { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin-bottom: .8rem; }
+    .hg-key { width: 34px; height: 34px; border-radius: var(--radius-sm); border: 1.5px solid var(--border); background: #fff; font-weight: 800; font-size: .85rem; cursor: pointer; font-family: inherit; color: var(--text); transition: all .15s; }
+    .hg-key:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-light); }
+    .hg-key:disabled { cursor: default; }
+    .hg-key.correct { background: rgba(96,122,75,0.18); border-color: var(--green); color: var(--green); }
+    .hg-key.wrong { background: rgba(169,68,56,0.15); border-color: var(--red); color: var(--red); opacity: .6; }
+
     /* Complete question */
     .complete-sentence { font-size: 1rem; padding: 1rem 1.2rem; background: var(--bg); border-radius: var(--radius-sm); border: 1.5px solid var(--border); line-height: 1.7; margin-bottom: 1rem; }
     .complete-sentence .blank { display: inline-block; min-width: 100px; border-bottom: 3px solid var(--accent); padding: 0 .3rem; font-weight: 800; color: var(--primary); transition: all .3s; }
@@ -1587,7 +1603,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <h3>Conocimiento al alcance de todas y todos</h3>
           <p>El grupo de investigación GeoHazards de la Universidad Nacional de Colombia ha desarrollado una página web que, desde un lenguaje sencillo, muestra información de relevancia para los ciudadanos. Explora este espacio:</p>
           <p><a href="https://geohazards.com.co/comunidad.html" target="_blank" rel="noopener" style="color:var(--primary);font-weight:700;">👉 https://geohazards.com.co/comunidad.html</a></p>
-        `
+        `,
+        images: [
+          { src: 'img/M4_Comunidad.webp', label: 'Estructura y contenidos de la página comunitaria' }
+        ]
       },
       {
         id: 'm4-storymaps',
@@ -1785,6 +1804,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         ['¿Qué ocurre cuando hay vulnerabilidad organizativa?', 'Puede haber desorganización, poca comunicación y dificultades para actuar en el barrio.'],
         ['¿Por qué son importantes las redes de apoyo?', 'Ayudan a recibir información, apoyo y coordinación antes, durante y después de una emergencia.'],
       ], feedback: 'La vulnerabilidad tiene distintas caras: la dificultad para enfrentar una emergencia, el estado físico de la vivienda, las condiciones sociales de las familias, la organización comunitaria y el papel de las redes de apoyo.' },
+      { type: 'hangman', q: 'Ahorcado: lee la afirmación y adivina la palabra que responde.', rounds: [
+        { clue: 'Son los cambios normales o frecuentes del clima que se presentan entre días, meses o años: los "altibajos" del clima.', answer: 'VARIABILIDAD' },
+        { clue: 'Es una transformación más profunda y sostenida en el tiempo, que modifica los promedios del clima e intensifica los eventos extremos.', answer: 'CAMBIOCLIMATICO' },
+      ], feedback: '¡Muy bien! La variabilidad son los altibajos del clima entre días, meses o años; el cambio climático es una transformación más profunda y duradera.' },
     ],
     4: [
       { type: 'choice', q: '¿Verdadero o falso? "Si una grieta aparece después de varios días de lluvia, es importante hacer seguimiento, aunque sea pequeña."', opts: ['Verdadero', 'Falso'], ans: 0, feedback: 'Las lluvias pueden saturar el suelo y generar movimientos lentos del terreno. Una grieta pequeña no siempre significa peligro inmediato, pero sí puede ser una señal que requiere observación y seguimiento.' },
@@ -2231,14 +2254,92 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           ${q.opts.map((opt, oi) => `<button class="complete-opt" id="copt-${modIdx}-${qi}-${oi}" onclick="pickComplete(${modIdx},${qi},${oi})">${opt}</button>`).join('')}
         </div>
         <div class="quiz-feedback" id="qf-${modIdx}-${qi}"></div>`;
+    } else if (q.type === 'hangman') {
+      quizState[modIdx].hangmanState[qi] = { round: 0, guessed: [], wrong: 0 };
+      html += `<div id="hangman-body-${modIdx}-${qi}">${renderHangmanBody(modIdx, qi)}</div>`;
     }
     return html;
   }
 
+  // Hangman (Ahorcado)
+  function renderHangmanBody(modIdx, qi) {
+    const q = QUIZ[modIdx][qi];
+    const st = quizState[modIdx].hangmanState[qi];
+    const round = q.rounds[st.round];
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const lost = st.wrong >= 6;
+    const won = [...round.answer].every(c => c === ' ' || st.guessed.includes(c));
+    const locked = lost || won;
+    const wordDisplay = [...round.answer].map(c => c === ' '
+      ? `<span class="hg-space"></span>`
+      : `<span class="hg-slot">${(st.guessed.includes(c) || lost) ? c : ''}</span>`).join('');
+    return `
+      <div class="hangman-progress">Palabra ${st.round + 1} de ${q.rounds.length}</div>
+      <p class="hangman-clue">${round.clue}</p>
+      <div class="hangman-stage">
+        <svg viewBox="0 0 120 140" class="hangman-figure">
+          <line x1="10" y1="130" x2="90" y2="130" stroke="currentColor" stroke-width="4"/>
+          <line x1="30" y1="130" x2="30" y2="10" stroke="currentColor" stroke-width="4"/>
+          <line x1="30" y1="10" x2="80" y2="10" stroke="currentColor" stroke-width="4"/>
+          <line x1="80" y1="10" x2="80" y2="25" stroke="currentColor" stroke-width="4"/>
+          <circle cx="80" cy="35" r="10" stroke="currentColor" stroke-width="3" fill="none" style="opacity:${st.wrong>=1?1:0}"/>
+          <line x1="80" y1="45" x2="80" y2="80" stroke="currentColor" stroke-width="3" style="opacity:${st.wrong>=2?1:0}"/>
+          <line x1="80" y1="55" x2="65" y2="70" stroke="currentColor" stroke-width="3" style="opacity:${st.wrong>=3?1:0}"/>
+          <line x1="80" y1="55" x2="95" y2="70" stroke="currentColor" stroke-width="3" style="opacity:${st.wrong>=4?1:0}"/>
+          <line x1="80" y1="80" x2="65" y2="100" stroke="currentColor" stroke-width="3" style="opacity:${st.wrong>=5?1:0}"/>
+          <line x1="80" y1="80" x2="95" y2="100" stroke="currentColor" stroke-width="3" style="opacity:${st.wrong>=6?1:0}"/>
+        </svg>
+        <div class="hangman-word">${wordDisplay}</div>
+      </div>
+      <div class="hangman-keyboard">
+        ${letters.map(l => `<button type="button" class="hg-key ${st.guessed.includes(l) ? (round.answer.includes(l) ? 'correct' : 'wrong') : ''}" ${st.guessed.includes(l) || locked ? 'disabled' : ''} onclick="guessLetter(${modIdx},${qi},'${l}')">${l}</button>`).join('')}
+      </div>
+      <div class="hangman-feedback">
+        ${won ? `<div class="quiz-feedback show fb-correct">✅ ¡Correcto! La palabra era <strong>${round.answer}</strong>.${st.round === q.rounds.length - 1 ? ' ' + q.feedback : ''}</div>` : ''}
+        ${lost ? `<div class="quiz-feedback show fb-wrong">❌ Se acabaron los intentos. La palabra era <strong>${round.answer}</strong>. <button class="retry-btn" onclick="retryHangmanRound(${modIdx},${qi})">🔄 Intentar de nuevo</button></div>` : ''}
+      </div>`;
+  }
+
+  window.guessLetter = function(modIdx, qi, letter) {
+    const q = QUIZ[modIdx][qi];
+    const st = quizState[modIdx].hangmanState[qi];
+    const round = q.rounds[st.round];
+    if (st.guessed.includes(letter) || st.wrong >= 6) return;
+    st.guessed.push(letter);
+    if (!round.answer.includes(letter)) st.wrong++;
+    const body = document.getElementById('hangman-body-' + modIdx + '-' + qi);
+    if (body) body.innerHTML = renderHangmanBody(modIdx, qi);
+    const won = [...round.answer].every(c => c === ' ' || st.guessed.includes(c));
+    const card = document.getElementById('qc-' + modIdx + '-' + qi);
+    if (won) {
+      if (st.round < q.rounds.length - 1) {
+        setTimeout(() => {
+          st.round++; st.guessed = []; st.wrong = 0;
+          const b2 = document.getElementById('hangman-body-' + modIdx + '-' + qi);
+          if (b2) b2.innerHTML = renderHangmanBody(modIdx, qi);
+        }, 1400);
+      } else {
+        if (card) card.classList.add('correct');
+        quizState[modIdx].answers[qi] = true;
+        updateQuizDot(modIdx, qi, true);
+        updateQuizScore(modIdx);
+        spawnConfetti();
+      }
+    }
+  };
+
+  window.retryHangmanRound = function(modIdx, qi) {
+    const st = quizState[modIdx].hangmanState[qi];
+    st.guessed = [];
+    st.wrong = 0;
+    const body = document.getElementById('hangman-body-' + modIdx + '-' + qi);
+    if (body) body.innerHTML = renderHangmanBody(modIdx, qi);
+  };
+
   function renderQuizView(modIdx) {
     const questions = QUIZ[modIdx];
     if (!questions) { app.innerHTML = '<section class="view"><p style="text-align:center;padding:3rem;color:var(--text-muted)">No hay preguntas para este módulo.</p></section>'; return; }
-    quizState[modIdx] = { answers: {}, orderPicks: {}, completePicks: {}, matchPicks: {} };
+    quizState[modIdx] = { answers: {}, orderPicks: {}, completePicks: {}, matchPicks: {}, hangmanState: {} };
     const mod = getModules().find(m => m.idx === modIdx);
     const dots = questions.map((_, qi) => `<span class="qp-dot" id="qpd-${modIdx}-${qi}"></span>`).join('');
     let html = `<section class="view"><div class="quiz-view">
@@ -2280,7 +2381,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   };
 
   function typeLabel(type) {
-    return { choice: 'Opción múltiple', order: 'Ordenar', complete: 'Completar', match: 'Relacionar' }[type] || type;
+    return { choice: 'Opción múltiple', order: 'Ordenar', complete: 'Completar', match: 'Relacionar', hangman: 'Ahorcado' }[type] || type;
   }
 
   function quizTypesLabel(modIdx) {
