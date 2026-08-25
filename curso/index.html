@@ -364,18 +364,29 @@
     .signal-group-head { display: flex; align-items: center; gap: .6rem; padding: 1rem 1.4rem; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #fff; }
     .signal-group-head .sg-icon { font-size: 1.3rem; }
     .signal-group-head h3 { font-size: 1rem; font-weight: 800; }
-    .signal-img-wrap { position: relative; line-height: 0; background: var(--bg-dark); }
-    .signal-img-wrap img { width: 100%; display: block; }
+    .signal-img-wrap { position: relative; line-height: 0; background: var(--bg-dark); overflow: hidden; }
+    .signal-img-wrap img { width: 100%; display: block; transition: transform .7s cubic-bezier(.16,1,.3,1); transform-origin: 50% 50%; }
+    .signal-img-wrap img.zoomed { transform: scale(2.4); }
     .hotspot-pin {
       position: absolute; width: 30px; height: 30px; border-radius: 50%;
       background: var(--accent); border: 3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.4);
       transform: translate(-50%, -50%); cursor: pointer; display: flex; align-items: center; justify-content: center;
       color: #fff; font-weight: 900; font-size: .95rem; font-family: inherit; padding: 0;
       animation: hotspotPulse 2s ease-in-out infinite;
-      transition: background .2s, transform .2s;
+      transition: background .2s, transform .2s, opacity .3s;
+      z-index: 2;
     }
     .hotspot-pin:hover { transform: translate(-50%, -50%) scale(1.12); }
     .hotspot-pin.active { background: var(--green); animation: none; }
+    .signal-img-wrap.zoomed-state .hotspot-pin { opacity: 0; pointer-events: none; }
+    .signal-reset-btn {
+      position: absolute; top: 10px; right: 10px; z-index: 5;
+      background: rgba(20,15,10,0.7); color: #fff; border: 1px solid rgba(255,255,255,0.4); border-radius: 99px;
+      padding: .45rem .9rem; font-size: .78rem; font-weight: 700; cursor: pointer; font-family: inherit;
+      display: none; align-items: center; gap: .35rem; opacity: 0; transition: opacity .3s;
+    }
+    .signal-img-wrap.zoomed-state .signal-reset-btn { display: inline-flex; opacity: 1; }
+    .signal-reset-btn:hover { background: rgba(20,15,10,0.9); }
     @keyframes hotspotPulse { 0%,100% { box-shadow: 0 2px 10px rgba(0,0,0,0.4), 0 0 0 0 rgba(217,154,43,0.55); } 50% { box-shadow: 0 2px 10px rgba(0,0,0,0.4), 0 0 0 9px rgba(217,154,43,0); } }
     .signal-caption { padding: 1.1rem 1.4rem; border-top: 1px solid var(--border); min-height: 1.2rem; }
     .signal-caption .sc-hint { color: var(--text-light); font-size: .85rem; font-style: italic; }
@@ -872,6 +883,8 @@
     .forum-msg { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .7rem .95rem; }
     .forum-msg .fm-meta { font-size: .72rem; font-weight: 700; color: var(--primary); margin-bottom: .25rem; display: flex; justify-content: space-between; gap: .5rem; }
     .forum-msg .fm-time { font-weight: 500; color: var(--text-light); }
+    .forum-msg .fm-who { display: inline-flex; align-items: center; gap: .4rem; }
+    .forum-msg .fm-role { font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; background: var(--blue); color: #fff; padding: .1rem .45rem; border-radius: 99px; }
     .forum-msg .fm-text { font-size: .88rem; color: var(--text); line-height: 1.5; }
     .forum-empty { text-align: center; color: var(--text-muted); font-size: .85rem; padding: .6rem 0; }
     .forum-input { display: flex; gap: .5rem; }
@@ -985,6 +998,18 @@
       background: var(--bg);
     }
     .signup-body input:focus { outline: none; border-color: var(--accent); background: #fff; }
+    .signup-body select {
+      width: 100%;
+      padding: .7rem .9rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: .95rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--bg);
+      cursor: pointer;
+    }
+    .signup-body select:focus { outline: none; border-color: var(--accent); background: #fff; }
     .signup-body .signup-note { font-size: .78rem; color: var(--text-muted); margin-top: .9rem; line-height: 1.55; }
     .signup-btn {
       width: 100%;
@@ -1126,8 +1151,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     async addSignup(name, email) {
       await addDoc(collection(db, 'signups'), { name, email, createdAt: serverTimestamp() });
     },
-    async addForumPost(modIdx, name, text) {
-      await addDoc(collection(db, 'forum_posts'), { module: modIdx, name, text, createdAt: serverTimestamp() });
+    async addForumPost(modIdx, name, text, role) {
+      await addDoc(collection(db, 'forum_posts'), { module: modIdx, name, text, role: role || 'participante', createdAt: serverTimestamp() });
     },
     async addCourseEvaluation(data) {
       await addDoc(collection(db, 'course_evaluations'), { ...data, createdAt: serverTimestamp() });
@@ -1137,7 +1162,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       const snap = await getDocs(q);
       return snap.docs.map(d => {
         const data = d.data();
-        return { name: data.name, text: data.text, date: data.createdAt ? data.createdAt.toDate().toISOString() : new Date().toISOString() };
+        return { name: data.name, text: data.text, role: data.role || 'participante', date: data.createdAt ? data.createdAt.toDate().toISOString() : new Date().toISOString() };
       });
     }
   };
@@ -1526,7 +1551,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             icon: '🌳',
             image: 'img/M4_Senales_Entorno.png',
             hotspots: [
-              { x: 47, y: 32, title: 'Árboles y postes ladeados', text: 'Si los postes de la luz, las cercas o los árboles de la montaña empiezan a inclinarse todos hacia la misma dirección, es una clara señal de que el suelo se está deslizando lentamente hacia abajo.' },
+              { x: 66, y: 45, title: 'Árboles y postes ladeados', text: 'Si los postes de la luz, las cercas o los árboles de la montaña empiezan a inclinarse todos hacia la misma dirección, es una clara señal de que el suelo se está deslizando lentamente hacia abajo.' },
             ],
             extra: []
           },
@@ -1668,15 +1693,16 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     const text = (textarea && textarea.value || '').trim();
     if (!text) return;
     const name = signedUp ? signedUp.name : 'Participante';
+    const role = signedUp ? (signedUp.role || 'participante') : 'participante';
     if (textarea) textarea.disabled = true;
     if (btn) btn.disabled = true;
     try {
-      if (window.CursoDB) await window.CursoDB.addForumPost(modIdx, name, text);
+      if (window.CursoDB) await window.CursoDB.addForumPost(modIdx, name, text, role);
       const list = document.getElementById('forum-list-' + modIdx);
       if (list) {
         const empty = list.querySelector('.forum-empty');
         if (empty) empty.remove();
-        list.appendChild(forumMsgEl({ name, text, date: new Date().toISOString() }));
+        list.appendChild(forumMsgEl({ name, text, role, date: new Date().toISOString() }));
         list.scrollTop = list.scrollHeight;
       }
       if (textarea) textarea.value = '';
@@ -1698,8 +1724,30 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     const time = d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }) + ' ' + d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
     const div = document.createElement('div');
     div.className = 'forum-msg';
-    div.innerHTML = `<div class="fm-meta"><span>${msg.name}</span><span class="fm-time">${time}</span></div><div class="fm-text"></div>`;
-    div.querySelector('.fm-text').textContent = msg.text;
+
+    const meta = document.createElement('div');
+    meta.className = 'fm-meta';
+    const who = document.createElement('span');
+    who.className = 'fm-who';
+    who.appendChild(document.createTextNode(msg.name));
+    if (msg.role === 'profesional') {
+      const badge = document.createElement('span');
+      badge.className = 'fm-role';
+      badge.textContent = '🎓 Profesional';
+      who.appendChild(badge);
+    }
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'fm-time';
+    timeSpan.textContent = time;
+    meta.appendChild(who);
+    meta.appendChild(timeSpan);
+
+    const textDiv = document.createElement('div');
+    textDiv.className = 'fm-text';
+    textDiv.textContent = msg.text;
+
+    div.appendChild(meta);
+    div.appendChild(textDiv);
     return div;
   }
 
@@ -1994,7 +2042,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <div class="cert-actions">
             ${allForumsPosted()
               ? `<button class="cert-btn" onclick="showCertificate()">Ver mi certificado →</button>`
-              : `<button class="cert-btn" onclick="showModule(${missingForums()[0].idx})">Ir al foro →</button>`}
+              : `<button class="cert-btn" onclick="showForums()">Ir al foro →</button>`}
             <button class="cert-btn cert-btn-secondary" onclick="showCourseEval()">${evalDone ? '✓ Evaluación enviada' : '📝 Evaluar el curso'}</button>
           </div>
         </div>` : ''}
@@ -2483,6 +2531,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <div class="signal-group-head"><span class="sg-icon">${g.icon}</span><h3>${g.title}</h3></div>
           <div class="signal-img-wrap">
             <img src="${g.image}" alt="${g.title}" loading="lazy" />
+            <button type="button" class="signal-reset-btn" onclick="resetSignalZoom(this.closest('.signal-img-wrap'))">↺ Ver imagen completa</button>
             ${g.hotspots.map((h, hi) => `<button type="button" class="hotspot-pin" style="left:${h.x}%;top:${h.y}%" onclick="pickHotspot('${l.id}',${gi},${hi})" id="hp-${l.id}-${gi}-${hi}" aria-label="${h.title}">${hi+1}</button>`).join('')}
           </div>
           <div class="signal-caption" id="sc-${l.id}-${gi}"><span class="sc-hint">👆 Toca los puntos numerados en la imagen para conocer cada señal.</span></div>
@@ -2651,10 +2700,22 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     const pin = document.getElementById('hp-' + lessonId + '-' + gi + '-' + hi);
     if (!pin) return;
     const wrap = pin.closest('.signal-img-wrap');
+    const img = wrap.querySelector('img');
     wrap.querySelectorAll('.hotspot-pin').forEach(p => p.classList.remove('active'));
     pin.classList.add('active');
+    img.style.transformOrigin = h.x + '% ' + h.y + '%';
+    img.classList.add('zoomed');
+    wrap.classList.add('zoomed-state');
     const caption = document.getElementById('sc-' + lessonId + '-' + gi);
     if (caption) caption.innerHTML = `<div class="sc-title">📍 ${h.title}</div><div class="sc-text">${h.text}</div>`;
+  };
+
+  window.resetSignalZoom = function(wrapEl) {
+    if (!wrapEl) return;
+    const img = wrapEl.querySelector('img');
+    img.classList.remove('zoomed');
+    wrapEl.classList.remove('zoomed-state');
+    wrapEl.querySelectorAll('.hotspot-pin').forEach(p => p.classList.remove('active'));
   };
   closeModal.addEventListener('click', () => imageModal.classList.remove('open'));
   imageModal.addEventListener('click', (e) => { if (e.target === imageModal) imageModal.classList.remove('open'); });
@@ -2712,6 +2773,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
                 <label for="su-email">Correo electrónico</label>
                 <input type="email" id="su-email" placeholder="Ej: maria@correo.com" autocomplete="email" />
               </div>
+              <div class="field">
+                <label for="su-role">¿Cuál es tu rol?</label>
+                <select id="su-role">
+                  <option value="participante" selected>Participante comunitario</option>
+                  <option value="profesional">Profesional / equipo técnico</option>
+                </select>
+              </div>
               <button class="signup-btn" onclick="doSignup()">📝 Inscribirme y comenzar</button>
               <p class="signup-note">Tus datos se guardan solo en este dispositivo y se usan para la posterior certificación del curso.</p>
             </div>
@@ -2724,11 +2792,12 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   window.doSignup = function() {
     const name = (document.getElementById('su-name') || {}).value || '';
     const email = (document.getElementById('su-email') || {}).value || '';
+    const role = (document.getElementById('su-role') || {}).value || 'participante';
     if (!name.trim() || !email.trim() || !/^\S+@\S+\.\S+$/.test(email.trim())) {
       alert('Por favor completa tu nombre y un correo electrónico válido para inscribirte.');
       return;
     }
-    signedUp = { name: name.trim(), email: email.trim(), date: new Date().toISOString() };
+    signedUp = { name: name.trim(), email: email.trim(), role, date: new Date().toISOString() };
     try { localStorage.setItem('curso_signup', JSON.stringify(signedUp)); } catch(e) {}
     if (window.CursoDB) window.CursoDB.addSignup(signedUp.name, signedUp.email).catch(e => console.error('Error registrando inscripción', e));
     showHome();
