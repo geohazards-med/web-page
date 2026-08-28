@@ -294,6 +294,26 @@ export const layers_ladera_ne = {
     },
     data: [],
   },
+  puntos_criticos_avt: {
+    id: "puntos-criticos-ladera-ne",
+    name: "Puntos Críticos Levantados en Campo",
+    url: "https://kf.kobotoolbox.org/api/v2/assets/ayghr9Dk9ZUygHYbkUfWbQ/data.json",
+    layer: "",
+    type: "kobo_puntos_criticos",
+    geometry: "points",
+    category: "Estaciones",
+    show: false,
+    showPopup: true,
+    downloable: true,
+    filterable: true,
+    filters: [
+     
+    ],
+    styles: {
+      color: "#2d8cff",
+    },
+    data: [],
+  },
 };
 
 export const layers_dunita = {
@@ -5102,6 +5122,21 @@ window.data_page = {
           inventarios_geohazards.inventario_antioquia,
           inventarios_geohazards.inventario_colombia,
           inventarios_geohazards.inventario_sensores_remotos,
+        ].flat(),
+      },
+      {
+        id: "dashboard-avt-antioquia",
+        featured: true,
+        title: "Dashboard AVT Antioquia",
+        short_desc:
+          "Tablero de control de avenidas torrenciales de Antioquia.",
+        date: "2026 - Actualidad",
+        type: "Investigación",
+        center: [-75.64, 7.2],
+        zoom: 7,
+        graphs: true,
+        layer_list: [
+
         ].flat(),
       },
       {
