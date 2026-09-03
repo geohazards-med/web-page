@@ -1046,6 +1046,7 @@ a {
 .bp-green   { background: var(--color-accent-green); }
 .bp-primary { background: var(--color-primary); }
 .bp-orange  { background: var(--color-accent-orange); }
+.bp-red     { background: var(--color-accent-red); }
 
 /* Badges de estado */
 .barrio-status-badge {
