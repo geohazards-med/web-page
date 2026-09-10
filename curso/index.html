@@ -998,13 +998,13 @@
     .cd-footer::before, .cd-footer::after { content: ''; width: 4.5cqw; height: 1px; background: var(--primary-mid); }
 
     @media print {
-      @page { size: A4 landscape; margin: 0; }
+      @page { size: A4 portrait; margin: 0; }
       body { background: #fff !important; }
       body > *:not(#certOverlay) { display: none !important; }
       #certOverlay { position: static !important; inset: auto !important; display: block !important; background: none !important; padding: 0 !important; }
       #certOverlay .cm-close, #certOverlay .cm-print { display: none !important; }
       .cert-diploma-wrap { max-width: none !important; max-height: none !important; overflow: visible !important; gap: 0 !important; min-height: 100vh; justify-content: center; }
-      .cert-diploma { box-shadow: none !important; width: 100% !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
+      .cert-diploma { box-shadow: none !important; width: 100% !important; max-width: 210mm !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
     }
 
     /* Course evaluation modal */
