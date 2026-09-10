@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#6A3A1C" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #8A4F2A;
@@ -930,6 +930,15 @@
     .cert-btn-secondary { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
     .cert-btn-secondary:hover { background: var(--primary); color: #fff; }
 
+    .course-done { margin-top: 1.5rem; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: var(--on-dark); border-radius: var(--radius); padding: 1.3rem 1.6rem; display: flex; align-items: center; gap: 1.1rem; box-shadow: var(--shadow-md); flex-wrap: wrap; }
+    .course-done.course-done-pending { background: linear-gradient(135deg, var(--blue), #2e484d); }
+    .course-done .cd-check { font-size: 2rem; flex-shrink: 0; }
+    .course-done .cd-msg { flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: .15rem; }
+    .course-done .cd-msg strong { font-size: 1rem; font-weight: 800; }
+    .course-done .cd-msg span { font-size: .84rem; color: var(--on-dark-muted); line-height: 1.45; }
+    .course-done .cd-btn { background: var(--accent); color: var(--ink); border: none; border-radius: var(--radius-sm); padding: .75rem 1.3rem; font-weight: 800; font-size: .88rem; cursor: pointer; font-family: inherit; white-space: nowrap; flex-shrink: 0; transition: transform .2s; }
+    .course-done .cd-btn:hover { transform: translateY(-2px); }
+
     /* Overlay certificado */
     .cert-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 100; display: none; align-items: center; justify-content: center; padding: 1.5rem; }
     .cert-overlay.open { display: flex; }
@@ -938,11 +947,65 @@
     .cert-modal .cm-badge { font-size: 1rem; color: var(--accent-dark); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
     .cert-modal h2 { font-size: 1.9rem; color: var(--primary-dark); margin: .5rem 0 .15rem; font-weight: 900; }
     .cert-modal .cm-sub { color: var(--text-muted); font-size: .9rem; margin-bottom: 1.6rem; }
-    .cert-modal .cm-name { font-size: 1.5rem; font-weight: 900; color: var(--accent-dark); font-family: Georgia, 'Times New Roman', serif; font-style: italic; border-bottom: 2px solid var(--accent); display: inline-block; padding: 0 1.5rem .25rem; }
-    .cert-modal .cm-text { color: var(--text); font-size: .92rem; line-height: 1.7; max-width: 520px; margin: 1.1rem auto 0; }
-    .cert-modal .cm-meta { margin-top: 1.5rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--text-muted); font-size: .76rem; }
-    .cert-modal .cm-print { margin-top: 1.6rem; background: var(--primary); color: #fff; border: none; border-radius: var(--radius-sm); padding: .75rem 1.5rem; font-weight: 700; font-family: inherit; cursor: pointer; }
-    .cert-modal .cm-print:hover { background: var(--primary-dark); }
+
+    /* ── Certificado tipo diploma ── */
+    .cert-diploma-wrap { position: relative; width: 100%; max-width: 940px; max-height: 94vh; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .cert-diploma-wrap .cm-close { position: absolute; top: -0.6rem; right: -0.6rem; z-index: 5; width: 36px; height: 36px; border-radius: 50%; background: #fff; box-shadow: var(--shadow-md); font-size: 1.1rem; color: var(--text); border: none; cursor: pointer; font-family: inherit; }
+    .cert-diploma-wrap .cm-print { background: var(--primary); color: #fff; border: none; border-radius: var(--radius-sm); padding: .8rem 1.6rem; font-weight: 700; font-family: inherit; cursor: pointer; font-size: .9rem; }
+    .cert-diploma-wrap .cm-print:hover { background: var(--primary-dark); }
+
+    .cert-diploma {
+      position: relative;
+      width: 100%;
+      background-color: #F1E4CB;
+      background-image:
+        radial-gradient(ellipse 70% 74% at 50% 46%, rgba(250,243,229,0.80) 0%, rgba(250,243,229,0.72) 40%, rgba(250,243,229,0.12) 100%),
+        url('img/redesign/fondo-curso-v1.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: var(--shadow-lg);
+      container-type: inline-size;
+      color: var(--text);
+    }
+    .cd-frame { position: absolute; inset: 1.8cqw; border: 1.5px solid rgba(138,79,42,0.45); pointer-events: none; }
+    .cd-frame::before { content: ''; position: absolute; inset: 0.6cqw; border: 1px solid rgba(138,79,42,0.28); }
+    .cd-corner { position: absolute; width: 2.4cqw; height: 2.4cqw; border: 2px solid var(--primary); z-index: 1; }
+    .cd-corner-tl { top: 1.3cqw; left: 1.3cqw; border-right: none; border-bottom: none; }
+    .cd-corner-tr { top: 1.3cqw; right: 1.3cqw; border-left: none; border-bottom: none; }
+    .cd-corner-bl { bottom: 1.3cqw; left: 1.3cqw; border-right: none; border-top: none; }
+    .cd-corner-br { bottom: 1.3cqw; right: 1.3cqw; border-left: none; border-top: none; }
+
+    .cd-logo { position: absolute; z-index: 2; }
+    .cd-logo-left { top: 3.4cqw; left: 4.6cqw; width: 9.5cqw; }
+    .cd-logo-right { top: 3.3cqw; right: 4.4cqw; width: 11cqw; }
+
+    .cd-body { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 5.5cqw 12cqw 4cqw; }
+    .cd-issuer { font-size: 1.75cqw; font-weight: 800; line-height: 1.4; color: var(--blue); text-transform: uppercase; letter-spacing: 0.015em; }
+    .cd-label { display: flex; align-items: center; gap: 1.4cqw; margin-top: 2.4cqw; }
+    .cd-label::before, .cd-label::after { content: ''; width: 5cqw; height: 1.5px; background: var(--primary-mid); }
+    .cd-label span { font-size: 1.4cqw; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); }
+    .cd-title { font-family: 'Playfair Display', Georgia, serif; font-size: 4.4cqw; font-weight: 800; color: var(--primary); line-height: 1.05; margin-top: 1.1cqw; }
+    .cd-subtitle { font-size: 1.9cqw; color: var(--blue); margin-top: 0.7cqw; font-weight: 500; }
+    .cd-dot { width: 1.2cqw; height: 1.2cqw; border-radius: 50%; border: 1.5px solid var(--primary-mid); margin: 1.7cqw 0; }
+    .cd-certifies { font-size: 1.5cqw; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); }
+    .cd-name { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 700; font-size: 3.5cqw; color: var(--accent-dark); border-bottom: 2px solid var(--primary-mid); padding: 0 4cqw 0.4cqw; margin-top: 1.2cqw; max-width: 78cqw; line-height: 1.2; }
+    .cd-text { font-size: 1.75cqw; line-height: 1.55; color: var(--text); max-width: 70cqw; margin-top: 2cqw; }
+    .cd-contents { margin-top: 2.2cqw; border: 1px solid var(--primary-mid); border-radius: 1.6cqw; padding: 1.3cqw 2.8cqw; display: flex; flex-direction: column; gap: 0.4cqw; background: rgba(255,255,255,0.34); }
+    .cd-contents-label { font-size: 1.2cqw; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--primary); }
+    .cd-contents-list { font-size: 1.6cqw; color: var(--text); }
+    .cd-footer { display: flex; align-items: center; justify-content: center; gap: 1.4cqw; margin-top: 2.2cqw; font-size: 1.4cqw; color: var(--text-muted); }
+    .cd-footer::before, .cd-footer::after { content: ''; width: 4.5cqw; height: 1px; background: var(--primary-mid); }
+
+    @media print {
+      @page { size: A4 landscape; margin: 0; }
+      body { background: #fff !important; }
+      body > *:not(#certOverlay) { display: none !important; }
+      #certOverlay { position: static !important; inset: auto !important; display: block !important; background: none !important; padding: 0 !important; }
+      #certOverlay .cm-close, #certOverlay .cm-print { display: none !important; }
+      .cert-diploma-wrap { max-width: none !important; max-height: none !important; overflow: visible !important; gap: 0 !important; min-height: 100vh; justify-content: center; }
+      .cert-diploma { box-shadow: none !important; width: 100% !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
+    }
 
     /* Course evaluation modal */
     .eval-modal { max-width: 620px; text-align: left; max-height: 88vh; overflow-y: auto; }
@@ -1123,18 +1186,41 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 </div>
 
 <div class="cert-overlay" id="certOverlay">
-  <div class="cert-modal">
+  <div class="cert-diploma-wrap">
     <button class="cm-close" onclick="closeCertificate()">✕</button>
-    <div class="cm-badge">Certificado de finalización</div>
-    <h2>Comprensión del Riesgo</h2>
-    <div class="cm-sub">Herramientas conceptuales para la gestión del riesgo de desastres</div>
-    <div class="cm-name" id="certName">—</div>
-    <div class="cm-text">Por haber completado satisfactoriamente los 4 módulos del curso corto <b>“Comprensión del Riesgo”</b>: introducción al ordenamiento territorial, entendimiento del territorio, construcción social del riesgo y conocimientos y herramientas para la comunidad.</div>
-    <div class="cm-meta">
-      <span id="certDate"></span>
-      <span>Curso corto virtual · BURNOR</span>
+    <div class="cert-diploma" id="certDiploma">
+      <div class="cd-frame"></div>
+      <span class="cd-corner cd-corner-tl"></span>
+      <span class="cd-corner cd-corner-tr"></span>
+      <span class="cd-corner cd-corner-bl"></span>
+      <span class="cd-corner cd-corner-br"></span>
+      <img class="cd-logo cd-logo-left" src="img/redesign/logo-geohazards-semillero.webp" alt="Semillero de Investigación GeoHazards" />
+      <img class="cd-logo cd-logo-right" src="img/redesign/logo-unal-un.webp" alt="Universidad Nacional de Colombia" />
+
+      <div class="cd-body">
+        <p class="cd-issuer">El Semillero de Investigación GeoHazards<br />de la Universidad Nacional de Colombia<br />Facultad de Minas</p>
+
+        <div class="cd-label"><span>Certificado de finalización</span></div>
+
+        <h2 class="cd-title">Curso en Comprensión del Riesgo</h2>
+        <p class="cd-subtitle">Herramientas conceptuales para la gestión del riesgo de desastres</p>
+
+        <div class="cd-dot"></div>
+
+        <p class="cd-certifies">Se certifica que:</p>
+        <div class="cd-name" id="certName">—</div>
+
+        <p class="cd-text">Ha completado satisfactoriamente los cuatro módulos del curso corto en <b>“Comprensión del Riesgo”</b> (10 horas), orientado al fortalecimiento de capacidades para comprender el territorio y participar en la reducción del riesgo de desastres.</p>
+
+        <div class="cd-contents">
+          <span class="cd-contents-label">Contenidos certificados</span>
+          <span class="cd-contents-list">Ordenamiento territorial &nbsp;·&nbsp; Territorio &nbsp;·&nbsp; Construcción social del riesgo &nbsp;·&nbsp; Herramientas comunitarias</span>
+        </div>
+
+        <p class="cd-footer"><span id="certDate"></span></p>
+      </div>
     </div>
-    <button class="cm-print" onclick="printCertificate()">🖨️ Imprimir certificado</button>
+    <button class="cm-print" onclick="printCertificate()">🖨️ Descargar / imprimir certificado</button>
   </div>
 </div>
 
@@ -1864,6 +1950,25 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
   function allForumsPosted() { return getModules().every(m => forumPosted[m.idx]); }
   function missingForums() { return getModules().filter(m => !forumPosted[m.idx]); }
+  function allLessonsDone() { return getModules().every(m => { const p = progressOf(lessonsOfModule(m.idx)); return p.total > 0 && p.done >= p.total; }); }
+  function courseComplete() { return allLessonsDone(); }
+
+  // Bloque de acción de certificado reutilizable (lección y quiz)
+  function certCtaHtml(context) {
+    if (!allLessonsDone()) return '';
+    if (allForumsPosted()) {
+      return `<div class="course-done">
+        <span class="cd-check">🎓</span>
+        <div class="cd-msg"><strong>¡Completaste el curso!</strong><span>Tu certificado a nombre de ${signedUp ? signedUp.name : 'Participante'} ya está listo.</span></div>
+        <button class="cd-btn" onclick="showCertificate()">Ver y descargar mi certificado →</button>
+      </div>`;
+    }
+    return `<div class="course-done course-done-pending">
+      <span class="cd-check">💬</span>
+      <div class="cd-msg"><strong>¡Ya viste todas las lecciones!</strong><span>Solo falta participar en el foro de: ${missingForums().map(m => m.title).join(', ')}.</span></div>
+      <button class="cd-btn" onclick="showForums()">Ir a los foros →</button>
+    </div>`;
+  }
 
   // ── DOM refs ─────────────────────────────────────────
   const app = document.getElementById('app');
@@ -2063,7 +2168,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           </div>
           <div class="cert-actions">
             ${allForumsPosted()
-              ? `<button class="cert-btn" onclick="showCertificate()">Ver mi certificado →</button>`
+              ? `<button class="cert-btn" onclick="showCertificate()">🎓 Ver y descargar mi certificado</button>`
               : `<button class="cert-btn" onclick="showForums()">Ir al foro →</button>`}
             <button class="cert-btn cert-btn-secondary" onclick="showCourseEval()">${evalDone ? '✓ Evaluación enviada' : '📝 Evaluar el curso'}</button>
           </div>
@@ -2354,6 +2459,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     });
     html += `</div>
       <div class="quiz-score" id="qs-${modIdx}" style="display:none"></div>
+      ${certCtaHtml('quiz')}
       <div class="quiz-view-actions">
         <button onclick="showModule(${modIdx})">← Volver al módulo</button>
         <button onclick="retryQuiz(${modIdx})">🔄 Volver a intentar</button>
@@ -2738,6 +2844,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <button class="nav-btn next" onclick="${goToQuiz ? `showQuiz(${l.module})` : `goTo(${idx+1})`}" ${nextBlocked?'disabled':''}>${goToQuiz ? '🧠 Quiz del módulo →' : 'Siguiente →'}</button>
     </div>
     ${nextBlocked ? '<p class="complete-hint">⬆ Marca la lección como <strong>completada</strong> para desbloquear "Siguiente" y continuar el curso.</p>' : ''}
+    ${certCtaHtml('lesson')}
     </div>`;
 
     app.innerHTML = `<section class="view">${content}</section>`;
@@ -2938,7 +3045,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     const certName = document.getElementById('certName');
     const certDate = document.getElementById('certDate');
     if (certName) certName.textContent = signedUp.name;
-    if (certDate) certDate.textContent = 'Emitido: ' + new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+    if (certDate) certDate.textContent = 'Expedido en Medellín el ' + new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }) + '  ·  Curso corto virtual';
     const overlay = document.getElementById('certOverlay');
     if (overlay) overlay.classList.add('open');
   };
@@ -2950,14 +3057,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
   window.printCertificate = function() {
     const overlay = document.getElementById('certOverlay');
-    if (!overlay) return;
-    const inner = overlay.outerHTML;
-    const w = window.open('', '_blank', 'width=820,height=620');
-    w.document.write(`<html><head><title>Certificado · Comprensión del Riesgo</title>
-      <style>body{margin:0;font-family:Georgia,'Times New Roman',serif;color:#222}.cert-overlay{display:flex !important;align-items:center;justify-content:center;padding:2rem}.cert-modal{max-width:760px;width:100%;text-align:center;border:8px double var(--accent,#d99300);padding:3rem;box-sizing:border-box}.cm-close,.cm-print{display:none}.cm-badge{font-size:1rem;color:#b07c00;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.cert-modal h2{font-size:2rem;color:#003049;margin:.5rem 0 .15rem;font-weight:900}.cm-sub{color:#666;font-size:.95rem;margin-bottom:1.8rem}.cm-name{font-size:1.6rem;font-weight:900;color:#b07c00;font-style:italic;border-bottom:2px solid #d99300;display:inline-block;padding:0 1.5rem .25rem}.cm-text{font-size:.95rem;line-height:1.8;max-width:540px;margin:1.2rem auto 0}.cm-meta{margin-top:1.6rem;display:flex;justify-content:space-between;font-size:.8rem;color:#666}</style></head>
-      <body>${inner.replace('class="cert-overlay"', 'class="cert-overlay"')}</body></html>`);
-    w.document.close();
-    setTimeout(() => { w.focus(); w.print(); }, 250);
+    if (overlay && !overlay.classList.contains('open')) overlay.classList.add('open');
+    setTimeout(() => window.print(), 150);
   };
 
   // ── Evaluación general del curso ─────────────────────
