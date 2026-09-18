@@ -1,0 +1,2227 @@
+<!doctype html>
+<html lang="es" data-visualize-standalone>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Matriz normativa de Colombia y Medellín: riesgo, territorio, clima, ambiente y hábitat</title>
+<style>:root {
+  color-scheme: light dark;
+  background-color: transparent !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --main-surface-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: light-dark(rgb(26 28 31), rgb(255 255 255));
+  --card: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --card-foreground: var(--foreground);
+  --popover: light-dark(rgb(255 255 255), rgb(45 45 45));
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --primary-foreground: light-dark(rgb(255 255 255), rgb(13 13 13));
+  --secondary: light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: light-dark(
+    rgb(26 28 31 / 49.4%),
+    rgb(255 255 255 / 49.8%)
+  );
+  --accent: light-dark(rgb(229 242 255), rgb(13 39 63));
+  --accent-foreground: var(--primary);
+  --destructive: light-dark(rgb(226 85 7), rgb(255 133 73));
+  --border: light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%));
+  --input: light-dark(
+    rgb(26 28 31 / 11.8%),
+    color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+  );
+  --ring: light-dark(rgb(51 156 255), rgb(131 195 255 / 76%));
+  --font-size-base: 14px;
+  --red: light-dark(rgb(186 38 35), rgb(250 66 62));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: 10px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E");
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+  --color-background-primary: var(--background);
+  --color-text-primary: var(--foreground);
+  --color-border-secondary: var(--border);
+}
+
+:root[data-visualize-standalone] {
+  background-color: var(--background) !important;
+}
+
+/* Generic mobile code-block hosts provide light/dark mode but no series palette.
+   AppBlock hosts set all six variables themselves. */
+:root:not([data-app-block-surface]) {
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(#f3883b, #f59a56);
+  --viz-series-3: light-dark(#5dc977, #74d58b);
+  --viz-series-4: light-dark(#eb77b1, #f08fc0);
+  --viz-series-5: light-dark(#9b79ec, #aa91ef);
+  --viz-series-6: light-dark(#3ab9b1, #5acbc2);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html > body {
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+:root:not([data-app-block-surface]) > body {
+  padding: 12px;
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive > .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align="right"]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align="center"]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget > :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* The bundled tooltip runtime owns [data-tooltip]. AppBlock's CSS-only
+   pseudo-tooltip can widen dense grids even while hidden. */
+main [data-tooltip]::after {
+  content: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls > .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--interactive-label-primary-default, var(--primary-foreground));
+  background: var(--interactive-bg-primary-default, var(--foreground));
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(
+    in srgb,
+    var(--interactive-label-primary-default, var(--primary-foreground)) 50%,
+    transparent
+  );
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type="file"] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type="file"]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type="file"]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type="color"] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type="checkbox"]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: "";
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type="radio"]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: "";
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed="true"],
+    [aria-selected="true"],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed="true"], [aria-selected="true"], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget > svg {
+  width: 100%;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+</style>
+</head>
+<body>
+<div id="norm-risk-climate">
+  <style>
+    #norm-risk-climate {
+      color: var(--foreground);
+      width: 100%;
+    }
+    #norm-risk-climate .nrc-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    #norm-risk-climate .nrc-field {
+      flex: 1 1 190px;
+      min-width: 0;
+    }
+    #norm-risk-climate .nrc-field-search {
+      flex-basis: 280px;
+    }
+    #norm-risk-climate .nrc-table {
+      min-width: 1280px;
+    }
+    #norm-risk-climate .nrc-table th {
+      vertical-align: bottom;
+    }
+    #norm-risk-climate .nrc-table td {
+      vertical-align: top;
+    }
+    #norm-risk-climate .nrc-norm {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    #norm-risk-climate .nrc-select {
+      text-align: left;
+      white-space: normal;
+    }
+    #norm-risk-climate .nrc-related {
+      margin-top: 14px;
+    }
+    #norm-risk-climate .nrc-related ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+    #norm-risk-climate .nrc-related li + li {
+      margin-top: 5px;
+    }
+    #norm-risk-climate .nrc-source {
+      white-space: nowrap;
+    }
+    #norm-risk-climate .nrc-empty {
+      padding: 18px 0;
+      text-align: center;
+    }
+    @media (max-width: 560px) {
+      #norm-risk-climate .nrc-field {
+        flex-basis: 100%;
+      }
+    }
+  </style>
+
+  <div class="nrc-meta">
+    <span class="text-small text-muted">Corte de verificación: 8 de septiembre de 2026</span>
+    <span id="nrc-count" class="viz-badge" aria-live="polite"></span>
+  </div>
+
+  <div class="viz-controls" aria-label="Filtros de la matriz normativa">
+    <label class="form-label nrc-field nrc-field-search" for="nrc-search">
+      Buscar
+      <input id="nrc-search" class="form-control" type="search" placeholder="Norma, tema o palabra clave">
+    </label>
+    <label class="form-label nrc-field" for="nrc-scope">
+      Ámbito
+      <select id="nrc-scope" class="form-select">
+        <option value="">Todos</option>
+        <option value="Colombia">Colombia</option>
+        <option value="Medellín">Medellín</option>
+        <option value="Metropolitano">Metropolitano</option>
+        <option value="Regional">Regional ambiental</option>
+      </select>
+    </label>
+    <label class="form-label nrc-field" for="nrc-theme">
+      Tema
+      <select id="nrc-theme" class="form-select">
+        <option value="">Todos</option>
+        <option value="Gestión del riesgo">Gestión del riesgo</option>
+        <option value="Ordenamiento territorial">Ordenamiento territorial</option>
+        <option value="Cambio climático">Cambio climático</option>
+        <option value="Ambiental transversal">Ambiental transversal</option>
+        <option value="Determinantes ambientales">Determinantes ambientales</option>
+        <option value="Hábitat y protección a moradores">Hábitat y protección a moradores</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-sm nrc-table">
+      <caption class="sr-only">Normativa vigente y documentos de planificación sobre gestión del riesgo de desastres, ordenamiento territorial, cambio climático, ordenamiento ambiental, determinantes ambientales, hábitat y protección a moradores aplicables en Colombia y Medellín.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Ámbito</th>
+          <th scope="col">Norma o instrumento</th>
+          <th scope="col">Tema central</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Estado al corte</th>
+          <th scope="col">Complementa o especifica</th>
+          <th scope="col">Consulta</th>
+        </tr>
+      </thead>
+      <tbody id="nrc-body"></tbody>
+    </table>
+  </div>
+
+  <section id="nrc-related" class="card nrc-related" aria-live="polite">
+    <div class="text-small text-muted">Normatividad complementaria o específica</div>
+    <div id="nrc-related-content"></div>
+  </section>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var root = document.getElementById("norm-risk-climate");
+      var body = root.querySelector("#nrc-body");
+      var search = root.querySelector("#nrc-search");
+      var scope = root.querySelector("#nrc-scope");
+      var theme = root.querySelector("#nrc-theme");
+      var count = root.querySelector("#nrc-count");
+      var relatedContent = root.querySelector("#nrc-related-content");
+
+      var norms = [
+        {
+          id: "decreto-ley-2811-1974",
+          scope: "Colombia",
+          type: "Decreto-ley",
+          norm: "Decreto-Ley 2811 de 1974",
+          themes: ["Determinantes ambientales", "Ambiental transversal", "Ordenamiento territorial"],
+          central: "Código de recursos naturales",
+          description: "Expide el Código Nacional de Recursos Naturales Renovables y de Protección al Medio Ambiente. Es la base jurídica de las rondas, reservas forestales, cauces, áreas de manejo especial y planificación del aprovechamiento de los recursos naturales.",
+          status: "Vigente, con modificaciones y reglamentación compilada",
+          complements: [
+            ["Ley 99 de 1993", "reorganiza la institucionalidad ambiental y crea el SINA."],
+            ["Decreto 1076 de 2015", "compila gran parte de su reglamentación ambiental."],
+            ["Resolución 957 de 2018", "desarrolla criterios técnicos para el acotamiento de rondas hídricas."],
+            ["Decreto 2372 de 2010", "desarrolló el Sistema Nacional de Áreas Protegidas y fue compilado en el Decreto 1076."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=1551",
+          source: "Función Pública"
+        },
+        {
+          id: "ley-99-1993",
+          scope: "Colombia",
+          type: "Ley",
+          norm: "Ley 99 de 1993",
+          themes: ["Ambiental transversal", "Determinantes ambientales", "Ordenamiento territorial", "Cambio climático"],
+          central: "SINA y determinantes ambientales",
+          description: "Organiza el Sistema Nacional Ambiental, define competencias de autoridades ambientales y sustenta la prevalencia de las determinantes ambientales en la planificación territorial.",
+          status: "Vigente, con modificaciones",
+          complements: [
+            ["Decreto 1076 de 2015", "compila la reglamentación del sector Ambiente y Desarrollo Sostenible."],
+            ["Ley 388 de 1997", "incorpora las determinantes ambientales en los POT."],
+            ["Ley 1931 de 2018", "integra la gestión del cambio climático en decisiones públicas y territoriales."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=297",
+          source: "Función Pública"
+        },
+        {
+          id: "ley-1523-2012",
+          scope: "Colombia",
+          type: "Ley",
+          norm: "Ley 1523 de 2012",
+          themes: ["Gestión del riesgo", "Ordenamiento territorial", "Cambio climático"],
+          central: "Política nacional y SNGRD",
+          description: "Adopta la Política Nacional de Gestión del Riesgo de Desastres y crea el SNGRD. Ordena integrar conocimiento, reducción y manejo del desastre en la planificación del desarrollo y del territorio.",
+          status: "Vigente",
+          complements: [
+            ["Decreto 1081 de 2015", "compila reglas del sector Presidencia relacionadas con el SNGRD y sus instrumentos."],
+            ["Decreto 2157 de 2017", "reglamenta los planes de gestión del riesgo de entidades públicas y privadas."],
+            ["Decreto 978 de 2024", "adopta la segunda actualización del PNGRD 2015–2030."],
+            ["Planes territoriales y estrategias de respuesta", "concretan la política mediante PMGRD/PDGRD y EMRE."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=47141",
+          source: "Función Pública"
+        },
+        {
+          id: "decreto-2157-2017",
+          scope: "Colombia",
+          type: "Decreto",
+          norm: "Decreto 2157 de 2017",
+          themes: ["Gestión del riesgo"],
+          central: "PGRDEPP para entidades públicas y privadas",
+          description: "Reglamenta el artículo 42 de la Ley 1523 y fija directrices para que prestadores de servicios, obras civiles mayores y actividades potencialmente peligrosas formulen su plan de gestión del riesgo.",
+          status: "Vigente",
+          complements: [
+            ["Ley 1523 de 2012, artículo 42", "establece el deber de análisis específico de riesgo y planes empresariales."],
+            ["Decreto 1072 de 2015", "articula la preparación y respuesta con el sistema de seguridad y salud en el trabajo cuando corresponda."],
+            ["Planes de emergencia y contingencia sectoriales", "desarrollan medidas operativas según la actividad regulada."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=199583",
+          source: "Función Pública"
+        },
+        {
+          id: "decreto-978-2024",
+          scope: "Colombia",
+          type: "Decreto",
+          norm: "Decreto 978 de 2024",
+          themes: ["Gestión del riesgo", "Cambio climático"],
+          central: "Segunda actualización del PNGRD",
+          description: "Adopta la segunda actualización del Plan Nacional de Gestión del Riesgo de Desastres para 2015–2030 y articula la política de gestión del riesgo con la adaptación al cambio climático.",
+          status: "Vigente; horizonte 2015–2030",
+          complements: [
+            ["Ley 1523 de 2012", "define el PNGRD como instrumento nacional de ejecución de la política."],
+            ["Decreto 308 de 2016", "adoptó originalmente el PNGRD; fue modificado por el Decreto 978 de 2024."],
+            ["Decreto 1081 de 2015", "contiene el procedimiento de formulación, seguimiento y actualización del PNGRD."]
+          ],
+          url: "https://www.suin-juriscol.gov.co/viewDocument.asp?id=30052943",
+          source: "SUIN-Juriscol"
+        },
+        {
+          id: "ley-388-1997",
+          scope: "Colombia",
+          type: "Ley",
+          norm: "Ley 388 de 1997",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo", "Ambiental transversal", "Determinantes ambientales", "Hábitat y protección a moradores"],
+          central: "Desarrollo territorial y POT",
+          description: "Regula los planes de ordenamiento territorial, la función pública del urbanismo, los usos del suelo y los instrumentos de gestión. Exige considerar áreas de amenaza y riesgo y normas de superior jerarquía.",
+          status: "Vigente, con modificaciones",
+          complements: [
+            ["Decreto 1077 de 2015", "compila la reglamentación de los POT y la incorporación de la gestión del riesgo."],
+            ["Ley 2294 de 2023, artículo 32", "reordena los niveles de determinantes territoriales del artículo 10."],
+            ["Decreto 381 de 2026", "reglamenta la información y coordinación para expedir determinantes."],
+            ["Ley 1454 de 2011", "distribuye competencias y regula esquemas asociativos territoriales."],
+            ["Ley 2294 de 2023, artículo 298", "crea el Programa Barrios de Paz para intervenir integralmente asentamientos y hábitats populares."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=339",
+          source: "Función Pública"
+        },
+        {
+          id: "ley-2294-art298",
+          scope: "Colombia",
+          type: "Ley",
+          norm: "Ley 2294 de 2023, artículo 298",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo", "Hábitat y protección a moradores"],
+          central: "Creación del Programa Barrios de Paz",
+          description: "Crea el Programa Barrios de Paz como estrategia de intervención y transformación de asentamientos humanos y territorios populares, mediante el mejoramiento integral del hábitat, la articulación institucional y la participación comunitaria.",
+          status: "Vigente",
+          complements: [
+            ["Decreto 1470 de 2024", "reglamenta el programa y adiciona su desarrollo al Decreto 1077 de 2015."],
+            ["Decreto 1077 de 2015", "contiene el régimen sectorial de vivienda, desarrollo territorial y mejoramiento integral de barrios."],
+            ["Ley 388 de 1997", "aporta los instrumentos de ordenamiento, legalización y gestión del suelo."],
+            ["Ley 2079 de 2021", "establece disposiciones sobre vivienda y hábitat y fortalece el mejoramiento integral de barrios."]
+          ],
+          url: "https://www.suin-juriscol.gov.co/viewDocument.asp?id=30046580",
+          source: "SUIN-Juriscol"
+        },
+        {
+          id: "decreto-1470-2024",
+          scope: "Colombia",
+          type: "Decreto",
+          norm: "Decreto 1470 de 2024",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo", "Hábitat y protección a moradores"],
+          central: "Reglamentación de Barrios de Paz",
+          description: "Reglamenta el artículo 298 de la Ley 2294 de 2023. Define objetivos, componentes, actores e instrumentos del Programa Barrios de Paz, incluido el Plan de Gestión del Hábitat como hoja de ruta para intervenciones físicas, sociales, económicas y ambientales con participación comunitaria.",
+          status: "Vigente",
+          complements: [
+            ["Ley 2294 de 2023, artículo 298", "crea el Programa Barrios de Paz."],
+            ["Decreto 1077 de 2015", "recibe la reglamentación del programa dentro del sector Vivienda, Ciudad y Territorio."],
+            ["Planes de Gestión del Hábitat", "estructuran y priorizan las intervenciones de cada asentamiento o grupo de asentamientos."],
+            ["Mejoramiento Integral de Barrios", "articula legalización urbanística, servicios públicos, vivienda, espacio público, titulación y fortalecimiento comunitario."],
+            ["Instrumentos territoriales y de gestión del riesgo", "deben orientar la viabilidad, localización y medidas de reducción del riesgo de las intervenciones."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=256616",
+          source: "Función Pública"
+        },
+        {
+          id: "ley-1454-2011",
+          scope: "Colombia",
+          type: "Ley orgánica",
+          norm: "Ley 1454 de 2011",
+          themes: ["Ordenamiento territorial"],
+          central: "Competencias y asociatividad territorial",
+          description: "Establece principios de ordenamiento territorial, distribución de competencias y esquemas asociativos entre entidades territoriales; es el marco orgánico para la coordinación multinivel.",
+          status: "Vigente, con modificaciones",
+          complements: [
+            ["Ley 388 de 1997", "regula la planificación físico-espacial municipal y distrital."],
+            ["Ley 1625 de 2013", "especifica el régimen de las áreas metropolitanas."],
+            ["Decreto 3680 de 2011", "reglamenta aspectos de la Comisión de Ordenamiento Territorial."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=43210",
+          source: "Función Pública"
+        },
+        {
+          id: "ley-1625-2013",
+          scope: "Colombia",
+          type: "Ley orgánica",
+          norm: "Ley 1625 de 2013",
+          themes: ["Ordenamiento territorial", "Ambiental transversal"],
+          central: "Régimen de áreas metropolitanas",
+          description: "Regula la creación, competencias y planificación de las áreas metropolitanas. Establece el PEMOT y su relación con los POT municipales, asunto directamente aplicable al Valle de Aburrá.",
+          status: "Vigente, con modificaciones",
+          complements: [
+            ["Ley 1454 de 2011", "reconoce las áreas metropolitanas como esquemas asociativos territoriales."],
+            ["Acuerdo Metropolitano 31 de 2019", "adopta el PEMOT del Valle de Aburrá."],
+            ["Ley 99 de 1993", "enmarca las funciones de autoridad ambiental urbana y metropolitana."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=52972",
+          source: "Función Pública"
+        },
+        {
+          id: "decreto-1077-2015",
+          scope: "Colombia",
+          type: "Decreto único",
+          norm: "Decreto 1077 de 2015",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo", "Determinantes ambientales", "Hábitat y protección a moradores"],
+          central: "Reglamentación de POT y riesgo",
+          description: "Decreto único del sector Vivienda, Ciudad y Territorio. Compila las reglas sobre formulación de POT, incorporación del riesgo, mejoramiento integral del hábitat y, desde el Decreto 1470 de 2024, el Programa Barrios de Paz y sus Planes de Gestión del Hábitat.",
+          status: "Vigente; versión integrada modificada",
+          complements: [
+            ["Decreto 1807 de 2014", "es la fuente de las disposiciones compiladas sobre incorporación del riesgo en POT; no se consulta hoy como reglamento autónomo principal."],
+            ["Decreto 3600 de 2007", "desarrolla las determinantes, categorías de protección y desarrollo restringido del suelo rural."],
+            ["Decreto 1232 de 2020", "actualiza contenidos y procedimientos de planeación territorial."],
+            ["Decreto 381 de 2026", "modifica la regulación de las determinantes de superior jerarquía."],
+            ["Decreto 1470 de 2024", "incorpora la reglamentación del Programa Barrios de Paz y los Planes de Gestión del Hábitat."],
+            ["Ley 388 de 1997", "es la ley reglamentada en materia de ordenamiento municipal y distrital."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77216",
+          source: "Función Pública"
+        },
+        {
+          id: "decreto-3600-2007",
+          scope: "Colombia",
+          type: "Decreto",
+          norm: "Decreto 3600 de 2007",
+          themes: ["Determinantes ambientales", "Ordenamiento territorial", "Ambiental transversal"],
+          central: "Determinantes del suelo rural",
+          description: "Reglamenta las determinantes de ordenamiento del suelo rural y define categorías de protección y de desarrollo restringido, incluyendo áreas ambientales, producción agropecuaria, servicios públicos, centros poblados y corredores suburbanos.",
+          status: "Vigente en disposiciones compiladas y modificadas en el Decreto 1077 de 2015",
+          complements: [
+            ["Decreto 1077 de 2015", "es el texto reglamentario integrado que debe consultarse para su aplicación actual."],
+            ["Decreto 4066 de 2008", "modificó disposiciones sobre suelo rural suburbano."],
+            ["Ley 99 de 1993", "sustenta las competencias ambientales vinculadas al suelo rural."],
+            ["Ley 388 de 1997", "establece la clasificación del suelo y los determinantes del POT."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=26993",
+          source: "Función Pública"
+        },
+        {
+          id: "decreto-1232-2020",
+          scope: "Colombia",
+          type: "Decreto",
+          norm: "Decreto 1232 de 2020",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo", "Cambio climático", "Determinantes ambientales"],
+          central: "Contenido y trámite de los POT",
+          description: "Modifica el Decreto 1077 para precisar etapas, documentos, contenidos, concertación, consulta, aprobación, revisión y seguimiento de los POT, incluyendo determinantes, riesgo y cambio climático.",
+          status: "Vigente e incorporado al Decreto 1077",
+          complements: [
+            ["Decreto 1077 de 2015", "es el cuerpo reglamentario único que recibe sus modificaciones."],
+            ["Ley 388 de 1997", "define el POT y las clases de normas urbanísticas."],
+            ["Ley 1931 de 2018", "ordena integrar la gestión climática en instrumentos territoriales."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=142020",
+          source: "Función Pública"
+        },
+        {
+          id: "ley-2294-art32",
+          scope: "Colombia",
+          type: "Ley",
+          norm: "Ley 2294 de 2023, artículo 32",
+          themes: ["Ordenamiento territorial", "Ambiental transversal", "Gestión del riesgo", "Determinantes ambientales"],
+          central: "Jerarquía de determinantes territoriales",
+          description: "Modifica el artículo 10 de la Ley 388 y organiza seis niveles de determinantes de superior jerarquía, incluyendo ambiente, ciclo del agua, soberanía alimentaria, patrimonio, infraestructura, áreas metropolitanas y proyectos turísticos especiales.",
+          status: "Vigente",
+          complements: [
+            ["Ley 388 de 1997, artículo 10", "contiene el régimen general de determinantes modificado."],
+            ["Decreto 381 de 2026", "reglamenta la expedición, información y coordinación interinstitucional de determinantes."],
+            ["Decreto 1077 de 2015", "integra la reglamentación operativa de los POT."]
+          ],
+          url: "https://www.suin-juriscol.gov.co/viewDocument.asp?id=30046580",
+          source: "SUIN-Juriscol"
+        },
+        {
+          id: "decreto-381-2026",
+          scope: "Colombia",
+          type: "Decreto",
+          norm: "Decreto 381 de 2026",
+          themes: ["Ordenamiento territorial", "Ambiental transversal", "Determinantes ambientales"],
+          central: "Coordinación para expedir determinantes",
+          description: "Modifica el Decreto 1077 y reglamenta la gestión de información, coordinación interinstitucional, formulación, adopción e incorporación de las determinantes de superior jerarquía en los POT.",
+          status: "Expedido; el artículo 1 rige desde el 7 de octubre de 2026",
+          complements: [
+            ["Ley 2294 de 2023, artículo 32", "es la habilitación legal que reglamenta."],
+            ["Ley 388 de 1997, artículo 10", "define las determinantes y su prevalencia."],
+            ["Decreto 1077 de 2015", "recibe las modificaciones reglamentarias."],
+            ["Orientaciones MinAmbiente 2026", "aportan criterios técnicos para actualizar, documentar e incorporar determinantes ambientales."],
+            ["Actos sectoriales de determinantes", "deberán ajustarse a los parámetros técnicos y de coordinación aplicables."]
+          ],
+          url: "https://www.suin-juriscol.gov.co/viewDocument.asp?id=30056288",
+          source: "SUIN-Juriscol"
+        },
+        {
+          id: "orientaciones-da-2026",
+          scope: "Colombia",
+          type: "Guía técnica",
+          norm: "Orientaciones sobre determinantes ambientales 2026",
+          themes: ["Determinantes ambientales", "Ordenamiento territorial", "Ambiental transversal", "Gestión del riesgo", "Cambio climático"],
+          central: "Definición e incorporación de determinantes",
+          description: "Segunda edición de la guía de MinAmbiente para identificar, actualizar, documentar y concertar determinantes ambientales e incorporarlas en los POT, con enfoque de ordenamiento territorial alrededor del agua.",
+          status: "Orientadora; no crea por sí sola determinantes ni sustituye los actos administrativos",
+          complements: [
+            ["Ley 388 de 1997, artículo 10", "define la prevalencia de las determinantes territoriales."],
+            ["Ley 2294 de 2023, artículo 32", "actualiza sus niveles y contenidos."],
+            ["Decreto 381 de 2026", "reglamenta su formulación, información, coordinación e incorporación."],
+            ["Actos de las autoridades ambientales", "son los que adoptan o aprueban cada determinante y le dan efecto jurídico."]
+          ],
+          url: "https://www.minambiente.gov.co/wp-content/uploads/2026/05/Cartilla-6_Orientaciones-para-la-definicion-y-actualizacion-de-las-DA_compressed.pdf",
+          source: "MinAmbiente"
+        },
+        {
+          id: "decreto-1076-2015",
+          scope: "Colombia",
+          type: "Decreto único",
+          norm: "Decreto 1076 de 2015",
+          themes: ["Ambiental transversal", "Determinantes ambientales", "Ordenamiento territorial", "Cambio climático"],
+          central: "Reglamentación ambiental",
+          description: "Compila la reglamentación del sector Ambiente y Desarrollo Sostenible. Es referencia para áreas protegidas, recurso hídrico, POMCA, licenciamiento y otras determinantes ambientales que condicionan el ordenamiento.",
+          status: "Vigente; versión integrada modificada",
+          complements: [
+            ["Ley 99 de 1993", "estructura el SINA y las competencias ambientales."],
+            ["Ley 388 de 1997", "obliga a incorporar determinantes ambientales en el POT."],
+            ["Decreto 1640 de 2012", "reglamentó POMCA, acuíferos y microcuencas y está compilado en este decreto."],
+            ["Decreto 2372 de 2010", "reglamentó el SINAP y las categorías de áreas protegidas y está compilado en este decreto."],
+            ["Decreto 2245 de 2017", "reglamentó el acotamiento de rondas hídricas y está incorporado en este decreto."],
+            ["Decreto 1077 de 2015", "regula el procedimiento territorial para incorporarlas."]
+          ],
+          url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=78153",
+          source: "Función Pública"
+        },
+        {
+          id: "resolucion-957-2018",
+          scope: "Colombia",
+          type: "Resolución",
+          norm: "Resolución 957 de 2018",
+          themes: ["Determinantes ambientales", "Ordenamiento territorial", "Gestión del riesgo", "Ambiental transversal"],
+          central: "Acotamiento de rondas hídricas",
+          description: "Adopta la guía técnica para delimitar físicamente las rondas hídricas mediante criterios geomorfológicos, hidrológicos y ecosistémicos y para establecer sus estrategias de manejo ambiental.",
+          status: "Vigente",
+          complements: [
+            ["Decreto-Ley 2811 de 1974, artículo 83", "define la faja paralela asociada a cauces permanentes."],
+            ["Ley 1450 de 2011, artículo 206", "incorpora el concepto de ronda hídrica y asigna su acotamiento."],
+            ["Decreto 2245 de 2017", "reglamenta el acotamiento y está compilado en el Decreto 1076."],
+            ["Actos de acotamiento de cada corriente", "materializan espacialmente la determinante para su incorporación en el POT."]
+          ],
+          url: "https://www.minambiente.gov.co/wp-content/uploads/2021/10/16.-Anexo-16-Resolucion-957-de-2018-Adopta-la-guia-de-Rondas.pdf",
+          source: "MinAmbiente"
+        },
+        {
+          id: "decreto-298-2016",
+          scope: "Colombia",
+          type: "Decreto",
+          norm: "Decreto 298 de 2016",
+          themes: ["Cambio climático"],
+          central: "Sistema Nacional de Cambio Climático",
+          description: "Organiza el SISCLIMA como esquema de coordinación nacional, intersectorial y territorial para políticas, planes, estrategias e instrumentos de mitigación y adaptación.",
+          status: "Vigente",
+          complements: [
+            ["Ley 1931 de 2018", "fortalece y desarrolla la gobernanza e instrumentos territoriales climáticos."],
+            ["Ley 2169 de 2021", "establece metas y medidas mínimas de acción climática."],
+            ["Decreto 172 de 2022", "crea la Comisión Intersectorial del Gabinete Presidencial para la Acción Climática."]
+          ],
+          url: "https://www.suin-juriscol.gov.co/viewDocument.asp?id=30022857",
+          source: "SUIN-Juriscol"
+        },
+        {
+          id: "ley-1931-2018",
+          scope: "Colombia",
+          type: "Ley",
+          norm: "Ley 1931 de 2018",
+          themes: ["Cambio climático", "Ordenamiento territorial", "Gestión del riesgo"],
+          central: "Directrices para la gestión climática",
+          description: "Integra adaptación y mitigación en decisiones públicas y privadas. Regula los PIGCC sectoriales y territoriales y ordena incorporar la gestión climática en planes de desarrollo y ordenamiento territorial.",
+          status: "Vigente, con modificaciones",
+          complements: [
+            ["Decreto 298 de 2016", "organiza el SISCLIMA."],
+            ["Ley 2169 de 2021", "establece metas nacionales y modifica disposiciones de la Ley 1931."],
+            ["Ley 1523 de 2012", "articula adaptación climática con conocimiento y reducción del riesgo."],
+            ["PIGCCT", "desarrollan territorialmente la gestión climática en departamentos y autoridades competentes."]
+          ],
+          url: "https://www.suin-juriscol.gov.co/viewDocument.asp?id=30035792",
+          source: "SUIN-Juriscol"
+        },
+        {
+          id: "ley-2169-2021",
+          scope: "Colombia",
+          type: "Ley",
+          norm: "Ley 2169 de 2021",
+          themes: ["Cambio climático", "Gestión del riesgo", "Ordenamiento territorial"],
+          central: "Ley de Acción Climática",
+          description: "Impulsa el desarrollo bajo en carbono, la resiliencia y la carbono-neutralidad. Fija metas y medidas mínimas nacionales de mitigación y adaptación con responsabilidades sectoriales y territoriales.",
+          status: "Vigente",
+          complements: [
+            ["Ley 1931 de 2018", "aporta el marco institucional e instrumentos de gestión climática."],
+            ["NDC de Colombia", "orienta los compromisos nacionales de mitigación y adaptación."],
+            ["Ley 1523 de 2012", "conecta resiliencia climática y reducción del riesgo de desastres."]
+          ],
+          url: "https://www.suin-juriscol.gov.co/viewDocument.asp?id=30043747",
+          source: "SUIN-Juriscol"
+        },
+        {
+          id: "acuerdo-48-2014",
+          scope: "Medellín",
+          type: "Acuerdo distrital",
+          norm: "Acuerdo 48 de 2014",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo", "Cambio climático", "Ambiental transversal", "Determinantes ambientales", "Hábitat y protección a moradores"],
+          central: "POT de Medellín",
+          description: "Adopta la revisión y ajuste de largo plazo del POT. Integra estructura ecológica, clasificación del suelo, sistema ambiental, gestión del riesgo, cambio climático, zonas de amenaza y riesgo, tratamientos e instrumentos complementarios.",
+          status: "Vigente; la revisión publicada en 2026 aún no es norma adoptada",
+          complements: [
+            ["Decreto 471 de 2018", "desarrolla normas urbanísticas de detalle."],
+            ["Decreto 265 de 2022", "regula precisiones cartográficas e incorporación de estudios de detalle."],
+            ["Decreto 774 de 2024", "articula el PAC con el artículo 578 del POT."],
+            ["Acuerdo Metropolitano 31 de 2019", "aporta determinantes y directrices del PEMOT."],
+            ["Acuerdo 145 de 2019", "desarrolla la Política Pública de Protección a Moradores prevista por el POT."]
+          ],
+          url: "https://www.medellin.gov.co/es/wp-content/uploads/2022/10/POT-Medellin.pdf",
+          source: "Alcaldía de Medellín"
+        },
+        {
+          id: "acuerdo-145-2019",
+          scope: "Medellín",
+          type: "Acuerdo distrital",
+          norm: "Acuerdo 145 de 2019",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo", "Hábitat y protección a moradores"],
+          central: "Política Pública de Protección a Moradores",
+          description: "Crea la Política Pública de Protección a Moradores, Actividades Económicas y Productivas —PPPMAEP—. Busca evitar que las obras públicas y las transformaciones urbanísticas desmejoren las condiciones de vida, vivienda, tenencia, redes sociales o medios de subsistencia de la población impactada.",
+          status: "Vigente y articulado al POT de Medellín",
+          complements: [
+            ["Acuerdo 48 de 2014", "contiene el marco de vulnerabilidad y riesgo social y económico que sustenta la política."],
+            ["Decreto 0818 de 2021", "reglamenta la política, revisa su protocolo y define su aplicación operativa."],
+            ["Decreto 1137 de 2022", "adicionó medidas transitorias para calcular el lucro cesante de actividades económicas."],
+            ["Decreto 0838 de 2023", "adiciona una acción excepcional de preservación patrimonial en determinados procesos de expropiación administrativa."],
+            ["Protocolo de protección a moradores", "organiza las actuaciones antes, durante y después de cada intervención territorial."]
+          ],
+          url: "https://metrodela80.gov.co/hubfs/metro-de-la-80/pppmaep-acuerdo-0145-de-2019.pdf",
+          source: "Gaceta Oficial de Medellín"
+        },
+        {
+          id: "decreto-818-2021",
+          scope: "Medellín",
+          type: "Decreto distrital",
+          norm: "Decreto 0818 de 2021",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo", "Hábitat y protección a moradores"],
+          central: "Reglamentación operativa de la PPPMAEP",
+          description: "Reglamenta el Acuerdo 145 de 2019, revisa y ajusta el protocolo de protección a moradores y regula su aplicación en escenarios de obra pública, gestión del riesgo, mejoramiento integral, renovación urbana y otras actuaciones territoriales. Define actores, fases, reconocimientos y acciones de restablecimiento, mejoramiento o sostenimiento de condiciones y derechos.",
+          status: "Vigente, con adiciones de 2022 y 2023",
+          complements: [
+            ["Acuerdo 145 de 2019", "crea la PPPMAEP y adopta su marco político."],
+            ["Anexo 1", "desarrolla el escenario de obras de infraestructura."],
+            ["Anexo 2", "desarrolla el escenario de gestión del riesgo de desastres."],
+            ["Anexo 3", "desarrolla el escenario de actuaciones urbanísticas."],
+            ["Anexo 4", "organiza las líneas estratégicas de la política."],
+            ["Anexo 5", "regula el proceso de reasentamiento."],
+            ["Decreto 1137 de 2022", "adicionó parágrafos transitorios al régimen de lucro cesante."],
+            ["Decreto 0838 de 2023", "adiciona el numeral 34.6 sobre preservación patrimonial."]
+          ],
+          url: "https://www.medellin.gov.co/es/wp-content/uploads/2022/11/decreto-0818-de-2021-reglamentacion-PPPMAEP.pdf",
+          source: "Alcaldía de Medellín"
+        },
+        {
+          id: "decreto-1137-2022",
+          scope: "Medellín",
+          type: "Decreto distrital modificatorio",
+          norm: "Decreto 1137 de 2022",
+          themes: ["Ordenamiento territorial", "Hábitat y protección a moradores"],
+          central: "Medidas transitorias sobre lucro cesante",
+          description: "Adicionó dos parágrafos transitorios al artículo 34.4.3.1 del Decreto 0818 de 2021. Para calcular el lucro cesante permitió considerar el mejor año fiscal de los tres años anteriores y flexibilizó la acreditación para actividades económicas con menor antigüedad.",
+          status: "La regla transitoria se aplicó al período 2022–2024; su ventana temporal ya culminó",
+          complements: [
+            ["Decreto 0818 de 2021, artículo 34.4.3.1", "contiene el régimen ordinario de reconocimiento del lucro cesante."],
+            ["Acuerdo 145 de 2019", "sustenta la protección de actividades económicas y medios de vida."],
+            ["Decreto 0838 de 2023", "introduce una adición diferente y permanente sobre preservación patrimonial."],
+            ["Leyes 388 de 1997 y 1682 de 2013", "aportan el marco de adquisición predial, utilidad pública e infraestructura."]
+          ],
+          url: "https://www.medellin.gov.co/es/wp-content/uploads/2023/10/Decreto-1137-de-2022-adicion-al-0818-de-2021.pdf",
+          source: "Alcaldía de Medellín"
+        },
+        {
+          id: "decreto-838-2023",
+          scope: "Medellín",
+          type: "Decreto distrital modificatorio",
+          norm: "Decreto 0838 de 2023",
+          themes: ["Ordenamiento territorial", "Hábitat y protección a moradores"],
+          central: "Preservación patrimonial en expropiación",
+          description: "Adiciona el numeral 34.6 al Decreto 0818 de 2021. Permite, de manera excepcional y sujeta a condiciones, reconocer la diferencia entre el avalúo catastral y el comercial como indemnización por lucro cesante para preservar la vivienda y las unidades económicas y productivas en ciertos procesos de expropiación administrativa vinculados a infraestructura vial y de transporte.",
+          status: "Vigente; adiciona el Decreto 0818 de 2021",
+          complements: [
+            ["Decreto 0818 de 2021, numeral 34.6", "es el cuerpo reglamentario al que se incorpora la adición."],
+            ["Acuerdo 145 de 2019", "define la vivienda y las unidades económicas como hechos de reconocimiento y protección."],
+            ["Ley 1682 de 2013 y sus modificaciones", "delimita los procesos de adquisición predial para infraestructura de transporte a los que aplica."],
+            ["Leyes 9 de 1989 y 388 de 1997", "regulan adquisición y expropiación por motivos de utilidad pública."],
+            ["CIDEPP", "debe aprobar el reconocimiento excepcional tras verificar las condiciones del caso."]
+          ],
+          url: "https://www.medellin.gov.co/es/wp-content/uploads/2023/10/Decreto-0838-de-2023-adicion-al-0818-de-2021-.pdf",
+          source: "Alcaldía de Medellín"
+        },
+        {
+          id: "decreto-265-2022",
+          scope: "Medellín",
+          type: "Decreto distrital",
+          norm: "Decreto 265 de 2022",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo", "Ambiental transversal", "Determinantes ambientales"],
+          central: "Precisiones cartográficas y estudios de detalle",
+          description: "Actualiza el procedimiento para corregir inconsistencias de la cartografía oficial del POT e incorporar precisiones sustentadas en estudios de detalle, incluidos amenaza, vulnerabilidad, riesgo y medidas de intervención.",
+          status: "Vigente; derogó el Decreto 1626 de 2015",
+          complements: [
+            ["Acuerdo 48 de 2014, artículos 54–60 y 616", "define zonas de amenaza y riesgo y habilita las precisiones."],
+            ["Decreto 1077 de 2015", "establece el marco nacional para estudios detallados e incorporación del riesgo en POT."],
+            ["Resoluciones del DAP", "formalizan cada precisión e incorporación en la cartografía oficial."],
+            ["Decreto 1626 de 2015", "es antecedente derogado y no debe citarse como procedimiento vigente."]
+          ],
+          url: "https://www.medellin.gov.co/normograma/docs/astrea/docs/D_ALCAMED_0265_2022.htm",
+          source: "Astrea Medellín"
+        },
+        {
+          id: "decreto-471-2018",
+          scope: "Medellín",
+          type: "Decreto distrital",
+          norm: "Decreto 471 de 2018",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo"],
+          central: "Normas urbanísticas de detalle",
+          description: "Reglamenta actuaciones y procesos de urbanización, parcelación, construcción y reconocimiento de edificaciones en Medellín, en desarrollo del POT y de las condiciones territoriales aplicables.",
+          status: "Vigente, con modificaciones",
+          complements: [
+            ["Acuerdo 48 de 2014", "es el POT que desarrolla reglamentariamente."],
+            ["Decreto 1077 de 2015", "contiene el marco nacional de licencias y actuaciones urbanísticas."],
+            ["Decreto 265 de 2022", "rige cuando los estudios de detalle exigen precisiones en cartografía oficial."]
+          ],
+          url: "https://www.medellin.gov.co/irj/go/km/docs/pccdesign/medellin/Temas/PlaneacionMunicipal/Programas/Shared%20Content/Documentos/2018/POT/Decreto%200471%20de%202018%20GACETA%204534%2016_07_2018.pdf",
+          source: "Alcaldía de Medellín"
+        },
+        {
+          id: "decreto-1240-2015",
+          scope: "Medellín",
+          type: "Decreto distrital",
+          norm: "Decreto 1240 de 2015",
+          themes: ["Gestión del riesgo", "Ordenamiento territorial"],
+          central: "Sistema municipal de gestión del riesgo",
+          description: "Establece el sistema municipal, reestructura sus instancias y adopta el PMGRD, la Estrategia Municipal de Respuesta a Emergencias y el Sistema Comando de Incidentes.",
+          status: "Vigente y citado por actos distritales recientes",
+          complements: [
+            ["Ley 1523 de 2012", "es el marco nacional al que adecúa el sistema local."],
+            ["Acuerdo 59 de 2011", "crea el DAGRD, el consejo y el Fondo Municipal para la Gestión del Riesgo."],
+            ["PMGRD Medellín 2015–2030", "desarrolla el componente estratégico y programático."],
+            ["EMRE y SCI", "organizan la preparación, coordinación y respuesta operativa."]
+          ],
+          url: "https://www.medellin.gov.co/irj/go/km/docs/pccdesign/SubportaldelCiudadano_2/PlandeDesarrollo_0_15/Publicaciones/Shared%20Content/GACETA%20OFICIAL/2015/Gaceta%204318/DECRETO%201240%20DE%202015.pdf",
+          source: "Alcaldía de Medellín"
+        },
+        {
+          id: "pmgrd-medellin",
+          scope: "Medellín",
+          type: "Instrumento",
+          norm: "PMGRD Medellín 2015–2030",
+          themes: ["Gestión del riesgo", "Ordenamiento territorial", "Cambio climático"],
+          central: "Planificación territorial del riesgo",
+          description: "Instrumento programático que prioriza escenarios, objetivos, programas y proyectos de conocimiento, reducción y manejo del desastre, articulado con el POT y los planes de desarrollo.",
+          status: "Versión oficial públicamente consultable; horizonte 2015–2030",
+          complements: [
+            ["Decreto 1240 de 2015", "establece su adopción, revisión y articulación con otros instrumentos."],
+            ["Ley 1523 de 2012", "define el contenido y propósito de los planes territoriales de gestión del riesgo."],
+            ["Acuerdo 48 de 2014", "incorpora las decisiones territoriales sobre amenaza, riesgo y medidas de manejo."],
+            ["PAC Medellín 2020–2050", "articula reducción del riesgo y adaptación climática."]
+          ],
+          url: "https://repositorio.gestiondelriesgo.gov.co/handle/20.500.11762/28711",
+          source: "Repositorio UNGRD"
+        },
+        {
+          id: "acuerdo-67-2017",
+          scope: "Medellín",
+          type: "Acuerdo distrital",
+          norm: "Acuerdo 67 de 2017",
+          themes: ["Ambiental transversal", "Cambio climático", "Ordenamiento territorial", "Determinantes ambientales"],
+          central: "SIGAM y política ambiental",
+          description: "Ajusta el Sistema de Gestión Ambiental de Medellín, adopta directrices de política ambiental y fortalece las instancias de coordinación, concertación, participación y salud ambiental.",
+          status: "Vigente",
+          complements: [
+            ["Decreto 774 de 2024", "compila la reglamentación ambiental distrital."],
+            ["Acuerdo 48 de 2014", "territorializa la estructura ecológica y el sistema ambiental."],
+            ["Ley 99 de 1993", "es el marco nacional del SINA y la gestión ambiental."]
+          ],
+          url: "https://www.medellin.gov.co/es/wp-content/uploads/2023/12/Acuerdo-67-de-2017-sancionado-2.pdf",
+          source: "Alcaldía de Medellín"
+        },
+        {
+          id: "decreto-774-2024",
+          scope: "Medellín",
+          type: "Decreto único distrital",
+          norm: "Decreto 774 de 2024",
+          themes: ["Cambio climático", "Ambiental transversal", "Gestión del riesgo", "Ordenamiento territorial", "Determinantes ambientales"],
+          central: "Decreto Único de Medio Ambiente",
+          description: "Compila la reglamentación ambiental distrital. En su Título 7 adopta y regula el PAC Medellín y el Plan de Adaptación en Salud, y define su articulación con el POT y otros instrumentos.",
+          status: "Vigente; derogó por compilación el Decreto 942 de 2021",
+          complements: [
+            ["Acuerdo 46 de 2015", "adopta la estrategia integral de gestión del cambio climático y la variabilidad climática."],
+            ["Acuerdo 48 de 2014, artículo 578", "ordena el Plan de Mitigación y Adaptación al Cambio Climático."],
+            ["PAC Medellín 2020–2050", "es el anexo e instrumento climático adoptado."],
+            ["Decreto 942 de 2021", "fue compilado y derogado; su contenido sustancial quedó incorporado en el Decreto 774."]
+          ],
+          url: "https://www.medellin.gov.co/normograma/docs/index.html",
+          source: "Astrea Medellín"
+        },
+        {
+          id: "pac-medellin",
+          scope: "Medellín",
+          type: "Instrumento",
+          norm: "PAC Medellín 2020–2050",
+          themes: ["Cambio climático", "Gestión del riesgo", "Ordenamiento territorial"],
+          central: "Mitigación, adaptación y neutralidad",
+          description: "Orienta la reducción de emisiones, la neutralidad de carbono y el aumento de capacidades de adaptación. Incluye como sectores estratégicos la adaptación y gestión del riesgo, ecosistemas, ruralidad y planeación urbana.",
+          status: "Vigente como instrumento adoptado por el Decreto 774 de 2024",
+          complements: [
+            ["Decreto 774 de 2024, Título 7", "lo adopta y establece responsables, seguimiento, revisión y articulación territorial."],
+            ["Acuerdo 46 de 2015", "define los ejes de adaptación y desarrollo bajo en carbono."],
+            ["Acuerdo 48 de 2014, artículo 578", "lo reconoce dentro del sistema ambiental, de riesgo y cambio climático."],
+            ["PAC&VC del Valle de Aburrá 2019–2030", "aporta la escala metropolitana de acción climática."]
+          ],
+          url: "https://www.medellin.gov.co/es/wp-content/uploads/2024/03/PAC_Medellin_Libro_Digital.pdf",
+          source: "Alcaldía de Medellín"
+        },
+        {
+          id: "pomca-aburra-2018",
+          scope: "Metropolitano",
+          type: "Instrumento adoptado por resoluciones conjuntas",
+          norm: "POMCA río Aburrá–Medellín 2018–2032",
+          themes: ["Determinantes ambientales", "Ordenamiento territorial", "Gestión del riesgo", "Cambio climático", "Ambiental transversal"],
+          central: "Ordenación ambiental de la cuenca",
+          description: "Actualiza el Plan de Ordenación y Manejo de la cuenca. Su zonificación ambiental, componente de gestión del riesgo y medidas de manejo constituyen determinantes de superior jerarquía para los POT de los municipios de la cuenca.",
+          status: "Vigente; horizonte 2018–2032",
+          complements: [
+            ["Resolución Metropolitana 3241 de 2018", "aprueba la actualización en la jurisdicción del AMVA."],
+            ["Resolución Corantioquia 040-RES1811-6712 de 2018", "aprueba la actualización en su jurisdicción."],
+            ["Resolución Cornare 112-5007 de 2018", "aprueba la actualización en su jurisdicción."],
+            ["Decreto 1076 de 2015", "reglamenta los POMCA y su prevalencia como determinante ambiental."],
+            ["Resolución 1907 de 2013", "adopta la guía técnica nacional para formular POMCA."]
+          ],
+          url: "https://www.metropol.gov.co/ambiental/recurso-hidrico/pomca/2018/Documento_POMCA/DOCUMENTO_POMCA%20dic.pdf",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "pmaa-aburra-2019",
+          scope: "Metropolitano",
+          type: "Instrumento adoptado por resoluciones conjuntas",
+          norm: "PMAA del Valle de Aburrá 2018–2030",
+          themes: ["Determinantes ambientales", "Ordenamiento territorial", "Ambiental transversal", "Cambio climático"],
+          central: "Manejo ambiental del acuífero",
+          description: "Orienta la conservación, protección y uso sostenible de las aguas subterráneas, identifica zonas de recarga y establece programas y medidas que deben articularse con el POMCA y los instrumentos territoriales.",
+          status: "Vigente; horizonte 2018–2030",
+          complements: [
+            ["Resolución Metropolitana 3368 de 2019", "adopta el PMAA en la jurisdicción del AMVA."],
+            ["Resolución Corantioquia 040-RES1912-7680 de 2019", "adopta el PMAA en su jurisdicción."],
+            ["Resolución Cornare 112-4878 de 2019", "adopta el PMAA en su jurisdicción."],
+            ["POMCA río Aburrá–Medellín", "incorpora la protección del acuífero y sus zonas de recarga."],
+            ["Decreto 1076 de 2015", "reglamenta los planes de manejo ambiental de acuíferos."]
+          ],
+          url: "https://www.metropol.gov.co/GacetaVirtual/2019/Noviembre%202019/Resoluciones/Resoluci%C3%B3n%202019%20003368.pdf",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "porh-aburra-2019",
+          scope: "Metropolitano",
+          type: "Resolución metropolitana",
+          norm: "Resolución Metropolitana 2994 de 2019",
+          themes: ["Determinantes ambientales", "Ordenamiento territorial", "Ambiental transversal"],
+          central: "PORH del río Aburrá–Medellín",
+          description: "Adopta el Plan de Ordenamiento del Recurso Hídrico del río Aburrá–Medellín, define sus usos, objetivos de calidad, medidas de manejo, seguimiento y recuperación ambiental.",
+          status: "Vigente; horizonte hasta 2030",
+          complements: [
+            ["POMCA río Aburrá–Medellín", "aporta la escala integral de cuenca y su zonificación ambiental."],
+            ["Decreto 1076 de 2015", "reglamenta el ordenamiento del recurso hídrico."],
+            ["Resolución Metropolitana 2016 de 2012", "es antecedente de los objetivos de calidad del río."],
+            ["PSMV municipales y prestadores", "deben articular vertimientos y saneamiento con los objetivos del PORH."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/r_amva_2994_2019.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "resolucion-1510-2010",
+          scope: "Regional",
+          type: "Resolución nacional",
+          norm: "Resolución 1510 de 2010",
+          themes: ["Determinantes ambientales", "Ordenamiento territorial", "Ambiental transversal"],
+          central: "Reserva Forestal Protectora Río Nare",
+          description: "Redelimita la Reserva Forestal Protectora Río Nare, adopta su plan de manejo y establece zonas de preservación, restauración y uso sostenible con sus respectivos usos principales, condicionados y prohibidos.",
+          status: "Vigente; aplicable a sectores de Medellín incluidos en la reserva",
+          complements: [
+            ["Acuerdo Inderena 31 de 1970 y Resolución Ejecutiva 24 de 1971", "constituyen los antecedentes de creación de la reserva."],
+            ["Decreto 1076 de 2015", "regula las reservas forestales protectoras dentro del SINAP."],
+            ["Acuerdo 48 de 2014", "incorpora la reserva y su régimen dentro del sistema ambiental y suelo de protección de Medellín."],
+            ["Actos de sustracción o precisión", "deben revisarse para cada predio o intervención cuando correspondan."]
+          ],
+          url: "https://www.cornare.gov.co/SIAR/Plan-de-manejo/RFPR-Rio-Nare/Resolucion_1510-2010-MADS.pdf",
+          source: "Cornare"
+        },
+        {
+          id: "drmi-dvarc-2023",
+          scope: "Regional",
+          type: "Área protegida y plan de manejo",
+          norm: "DRMI Divisoria Valle de Aburrá–Río Cauca",
+          themes: ["Determinantes ambientales", "Ordenamiento territorial", "Gestión del riesgo", "Cambio climático", "Ambiental transversal"],
+          central: "Zonificación y manejo del DRMI",
+          description: "Área protegida regional que condiciona los usos del suelo rural en sectores occidentales de Medellín. Su plan de manejo vigente define zonificación, objetivos de conservación y actividades permitidas, condicionadas y prohibidas.",
+          status: "Vigente; plan de manejo actualizado mediante Acuerdo Corporativo ACU2312-670 de 2023",
+          complements: [
+            ["Acuerdo Corantioquia 267 de 2007", "declara, reserva y delimita inicialmente el área."],
+            ["Acuerdo Corantioquia 327 de 2009", "modifica la delimitación y adopta el plan integral de manejo anterior."],
+            ["Acuerdo Corantioquia 387 de 2011", "homologa su categoría dentro del SINAP."],
+            ["Acuerdo Corporativo ACU2312-670 de 2023", "actualiza el plan de manejo y su zonificación."],
+            ["Acuerdo 48 de 2014", "debe armonizar el ordenamiento rural de Medellín con esta determinante."]
+          ],
+          url: "https://runapadmin.parquesnacionales.gov.co/default/general/descargarplan?pid=564",
+          source: "RUNAP"
+        },
+        {
+          id: "areas-protegidas-urbanas-medellin",
+          scope: "Metropolitano",
+          type: "Actos de declaratoria y planes de manejo",
+          norm: "Áreas protegidas urbanas de Medellín",
+          themes: ["Determinantes ambientales", "Ordenamiento territorial", "Ambiental transversal", "Cambio climático"],
+          central: "Cerros tutelares y conservación urbana",
+          description: "Agrupa los actos metropolitanos que delimitan y regulan el Parque Natural Regional Cerro El Volador y las áreas de recreación Cerro Nutibara y Cerro La Asomadera, determinantes ambientales espacializadas dentro del suelo urbano.",
+          status: "Vigentes, con planes de manejo específicos",
+          complements: [
+            ["Resolución Metropolitana 510 de 2009", "declara y delimita el Parque Natural Regional Metropolitano Cerro El Volador."],
+            ["Resolución Metropolitana 511 de 2009", "declara el Área de Recreación Parque Ecológico Cerro Nutibara."],
+            ["Resolución Metropolitana 857 de 2011", "declara y delimita el Área de Recreación Urbana Cerro La Asomadera."],
+            ["Resolución Metropolitana 2721 de 2019", "adopta el plan de manejo del Cerro La Asomadera."],
+            ["Planes de manejo de El Volador y Nutibara", "definen zonificación y reglas específicas para cada área protegida."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/r_amva_0510_2009.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-15-2006",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 15 de 2006",
+          themes: ["Ordenamiento territorial", "Determinantes ambientales", "Ambiental transversal"],
+          central: "Directrices Metropolitanas de Ordenamiento Territorial",
+          description: "Adopta las normas obligatoriamente generales en materia de planeación y gestión del suelo y desarrolla las Directrices Metropolitanas de Ordenamiento Territorial \u201cHacia una Región de Ciudades\u201d, que orientan la armonización de los POT municipales.",
+          status: "Aplicable como antecedente y desarrollo normativo metropolitano; consultar con los instrumentos posteriores",
+          complements: [
+            ["Ley 1625 de 2013", "define las competencias y los instrumentos de ordenamiento de las áreas metropolitanas."],
+            ["Acuerdo Metropolitano 13 de 2011", "complementa y desarrolla las directrices y los sistemas estructurantes."],
+            ["Acuerdo Metropolitano 13 de 2012", "desarrolla la dimensión de vivienda y hábitat."],
+            ["Acuerdo Metropolitano 31 de 2019", "adopta el PEMOT como instrumento estratégico metropolitano posterior."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0015_2006.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-13-2011",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 13 de 2011",
+          themes: ["Ordenamiento territorial", "Determinantes ambientales", "Ambiental transversal"],
+          central: "Sistemas estructurantes y escenarios territoriales",
+          description: "Complementa y desarrolla las Directrices Metropolitanas de Ordenamiento Territorial mediante la adopción de sistemas estructurantes de ocupación y escenarios territoriales estratégicos para el Valle de Aburrá.",
+          status: "Aplicable en articulación con el PEMOT y los POT municipales",
+          complements: [
+            ["Acuerdo Metropolitano 15 de 2006", "contiene las directrices metropolitanas que este acuerdo desarrolla."],
+            ["Proyecto BIO 2030", "sirve de referencia estratégica para la ocupación sostenible de la región metropolitana."],
+            ["Acuerdo Metropolitano 31 de 2019", "integra y actualiza la planeación estratégica territorial en el PEMOT."],
+            ["Acuerdo 48 de 2014", "incorpora el modelo de ocupación y las decisiones territoriales de Medellín."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0013_2011.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-13-2012",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 13 de 2012",
+          themes: ["Ordenamiento territorial", "Hábitat y protección a moradores", "Ambiental transversal", "Cambio climático"],
+          central: "Plan Estratégico Metropolitano de Vivienda y Hábitat",
+          description: "Adopta el Plan Estratégico Metropolitano de Vivienda y Hábitat con componentes de vivienda, entorno y sostenibilidad, y crea el Consejo Asesor Metropolitano de Vivienda y Hábitat.",
+          status: "Instrumento metropolitano de orientación para vivienda y hábitat",
+          complements: [
+            ["Acuerdo Metropolitano 15 de 2006", "aporta las directrices generales de ocupación y gestión del suelo."],
+            ["Acuerdo Metropolitano 31 de 2019", "articula vivienda, hábitat y ocupación en el PEMOT."],
+            ["Acuerdo 145 de 2019", "establece la Política Pública de Protección a Moradores de Medellín."],
+            ["Decreto 0818 de 2021", "reglamenta localmente la protección a moradores y actividades económicas y productivas."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0013_2012.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-31-2019",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 31 de 2019",
+          themes: ["Ordenamiento territorial", "Cambio climático", "Ambiental transversal", "Determinantes ambientales"],
+          central: "PEMOT del Valle de Aburrá",
+          description: "Adopta el Plan Estratégico Metropolitano de Ordenamiento Territorial, con directrices de escala supramunicipal para agua, estructura ecológica, movilidad, hábitat, servicios y adaptación climática.",
+          status: "Vigente y aplicable a Medellín",
+          complements: [
+            ["Ley 1625 de 2013", "ordena formular el PEMOT y define su relación con los POT municipales."],
+            ["Acuerdo Metropolitano 15 de 2006", "contiene las directrices generales metropolitanas de planeación y gestión del suelo."],
+            ["Acuerdo Metropolitano 25 de 2020", "adopta el PIDM Aburrá 2021–2032 y articula la planeación integral metropolitana."],
+            ["Acuerdo 48 de 2014", "debe armonizarse con las determinantes y directrices metropolitanas."],
+            ["Acuerdo Metropolitano 4 de 2019", "adopta el plan metropolitano de acción climática."],
+            ["POMCA del río Aburrá", "aporta determinantes ambientales y gestión integral del agua."]
+          ],
+          url: "https://www.metropol.gov.co/planeacion/PEMOT%202020/GACETA4656_ACUERDO%2031_2019_adoptaPEMOT.pdf",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-22-2019",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 22 de 2019",
+          themes: ["Gestión del riesgo", "Ordenamiento territorial", "Cambio climático", "Determinantes ambientales"],
+          central: "Política y Plan Metropolitano de Gestión del Riesgo",
+          description: "Adopta la Política Metropolitana para la Gestión del Riesgo de Desastres y sus instrumentos. El plan metropolitano 2019–2030 organiza objetivos, estrategias, programas y proyectos para conocer y reducir el riesgo y manejar desastres.",
+          status: "Vigente; plan con horizonte 2019–2030",
+          complements: [
+            ["Ley 1523 de 2012", "establece el Sistema Nacional y la política de gestión del riesgo de desastres."],
+            ["Acuerdo Metropolitano 31 de 2019", "incorpora la gestión del riesgo en el modelo territorial metropolitano."],
+            ["Acuerdo Metropolitano 25 de 2020", "articula la gestión del riesgo con el desarrollo integral metropolitano."],
+            ["Acuerdo Metropolitano 3 de 2015", "crea el Consejo Metropolitano de Gestión del Riesgo de Desastres."],
+            ["Decreto 2157 de 2017", "reglamenta planes empresariales de gestión del riesgo para entidades públicas y privadas."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0022_2019.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-4-2019",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 4 de 2019",
+          themes: ["Cambio climático", "Gestión del riesgo", "Ordenamiento territorial"],
+          central: "PAC&VC del Valle de Aburrá",
+          description: "Adopta el Plan de Acción ante el Cambio y la Variabilidad Climática 2019–2030 para los municipios del Valle de Aburrá y orienta medidas metropolitanas de mitigación, adaptación y gestión del riesgo.",
+          status: "Vigente; horizonte 2019–2030",
+          complements: [
+            ["Ley 1931 de 2018", "establece directrices e instrumentos territoriales de gestión climática."],
+            ["Acuerdo Metropolitano 31 de 2019", "integra sus medidas en el PEMOT."],
+            ["Acuerdo Metropolitano 25 de 2020", "vincula la acción climática con el desarrollo integral metropolitano."],
+            ["PAC Medellín 2020–2050", "desarrolla acciones específicas para el Distrito."],
+            ["Planes de desarrollo y POT municipales", "son los instrumentos de implementación territorial."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0004_2019.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-24-2019",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 24 de 2019",
+          themes: ["Ambiental transversal", "Ordenamiento territorial", "Determinantes ambientales"],
+          central: "Plan de prevención y control de la contaminación por ruido",
+          description: "Adopta el Plan de Acción para la Prevención y el Control de la Contaminación por Ruido 2019–2030, con medidas sobre exposición poblacional, fuentes emisoras, planeación urbana, control y seguimiento.",
+          status: "Vigente; horizonte 2019–2030",
+          complements: [
+            ["Resolución 627 de 2006", "establece la norma nacional de emisión de ruido y ruido ambiental."],
+            ["Mapas de ruido del Valle de Aburrá", "sustentan el diagnóstico espacial y la priorización de acciones."],
+            ["Acuerdo Metropolitano 31 de 2019", "articula el control del ruido con el ordenamiento territorial metropolitano."],
+            ["Acuerdo 48 de 2014", "regula usos del suelo y actividades con incidencia acústica en Medellín."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0024_2019.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-16-2017",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 16 de 2017",
+          themes: ["Determinantes ambientales", "Ambiental transversal", "Cambio climático", "Ordenamiento territorial"],
+          central: "PIGECA 2017–2030",
+          description: "Adopta el Plan Integral de Gestión de la Calidad del Aire del Valle de Aburrá. Orienta medidas territoriales y sectoriales sobre movilidad, industria, energía, salud y exposición de la población a contaminantes.",
+          status: "Vigente; horizonte 2017–2030",
+          complements: [
+            ["Acuerdo Metropolitano 4 de 2018", "adopta el POECA para episodios de contaminación atmosférica."],
+            ["Resolución 2254 de 2017", "establece la norma nacional de calidad del aire ambiente."],
+            ["Acuerdo 48 de 2014", "debe incorporar criterios ambientales en usos, movilidad y modelo de ocupación."],
+            ["PAC&VC del Valle de Aburrá", "articula calidad del aire, mitigación climática y movilidad sostenible."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0016_2017.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-24-2018",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 24 de 2018",
+          themes: ["Ambiental transversal", "Ordenamiento territorial", "Determinantes ambientales"],
+          central: "Plan RESPEL 2017–2030",
+          description: "Adopta el Plan de Gestión Integral de Residuos o Desechos Peligrosos del Valle de Aburrá 2017–2030 como instrumento de autogestión y autorregulación para prevenir y reducir sus impactos ambientales y sanitarios.",
+          status: "Vigente; horizonte 2017–2030",
+          complements: [
+            ["Decreto 1076 de 2015", "compila la reglamentación nacional sobre residuos o desechos peligrosos."],
+            ["Política ambiental para la gestión integral de residuos peligrosos", "orienta prevención, manejo seguro y aprovechamiento."],
+            ["Acuerdo Metropolitano 23 de 2018", "adopta el PGIRS regional para residuos sólidos no peligrosos y corrientes relacionadas."],
+            ["Planes de gestión de generadores", "desarrollan las obligaciones operativas de quienes producen residuos peligrosos."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0024_2018.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-23-2018",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 23 de 2018",
+          themes: ["Determinantes ambientales", "Ambiental transversal", "Ordenamiento territorial", "Cambio climático"],
+          central: "PGIRS Regional 2017–2030",
+          description: "Adopta la actualización del Plan de Gestión Integral de Residuos Sólidos Regional del Valle de Aburrá, con programas, proyectos, metas e infraestructura de escala regional.",
+          status: "Vigente; horizonte 2017–2030",
+          complements: [
+            ["Resolución 754 de 2014", "establece la metodología nacional para formular y actualizar PGIRS."],
+            ["PGIRS de Medellín", "desarrolla la gestión local de residuos y debe articularse con la escala regional."],
+            ["Decreto 1077 de 2015", "compila la reglamentación del servicio público de aseo."],
+            ["Acuerdo Metropolitano 4 de 2006", "adoptó el plan regional anterior y fue sustituido por la actualización de 2018."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0023_2018.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-20-2020",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 20 de 2020",
+          themes: ["Ordenamiento territorial", "Cambio climático", "Ambiental transversal"],
+          central: "Plan Maestro de Movilidad Metropolitana",
+          description: "Adopta el Plan Maestro de Movilidad para la Región Metropolitana del Valle de Aburrá, que orienta la integración regional, el transporte público y activo, la seguridad vial, la gestión de la demanda y la sostenibilidad ambiental.",
+          status: "Vigente como instrumento metropolitano de movilidad",
+          complements: [
+            ["Ley 1625 de 2013", "atribuye funciones metropolitanas de planeación y coordinación de la movilidad."],
+            ["Acuerdo Metropolitano 31 de 2019", "articula el sistema de movilidad con el modelo de ocupación del PEMOT."],
+            ["Acuerdo Metropolitano 4 de 2019", "incorpora acciones de movilidad baja en carbono en el PAC&VC."],
+            ["Acuerdo Metropolitano 16 de 2017", "vincula la movilidad con las medidas del PIGECA."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0020_2020.htm",
+          source: "Área Metropolitana"
+        },
+        {
+          id: "amva-25-2020",
+          scope: "Metropolitano",
+          type: "Acuerdo metropolitano",
+          norm: "Acuerdo Metropolitano 25 de 2020",
+          themes: ["Ordenamiento territorial", "Gestión del riesgo", "Cambio climático", "Ambiental transversal", "Hábitat y protección a moradores"],
+          central: "Plan Integral de Desarrollo Metropolitano Aburrá 2021–2032",
+          description: "Adopta el Plan Integral de Desarrollo Metropolitano con perspectiva de largo plazo. Es el marco estratégico para coordinar el desarrollo humano y territorial, la sostenibilidad ambiental, la movilidad, el hábitat y la gobernanza entre los municipios del Valle de Aburrá.",
+          status: "Vigente; horizonte 2021–2032",
+          complements: [
+            ["Ley 1625 de 2013", "regula el Plan Integral de Desarrollo Metropolitano y su alcance supramunicipal."],
+            ["Acuerdo Metropolitano 31 de 2019", "adopta el PEMOT y desarrolla espacialmente las directrices territoriales metropolitanas."],
+            ["Acuerdo Metropolitano 22 de 2019", "incorpora la política y los instrumentos metropolitanos de gestión del riesgo."],
+            ["Acuerdo Metropolitano 4 de 2019", "adopta el plan metropolitano de cambio y variabilidad climática."],
+            ["Planes de desarrollo municipales", "deben articular sus programas e inversiones con la planeación integral metropolitana."]
+          ],
+          url: "https://alphasig.metropol.gov.co/normograma/compilacion/docs/a_amva_0025_2020.htm",
+          source: "Área Metropolitana"
+        }
+      ];
+
+      var selectedId = "ley-1523-2012";
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function compactComplements(item) {
+        return item.complements.map(function (entry) {
+          return entry[0];
+        }).join("; ");
+      }
+
+      function renderRelated(item) {
+        if (!item) {
+          relatedContent.innerHTML = "<p>Selecciona una norma para ver sus relaciones.</p>";
+          return;
+        }
+        var list = item.complements.map(function (entry) {
+          return "<li><span>" + escapeHtml(entry[0]) + "</span> — " + escapeHtml(entry[1]) + "</li>";
+        }).join("");
+        relatedContent.innerHTML =
+          "<p><span class=\"viz-badge\">" + escapeHtml(item.scope) + "</span> " +
+          "<span>" + escapeHtml(item.norm) + "</span></p>" +
+          "<ul>" + list + "</ul>";
+      }
+
+      function filteredNorms() {
+        var query = search.value.trim().toLocaleLowerCase("es");
+        var scopeValue = scope.value;
+        var themeValue = theme.value;
+        return norms.filter(function (item) {
+          var haystack = [
+            item.scope,
+            item.type,
+            item.norm,
+            item.central,
+            item.description,
+            item.status,
+            compactComplements(item),
+            item.themes.join(" ")
+          ].join(" ").toLocaleLowerCase("es");
+          return (!query || haystack.indexOf(query) !== -1) &&
+            (!scopeValue || item.scope === scopeValue) &&
+            (!themeValue || item.themes.indexOf(themeValue) !== -1);
+        });
+      }
+
+      function render() {
+        var items = filteredNorms();
+        count.textContent = items.length + (items.length === 1 ? " registro" : " registros");
+
+        if (!items.length) {
+          body.innerHTML = "<tr><td class=\"nrc-empty text-muted\" colspan=\"7\">No hay coincidencias con los filtros seleccionados.</td></tr>";
+          renderRelated(null);
+          return;
+        }
+
+        body.innerHTML = items.map(function (item) {
+          var isSelected = item.id === selectedId;
+          return "<tr>" +
+            "<td><span class=\"viz-badge\">" + escapeHtml(item.scope) + "</span></td>" +
+            "<td><div class=\"nrc-norm\">" +
+              "<button type=\"button\" class=\"btn btn-ghost nrc-select" + (isSelected ? " is-selected" : "") + "\" data-id=\"" + escapeHtml(item.id) + "\" aria-pressed=\"" + (isSelected ? "true" : "false") + "\">" + escapeHtml(item.norm) + "</button>" +
+              "<span class=\"text-small text-muted\">" + escapeHtml(item.type) + "</span>" +
+            "</div></td>" +
+            "<td>" + escapeHtml(item.central) + "</td>" +
+            "<td>" + escapeHtml(item.description) + "</td>" +
+            "<td>" + escapeHtml(item.status) + "</td>" +
+            "<td>" + escapeHtml(compactComplements(item)) + "</td>" +
+            "<td class=\"nrc-source\"><a href=\"" + escapeHtml(item.url) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapeHtml(item.source) + "</a></td>" +
+          "</tr>";
+        }).join("");
+
+        var selected = norms.find(function (item) {
+          return item.id === selectedId;
+        });
+        renderRelated(selected);
+
+        Array.prototype.forEach.call(body.querySelectorAll(".nrc-select"), function (button) {
+          button.addEventListener("click", function () {
+            selectedId = button.getAttribute("data-id");
+            render();
+          });
+        });
+      }
+
+      search.addEventListener("input", render);
+      scope.addEventListener("change", render);
+      theme.addEventListener("change", render);
+      render();
+    }());
+  </script>
+</div>
+
+<script id="codex-visualization-floating-ui-core" src="https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js"></script>
+<script id="codex-visualization-floating-ui-dom" src="https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js"></script>
+<script id="codex-visualization-lucide" async src="https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js"></script>
+<script id="codex-visualization-tooltip">/* oxlint-disable typescript/no-unsafe-argument, typescript/no-unsafe-call, typescript/no-unsafe-return */
+// Runs inside the visualization sandbox, not the host webview.
+(() => {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set(["top", "right", "bottom", "left"]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =>
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest("[data-tooltip]")
+      : null;
+  const containsTarget = (trigger, target) =>
+    target?.nodeType != null && trigger.contains(target);
+  const getContent = (trigger) =>
+    trigger.getAttribute("data-tooltip")?.trim() ?? "";
+  const getPlacement = (trigger) => {
+    const placement = trigger.getAttribute("data-tooltip-placement");
+    return tooltipPlacements.has(placement) ? placement : "top";
+  };
+  const getTooltip = () => {
+    if (tooltip == null) {
+      tooltip = document.createElement("div");
+      tooltip.id = tooltipId;
+      tooltip.className = "tooltip";
+      tooltip.setAttribute("role", "tooltip");
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) => {
+    const ids = new Set(
+      (trigger.getAttribute("aria-describedby") ?? "")
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute("aria-describedby");
+    } else {
+      trigger.setAttribute("aria-describedby", [...ids].join(" "));
+    }
+  };
+  const clearOpenTimeout = () => {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) => {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) => {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              "--tooltip-available-width",
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              "--tooltip-available-height",
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: "fixed",
+    })
+      .then(({ x, y }) => {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = "visible";
+      })
+      .catch(() => {
+        if (activeTrigger === trigger && request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) => {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = "hidden";
+    floating.style.transform = "translate(0, 0)";
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () => {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) => {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() < skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() => {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(":focus-visible")) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) => {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () => {
+    closeTooltip(false);
+    document.removeEventListener("pointerover", handlePointerOpen);
+    document.removeEventListener("pointerout", handleLeave);
+    document.removeEventListener("focusin", handleFocusIn);
+    document.removeEventListener("focusout", handleLeave);
+    document.removeEventListener("keydown", handleKeyDown);
+    document.removeEventListener("contextmenu", handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener("pointerover", handlePointerOpen);
+  document.addEventListener("pointerout", handleLeave);
+  document.addEventListener("focusin", handleFocusIn);
+  document.addEventListener("focusout", handleLeave);
+  document.addEventListener("keydown", handleKeyDown);
+  document.addEventListener("contextmenu", handleContextMenu);
+  window.addEventListener("pagehide", destroy, { once: true });
+})();
+</script>
+<script id="codex-visualization-lucide-initialization">(() => {
+  const initialize = () => {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById("codex-visualization-lucide")
+    ?.addEventListener("load", initialize, { once: true });
+})();
+</script>
+</body>
+</html>

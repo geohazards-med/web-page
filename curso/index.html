@@ -845,6 +845,11 @@
 
     /* Complete question */
     .complete-sentence { font-size: 1rem; padding: 1rem 1.2rem; background: var(--bg); border-radius: var(--radius-sm); border: 1.5px solid var(--border); line-height: 1.7; margin-bottom: 1rem; }
+    .q-pista { margin-top: .7rem; }
+    .q-pista-btn { background: none; border: 1px dashed var(--accent); color: var(--accent); font-family: inherit; font-size: .82rem; font-weight: 700; padding: .3rem .8rem; border-radius: 99px; cursor: pointer; transition: background .2s, color .2s; }
+    .q-pista-btn:hover { background: var(--accent); color: #fff; }
+    .q-pista-btn.abierta { background: var(--accent); color: #fff; border-style: solid; }
+    .q-pista-body { margin-top: .55rem; padding: .7rem .9rem; background: rgba(224,169,74,0.13); border-left: 3px solid var(--accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: .89rem; line-height: 1.55; font-weight: 500; color: var(--text); }
     .complete-sentence .blank { display: inline-block; min-width: 100px; border-bottom: 3px solid var(--accent); padding: 0 .3rem; font-weight: 800; color: var(--primary); transition: all .3s; }
     .complete-sentence .blank.filled { border-bottom-color: var(--green); animation: blankPop .3s ease-out; }
     @keyframes blankPop { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
@@ -1133,7 +1138,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <div class="progress-bar-wrap">
       <div class="progress-bar-fill" id="globalProgress" style="transform:scaleX(0)"></div>
     </div>
-    <div id="progressText">0 / 0 completado</div>
+    <div id="progressText">0 de 0 lecciones completadas</div>
   </div>
 </aside>
 
@@ -1157,7 +1162,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <a href="#" onclick="showForums(); return false;"><span class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><span class="tl-label">Foros</span></a>
     <a href="#" id="signupLink" onclick="handleSignupLink()"><span class="tl-icon" id="signupIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-6"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg></span><span class="tl-label" id="signupLabel">Inscribirse</span></a>
   </div>
-  </div>
 </header>
 
 <section class="hero" id="heroSection">
@@ -1169,7 +1173,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <h1>Comprensión del Riesgo</h1>
       <p class="hero-sub" id="heroSub">Herramientas conceptuales para la gestión del riesgo y el ordenamiento territorial en el Borde Urbano Rural Nororiental de Medellín.</p>
       <div class="hero-progress-row">
-        <div class="hero-progress-track"><div class="hero-progress-fill" id="heroProgressFill" style="transform:scaleX(0)"></div>
+        <div class="hero-progress-track"><div class="hero-progress-fill" id="heroProgressFill" style="transform:scaleX(0)"></div></div>
         <span class="hero-progress-label" id="heroProgressLabel">0/0 lecciones</span>
       </div>
       <button class="hero-cta" id="heroCta" onclick="showLesson(0)">Comenzar el curso →</button>
@@ -1293,6 +1297,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           </ul>
           <p>Cada módulo incluye videos, audios explicativos, materiales descargables en PDF e imágenes de apoyo.</p>
           <div class="complete-note">📌 <strong>Importante:</strong> Para avanzar, marca cada lección como <strong>completada</strong> con el botón "Marcar como completado" que aparece al final de cada página. Tu progreso se guarda automáticamente en este dispositivo.</div>
+          <div class="complete-note">🗺️ <strong>¿Quieres profundizar?</strong> Existe un segundo curso corto, <a href="../curso2/" target="_blank" rel="noopener">Planificación y Gestión del Riesgo</a>, orientado a liderazgos comunitarios y a la toma de decisiones sobre el territorio: normativa ambiental, geología de la ladera, vulnerabilidad y planificación del BURNOR.</div>
         `
       },
       // ── Module 1: POT ──
@@ -2049,7 +2054,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     heroCta.textContent = cta.label;
     heroCta.onclick = () => showLesson(cta.idx);
     globalProgress.style.transform = 'scaleX(' + (p.pct / 100) + ')';
-    progressText.textContent = `${p.done} / ${p.total} completado`;
+    progressText.textContent = `${p.done} de ${p.total} lecciones completadas`;
   }
 
   // ── Render Sidebar ──────────────────────────────────
@@ -2322,6 +2327,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       ${q.type === 'order' ? '<div class="q-hint">💡 Toca los elementos en el orden correcto</div>' : ''}
       ${q.type === 'complete' ? '<div class="q-hint">💡 Elige la palabra correcta para completar la frase</div>' : ''}
       ${q.type === 'match' ? '<div class="q-hint">💡 Toca un elemento de la izquierda y luego su pareja de la derecha</div>' : ''}
+      ${q.pista ? `<div class="q-pista" id="qp-${modIdx}-${qi}">
+        <button type="button" class="q-pista-btn" onclick="togglePista(${modIdx},${qi})">💡 Ver pista</button>
+        <div class="q-pista-body" hidden>${q.pista}</div>
+      </div>` : ''}
     </div>`;
     if (q.type === 'choice') {
       q.opts.forEach((opt, oi) => {
@@ -2354,7 +2363,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <div class="order-feedback" id="mf-${modIdx}-${qi}"></div>`;
     } else if (q.type === 'complete') {
       quizState[modIdx].completePicks[qi] = { picked: null };
-      html += `<div class="complete-sentence" id="cs-${modIdx}-${qi}">${q.text.replace('_____', '<span class="blank" id="cb-${modIdx}-${qi}">______</span>')}</div>
+      html += `<div class="complete-sentence" id="cs-${modIdx}-${qi}">${q.text.replace('_____', `<span class="blank" id="cb-${modIdx}-${qi}">______</span>`)}</div>
         <div class="complete-opts" id="co-${modIdx}-${qi}">
           ${q.opts.map((opt, oi) => `<button class="complete-opt" id="copt-${modIdx}-${qi}-${oi}" onclick="pickComplete(${modIdx},${qi},${oi})">${opt}</button>`).join('')}
         </div>
@@ -2371,7 +2380,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     const q = QUIZ[modIdx][qi];
     const st = quizState[modIdx].hangmanState[qi];
     const round = q.rounds[st.round];
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const letters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
     const lost = st.wrong >= 6;
     const won = [...round.answer].every(c => c === ' ' || st.guessed.includes(c));
     const locked = lost || won;
@@ -2412,10 +2421,17 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     if (st.guessed.includes(letter) || st.wrong >= 6) return;
     st.guessed.push(letter);
     if (!round.answer.includes(letter)) st.wrong++;
+    const perdio = st.wrong >= 6;
     const body = document.getElementById('hangman-body-' + modIdx + '-' + qi);
     if (body) body.innerHTML = renderHangmanBody(modIdx, qi);
     const won = [...round.answer].every(c => c === ' ' || st.guessed.includes(c));
     const card = document.getElementById('qc-' + modIdx + '-' + qi);
+    if (perdio) {
+      if (card) card.classList.add('wrong');
+      quizState[modIdx].answers[qi] = false;
+      updateQuizDot(modIdx, qi, false);
+      updateQuizScore(modIdx);
+    }
     if (won) {
       if (st.round < q.rounds.length - 1) {
         setTimeout(() => {
@@ -2433,10 +2449,26 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     }
   };
 
+  window.togglePista = function(modIdx, qi) {
+    const cont = document.getElementById('qp-' + modIdx + '-' + qi);
+    if (!cont) return;
+    const body = cont.querySelector('.q-pista-body');
+    const btn = cont.querySelector('.q-pista-btn');
+    const abriendo = body.hidden;
+    body.hidden = !abriendo;
+    btn.classList.toggle('abierta', abriendo);
+    btn.textContent = abriendo ? '💡 Ocultar pista' : '💡 Ver pista';
+  };
+
   window.retryHangmanRound = function(modIdx, qi) {
     const st = quizState[modIdx].hangmanState[qi];
     st.guessed = [];
     st.wrong = 0;
+    delete quizState[modIdx].answers[qi];
+    const card = document.getElementById('qc-' + modIdx + '-' + qi);
+    if (card) card.classList.remove('wrong', 'correct');
+    const dot = document.getElementById('qpd-' + modIdx + '-' + qi);
+    if (dot) dot.classList.remove('done', 'wrong');
     const body = document.getElementById('hangman-body-' + modIdx + '-' + qi);
     if (body) body.innerHTML = renderHangmanBody(modIdx, qi);
   };
@@ -2463,7 +2495,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <div class="quiz-view-actions">
         <button onclick="showModule(${modIdx})">← Volver al módulo</button>
         <button onclick="retryQuiz(${modIdx})">🔄 Volver a intentar</button>
-        ${modIdx < 4 ? `<button onclick="showModule(${modIdx+1})">Siguiente módulo →</button>` : '<button onclick="showHome()">🏠 Ir al inicio</button>'}
+        ${getModules().some(m => m.idx === modIdx + 1) ? `<button onclick="showModule(${modIdx+1})">Siguiente módulo →</button>` : '<button onclick="showHome()">🏠 Ir al inicio</button>'}
       </div>
     </div></section>`;
     app.innerHTML = html;
@@ -2969,7 +3001,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             <div class="signup-hero">
               <img src="img/redesign/geoloro-guide.webp" alt="Geoloro, guía del curso" />
               <h2>Inscripción al curso</h2>
-              <p>Completá el registro para acceder al curso y obtener tu certificación.</p>
+              <p>Completa el registro para acceder al curso y obtener tu certificación.</p>
             </div>
             <div class="signup-body">
               <div class="field">

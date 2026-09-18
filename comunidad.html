@@ -25,7 +25,7 @@
         <a href="#descargas" class="nav-link">Descargar boletines</a>
         <a href="#faq" class="nav-link">Preguntas frecuentes</a>
         <a href="#participacion" class="nav-link">¿Cómo participar?</a>
-        <a href="curso/" class="nav-link">Curso</a>
+        <a href="#cursos" class="nav-link">Cursos</a>
         <a href="https://geohazards.com.co/#/geovisor/inventarios-geohazards" target="_blank" class="nav-link" style="background:var(--color-primary);color:#fff;padding:0.25rem 0.8rem;border-radius:var(--radius-sm);font-weight:600;">Geovisor 🗺️</a>
       </div>
       <button class="mobile-toggle" id="mobile-toggle-btn">
@@ -41,7 +41,7 @@
       <a href="#descargas" class="nav-link">Descargar boletines</a>
       <a href="#faq" class="nav-link">Preguntas frecuentes</a>
       <a href="#participacion" class="nav-link">¿Cómo participar?</a>
-      <a href="curso/" class="nav-link">Curso</a>
+      <a href="#cursos" class="nav-link">Cursos</a>
       <a href="https://geohazards.com.co/#/geovisor/inventarios-geohazards" target="_blank" class="nav-link">Geovisor 🗺️</a>
     </div>
   </nav>
@@ -162,7 +162,7 @@
         </div>
         <div class="estado-row">
           <div class="estado-label">🎓 Hito — Curso disponible</div>
-          <div class="estado-value">Ya está disponible el curso corto <strong>Comprensión del Riesgo</strong>, dirigido al público general, con conocimientos básicos sobre gestión del riesgo y ordenamiento territorial — <a href="curso/" style="color:var(--color-primary);text-decoration:underline;">ir al curso →</a>.</div>
+          <div class="estado-value">Ya están disponibles los dos cursos cortos virtuales: <strong>Comprensión del Riesgo</strong>, dirigido al público general con conocimientos básicos sobre gestión del riesgo y ordenamiento territorial — <a href="curso/" style="color:var(--color-primary);text-decoration:underline;">ir al curso →</a> — y <strong>Planificación y Gestión del Riesgo</strong>, orientado a liderazgos comunitarios y a la toma de decisiones sobre el territorio — <a href="curso2/" style="color:var(--color-primary);text-decoration:underline;">ir al curso →</a>.</div>
         </div>
         <div class="estado-row">
           <div class="estado-label">📣 Próxima actividad comunitaria</div>
@@ -440,7 +440,7 @@
 
       <!-- CURSOS CORTOS INTERACTIVOS -->
       <div class="cursos-container" style="margin-top: 4rem; margin-bottom: 3rem;">
-        <h3 class="section-title-gsap" style="margin-bottom: 2rem; color: var(--color-primary-dark); text-align: center;">📚 Cursos Cortos sobre Riesgo y Planificación</h3>
+        <h3 class="section-title-gsap" id="cursos" style="margin-bottom: 2rem; color: var(--color-primary-dark); text-align: center;">📚 Cursos Cortos sobre Riesgo y Planificación</h3>
         <div class="cursos-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
           
           <!-- Curso 1 -->
@@ -460,7 +460,7 @@
             </p>
             <div style="border-top: 1px solid var(--color-border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span style="color: var(--color-primary); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem;">⏳ Modalidad Corta</span>
-              <button style="background: var(--color-accent-amber); color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-primary)'" onmouseout="this.style.background='var(--color-accent-amber)'" onclick="window.location.href='curso/'">Me interesa →</button>
+              <button style="background: var(--color-accent-amber); color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-primary)'" onmouseout="this.style.background='var(--color-accent-amber)'" onclick="window.location.href='curso/'">Ir al curso →</button>
             </div>
           </div>
 
@@ -481,7 +481,7 @@
             </p>
             <div style="border-top: 1px solid var(--color-border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span style="color: var(--color-primary); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem;">⏳ Modalidad Corta</span>
-              <button style="background: var(--color-accent-green); color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-primary)'" onmouseout="this.style.background='var(--color-accent-green)'" onclick="document.getElementById('participacion').scrollIntoView({behavior: 'smooth'})">Me interesa →</button>
+              <button style="background: var(--color-accent-green); color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-primary)'" onmouseout="this.style.background='var(--color-accent-green)'" onclick="window.location.href='curso2/'">Ir al curso →</button>
             </div>
           </div>
 
@@ -1764,7 +1764,8 @@
           <li><a href="#glosario">Glosario</a></li>
           <li><a href="#faq">Preguntas frecuentes</a></li>
           <li><a href="#descargas">Descargas</a></li>
-          <li><a href="curso/">Curso: Conocimientos del Territorio</a></li>
+          <li><a href="curso/">Curso 1: Comprensión del Riesgo</a></li>
+          <li><a href="curso2/">Curso 2: Planificación y Gestión del Riesgo</a></li>
         </ul>
       </div>
       <div>
