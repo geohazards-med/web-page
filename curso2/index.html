@@ -852,14 +852,20 @@
 
     /* Complete question */
     .complete-sentence { font-size: 1rem; padding: 1rem 1.2rem; background: var(--bg); border-radius: var(--radius-sm); border: 1.5px solid var(--border); line-height: 1.7; margin-bottom: 1rem; }
-    .lesson-grupo { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .7rem 1rem .35rem 1.15rem; font-size: .78rem; font-weight: 800; letter-spacing: .02em; color: var(--primary); text-transform: none; line-height: 1.35; }
-    .lesson-grupo .lg-count { font-size: .72rem; font-weight: 700; color: var(--text-muted); flex-shrink: 0; }
-    .lesson-item.es-sub { padding-left: 2.1rem; position: relative; }
-    .lesson-item.es-sub::before { content: ''; position: absolute; left: 1.35rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
-    .checklist-grupo { margin: 1.4rem 0 .2rem; padding: 0 .2rem; font-size: .92rem; font-weight: 800; color: var(--primary); }
-    .lesson-row.es-sub { margin-left: 1.5rem; position: relative; }
+    /* Un tema con varias lecciones: cabecera + subtemas sangrados */
+    .lesson-tema-eyebrow { font-size: .82rem; font-weight: 700; color: var(--accent); margin-bottom: .35rem; letter-spacing: .01em; }
+    .crumb-inicio { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; border-bottom: 1px dotted transparent; transition: color .2s, border-color .2s; }
+    .crumb-inicio:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .lesson-tema { display: flex; align-items: flex-start; justify-content: space-between; gap: .5rem; padding: .85rem 1rem .5rem 1.15rem; font-size: .88rem; font-weight: 700; color: var(--text); line-height: 1.4; }
+    .lesson-tema .lt-count { font-size: .72rem; font-weight: 700; color: var(--accent); flex-shrink: 0; padding-top: .15rem; }
+    .lesson-item.es-sub { padding-left: 2.35rem; position: relative; font-size: .86rem; }
+    .lesson-item.es-sub::before { content: ''; position: absolute; left: 1.5rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .lesson-item.es-sub:last-child::before { bottom: 50%; }
+    .checklist-tema { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; margin: 1.6rem 0 .5rem; padding: 0 .2rem .5rem; font-size: 1rem; font-weight: 800; color: var(--text); border-bottom: 2px solid var(--border); }
+    .checklist-tema .ct-count { font-size: .8rem; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .lesson-row.es-sub { margin-left: 1.6rem; position: relative; }
     .lesson-row.es-sub::before { content: ''; position: absolute; left: -1rem; top: .6rem; bottom: .6rem; width: 2px; background: var(--border); border-radius: 2px; }
-    @media (max-width: 700px) { .lesson-row.es-sub { margin-left: .8rem; } .lesson-row.es-sub::before { left: -.55rem; } }
+    @media (max-width: 700px) { .lesson-row.es-sub { margin-left: .8rem; } .lesson-row.es-sub::before { left: -.55rem; } .lesson-item.es-sub { padding-left: 2rem; } }
     .q-pista { margin-top: .7rem; }
     .q-pista-btn { background: none; border: 1px dashed var(--accent); color: var(--accent); font-family: inherit; font-size: .82rem; font-weight: 700; padding: .3rem .8rem; border-radius: 99px; cursor: pointer; transition: background .2s, color .2s; }
     .q-pista-btn:hover { background: var(--accent); color: #fff; }
@@ -1166,7 +1172,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <span class="tb-sub">GeoHazards</span>
     </span>
   </button>
-  <div class="topbar-crumb" id="topbarCrumb">Inicio</div>
+  <div class="topbar-crumb" id="topbarCrumb"><button type="button" class="crumb-inicio" onclick="irAIntroduccion()">Inicio</button></div>
   <div class="topbar-progress">
     <div class="topbar-progress-track"><div class="topbar-progress-fill" id="topbarProgressFill" style="transform:scaleX(0)"></div></div>
     <span class="topbar-progress-label" id="topbarProgressLabel">0/0</span>
@@ -1381,9 +1387,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         id: 'm1-t2-p1',
         module: 1,
         moduleTitle: 'Fundamentos de ordenamiento ambiental y GRD',
-        grupo: 'Tema 2: Las determinantes ambientales del ordenamiento territorial',
-        tituloCorto: 'Bases conceptuales',
-        title: 'Tema 2.1: Bases conceptuales',
+        tema: 'Tema 2: Las determinantes ambientales del ordenamiento territorial',
+        title: 'Bases conceptuales',
         desc: '¿Qué son las determinantes ambientales, por qué tienen jerarquía superior y cuál es su fundamento normativo?',
         intro: '<p>La <strong>Ley 388 de 1997</strong> establece que los municipios y distritos deben tener en cuenta determinantes de superior jerarquía al elaborar y adoptar sus POT. Tras la modificación introducida por la <strong>Ley 2294 de 2023</strong>, las determinantes del Nivel 1 incluyen conservación ambiental, ecosistemas, ciclo del agua, recursos naturales, gestión del riesgo, cambio climático y soberanía alimentaria.</p><p>El <strong>Decreto 381 de 2026</strong> refuerza su operación técnica: exige que los actos administrativos que las adopten incluyan delimitación geográfica, zonificación, restricciones de uso, soportes técnicos y jurídicos, y coordinación institucional con entidades territoriales y autoridades competentes.</p><p>Esta serie de cinco videos recorre seis temas: <strong>1)</strong> bases conceptuales, <strong>2)</strong> estructura organizacional, <strong>3)</strong> niveles de restricción, <strong>4)</strong> medio natural, <strong>5)</strong> medio transformado y <strong>6)</strong> riesgo y densidad rural.</p>',
         type: 'video',
@@ -1396,9 +1401,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         id: 'm1-t2-p2',
         module: 1,
         moduleTitle: 'Fundamentos de ordenamiento ambiental y GRD',
-        grupo: 'Tema 2: Las determinantes ambientales del ordenamiento territorial',
-        tituloCorto: 'Estructura organizacional y restricciones',
-        title: 'Tema 2.2: Estructura organizacional y niveles de restricción',
+        tema: 'Tema 2: Las determinantes ambientales del ordenamiento territorial',
+        title: 'Estructura organizacional y niveles de restricción',
         desc: '¿Quién expide las determinantes ambientales en cada nivel del Estado y cómo se traducen en distintos grados de condicionamiento del uso del suelo?',
         intro: '<p>Las determinantes ambientales se expiden en <strong>tres niveles</strong>: nacional (MinAmbiente, política macro), regional (las Corporaciones Autónomas Regionales, administración) y urbano (autoridades ambientales urbanas, ejecución).</p><p>No todas restringen igual: el <strong>condicionamiento no es uniforme</strong>. Algunas prohíben por completo ciertos usos, otras los permiten bajo condiciones específicas.</p>',
         type: 'video',
@@ -1408,9 +1412,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         id: 'm1-t2-p3',
         module: 1,
         moduleTitle: 'Fundamentos de ordenamiento ambiental y GRD',
-        grupo: 'Tema 2: Las determinantes ambientales del ordenamiento territorial',
-        tituloCorto: 'Medio natural',
-        title: 'Tema 2.3: Determinantes del medio natural',
+        tema: 'Tema 2: Las determinantes ambientales del ordenamiento territorial',
+        title: 'Determinantes del medio natural',
         desc: '¿Qué determinantes protegen los ecosistemas: áreas del SINAP, ecosistemas estratégicos, estructura ecológica principal y estrategias complementarias de conservación?',
         intro: '<p>Este eje se enfoca de manera exclusiva en el <strong>medio natural</strong>. Agrupa cinco familias de determinantes: el <strong>Sistema Nacional de Áreas Protegidas (SINAP)</strong>, las <strong>áreas de especial importancia ecosistémica</strong>, las derivadas de la <strong>Estructura Ecológica Principal</strong>, las derivadas de <strong>instrumentos de planificación</strong> y las <strong>estrategias complementarias de conservación</strong>.</p><p>La Estructura Ecológica Principal se define como la <em>red esencial</em> que sostiene los procesos ecológicos del territorio frente a presiones extractivas y expansivas.</p>',
         type: 'video',
@@ -1420,9 +1423,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         id: 'm1-t2-p4',
         module: 1,
         moduleTitle: 'Fundamentos de ordenamiento ambiental y GRD',
-        grupo: 'Tema 2: Las determinantes ambientales del ordenamiento territorial',
-        tituloCorto: 'Medio transformado',
-        title: 'Tema 2.4: Determinantes del medio transformado',
+        tema: 'Tema 2: Las determinantes ambientales del ordenamiento territorial',
+        title: 'Determinantes del medio transformado',
         desc: '¿Cómo se regula el medio que la actividad humana ya modificó, con una lógica de mitigación y control?',
         intro: '<p>No todo el territorio es naturaleza intacta. Las <strong>determinantes del medio transformado</strong> operan donde la ocupación humana <em>ya se encuentra consolidada</em>: zonas industriales, urbanas y de infraestructura.</p><p>Su lógica es la <strong>mitigación y el control</strong> —calidad del aire y del agua, manejo de residuos, vertimientos— para que la actividad económica sea plenamente compatible con el bienestar general.</p>',
         type: 'video',
@@ -1432,9 +1434,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         id: 'm1-t2-p5',
         module: 1,
         moduleTitle: 'Fundamentos de ordenamiento ambiental y GRD',
-        grupo: 'Tema 2: Las determinantes ambientales del ordenamiento territorial',
-        tituloCorto: 'Riesgo y densidad rural',
-        title: 'Tema 2.5: Riesgo, densidad rural y cambio climático',
+        tema: 'Tema 2: Las determinantes ambientales del ordenamiento territorial',
+        title: 'Riesgo, densidad rural y cambio climático',
         desc: '¿Cómo entran la gestión del riesgo de desastres y la densidad en suelo rural en el sistema de determinantes, y cómo adaptar la normativa al cambio climático?',
         intro: '<p>La última familia de determinantes agrupa la <strong>gestión del riesgo de desastres</strong> y la <strong>densidad máxima en suelo rural</strong>, dos asuntos centrales para un territorio de borde como el BURNOR.</p><p>El video cierra con una pregunta abierta que atraviesa todo el curso: <strong>¿cómo adaptar la normativa al cambio climático?</strong></p>',
         type: 'video',
@@ -1455,9 +1456,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         id: 'm1-t4-p1',
         module: 1,
         moduleTitle: 'Fundamentos de ordenamiento ambiental y GRD',
-        grupo: 'Tema 4: Gestión del riesgo de desastres, clima y planificación',
-        tituloCorto: 'Parte 1',
-        title: 'Tema 4.1: Gestión del riesgo, clima y planificación (parte 1)',
+        tema: 'Tema 4: Gestión del riesgo de desastres, clima y planificación',
+        title: 'Gestión del riesgo y adaptación (parte 1)',
         desc: '¿Cómo se relacionan la gestión del riesgo de desastres y la adaptación climática en un territorio de transición como el borde urbano rural?',
         intro: '<p>El borde urbano rural de Medellín es un territorio de transición donde convergen dinámicas urbanas, rurales, ambientales y sociales. En sectores populares de las comunas 1, 3 y 8, la expansión urbana, las fuertes pendientes, la presión sobre ecosistemas y quebradas, la precariedad habitacional y las desigualdades socioeconómicas configuran condiciones complejas de riesgo.</p><p>La adaptación climática está estrechamente relacionada con la gestión del riesgo. En Medellín, el aumento de lluvias intensas puede saturar los suelos, activar movimientos en masa, desbordar quebradas e intensificar avenidas torrenciales.</p>',
         type: 'audio',
@@ -1468,9 +1468,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         id: 'm1-t4-p2',
         module: 1,
         moduleTitle: 'Fundamentos de ordenamiento ambiental y GRD',
-        grupo: 'Tema 4: Gestión del riesgo de desastres, clima y planificación',
-        tituloCorto: 'Parte 2',
-        title: 'Tema 4.2: Gestión del riesgo, clima y planificación (parte 2)',
+        tema: 'Tema 4: Gestión del riesgo de desastres, clima y planificación',
+        title: 'Gestión del riesgo y adaptación (parte 2)',
         desc: '¿Qué instrumentos y qué marco normativo obligan a incorporar las determinantes ambientales, climáticas y de riesgo en el ordenamiento del territorio?',
         intro: '<p>Adaptar el territorio exige combinar regulación del uso del suelo, restauración de laderas y rondas hídricas, drenajes sostenibles, estabilización de taludes, monitoreo, sistemas de alerta temprana, protección social y soluciones basadas en la naturaleza.</p><p>Esta integración se sustenta en instrumentos como el <strong>POT</strong>, el <strong>Plan Municipal de Gestión del Riesgo de Desastres</strong>, el <strong>Plan de Acción Climática</strong>, los <strong>POMCA</strong> y los <strong>estudios de riesgo de detalle</strong>. Y cuenta con un marco normativo encabezado por la Constitución Política, la Ley 388 de 1997, la Ley 1523 de 2012 y la Ley 2294 de 2023.</p>',
         type: 'audio',
@@ -1546,9 +1545,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         id: 'm3-t3a',
         module: 3,
         moduleTitle: 'Condiciones de vulnerabilidad en el borde urbano rural',
-        grupo: 'Tema 3: Vulnerabilidad socioecológica',
-        tituloCorto: 'Parte 1',
-        title: 'Tema 3.1: Vulnerabilidad socioecológica (parte 1)',
+        tema: 'Tema 3: Vulnerabilidad socioecológica',
+        title: 'Vulnerabilidad socioecológica (parte 1)',
         desc: '¿Cómo surge la vulnerabilidad de la interacción entre sistemas sociales y sistemas ecológicos, y por qué es una condición relacional y dinámica?',
         intro: '<p>La <strong>vulnerabilidad socioecológica</strong> puede entenderse como una condición <strong>relacional, dinámica y territorialmente diferenciada</strong> que surge de la interacción entre sistemas sociales y sistemas ecológicos.</p><p>A diferencia de una lectura puramente física o ambiental, este enfoque reconoce que los territorios están conformados por relaciones entre comunidades, instituciones, normas, economías, prácticas culturales, agua, suelo, biodiversidad, clima y procesos naturales.</p><p><em>Por su extensión, esta sesión está dividida en dos partes de unos 16 minutos cada una.</em></p>',
         type: 'video',
@@ -1558,9 +1556,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         id: 'm3-t3b',
         module: 3,
         moduleTitle: 'Condiciones de vulnerabilidad en el borde urbano rural',
-        grupo: 'Tema 3: Vulnerabilidad socioecológica',
-        tituloCorto: 'Parte 2',
-        title: 'Tema 3.2: Vulnerabilidad socioecológica (parte 2)',
+        tema: 'Tema 3: Vulnerabilidad socioecológica',
+        title: 'Vulnerabilidad socioecológica (parte 2)',
         desc: '¿Por qué las transformaciones ambientales afectan de manera desigual a distintos grupos sociales y qué capacidades permiten anticipar, responder, adaptarse y recuperarse?',
         intro: '<p>La vulnerabilidad no se explica únicamente por la exposición a una amenaza, sino por la forma en que las transformaciones ambientales <strong>afectan de manera desigual</strong> a distintos grupos sociales, y por las capacidades que estos tienen para anticipar, responder, adaptarse y recuperarse.</p>',
         type: 'video',
@@ -2149,6 +2146,18 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     return mods.filter(m => m.idx > 0);
   }
   function lessonsOfModule(modIdx) { return COURSE.lessons.filter(l => l.module === modIdx); }
+  // Agrupa las lecciones de un módulo por tema. Un tema con una sola lección
+  // se dibuja como una fila propia; con varias, como cabecera + subtemas.
+  function temasOfModule(modIdx) {
+    const temas = [];
+    lessonsOfModule(modIdx).forEach(l => {
+      const clave = l.tema || l.title;
+      let t = temas[temas.length - 1];
+      if (!t || t.clave !== clave) { t = { clave, titulo: clave, lessons: [] }; temas.push(t); }
+      t.lessons.push(l);
+    });
+    return temas;
+  }
   function getTotal() { return COURSE.lessons.length; }
   function getCompleted() { return Object.keys(completed).filter(id => completed[id]).length; }
   function isComplete(id) { return !!completed[id]; }
@@ -2218,28 +2227,21 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <span class="chevron ${open?'open':''}">›</span>
         </div>
         <div class="module-lessons ${open?'open':''}">
-          ${(() => {
-            let grupoActual = null;
-            return lessons.map(l => {
+          ${temasOfModule(mod.idx).map(t => {
+            const iconMap = { video: '▶', audio: '♪', images: '🖼', pdf: '📄', text: '📖' };
+            const fila = (l, sub) => {
               const idx = COURSE.lessons.indexOf(l);
-              const active = idx === currentLesson;
-              const done = isComplete(l.id);
-              const iconMap = { video: '▶', audio: '♪', images: '🖼', pdf: '📄', text: '📖' };
-              const icon = iconMap[l.type] || '📄';
-              let cab = '';
-              if (l.grupo && l.grupo !== grupoActual) {
-                const hechas = lessons.filter(x => x.grupo === l.grupo && isComplete(x.id)).length;
-                const totalG = lessons.filter(x => x.grupo === l.grupo).length;
-                cab = `<div class="lesson-grupo"><span>${l.grupo}</span><span class="lg-count">${hechas}/${totalG}</span></div>`;
-              }
-              grupoActual = l.grupo || null;
-              return cab + `<div class="lesson-item ${l.grupo ? 'es-sub' : ''} ${active?'active':''}" onclick="goTo(${idx})">
-                <span class="icon">${icon}</span>
-                <span>${l.tituloCorto || l.title}</span>
-                <span class="status">${done?'✓':''}</span>
+              return `<div class="lesson-item ${sub ? 'es-sub' : ''} ${idx === currentLesson ? 'active' : ''}" onclick="goTo(${idx})">
+                <span class="icon">${iconMap[l.type] || '📄'}</span>
+                <span>${sub ? l.title : t.titulo}</span>
+                <span class="status">${isComplete(l.id) ? '✓' : ''}</span>
               </div>`;
-            }).join('');
-          })()}
+            };
+            if (t.lessons.length === 1) return fila(t.lessons[0], false);
+            const hechas = t.lessons.filter(x => isComplete(x.id)).length;
+            return `<div class="lesson-tema"><span>${t.titulo}</span><span class="lt-count">${hechas}/${t.lessons.length}</span></div>`
+                 + t.lessons.map(l => fila(l, true)).join('');
+          }).join('')}
         </div>
       </div>`;
     });
@@ -2258,7 +2260,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     view = 'home';
     heroSection.style.display = 'flex';
     heroMedia.style.backgroundImage = `url('${HOME_HERO_IMAGE}')`;
-    topbarCrumb.innerHTML = 'Inicio';
+    topbarCrumb.innerHTML = '<button type="button" class="crumb-inicio" onclick="irAIntroduccion()">Inicio</button>';
     updateProgressChrome();
     updateSignupChrome();
     renderSidebar();
@@ -2355,22 +2357,25 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     const lessons = lessonsOfModule(modIdx);
     const p = progressOf(lessons);
 
-    let grupoEnCurso = null;
-    const rows = lessons.map(l => {
+    const filaLeccion = (l, sub, tituloVisible) => {
       const idx = COURSE.lessons.indexOf(l);
       const done = isComplete(l.id);
       const icon = TYPE_ICON[l.type] || '📄';
       const label = TYPE_LABEL[l.type] || '';
-      return `
-        ${(() => { if (l.grupo && l.grupo !== grupoEnCurso) { grupoEnCurso = l.grupo; return `<div class="checklist-grupo">${l.grupo}</div>`; } if (!l.grupo) grupoEnCurso = null; return ''; })()}
-        <button class="lesson-row ${l.grupo ? 'es-sub' : ''} ${done ? 'is-done' : ''}" onclick="showLesson(${idx})">
+      return `<button class="lesson-row ${sub ? 'es-sub' : ''} ${done ? 'is-done' : ''}" onclick="showLesson(${idx})">
           <span class="lr-icon">${icon}</span>
           <span class="lr-body">
-            <span class="lr-title">${l.title}</span>
+            <span class="lr-title">${tituloVisible}</span>
             <span class="lr-desc">${label} · ${l.desc}</span>
           </span>
           <span class="lr-state">${done ? '✓ Listo' : ''}</span>
         </button>`;
+    };
+    const rows = temasOfModule(modIdx).map(t => {
+      if (t.lessons.length === 1) return filaLeccion(t.lessons[0], false, t.titulo);
+      const hechas = t.lessons.filter(x => isComplete(x.id)).length;
+      return `<div class="checklist-tema"><span>${t.titulo}</span><span class="ct-count">${hechas}/${t.lessons.length}</span></div>`
+           + t.lessons.map(l => filaLeccion(l, true, l.title)).join('');
     }).join('');
 
     app.innerHTML = `
@@ -2603,6 +2608,12 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         spawnConfetti();
       }
     }
+  };
+
+  // Lleva a la lección de presentación del curso (módulo 0, primera lección)
+  window.irAIntroduccion = function() {
+    const i = COURSE.lessons.findIndex(l => l.module === 0);
+    if (i >= 0) showLesson(i); else showHome();
   };
 
   window.togglePista = function(modIdx, qi) {
@@ -2916,6 +2927,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     content += `<div class="lesson-back">
       <button class="back-link" onclick="${l.module > 0 ? `showModule(${l.module})` : 'showHome()'}">← ${l.module > 0 ? 'Volver al módulo' : 'Volver al inicio'}</button>
     </div>`;
+    if (l.tema) content += `<div class="lesson-tema-eyebrow">${l.tema}</div>`;
     content += `<h1 class="lesson-title">${l.title}</h1><p class="lesson-desc">${l.desc}</p>`;
     if (l.intro) content += `<div class="lesson-intro">${l.intro}</div>`;
 
