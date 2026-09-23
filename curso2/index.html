@@ -3204,6 +3204,21 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // Envía la inscripción a Firebase. Si falla (reglas, red) o Firebase aún no
+  // cargó, se reintenta en cada visita hasta que llegue; luego no se repite.
+  const SIGNUP_SYNC_KEY = 'curso2_signup_synced';
+  function syncSignup(intentos = 0) {
+    if (!signedUp) return;
+    try { if (localStorage.getItem(SIGNUP_SYNC_KEY) === '1') return; } catch(e) {}
+    if (!window.CursoDB) {
+      if (intentos < 30) setTimeout(() => syncSignup(intentos + 1), 500);
+      return;
+    }
+    window.CursoDB.addSignup(signedUp.name, signedUp.email)
+      .then(() => { try { localStorage.setItem(SIGNUP_SYNC_KEY, '1'); } catch(e) {} })
+      .catch(e => console.error('Inscripción pendiente de envío; se reintentará en la próxima visita', e));
+  }
+
   window.doSignup = function() {
     const name = (document.getElementById('su-name') || {}).value || '';
     const email = (document.getElementById('su-email') || {}).value || '';
@@ -3214,7 +3229,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     }
     signedUp = { name: name.trim(), email: email.trim(), role, date: new Date().toISOString() };
     try { localStorage.setItem('curso2_signup', JSON.stringify(signedUp)); } catch(e) {}
-    if (window.CursoDB) window.CursoDB.addSignup(signedUp.name, signedUp.email).catch(e => console.error('Error registrando inscripción', e));
+    try { localStorage.removeItem(SIGNUP_SYNC_KEY); } catch(e) {}
+    syncSignup();
     showHome();
   };
 
@@ -3242,7 +3258,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   }
 
   window.logout = function() {
-    try { localStorage.removeItem('curso2_signup'); } catch(e) {}
+    try { localStorage.removeItem('curso2_signup'); localStorage.removeItem(SIGNUP_SYNC_KEY); } catch(e) {}
     signedUp = false;
     renderSignup();
   };
@@ -3386,6 +3402,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   // ── Init ────────────────────────────────────────────
   updateSignupChrome();
   if (signedUp) showHome(); else renderSignup();
+  syncSignup();
 </script>
 </body>
 </html>
