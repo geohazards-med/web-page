@@ -748,8 +748,8 @@
 
     @media (max-width: 768px) {
       :root { --sidebar-w: 0; }
-      .sidebar { transform: translateX(-100%); }
-      .sidebar.open { transform: translateX(0); }
+      .sidebar { width: min(300px, 86vw); transform: translateX(-100%); visibility: hidden; transition: transform .3s ease, visibility 0s linear .3s; }
+      .sidebar.open { transform: translateX(0); visibility: visible; transition: transform .3s ease, visibility 0s; box-shadow: var(--shadow-lg); }
       .hamburger { display: block; }
       .topbar { margin-left: 0; }
       .hero { margin-left: 0; }
@@ -1318,7 +1318,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             <li><strong>Módulo 2 — Condiciones biofísicas:</strong> geología ciudadana, transformaciones del paisaje y uso de geoportales.</li>
             <li><strong>Módulo 3 — Condiciones de vulnerabilidad:</strong> las dimensiones física, territorial y socioecológica.</li>
             <li><strong>Módulo 4 — Riesgos globales:</strong> su relación con las dinámicas locales frente al cambio climático, la degradación ambiental y las desigualdades territoriales.</li>
-            <li><strong>Módulo 5 — Planificación territorial:</strong> macroproyectos urbanos y la Política Pública de Protección a Moradores.</li>
+            <li><strong>Módulo 5 — Planificación territorial:</strong> macroproyectos urbanos, la Política Pública de Protección a Moradores y los avances de la revisión del POT de Medellín.</li>
           </ul>
           <h3>El territorio que orienta el curso</h3>
           <p>El borde urbano-rural es un ámbito de transición entre el suelo urbano y el rural —el encuentro entre la ciudad y el campo— que requiere una planificación integral y diferenciada, porque allí se define cómo crece la ciudad, cómo se cuidan los territorios rurales y cómo se protege la Estructura Ecológica. Esa planificación se orienta a:</p>
@@ -1596,8 +1596,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'Planificación territorial e instrumentos del BURNOR',
         title: 'Tema 1: Macroproyectos y sus implicaciones en la planificación territorial',
         desc: '¿Qué son los macroproyectos, qué escala resuelven entre el POT y las intervenciones detalladas, y cómo incorporan los estudios de riesgo de detalle?',
-        intro: '<p>El POT define un modelo de ocupación orientado a consolidar una ciudad compacta, articular el corredor del río Aburrá, mejorar las condiciones de las laderas, proteger el suelo rural y controlar la expansión urbana. Para concretarlo, Medellín se organiza en <strong>cinco ámbitos territoriales</strong>: Río, Ladera, Borde Urbano-Rural, Transversalidades y Rural. Dentro de ellos se delimitan las <strong>Áreas de Intervención Estratégica (AIE)</strong>, correspondientes a sectores con mayores oportunidades o necesidades de transformación.</p>',
-        type: 'text',
+        intro: '<p><em>Presentación de la Subdirección de Planeación Territorial y Estratégica de Ciudad — Departamento Administrativo de Planeación de Medellín.</em></p><p>El POT define un modelo de ocupación orientado a consolidar una ciudad compacta, articular el corredor del río Aburrá, mejorar las condiciones de las laderas, proteger el suelo rural y controlar la expansión urbana. Para concretarlo, Medellín se organiza en <strong>cinco ámbitos territoriales</strong>: Río, Ladera, Borde Urbano-Rural, Transversalidades y Rural. Dentro de ellos se delimitan las <strong>Áreas de Intervención Estratégica (AIE)</strong>, correspondientes a sectores con mayores oportunidades o necesidades de transformación.</p>',
+        type: 'video',
+        video: 'videos/m5t1-macroproyectos.mp4',
         content: `
           <h3>La escala intermedia de la planificación</h3>
           <p>Los <strong>macroproyectos</strong> operan como <strong>instrumentos de segundo nivel</strong> que resuelven la escala intermedia entre las disposiciones generales del POT y las intervenciones detalladas. Permiten:</p>
@@ -1611,7 +1612,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <h3>Los PLRMH</h3>
           <p>Este último instrumento busca avanzar en la <strong>seguridad jurídica de la tenencia</strong>, el <strong>reconocimiento urbanístico</strong> de los asentamientos, el acceso a infraestructura y servicios públicos, y el mejoramiento de viviendas y del hábitat mediante la coordinación institucional.</p>
           <div class="reflection-note">💡 <strong>Idea clave:</strong> la planificación territorial debe traducir el conocimiento sobre el riesgo en proyectos, obras, soluciones habitacionales y transformaciones integrales del territorio. El resultado esperado no es solamente reducir la amenaza, sino <strong>mejorar el hábitat</strong> mediante cuatro acciones articuladas: <strong>estructurar, desarrollar, articular y consolidar</strong>.</div>
-          <div class="complete-note">🎬 <strong>Video en preparación:</strong> el material audiovisual de este tema (M5T1: Macroproyectos) se publicará próximamente.</div>
         `
       },
       {
@@ -1620,8 +1620,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         moduleTitle: 'Planificación territorial e instrumentos del BURNOR',
         title: 'Tema 2: La Política Pública de Protección a Moradores (PPPMAEP)',
         desc: '¿Cómo se garantiza que ninguna obra pública o transformación urbanística desmejore las condiciones de vida de quienes habitan y trabajan en el territorio?',
-        intro: '<p>La <strong>Política Pública de Protección a Moradores y Actividades Económicas y Productivas (PPPMAEP)</strong> es el marco normativo que busca garantizar que ninguna obra pública o transformación urbanística desmejore las condiciones existentes de los moradores ni afecte negativamente su calidad de vida.</p><p>El concepto de <strong>morador</strong> es amplio: comprende propietarios, arrendatarios, ocupantes de hecho y personas que desarrollan actividades económicas formales o informales, incluso en el espacio público. Las medidas de protección deben ser <strong>diferenciadas</strong> según la relación jurídica, social y económica que cada persona o colectivo tenga con el territorio.</p>',
-        type: 'text',
+        intro: '<p><em>Presentación de Claudia Patricia Cano — Departamento Administrativo de Planeación de Medellín.</em></p><p>La <strong>Política Pública de Protección a Moradores y Actividades Económicas y Productivas (PPPMAEP)</strong> es el marco normativo que busca garantizar que ninguna obra pública o transformación urbanística desmejore las condiciones existentes de los moradores ni afecte negativamente su calidad de vida.</p><p>El concepto de <strong>morador</strong> es amplio: comprende propietarios, arrendatarios, ocupantes de hecho y personas que desarrollan actividades económicas formales o informales, incluso en el espacio público. Las medidas de protección deben ser <strong>diferenciadas</strong> según la relación jurídica, social y económica que cada persona o colectivo tenga con el territorio.</p><p>La política fue adoptada mediante el <strong>Acuerdo 145 de 2019</strong> y reglamentada con el <strong>Decreto 0818 de 2021</strong>.</p>',
+        type: 'video',
+        video: 'videos/m5t2-pppmaep.mp4',
         content: `
           <h3>Los seis capitales del morador</h3>
           <p>La política protege los modos y medios de vida mediante el análisis de seis capitales: <strong>humano, social, económico, físico-espacial, ambiental y jurídico</strong>. Antes de una intervención debe diagnosticarse su situación, estimar los posibles impactos y formular soluciones que permitan conservar o mejorar las condiciones existentes.</p>
@@ -1635,8 +1636,46 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <p>Los estudios de riesgo de detalle determinarán cuáles áreas tienen <strong>riesgo mitigable</strong> y qué obras deben ejecutarse, pero también identificarán las zonas donde el riesgo no puede reducirse y el <strong>reasentamiento</strong> resulta inevitable.</p>
           <p>En estos casos, la PPPMAEP exige combinar los protocolos de riesgo y de obras de infraestructura: los predios afectados directamente por una obra de mitigación deben atenderse bajo el <strong>escenario de infraestructura</strong>, mientras que el resto del polígono continúa bajo el <strong>escenario de riesgo</strong>.</p>
           <div class="reflection-note">💡 <strong>Mensaje central:</strong> la reducción del riesgo no puede abordarse exclusivamente como un problema técnico. Toda intervención debe incorporar la participación comunitaria, la valoración socioeconómica integral, la protección de derechos y el seguimiento a largo plazo, garantizando que las personas y comunidades permanezcan en condiciones <strong>iguales o mejores</strong> que las existentes antes de la intervención.</div>
-          <div class="complete-note">🎬 <strong>Video en preparación:</strong> el material audiovisual de este tema (M5T2: PPPMAEP) se publicará próximamente.</div>
         `
+      },
+      {
+        id: 'm5-t3-p0',
+        module: 5,
+        moduleTitle: 'Planificación territorial e instrumentos del BURNOR',
+        tema: 'Tema 3: Avances y discusiones de la revisión y ajuste de mediano plazo del POT',
+        title: 'Presentación general: revisión del POT',
+        desc: '¿Qué propone cambiar la revisión del POT de Medellín frente al Acuerdo 48 de 2014?',
+        intro: '<p>Medellín debate el <strong>Proyecto de Acuerdo 104 de 2026</strong>, que propone modificar el POT adoptado mediante el Acuerdo 48 de 2014. La discusión abarca la relación entre los instrumentos de planificación, el papel de los macroproyectos, la gestión del riesgo y del cambio climático, y las respuestas a las necesidades de vivienda y hábitat. También plantea preguntas sobre la permanencia de los moradores, la participación comunitaria y los recursos para ejecutar las intervenciones.</p><p>En este tema primero se resumen los cambios propuestos y luego se centra la mirada en el instrumento de tercer nivel denominado <strong>Plan de Legalización, Regularización y Mejoramiento del Hábitat (PLRMH)</strong>.</p><h4>Sobre esta presentación</h4><p>Resume los cambios que propone la revisión del POT frente al Acuerdo 48 de 2014 en cuatro ejes: <strong>riesgo y suelo de protección; hábitat y derechos; ocupación e instrumentos; y ejecución y seguimiento</strong>. Explica cómo un estudio de detalle orienta las decisiones territoriales, qué medidas pueden tomarse mientras llega una solución definitiva y cómo evolucionaría el PLRU hacia el PLRMH. También aborda la protección a moradores, la financiación y el camino que va del estudio a la obra.</p><p>Cierra con preguntas para el control ciudadano y una idea central: <em>proteger la vida exige condiciones dignas para habitar, recursos y acciones concretas.</em></p><div class="complete-note">⚖️ <strong>Recuerden:</strong> este documento analizado sigue siendo una <strong>propuesta en debate</strong> (Proyecto de Acuerdo 104 de 2026), no una norma aprobada.</div>',
+        type: 'pdf',
+        pdf: 'pdfs/m5t3-revision-pot.pdf',
+        pdfCover: 'img/m5t3-revision-pot-portada.webp',
+        pdfLabel: 'M5T3: ¿Qué propone cambiar la revisión del POT de Medellín?'
+      },
+      {
+        id: 'm5-t3-p1',
+        module: 5,
+        moduleTitle: 'Planificación territorial e instrumentos del BURNOR',
+        tema: 'Tema 3: Avances y discusiones de la revisión y ajuste de mediano plazo del POT',
+        title: 'Subsistema habitacional',
+        desc: '¿Dónde se ubican la vivienda y el hábitat dentro de la estructura del POT, y cuáles son sus líneas de acción?',
+        intro: '<p>Esta presentación sitúa la <strong>vivienda y el hábitat</strong> dentro de la estructura del POT. Explica sus dos componentes —<strong>cobertura y calidad habitacional</strong>, y <strong>desarrollo institucional</strong>— y resume las tres líneas de acción:</p><ul><li>Generación de vivienda.</li><li>Mejoramiento Integral de Barrios, articulado con los PLRMH.</li><li>Hábitat rural sostenible.</li></ul><div class="complete-note">⚖️ <strong>Recuerden:</strong> este documento analizado sigue siendo una <strong>propuesta en debate</strong> (Proyecto de Acuerdo 104 de 2026), no una norma aprobada.</div>',
+        type: 'pdf',
+        pdf: 'pdfs/m5t3-1-subsistema-habitacional.pdf',
+        pdfCover: 'img/m5t3-1-subsistema-habitacional-portada.webp',
+        pdfLabel: 'M5T3_1: Del territorio al hábitat — subsistema habitacional'
+      },
+      {
+        id: 'm5-t3-p2',
+        module: 5,
+        moduleTitle: 'Planificación territorial e instrumentos del BURNOR',
+        tema: 'Tema 3: Avances y discusiones de la revisión y ajuste de mediano plazo del POT',
+        title: 'Planes de Legalización, Regularización y Mejoramiento del Hábitat (PLRMH)',
+        desc: '¿Qué son los PLRMH, qué cambian frente al PLRU, dónde aplican y cómo pasan de la norma a la práctica?',
+        intro: '<p>La presentación explica los <strong>Planes de Legalización, Regularización y Mejoramiento del Hábitat (PLRMH)</strong> previstos en el Proyecto de Acuerdo 104 de 2026.</p><ul><li><strong>Qué cambia:</strong> frente al PLRU del POT de 2014, el PLRMH propone articular el reconocimiento urbanístico con reglas de ocupación, estudios de riesgo, mejoramiento del entorno, protección de moradores y una cartera de obras. Es un instrumento de tercer nivel; la presentación ubica al Distrito Rural Campesino en segundo nivel, conforme al ajuste informado de las plenarias.</li><li><strong>Qué hace:</strong> reúne tres funciones —<strong>reconocer, ordenar y gestionar</strong>— con participación comunitaria. La legalización urbanística <strong>no entrega automáticamente títulos individuales de propiedad</strong>.</li><li><strong>Dónde aplica:</strong> principalmente en polígonos de Mejoramiento Integral, con otros ámbitos sujetos a las condiciones expuestas. En el borde rural debe respetar la clasificación del suelo y las determinantes ambientales; en suelo de expansión se articula con el plan parcial. El plan no habilita por sí solo la urbanización de áreas protegidas.</li><li><strong>Cómo se formula:</strong> iniciativa, diagnóstico social y territorial, estudios de riesgo de detalle, formulación, adopción por decreto, ejecución y seguimiento. El estudio aporta conocimiento para decidir entre mitigación, permanencia y, cuando corresponda, reasentamiento integral; <strong>no equivale por sí mismo a un desalojo</strong>.</li><li><strong>Cómo pasa a la práctica:</strong> el PLRMH define reglas y proyectos; el Mejoramiento Integral de Barrios articula su ejecución, y programas como Barrios de Paz pueden contribuir a la financiación. Aprobar el plan no garantiza que las obras ya tengan diseños, presupuesto o fecha de ejecución.</li></ul><div class="complete-note">⚖️ <strong>Recuerden:</strong> este documento analizado sigue siendo una <strong>propuesta en debate</strong> (Proyecto de Acuerdo 104 de 2026), no una norma aprobada.</div>',
+        type: 'pdf',
+        pdf: 'pdfs/m5t3-2-plrmh.pdf',
+        pdfCover: 'img/m5t3-2-plrmh-portada.webp',
+        pdfLabel: 'M5T3_2: Planes de Legalización, Regularización y Mejoramiento del Hábitat'
       },
     ]
   };
@@ -3021,7 +3060,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>`).join('')}</div>`;
     }
 
-    if (l.type === 'text' && l.content) content += `<div class="text-content">${l.content}</div>`;
+    if (l.content) content += `<div class="text-content">${l.content}</div>`;
 
     if (l.embed) {
       content += `<div class="embed-head">
