@@ -213,6 +213,15 @@ export const layers_ladera_ne = {
     id: "perforaciones-proyecto-ladera",
     name: "Sondeos del Proyecto",
     url: "https://kf.kobotoolbox.org/api/v2/assets/aG9BjKxa4wmQeZqWhjuCrR/data.json",
+    // Fuente: "kobo", "firebase" o "both" (Kobo + lo de Firebase que no está en Kobo).
+    kobo_source: "both",
+    firebase_path: "/kobo/perforaciones",
+    crud: {
+      xlsform: "data/forms/perforaciones_ladera.xlsx",
+      nombre: "perforación",
+      genero: "f",
+      campo_codigo: "data_est/cod_perfo",
+    },
     layer: "",
     type: "kobo_perforaciones",
     geometry: "points",
@@ -244,10 +253,51 @@ export const layers_ladera_ne = {
     },
     data: [],
   },
+  estaciones_vulnerabilidad: {
+    id: "estaciones-vulnerabilidad",
+    name: "Estaciones Vulnerabilidad",
+    url: "https://kf.kobotoolbox.org/api/v2/assets/ahVFCyq8VdDgVuEfNQ5GP3/data.json",
+    // Fuente: "kobo", "firebase" o "both" (Kobo + lo de Firebase que no está en Kobo).
+    kobo_source: "both",
+    firebase_path: "/kobo/est_vulnerabilidad",
+    crud: {
+      xlsform: "data/forms/estaciones_vulnerabilidad.xlsx",
+      nombre: "estación",
+      genero: "f",
+      campo_codigo: "data_est/cod_estacion",
+    },
+    layer: "",
+    type: "kobo_estaciones_vulnerabilidad",
+    geometry: "points",
+    category: "Estaciones",
+    show: false,
+    showPopup: true,
+    downloable: true,
+    filterable: true,
+    filters: [
+    ],
+    styles: {
+      color: "#d76c3b",
+    },
+    data: [],
+  },
   estaciones_campo: {
     id: "estaciones-ladera-ne",
     name: "Estaciones de Campo",
     url: "https://kf.kobotoolbox.org/api/v2/assets/aaCir7DFTDjXVtdSERXsaF/data.json",
+    // Fuente de los registros: "kobo" (solo Kobo), "firebase" (solo la copia
+    // migrada) o "both" (Kobo + lo de Firebase que no está en Kobo).
+    kobo_source: "both",
+    firebase_path: "/kobo/est_ladera",
+    // Gestión de registros de Firebase con formulario generado del XLSForm
+    // de Kobo. Para otra capa: copiar su XLSForm a public/data/forms/ y
+    // añadir este bloque (requiere firebase_path).
+    crud: {
+      xlsform: "data/forms/estaciones_ladera.xlsx",
+      nombre: "estación",
+      genero: "f",
+      campo_codigo: "data_est/cod_estacion",
+    },
     layer: "",
     type: "kobo_estaciones",
     geometry: "points",
@@ -298,6 +348,15 @@ export const layers_ladera_ne = {
     id: "puntos-criticos-ladera-ne",
     name: "Puntos Críticos Levantados en Campo",
     url: "https://kf.kobotoolbox.org/api/v2/assets/ayghr9Dk9ZUygHYbkUfWbQ/data.json",
+    // Fuente: "kobo", "firebase" o "both" (Kobo + lo de Firebase que no está en Kobo).
+    kobo_source: "both",
+    firebase_path: "/kobo/puntos-criticos",
+    crud: {
+      xlsform: "data/forms/puntos_criticos_ladera.xlsx",
+      nombre: "punto crítico",
+      genero: "m",
+      campo_codigo: "data_est/_Nombre",
+    },
     layer: "",
     type: "kobo_puntos_criticos",
     geometry: "points",
