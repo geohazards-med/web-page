@@ -1,0 +1,97 @@
+// ════════════════════════════════════════════════════════════════════
+//  Reglas de seguridad de Firestore — proyecto curso-comprension-riesgo
+//  Cubre LOS DOS CURSOS. Reemplaza por completo las reglas actuales en:
+//  Firebase Console → Firestore Database → Reglas → Publicar
+//
+//  Curso 1 (Comprensión del Riesgo):          signups, forum_posts, course_evaluations
+//  Curso 2 (Planificación y Gestión):         *_c2
+//
+//  Lectura pública: SOLO los foros.
+//  Inscripciones y evaluaciones: nadie puede leerlas desde la web,
+//  únicamente desde la consola de Firebase (el dueño del proyecto).
+// ════════════════════════════════════════════════════════════════════
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Validadores ───────────────────────────────────────────────
+    function inscripcionValida() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['name', 'email', 'createdAt'])
+          && d.keys().hasAll(['name', 'email', 'createdAt'])
+          && d.name is string  && d.name.size()  > 0 && d.name.size()  <= 120
+          && d.email is string && d.email.size() > 0 && d.email.size() <= 200
+          && d.createdAt == request.time;
+    }
+
+    function comentarioValido() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['module', 'name', 'text', 'role', 'createdAt'])
+          && d.keys().hasAll(['module', 'name', 'text', 'createdAt'])
+          && d.module is int   && d.module >= 1 && d.module <= 20
+          && d.name is string  && d.name.size() > 0 && d.name.size() <= 120
+          && d.text is string  && d.text.size() > 0 && d.text.size() <= 4000
+          && (!('role' in d) || (d.role is string && d.role.size() <= 40))
+          && d.createdAt == request.time;
+    }
+
+    function evaluacionValida() {
+      let d = request.resource.data;
+      return d.keys().hasOnly([
+              'name', 'opinion', 'ratingGeneral',
+              'ratingModule1', 'ratingModule2', 'ratingModule3',
+              'ratingModule4', 'ratingModule5',
+              'ratingPlatform', 'mostImportantModule', 'mostImportantWhy',
+              'createdAt'
+            ])
+          && d.keys().hasAll(['name', 'opinion', 'ratingGeneral', 'createdAt'])
+          && d.name is string    && d.name.size() > 0 && d.name.size() <= 120
+          && d.opinion is string && d.opinion.size() > 0 && d.opinion.size() <= 4000
+          && d.ratingGeneral is int && d.ratingGeneral >= 1 && d.ratingGeneral <= 5
+          && d.createdAt == request.time;
+    }
+
+    // ── Inscripciones ─────────────────────────────────────────────
+    match /signups/{doc} {
+      allow read: if false;
+      allow create: if inscripcionValida();
+      allow update, delete: if false;
+    }
+    match /signups_c2/{doc} {
+      allow read: if false;
+      allow create: if inscripcionValida();
+      allow update, delete: if false;
+    }
+
+    // ── Foros de discusión (lectura pública) ──────────────────────
+    match /forum_posts/{doc} {
+      allow read: if true;
+      allow create: if comentarioValido();
+      allow update, delete: if false;
+    }
+    match /forum_posts_c2/{doc} {
+      allow read: if true;
+      allow create: if comentarioValido();
+      allow update, delete: if false;
+    }
+
+    // ── Evaluación general del curso ──────────────────────────────
+    match /course_evaluations/{doc} {
+      allow read: if false;
+      allow create: if evaluacionValida();
+      allow update, delete: if false;
+    }
+    match /course_evaluations_c2/{doc} {
+      allow read: if false;
+      allow create: if evaluacionValida();
+      allow update, delete: if false;
+    }
+
+    // ── Todo lo demás queda bloqueado ─────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
