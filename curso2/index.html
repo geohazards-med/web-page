@@ -2137,10 +2137,18 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   function missingForums() { return getModules().filter(m => !forumPosted[m.idx]); }
   function allLessonsDone() { return getModules().every(m => { const p = progressOf(lessonsOfModule(m.idx)); return p.total > 0 && p.done >= p.total; }); }
   function courseComplete() { return allLessonsDone(); }
+  function evalSent() { try { return localStorage.getItem('curso2_eval_done') === '1'; } catch(e) { return false; } }
 
   // Bloque de acción de certificado reutilizable (lección y quiz)
   function certCtaHtml(context) {
     if (!allLessonsDone()) return '';
+    if (allForumsPosted() && !evalSent()) {
+      return `<div class="course-done course-done-pending">
+        <span class="cd-check">📝</span>
+        <div class="cd-msg"><strong>¡Último paso para tu certificado!</strong><span>Cuéntanos qué te pareció el curso. Tu evaluación toma menos de dos minutos y nos ayuda a mejorarlo.</span></div>
+        <button class="cd-btn" onclick="showCourseEval()">Evaluar el curso →</button>
+      </div>`;
+    }
     if (allForumsPosted()) {
       return `<div class="course-done">
         <span class="cd-check">🎓</span>
@@ -2362,15 +2370,21 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <div class="cert-icon">🎓</div>
           <div class="cert-body">
             <h3>¡Felicidades, completaste el curso!</h3>
-            ${allForumsPosted()
-              ? `<p>Has terminado los 5 módulos. Puedes descargar tu certificado a nombre de <span class="cert-user">${signedUp ? signedUp.name : 'Participante'}</span>.</p>`
-              : `<p>Has terminado los 5 módulos. Para obtener tu certificado, participa en el foro de discusión de: <span class="cert-user">${missingForums().map(m => m.title).join(', ')}</span>.</p>`}
+            ${!allForumsPosted()
+              ? `<p>Has terminado los 5 módulos. Para obtener tu certificado, participa en el foro de discusión de: <span class="cert-user">${missingForums().map(m => m.title).join(', ')}</span> y evalúa el curso.</p>`
+              : !evalSent()
+                ? `<p>Has terminado los 5 módulos y participaste en los foros. <strong>Último paso:</strong> evalúa el curso para obtener tu certificado. Toma menos de dos minutos.</p>`
+                : `<p>Has terminado los 5 módulos. Puedes descargar tu certificado a nombre de <span class="cert-user">${signedUp ? signedUp.name : 'Participante'}</span>.</p>`}
           </div>
           <div class="cert-actions">
-            ${allForumsPosted()
-              ? `<button class="cert-btn" onclick="showCertificate()">🎓 Ver y descargar mi certificado</button>`
-              : `<button class="cert-btn" onclick="showForums()">Ir al foro →</button>`}
-            <button class="cert-btn cert-btn-secondary" onclick="showCourseEval()">${evalDone ? '✓ Evaluación enviada' : '📝 Evaluar el curso'}</button>
+            ${!allForumsPosted()
+              ? `<button class="cert-btn" onclick="showForums()">Ir al foro →</button>`
+              : !evalSent()
+                ? `<button class="cert-btn" onclick="showCourseEval()">📝 Evaluar el curso</button>`
+                : `<button class="cert-btn" onclick="showCertificate()">🎓 Ver y descargar mi certificado</button>`}
+            ${evalSent()
+              ? `<button class="cert-btn cert-btn-secondary" disabled>✓ Evaluación enviada</button>`
+              : !allForumsPosted() ? `<button class="cert-btn cert-btn-secondary" onclick="showCourseEval()">📝 Evaluar el curso</button>` : ''}
           </div>
         </div>` : ''}
       </section>`;
@@ -3305,6 +3319,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   window.showCertificate = function() {
     if (!signedUp) { renderSignup(); return; }
     if (!allForumsPosted()) { alert('Para obtener tu certificado, primero participa en el foro de discusión de todos los módulos.'); showHome(); return; }
+    if (!evalSent()) { showCourseEval(); return; }
     const certName = document.getElementById('certName');
     const certDate = document.getElementById('certDate');
     if (certName) certName.textContent = signedUp.name;
@@ -3343,7 +3358,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <button class="cm-close" onclick="closeCourseEval()">✕</button>
       <div class="cm-badge">Evaluación general del curso</div>
       <h2>¿Cómo te fue con el curso?</h2>
-      <div class="cm-sub">Deja tu opinión sobre este curso corto que acabas de finalizar.</div>
+      <div class="cm-sub">Deja tu opinión sobre este curso corto que acabas de finalizar.${evalSent() ? '' : ' <strong>Es el último paso para obtener tu certificado.</strong>'}</div>
       <div class="eval-field">
         <label>Tu opinión</label>
         <textarea id="eval-opinion" placeholder="Cuéntanos qué te pareció el curso..."></textarea>
@@ -3422,14 +3437,18 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       mostImportantWhy: (evalState.why || '').trim() || null,
     };
     try {
-      if (window.CursoDB) await window.CursoDB.addCourseEvaluation(payload);
+      for (let i = 0; i < 20 && !window.CursoDB; i++) await new Promise(r => setTimeout(r, 300));
+      if (!window.CursoDB) throw new Error('Firebase no está disponible');
+      await window.CursoDB.addCourseEvaluation(payload);
       try { localStorage.setItem('curso2_eval_done', '1'); } catch(e) {}
       if (modal) modal.innerHTML = `<button class="cm-close" onclick="closeCourseEval()">✕</button>
         <div class="eval-thanks">
           <div class="et-icon">🙌</div>
           <h3>¡Gracias por tu evaluación!</h3>
           <p>Tu opinión nos ayuda a mejorar este curso para más personas.</p>
+          ${allLessonsDone() && allForumsPosted() ? `<button class="cert-btn" style="margin-top:1rem" onclick="closeCourseEval(); showCertificate();">🎓 Ver y descargar mi certificado</button>` : ''}
         </div>`;
+      document.querySelectorAll('.course-done').forEach(el => { const nuevo = certCtaHtml(); if (nuevo) el.outerHTML = nuevo; });
       if (view === 'home') renderHome();
     } catch (e) {
       console.error('Error enviando evaluación', e);
