@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Exploraciones registradas por barrio o sector del BURNOR: perforaciones por percusión, por rotación y apiques.">
+<title>Exploraciones por barrio o sector · BURNOR</title>
+<script>if (window.self !== window.top) document.documentElement.classList.add('embebido');</script>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F4E7D3;--panel:#FFF8EC;--ink:#2F241D;--muted:#6F6258;--line:#DDCDB8;--line-soft:#EBDDC9;
+  --brown:#8A4F2A;--percusion:#8A4F2A;--rotacion:#436857;--apiques:#D39A3C;
+  --foco:#436857;--radio:14px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+main{max-width:1040px;margin:0 auto;padding:36px 28px 40px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--foco);outline-offset:2px;border-radius:6px}
+
+/* Encabezado (solo cuando el gráfico se abre como página propia) */
+.intro{margin:0 0 22px}
+h1{font-size:clamp(24px,3.4vw,36px);line-height:1.12;font-weight:700;letter-spacing:-.025em;margin:0 0 8px;text-wrap:balance}
+.subtitle{margin:0;color:var(--muted);font-size:14px}
+
+.panel{background:var(--panel);border-radius:var(--radio);padding:28px;box-shadow:0 1px 2px rgba(47,36,29,.06),0 10px 30px -18px rgba(47,36,29,.35)}
+
+/* Resumen: total y composición por tipo */
+.resumen{display:grid;gap:14px;margin-bottom:26px}
+.resumen-total{margin:0;font-size:16px;color:var(--muted)}
+.resumen-total strong{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.resumen-total .cifra{font-size:34px;letter-spacing:-.02em;line-height:1;margin-right:6px}
+.composicion{display:flex;height:12px;border-radius:99px;overflow:hidden;background:var(--line-soft)}
+.composicion span{height:100%;transition:flex-basis .5s var(--ease),opacity .3s}
+.tipos{display:flex;flex-wrap:wrap;gap:8px}
+.tipo{display:inline-flex;align-items:center;gap:9px;min-height:42px;padding:6px 14px 6px 10px;border:1px solid var(--line);border-radius:99px;background:#fff;cursor:pointer;font-size:14px;transition:background .2s,border-color .2s,opacity .2s}
+.tipo:hover{border-color:#C8B49C}
+.tipo .muestra{width:14px;height:14px;border-radius:4px;flex-shrink:0}
+.tipo .n{font-weight:700;font-variant-numeric:tabular-nums}
+.tipo[aria-pressed=false]{background:transparent;opacity:.55}
+.tipo[aria-pressed=false] .muestra{background:transparent!important;outline:2px dashed var(--muted);outline-offset:-2px}
+.tipo[aria-pressed=false] .n{text-decoration:line-through}
+.aviso{font-size:13px;color:var(--rotacion);margin:0}
+.aviso:empty{display:none}
+
+/* Filtros */
+.filtros{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:8px}
+.filtros label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px}
+.filtros input,.filtros select{width:100%;height:44px;border:1px solid var(--line);border-radius:9px;padding:8px 12px;background:#fff}
+.filtros input::placeholder{color:#8C7F74}
+
+/* Lista de barras */
+.lista{list-style:none;margin:0;padding:0}
+.fila{border-bottom:1px solid var(--line-soft)}
+.fila:last-child{border-bottom:0}
+.fila-btn{width:100%;display:grid;grid-template-columns:minmax(9rem,13rem) 1fr 3.2rem;align-items:center;gap:16px;min-height:52px;padding:8px 6px;border:0;background:transparent;text-align:left;cursor:pointer;border-radius:8px;transition:background .15s}
+.fila-btn:hover{background:#F6ECDD}
+.fila.abierta{background:#F3E6D3;border-radius:10px;border-bottom-color:transparent}
+.fila.abierta .fila-btn:hover{background:transparent}
+.fila-nombre{display:flex;flex-direction:column;min-width:0}
+.fila-nombre .nombre{font-weight:600;line-height:1.25}
+.fila-nombre .comuna{font-size:12px;color:var(--muted)}
+.barra{display:flex;height:22px;border-radius:5px;overflow:hidden;transform-origin:left center}
+.barra span{height:100%}
+.barra-pista{height:22px;display:flex;align-items:center}
+.fila-total{font-weight:700;font-variant-numeric:tabular-nums;text-align:right;font-size:16px}
+.fila-total small{display:block;font-size:11px;font-weight:500;color:var(--muted)}
+.detalle{display:flex;flex-wrap:wrap;gap:6px 22px;padding:4px 6px 16px;font-size:14px}
+.detalle span{display:inline-flex;align-items:center;gap:7px}
+.detalle i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.detalle b{font-variant-numeric:tabular-nums}
+.detalle .cero{color:var(--muted)}
+
+.ver-mas{display:block;margin:14px auto 0;min-height:44px;padding:9px 20px;border:1px solid var(--line);border-radius:99px;background:#fff;cursor:pointer;font-weight:600}
+.ver-mas:hover{border-color:var(--brown);color:var(--brown)}
+.vacio{padding:36px 12px;text-align:center;color:var(--muted)}
+.vacio button{margin-top:10px;min-height:42px;padding:8px 16px;border:1px solid var(--line);border-radius:99px;background:#fff;cursor:pointer;color:var(--ink)}
+
+/* Acciones y datos */
+.acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+.acciones button{min-height:42px;padding:8px 15px;border:1px solid var(--line);border-radius:9px;background:#fff;cursor:pointer;font-size:14px}
+.acciones button:hover{border-color:#C8B49C}
+.acciones .discreto{margin-left:auto;border-color:transparent;background:transparent;color:var(--muted)}
+.acciones button:disabled{opacity:.45;cursor:not-allowed}
+details{margin-top:18px}
+summary{cursor:pointer;font-size:14px;font-weight:600;min-height:32px;display:flex;align-items:center}
+.tabla{overflow-x:auto;margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:13px;white-space:nowrap}
+th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+th{font-weight:600;color:var(--muted);font-size:12px}
+th:first-child,td:first-child{text-align:left}
+.fuente{font-size:12px;color:var(--muted);margin:20px 0 0;line-height:1.6}
+.fuente p{margin:4px 0}
+.nota{font-size:13px;color:var(--muted);margin:16px 0 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Incrustado en la página comunitaria */
+html.embebido body{background:transparent}
+html.embebido main{padding:0;max-width:none}
+html.embebido .intro{display:none}
+html.embebido .nota{color:rgba(255,255,255,.78)}
+
+@media (max-width:640px){
+  main{padding:20px 12px 28px}
+  .panel{padding:18px 14px;border-radius:12px}
+  .resumen-total .cifra{font-size:30px}
+  .filtros{grid-template-columns:1fr 1fr}
+  .filtros .buscar{grid-column:1/-1}
+  .fila-btn{grid-template-columns:1fr auto;gap:6px 12px;padding:10px 4px}
+  .fila-nombre{grid-column:1}
+  .fila-total{grid-column:2;grid-row:1}
+  .barra-pista{grid-column:1/-1;grid-row:2}
+  .acciones button{flex:1 1 auto}
+}
+@media (max-width:440px){
+  .filtros{grid-template-columns:1fr}
+  .acciones .discreto{margin-left:0}
+}
+@media (prefers-reduced-motion:no-preference){
+  .lista.anima .barra{animation:crecer .7s var(--ease) both}
+  @keyframes crecer{from{transform:scaleX(.02)}to{transform:scaleX(1)}}
+}
+@media print{.filtros,.acciones,.ver-mas,details,.aviso,.tipos{display:none}body{background:#fff}.panel{box-shadow:none;padding:0}}
+</style>
+</head>
+<body>
+<main>
+<header class="intro">
+<h1>Exploraciones registradas por barrio o sector</h1>
+<p class="subtitle">Perforaciones y apiques del proyecto · Base en construcción</p>
+</header>
+
+<section class="panel" aria-label="Exploraciones por barrio o sector">
+  <div class="resumen">
+    <p class="resumen-total" aria-live="polite"><strong class="cifra" id="total">0</strong>exploraciones en <strong id="count">0</strong> barrios o sectores</p>
+    <div class="composicion" id="composicion" aria-hidden="true"></div>
+    <div class="tipos" role="group" aria-label="Mostrar u ocultar tipos de exploración" id="tipos"></div>
+    <p class="aviso" id="aviso" role="status"></p>
+  </div>
+
+  <div class="filtros">
+    <div class="buscar"><label for="search">Buscar barrio o sector</label><input id="search" type="search" placeholder="Ej.: La Cruz" autocomplete="off"></div>
+    <div><label for="comuna">Comuna</label><select id="comuna"></select></div>
+    <div><label for="order">Ordenar por</label><select id="order"><option value="desc">Más exploraciones</option><option value="asc">Menos exploraciones</option><option value="name">Nombre (A–Z)</option></select></div>
+  </div>
+
+  <ol class="lista" id="lista" aria-label="Barrios o sectores ordenados"></ol>
+  <div class="vacio" id="empty" hidden><p>No hay barrios o sectores que coincidan con la búsqueda.</p><button type="button" id="limpiar">Limpiar búsqueda y filtros</button></div>
+  <button type="button" class="ver-mas" id="ver-mas" hidden></button>
+
+  <div class="acciones">
+    <button id="download-csv" type="button">Descargar datos (CSV)</button>
+    <button id="download-svg" type="button">Descargar gráfico (SVG)</button>
+    <button id="reset" type="button" class="discreto">Restablecer vista</button>
+  </div>
+
+  <details>
+    <summary>Ver la tabla de datos</summary>
+    <div class="tabla"><table><caption class="sr">Exploraciones por barrio o sector según los filtros actuales</caption><thead><tr><th scope="col">Barrio o sector</th><th scope="col">Comuna</th><th scope="col">Percusión</th><th scope="col">Rotación</th><th scope="col">Apiques</th><th scope="col">Total visible</th></tr></thead><tbody id="table-body"></tbody></table></div>
+  </details>
+
+  <div class="fuente"><p>Fuente: <strong>Sectorización por Barrios.xlsx</strong>, hoja «Perforaciones y Apiques». Fecha de corte de las exploraciones: no indicada.</p><p>Las Flores conserva su comuna sin reportar. Los totales son sumas de las filas disponibles. Los nombres abreviados del archivo fuente se muestran completos en pantalla; el CSV conserva los nombres originales.</p></div>
+</section>
+<p class="nota">La cantidad de exploraciones describe el trabajo registrado; no representa un nivel de amenaza o riesgo.</p>
+</main>
+<noscript>Activa JavaScript en tu navegador para consultar el gráfico y sus filtros.</noscript>
+<!-- ACTUALIZACIÓN: sustituir los registros del bloque JSON por los de la hoja
+     Perforaciones y Apiques. No usar cero para datos ausentes. comuna:null
+     significa sin reportar. No modificar los nombres de las propiedades.
+     Este archivo contiene una copia de los datos; no se sincroniza con Excel. -->
+<script id="exploraciones-datos" type="application/json">[
+  {
+    "comuna": 8,
+    "barrio": "Villatina",
+    "percusion": 5,
+    "rotacion": 0,
+    "apiques": 1
+  },
+  {
+    "comuna": 8,
+    "barrio": "La Libertad",
+    "percusion": 3,
+    "rotacion": 1,
+    "apiques": 1
+  },
+  {
+    "comuna": 1,
+    "barrio": "Santo D. 1",
+    "percusion": 7,
+    "rotacion": 3,
+    "apiques": 1
+  },
+  {
+    "comuna": 1,
+    "barrio": "Santo D. 2",
+    "percusion": 4,
+    "rotacion": 1,
+    "apiques": 2
+  },
+  {
+    "comuna": null,
+    "barrio": "Las Flores",
+    "percusion": 13,
+    "rotacion": 1,
+    "apiques": 8
+  },
+  {
+    "comuna": 1,
+    "barrio": "La Avanzada",
+    "percusion": 4,
+    "rotacion": 0,
+    "apiques": 2
+  },
+  {
+    "comuna": 1,
+    "barrio": "Popular",
+    "percusion": 0,
+    "rotacion": 0,
+    "apiques": 1
+  },
+  {
+    "comuna": 3,
+    "barrio": "Versalles 2",
+    "percusion": 26,
+    "rotacion": 3,
+    "apiques": 4
+  },
+  {
+    "comuna": 3,
+    "barrio": "La Honda",
+    "percusion": 27,
+    "rotacion": 4,
+    "apiques": 6
+  },
+  {
+    "comuna": 3,
+    "barrio": "Oriente",
+    "percusion": 21,
+    "rotacion": 3,
+    "apiques": 3
+  },
+  {
+    "comuna": 8,
+    "barrio": "Trece de N.",
+    "percusion": 15,
+    "rotacion": 3,
+    "apiques": 4
+  },
+  {
+    "comuna": 8,
+    "barrio": "La Sierra",
+    "percusion": 3,
+    "rotacion": 1,
+    "apiques": 1
+  },
+  {
+    "comuna": 8,
+    "barrio": "Llanaditas",
+    "percusion": 6,
+    "rotacion": 2,
+    "apiques": 6
+  },
+  {
+    "comuna": 8,
+    "barrio": "El Faro",
+    "percusion": 0,
+    "rotacion": 1,
+    "apiques": 0
+  },
+  {
+    "comuna": 8,
+    "barrio": "La Ladera",
+    "percusion": 0,
+    "rotacion": 0,
+    "apiques": 1
+  },
+  {
+    "comuna": 8,
+    "barrio": "Los Mangos",
+    "percusion": 2,
+    "rotacion": 1,
+    "apiques": 1
+  },
+  {
+    "comuna": 8,
+    "barrio": "Villa Turbay",
+    "percusion": 4,
+    "rotacion": 1,
+    "apiques": 4
+  },
+  {
+    "comuna": 3,
+    "barrio": "La Cruz",
+    "percusion": 48,
+    "rotacion": 8,
+    "apiques": 9
+  },
+  {
+    "comuna": 8,
+    "barrio": "Villa Liliam",
+    "percusion": 1,
+    "rotacion": 0,
+    "apiques": 0
+  },
+  {
+    "comuna": 8,
+    "barrio": "Las Estancias",
+    "percusion": 1,
+    "rotacion": 0,
+    "apiques": 0
+  },
+  {
+    "comuna": 8,
+    "barrio": "San Antonio",
+    "percusion": 1,
+    "rotacion": 1,
+    "apiques": 1
+  },
+  {
+    "comuna": 8,
+    "barrio": "Esfuerzos de Paz",
+    "percusion": 2,
+    "rotacion": 0,
+    "apiques": 1
+  },
+  {
+    "comuna": 8,
+    "barrio": "Altos de la Torre",
+    "percusion": 3,
+    "rotacion": 1,
+    "apiques": 2
+  },
+  {
+    "comuna": 8,
+    "barrio": "Golondrinas",
+    "percusion": 5,
+    "rotacion": 0,
+    "apiques": 2
+  }
+]</script>
+<script>
+(()=>{
+'use strict';
+const DATA=JSON.parse(document.getElementById('exploraciones-datos').textContent);
+const SERIES=[{key:'percusion',label:'Percusión',plural:'Perforaciones por percusión',color:'#8A4F2A'},{key:'rotacion',label:'Rotación',plural:'Perforaciones por rotación',color:'#436857'},{key:'apiques',label:'Apiques',plural:'Apiques',color:'#D39A3C'}];
+const COMUNAS={1:'Popular',3:'Manrique',7:'Robledo',8:'Villa Hermosa'};
+// Nombres completos solo para mostrar; los datos y el CSV conservan los del archivo fuente.
+const NOMBRES={'Santo D. 1':'Santo Domingo Savio 1','Santo D. 2':'Santo Domingo Savio 2','Trece de N.':'Trece de Noviembre'};
+const INICIALES=10;
+const $=id=>document.getElementById(id);
+const active=new Set(SERIES.map(s=>s.key));
+let verTodos=false,primeraVez=true;
+const fmt=n=>n.toLocaleString('es-CO');
+const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+const nombre=d=>NOMBRES[d.barrio]||d.barrio;
+const comunaTxt=d=>d.comuna===null?'Comuna sin reportar':'Comuna '+d.comuna+(COMUNAS[d.comuna]?' · '+COMUNAS[d.comuna]:'');
+const visibleTotal=d=>SERIES.reduce((t,s)=>t+(active.has(s.key)?d[s.key]:0),0);
+const el=(tag,props={},...hijos)=>{const n=document.createElement(tag);for(const[k,v]of Object.entries(props)){if(k==='style')n.style.cssText=v;else if(k in n&&k!=='hidden')n[k]=v;else n.setAttribute(k,v);}n.append(...hijos);return n;};
+
+/* Opciones de comuna con su número de barrios */
+(function(){
+  const sel=$('comuna');const cuenta={};
+  DATA.forEach(d=>{const k=d.comuna===null?'missing':String(d.comuna);cuenta[k]=(cuenta[k]||0)+1;});
+  sel.append(el('option',{value:'all'},'Todas las comunas ('+DATA.length+')'));
+  Object.keys(cuenta).filter(k=>k!=='missing').sort((a,b)=>a-b).forEach(k=>sel.append(el('option',{value:k},k+' · '+(COMUNAS[k]||'Comuna '+k)+' ('+cuenta[k]+')')));
+  if(cuenta.missing)sel.append(el('option',{value:'missing'},'Sin comuna reportada ('+cuenta.missing+')'));
+})();
+
+/* Botones de tipo */
+SERIES.forEach(s=>{
+  const b=el('button',{type:'button',className:'tipo','aria-pressed':'true'},el('span',{className:'muestra',style:'background:'+s.color}),el('span',{},s.label),el('span',{className:'n',id:'n-'+s.key}));
+  b.dataset.key=s.key;
+  b.addEventListener('click',()=>{
+    if(active.has(s.key)&&active.size===1){$('aviso').textContent='Deja visible al menos un tipo de exploración.';return;}
+    active.has(s.key)?active.delete(s.key):active.add(s.key);
+    b.setAttribute('aria-pressed',String(active.has(s.key)));$('aviso').textContent='';render();
+  });
+  $('tipos').append(b);
+});
+
+function filtrar(){
+  const q=norm($('search').value.trim()),c=$('comuna').value;
+  return DATA.filter(d=>(!q||norm(d.barrio).includes(q)||norm(nombre(d)).includes(q))&&(c==='all'||(c==='missing'?d.comuna===null:String(d.comuna)===c)))
+    .sort((a,b)=>{if($('order').value==='name')return nombre(a).localeCompare(nombre(b),'es');const delta=visibleTotal(b)-visibleTotal(a);return($('order').value==='asc'?-delta:delta)||nombre(a).localeCompare(nombre(b),'es');});
+}
+
+let rows=[];
+function render(){
+  rows=filtrar();
+  const total=rows.reduce((t,d)=>t+visibleTotal(d),0);
+  $('total').textContent=fmt(total);$('count').textContent=fmt(rows.length);
+
+  // Composición y contadores por tipo
+  const comp=$('composicion');comp.replaceChildren();
+  const porTipo={};SERIES.forEach(s=>porTipo[s.key]=rows.reduce((t,d)=>t+d[s.key],0));
+  SERIES.forEach(s=>{
+    $('n-'+s.key).textContent=fmt(porTipo[s.key]);
+    const v=active.has(s.key)?porTipo[s.key]:0;
+    comp.append(el('span',{style:'flex:0 0 '+(total?v/total*100:0)+'%;background:'+s.color,title:s.label+': '+fmt(porTipo[s.key])}));
+  });
+
+  // Lista
+  const lista=$('lista');lista.replaceChildren();
+  const max=Math.max(1,...rows.map(visibleTotal));
+  const filtrado=$('search').value.trim()||$('comuna').value!=='all';
+  const mostrar=(verTodos||filtrado)?rows:rows.slice(0,INICIALES);
+  mostrar.forEach((d,i)=>{
+    const vt=visibleTotal(d),id='det-'+i;
+    const barra=el('span',{className:'barra',style:'width:'+(vt/max*100)+'%;animation-delay:'+(Math.min(i,12)*35)+'ms'});
+    SERIES.forEach(s=>{if(active.has(s.key)&&d[s.key]>0)barra.append(el('span',{style:'flex:'+d[s.key]+' 0 0;background:'+s.color}));});
+    const btn=el('button',{type:'button',className:'fila-btn','aria-expanded':'false','aria-controls':id},
+      el('span',{className:'fila-nombre'},el('span',{className:'nombre'},nombre(d)),el('span',{className:'comuna'},comunaTxt(d))),
+      el('span',{className:'barra-pista'},barra),
+      el('span',{className:'fila-total'},fmt(vt),el('span',{className:'sr'},' exploraciones')));
+    const det=el('div',{className:'detalle',id},...SERIES.map(s=>{
+      const v=d[s.key];
+      return el('span',{className:(!active.has(s.key)||!v)?'cero':''},el('i',{style:'background:'+s.color}),s.plural+': ',el('b',{},fmt(v)));
+    }));
+    det.hidden=true;
+    const li=el('li',{className:'fila'},btn,det);
+    btn.addEventListener('click',()=>{const abierto=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',String(!abierto));det.hidden=abierto;li.classList.toggle('abierta',!abierto);});
+    lista.append(li);
+  });
+  lista.classList.toggle('anima',primeraVez);primeraVez=false;
+
+  $('empty').hidden=rows.length>0;
+  const vm=$('ver-mas');
+  vm.hidden=filtrado||rows.length<=INICIALES;
+  vm.textContent=verTodos?'Mostrar solo los '+INICIALES+' primeros':'Ver los '+rows.length+' barrios o sectores';
+
+  // Tabla
+  $('table-body').replaceChildren(...rows.map(d=>el('tr',{},...[nombre(d),d.comuna??'Sin reportar',d.percusion,d.rotacion,d.apiques,visibleTotal(d)].map(v=>el('td',{},typeof v==='number'?fmt(v):String(v))))));
+  $('download-svg').disabled=$('download-csv').disabled=!rows.length;
+}
+
+for(const id of['search','comuna','order'])$(id).addEventListener(id==='search'?'input':'change',render);
+$('ver-mas').addEventListener('click',()=>{verTodos=!verTodos;render();if(!verTodos)$('lista').scrollIntoView({block:'nearest'});});
+function restablecer(){$('search').value='';$('comuna').value='all';$('order').value='desc';verTodos=false;SERIES.forEach(s=>active.add(s.key));document.querySelectorAll('.tipo').forEach(b=>b.setAttribute('aria-pressed','true'));$('aviso').textContent='';render();}
+$('reset').addEventListener('click',restablecer);
+$('limpiar').addEventListener('click',()=>{restablecer();$('search').focus();});
+
+/* Descargas */
+function descargar(blob,archivo){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=archivo;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);}
+$('download-csv').addEventListener('click',()=>{
+  const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const cab=['Barrio o sector','Comuna','Percusion','Rotacion','Apiques','Total visible','Tipos visibles'];
+  const filas=rows.map(d=>[d.barrio,d.comuna,d.percusion,d.rotacion,d.apiques,visibleTotal(d),SERIES.filter(s=>active.has(s.key)).map(s=>s.label).join(', ')]);
+  descargar(new Blob(['﻿'+[cab,...filas].map(r=>r.map(q).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),'exploraciones-burnor.csv');
+});
+$('download-svg').addEventListener('click',()=>{
+  const esc=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const W=900,izq=230,der=60,top=118,rh=34,H=top+rows.length*rh+70,pw=W-izq-der,max=Math.max(1,...rows.map(visibleTotal));
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="Arial, sans-serif"><rect width="${W}" height="${H}" fill="#FFF8EC"/>`;
+  s+=`<text x="28" y="40" font-size="22" font-weight="700" fill="#2F241D">Exploraciones registradas por barrio o sector</text>`;
+  s+=`<text x="28" y="64" font-size="13" fill="#6F6258">BURNOR · ${rows.length} barrios o sectores · ${fmt(rows.reduce((t,d)=>t+visibleTotal(d),0))} exploraciones visibles</text>`;
+  let lx=28;SERIES.filter(x=>active.has(x.key)).forEach(x=>{s+=`<rect x="${lx}" y="82" width="12" height="12" rx="2" fill="${x.color}"/><text x="${lx+18}" y="92" font-size="13" fill="#2F241D">${x.label}</text>`;lx+=130;});
+  rows.forEach((d,i)=>{
+    const cy=top+i*rh+rh/2;let off=0;
+    s+=`<text x="${izq-12}" y="${cy+4}" font-size="13" text-anchor="end" fill="#2F241D">${esc(nombre(d))}</text>`;
+    SERIES.forEach(x=>{if(!active.has(x.key))return;const w=d[x.key]/max*pw;if(w>0)s+=`<rect x="${izq+off}" y="${cy-9}" width="${w}" height="18" fill="${x.color}"/>`;off+=w;});
+    s+=`<text x="${izq+off+8}" y="${cy+4}" font-size="13" font-weight="700" fill="#2F241D">${fmt(visibleTotal(d))}</text>`;
+  });
+  s+=`<text x="28" y="${H-36}" font-size="12" fill="#6F6258">Fuente: Sectorización por Barrios.xlsx · Hoja Perforaciones y Apiques. Base en construcción; fecha de corte no indicada.</text>`;
+  s+=`<text x="28" y="${H-17}" font-size="12" fill="#6F6258">La cantidad de exploraciones describe el trabajo registrado; no representa un nivel de amenaza o riesgo.</text></svg>`;
+  descargar(new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n'+s],{type:'image/svg+xml;charset=utf-8'}),'exploraciones-burnor.svg');
+});
+
+/* Avisar la altura a la página que lo incrusta, para que el marco crezca sin barra de scroll interna */
+if(document.documentElement.classList.contains('embebido')){
+  const avisar=()=>window.parent.postMessage({tipo:'exploraciones-altura',alto:Math.ceil(document.documentElement.getBoundingClientRect().height)},location.origin);
+  new ResizeObserver(avisar).observe(document.body);window.addEventListener('load',avisar);
+}
+render();
+})();
+</script>
+</body>
+</html>

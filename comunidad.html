@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Borde Nororiental - Gestión del Riesgo</title>
   <meta name="description" content="Estudios de detalle de amenaza, vulnerabilidad y riesgo en los bordes urbano-rurales Nororiental y Noroccidental de Medellín. Información para la comunidad sobre avances, actividades y resultados." />
-  <link rel="stylesheet" href="assets/css/v3.css?v=1.4" />
+  <link rel="stylesheet" href="assets/css/v3.css?v=1.5" />
   <link rel="stylesheet" href="assets/css/gsap-enhancements.css?v=1.1" />
 </head>
 
@@ -680,17 +680,24 @@
       <p class="section-subtitle-gsap" style="color: var(--color-white);">¿Qué materiales hay? ¿A qué profundidad cambian? ¿Qué tan firmes son? ¿Hay agua subterránea?</p>
       <div class="perforations-grid">
         <div class="perforations-card">
-          <span class="perfor-num" data-target="20">20</span>
+          <span class="perfor-num" data-target="35">35</span>
           <span class="perfor-label">Perforaciones por rotación</span>
         </div>
         <div class="perforations-card">
-          <span class="perfor-num" data-target="198">198</span>
+          <span class="perfor-num" data-target="201">201</span>
           <span class="perfor-label">Perforaciones por percusión</span>
         </div>
         <div class="perforations-card">
-          <span class="perfor-num" data-target="55">55</span>
+          <span class="perfor-num" data-target="61">61</span>
           <span class="perfor-label">Apiques (excavaciones manuales)</span>
         </div>
+      </div>
+
+      <!-- Exploraciones por barrio o sector (gráfico interactivo) -->
+      <div class="exploraciones-wrap">
+        <h3 class="exploraciones-titulo">¿Dónde se han hecho? Exploraciones por barrio o sector</h3>
+        <iframe id="exploraciones-iframe" class="exploraciones-iframe" src="assets/comunidad/interactivos/exploraciones-burnor.html" title="Gráfico interactivo de exploraciones por barrio o sector"></iframe>
+        <a class="exploraciones-abrir" href="assets/comunidad/interactivos/exploraciones-burnor.html" target="_blank" rel="noopener">Abrir el gráfico en pantalla completa ↗</a>
       </div>
 
       <!-- ¿Cómo se hacen? - Didáctico -->
@@ -1818,8 +1825,8 @@
       </div>
       <div class="stat-card">
         <div class="stat-icon">⛏️</div>
-        <span class="stat-number" data-target="273">273</span>
-        <span class="stat-label">Perforaciones y apiques<br><small style="opacity:.8">198 por percusión · 20 por rotación · 55 apiques</small></span>
+        <span class="stat-number" data-target="297">297</span>
+        <span class="stat-label">Perforaciones y apiques<br><small style="opacity:.8">201 por percusión · 35 por rotación · 61 apiques</small></span>
       </div>
       <div class="stat-card">
         <div class="stat-icon">📅</div>
@@ -1827,16 +1834,6 @@
         <span class="stat-label">Meses de duración del proyecto<br><small style="opacity:.8">+ 45 días de adición</small></span>
       </div>
     </div>
-    <details class="stats-detalle">
-      <summary>Ver perforaciones y apiques por barrio</summary>
-      <div class="stats-detalle-tabla">
-        <table>
-          <thead><tr><th>Barrio</th><th>Percusión</th><th>Rotación</th><th>Apiques</th><th>Total</th></tr></thead>
-          <tbody><tr><td>Versalles 2</td><td>65</td><td>0</td><td>10</td><td><strong>75</strong></td></tr><tr><td>La Cruz</td><td>48</td><td>8</td><td>9</td><td><strong>65</strong></td></tr><tr><td>Santo Domingo Savio 1 y 2</td><td>27</td><td>5</td><td>14</td><td><strong>46</strong></td></tr><tr><td>Oriente</td><td>21</td><td>3</td><td>3</td><td><strong>27</strong></td></tr><tr><td>Llanaditas</td><td>17</td><td>0</td><td>10</td><td><strong>27</strong></td></tr><tr><td>Villatina</td><td>8</td><td>1</td><td>2</td><td><strong>11</strong></td></tr><tr><td>Villa Turbay</td><td>4</td><td>1</td><td>4</td><td><strong>9</strong></td></tr><tr><td>San Antonio</td><td>3</td><td>1</td><td>2</td><td><strong>6</strong></td></tr><tr><td>La Sierra</td><td>3</td><td>1</td><td>1</td><td><strong>5</strong></td></tr><tr><td>Villa Liliam</td><td>2</td><td>0</td><td>0</td><td><strong>2</strong></td></tr></tbody>
-          <tfoot><tr><td>Total</td><td>198</td><td>20</td><td>55</td><td>273</td></tr></tfoot>
-        </table>
-      </div>
-    </details>
   </section>
 
   <!-- PARTICIPACIÓN -->
@@ -2009,6 +2006,13 @@
         btn.textContent = btn.textContent.replace(/\s*·.*$/, '') +
           (filter === 'all' ? ' · 17 eventos' : ' · ' + visible + ' evento' + (visible !== 1 ? 's' : ''));
       });
+    });
+
+    // ===== GRÁFICO DE EXPLORACIONES: el marco toma la altura del contenido =====
+    window.addEventListener('message', function(e) {
+      var f = document.getElementById('exploraciones-iframe');
+      if (!f || e.origin !== location.origin || e.source !== f.contentWindow) return;
+      if (e.data && e.data.tipo === 'exploraciones-altura' && e.data.alto > 0) f.style.height = e.data.alto + 'px';
     });
 
     // ===== BUSCADOR DE BARRIOS =====
