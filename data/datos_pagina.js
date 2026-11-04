@@ -221,6 +221,8 @@ export const layers_ladera_ne = {
       nombre: "perforación",
       genero: "f",
       campo_codigo: "data_est/cod_perfo",
+      // Permite llenar el formulario de creación desde el formato en Excel.
+      importador: "perforaciones_excel",
     },
     layer: "",
     type: "kobo_perforaciones",
@@ -5257,6 +5259,25 @@ Colombiano en los Andes y la Guajira.`,
           // inventarios_geohazards.inventario_sensores_remotos,
           // ...Object.values(proyecto_minciencias_sat),
         ].flat(),
+      },
+      {
+        id: "tracking-mcs-colombia",
+        featured: true,
+        external_url: "https://mcs.deltanube.com/",
+        title:
+          "Detección y seguimiento de sistemas convectivos de mesoescala en Colombia",
+        short_desc: `Tracking of MCSs en Colombia: Caracterización espacio-temporal de sistemas convectivos de mesoescala
+para reducir la vulnerabilidad ante eventos de precipitación severa y comprender el tiempo meteorológico y clima regional,
+basado en el algoritmo ATRACKCS (Robledo et al., 2024).`,
+        date: "2026 - Actualidad",
+        type: "Investigación",
+        center: [-74.3, 4.6],
+        zoom: 5,
+        layer_list: [].flat(),
+        source_link: {
+          text: "Algoritmo original ATRACKCS (GitHub)",
+          link: "https://github.com/ATRACKCS/ATRACKCS",
+        },
       },
       {
         id: "sensores-remotos",
