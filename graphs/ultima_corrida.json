@@ -1,5 +1,5 @@
 {
-  "fecha_ejecucion": "2026-11-08T16:50:53",
+  "fecha_ejecucion": "2026-11-09T21:13:36",
   "resultados": [
     {
       "subregion": "Occidente",
@@ -41,7 +41,7 @@
       "estacion_nombre": "PUERTO BERRIO",
       "estacion_codigo": "0023097030",
       "status": "sin_datos",
-      "error": "Sin datos de IDEAM para la estación 0023097030 en el rango solicitado."
+      "error": "La API de IDEAM respondió con error 500 para la estación 0023097030."
     }
   ]
 }
