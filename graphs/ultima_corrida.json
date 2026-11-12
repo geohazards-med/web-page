@@ -1,5 +1,5 @@
 {
-  "fecha_ejecucion": "2026-11-11T18:12:52",
+  "fecha_ejecucion": "2026-11-12T18:39:50",
   "resultados": [
     {
       "subregion": "Occidente",
@@ -12,36 +12,36 @@
       "subregion": "Norte",
       "estacion_nombre": "PARAMO BELMIRA",
       "estacion_codigo": "0027015280",
-      "status": "sin_datos",
-      "error": "La API de IDEAM respondió con error 500 para la estación 0027015280."
+      "status": "ok",
+      "error": null
     },
     {
       "subregion": "Sureste",
       "estacion_nombre": "PUENTE IGLESIAS",
       "estacion_codigo": "0026207030",
-      "status": "sin_datos",
-      "error": "La API de IDEAM respondió con error 500 para la estación 0026207030."
+      "status": "ok",
+      "error": null
     },
     {
       "subregion": "Nordeste",
       "estacion_nombre": "MACEO",
       "estacion_codigo": "0023105070",
-      "status": "sin_datos",
-      "error": "La API de IDEAM respondió con error 503 para la estación 0023105070."
+      "status": "ok",
+      "error": null
     },
     {
       "subregion": "Bajo cauca",
       "estacion_nombre": "MARGENTO",
       "estacion_codigo": "0025027050",
-      "status": "sin_datos",
-      "error": "La API de IDEAM respondió con error 503 para la estación 0025027050."
+      "status": "ok",
+      "error": null
     },
     {
       "subregion": "Oriente",
       "estacion_nombre": "PUERTO BERRIO",
       "estacion_codigo": "0023097030",
       "status": "sin_datos",
-      "error": "La API de IDEAM respondió con error 503 para la estación 0023097030."
+      "error": "Sin datos de IDEAM para la estación 0023097030 en el rango solicitado."
     }
   ]
 }
