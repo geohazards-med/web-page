@@ -1,5 +1,5 @@
 {
-  "fecha_ejecucion": "2026-11-16T20:45:37",
+  "fecha_ejecucion": "2026-11-17T19:29:37",
   "resultados": [
     {
       "subregion": "Occidente",
@@ -19,8 +19,8 @@
       "subregion": "Sureste",
       "estacion_nombre": "PUENTE IGLESIAS",
       "estacion_codigo": "0026207030",
-      "status": "error",
-      "error": "Error procesando la subregión Sureste: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"
+      "status": "ok",
+      "error": null
     },
     {
       "subregion": "Nordeste",
